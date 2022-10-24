@@ -1,3 +1,0 @@
-2022-10-24 09:39:26 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]desc profile"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
-desc profile [42001-214]
