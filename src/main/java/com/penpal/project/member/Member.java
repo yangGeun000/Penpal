@@ -46,11 +46,11 @@ public class Member {
 	
 	// by 구양근, 내가 만든 대화방 리스트  
 	@OneToMany(mappedBy = "maker", cascade = CascadeType.REMOVE)
-	private List<Room> producerList;
+	private List<Room> makerList;
 	
 	// by 구양근, 내가 초대된 대화방 리스트
 	@OneToMany(mappedBy = "guest", cascade = CascadeType.REMOVE)
-	private List<Room> inviteList;
+	private List<Room> guestList;
 	
 	// by 구양근, 프로필
 	@OneToOne(mappedBy = "member")
