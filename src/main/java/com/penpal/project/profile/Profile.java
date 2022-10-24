@@ -32,9 +32,9 @@ public class Profile {
 	@Column(length=60)
 	private String nickname;
 	
-	private Integer gender;
+	private int gender;
 	
-	private Integer age;
+	private int age;
 	
 	@OneToOne
 	private Member member;
