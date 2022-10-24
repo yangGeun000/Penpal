@@ -6,6 +6,7 @@ build/
 !**/src/test/**/build/
 local.mv.db
 local.trace.db
+*.DS_Store
 
 ### STS ###
 .apt_generated
