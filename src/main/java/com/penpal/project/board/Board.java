@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,6 +20,7 @@ import com.penpal.project.member.Member;
 
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -46,6 +46,8 @@ public class Board {
 	@ManyToOne
 	private CategoryList category;
 	
+
+	// author -> writer
 	@ManyToOne
 	private Member writer;
 	
@@ -54,4 +56,5 @@ public class Board {
 	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
 	
+
 }

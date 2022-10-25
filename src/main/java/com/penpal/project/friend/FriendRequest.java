@@ -1,15 +1,12 @@
-package com.penpal.project.answer;
+package com.penpal.project.friend;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.penpal.project.board.Board;
 import com.penpal.project.member.Member;
 
 import lombok.Getter;
@@ -18,23 +15,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Answer {
+public class FriendRequest {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(columnDefinition = "TEXT")
-	private String content;
+	private Integer sendId;
 	
-
-	@ManyToOne
-	private Member writer;
-
-	
-	private LocalDateTime createDate;
-	
-	@ManyToOne
-	private Board board;
+	@ManyToOne(targetEntity = Member.class)
+	@JoinColumn(name = "member_id")
+	private Integer receiveId;
 	
 }

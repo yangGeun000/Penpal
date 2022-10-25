@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+		<title th:text="${board.title}">Document</title>
+	</head>
+
+	<body>
+		<h1 th:text="${board.title}"></h1>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;" th:text="${board.content}"></div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge bg-light text-dark p-2 text-start">
+                        <div class="mb-2">
+                            <span th:if="${board.writer != null}" th:text="${board.writer.userId}"></span>
+                        </div>
+                        <div th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                    </div>
+                </div>
+            </div>
+		<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
+			<div th:replace="board/form_errors :: formErrorsFragment"></div>
+            <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
+            <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>			
+            <input type="submit" value="UPLODE">
+		</form>
+
+		<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
+		<div>
+			<ul>
+				<li th:each="answer : ${board.answerList}" th:text="${answer.content}"></li>
+			</ul>
+		</div>
+	</body>
+</div>
+
+</html>

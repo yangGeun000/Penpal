@@ -1,5 +1,7 @@
 $('.header_navi').ready(function(){
+
     var url = window.location.pathname,
+    
     urlRegExp = new RegExp(url.replace(/\/$/,) + "$");
 
     $('a').parent('li').removeClass('active');
