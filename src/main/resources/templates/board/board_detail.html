@@ -19,7 +19,7 @@
                 <div class="d-flex justify-content-end">
                     <div class="badge bg-light text-dark p-2 text-start">
                         <div class="mb-2">
-                            <span th:if="${board.writer != null}" th:text="${board.writer.userId}"></span>
+                            <span th:if="${board.writer != null}" th:text="${board.writer.memberId}"></span>
                         </div>
                         <div th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                     </div>
@@ -35,7 +35,9 @@
 		<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
 		<div>
 			<ul>
+			<!-- 답변반복기능 -->
 				<li th:each="answer : ${board.answerList}" th:text="${answer.content}"></li>
+				<a th:id="|answer_${answer.id}|">
 			</ul>
 		</div>
 	</body>

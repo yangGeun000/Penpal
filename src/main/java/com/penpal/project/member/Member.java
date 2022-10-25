@@ -29,7 +29,7 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	// user* -> member 변수명 변경 
+	// by 장유란, user* -> member 변수명 변경 
 	@Column(unique = true, length = 30)
 	private String memberId;
 
@@ -46,7 +46,7 @@ public class Member {
 
 	private LocalDateTime createDate;
 
-	// author -> writer 변수명 변경 
+	// by 장유란, author -> writer 변수명 변경 
 	@ManyToOne
 	private Member writer;
 

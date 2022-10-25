@@ -22,7 +22,7 @@ public class MemberService {
     
     public Member create(String memberId, String memberPw, String name, String email) {
         Member user = new Member();
-        // user* - > member*
+        // by 장유란, user* - > member*
         log.info("/ memberAdd  / " + memberId);
         user.setMemberId(memberId);
         user.setMemberPw(passwordEncoder.encode(memberPw));

@@ -15,12 +15,15 @@ public class AnswerService {
 
     private final AnswerRepository answerRepository;
     
-    public void create(Board board, String content, Member member) {
+    // 답변앵커기능
+    public Answer create(Board board, String content, Member member) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setBoard(board);
         answer.setWriter(member);        
         this.answerRepository.save(answer);
+        
+        return answer;
     }
 }
