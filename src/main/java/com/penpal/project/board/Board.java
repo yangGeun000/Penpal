@@ -48,7 +48,7 @@ public class Board {
 	private CategoryList category;
 	
 
-	// author -> writer
+	// by 장유란, author -> writer
 	@ManyToOne
 	private Member writer;
 	

@@ -41,9 +41,11 @@ public class BoardController {
     private final CountryListRepository countryListRepository;
 
     @RequestMapping("/list")
-    public String boardList(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Board> paging = this.boardService.getList(page);
+    public String boardList(Model model, @RequestParam(value = "page", defaultValue = "0") int page, 
+    		@RequestParam(value = "kw", defaultValue = "") String kw) {
+        Page<Board> paging = this.boardService.getList(page, kw);
         model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
 
         return "board/board_list";
     }
