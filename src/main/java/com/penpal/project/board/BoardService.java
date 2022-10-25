@@ -36,18 +36,23 @@ public class BoardService {
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
 
-	// by 장유란, 검색기능 추가
+	// by 장유란, 검색기능(Specification 예시, 참고용)
+	//			BoardRepository의 findAllByKeyword의 쿼리와 유사기능
 	private Specification<Board> search(String kw) {
-		return new Specification<>() {
-			@Override
-			public Predicate toPredicate(Root<Board> q, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				query.distinct(true); // select distinct기능
-				Join<Board, Member> u1 = q.join("writer", JoinType.LEFT);
-				Join<Board, Answer> a = q.join("answerList", JoinType.LEFT);
-				Join<Answer, Member> u2 = q.join("writer", JoinType.LEFT);
-				return cb.or(cb.like(q.get("title"), "%" + kw + "%"), cb.like(u1.get("content"), "%" + kw + "%"),
-						cb.like(a.get("content"), "%" + kw + "%"), cb.like(u2.get("name"), "%" + kw + "%"));
-			}
+        return new Specification<>() {
+            private static final long serialVersionUID = 1L;
+            @Override
+            public Predicate toPredicate(Root<Board> q, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                query.distinct(true);// select distinct기능
+                Join<Board, Member> u1 = q.join("writer", JoinType.LEFT);
+                Join<Board, Answer> a = q.join("answerList", JoinType.LEFT);
+                Join<Answer, Member> u2 = a.join("writer", JoinType.LEFT);
+                return cb.or(cb.like(q.get("title"), "%" + kw + "%"), // 제목 
+                        cb.like(q.get("content"), "%" + kw + "%"),      // 내용 
+                        cb.like(u1.get("memberId"), "%" + kw + "%"),    // 질문 작성자 
+                        cb.like(a.get("content"), "%" + kw + "%"),      // 답변 내용 
+                        cb.like(u2.get("memberId"), "%" + kw + "%"));   // 답변 작성자 
+            }
 		};
 	}
 
@@ -55,8 +60,8 @@ public class BoardService {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
 		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
-		Specification<Board> = search(kw);
-		return this.boardRepository.findAll(kw, pageable);
+		// (참고용)Specification<Board>  spec = search(kw);
+		return this.boardRepository.findAllByKeyword(kw, pageable);
 	}
 
 	public Board getBoard(Integer id) {
@@ -77,7 +82,6 @@ public class BoardService {
 		board.setCountry(countryListRepository.findByName(country));
 		board.setCreateDate(LocalDateTime.now());
 		board.setWriter(member);
-		System.out.println("no1");
 
 		this.boardRepository.save(board);
 	}

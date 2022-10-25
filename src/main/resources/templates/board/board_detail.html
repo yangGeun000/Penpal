@@ -35,7 +35,9 @@
 		<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
 		<div>
 			<ul>
+			<!-- 답변반복기능 -->
 				<li th:each="answer : ${board.answerList}" th:text="${answer.content}"></li>
+				<a th:id="|answer_${answer.id}|">
 			</ul>
 		</div>
 	</body>
