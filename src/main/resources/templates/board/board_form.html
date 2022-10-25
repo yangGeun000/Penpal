@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout}">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<div layout:fragment="content" class="container my-3">
+			<h5>Content</h5>
+			<form th:action="@{/board/create}" th:object="${boardForm}" method="post">
+				<div th:replace="board/form_errors :: formErrorsFragment"></div>
+				<div>
+					<label for="title">제목</label>
+					<input type="text" name="title" id="title" th:field="*{title}">
+				</div>
+				<div>
+					<label for="content">내용</label>
+					<textarea name="content" id="content" class="form-control" rows="10"
+						placeholder="Write something..." th:field="*{content}"></textarea>
+				</div>
+				<div>
+					<select name="category" id="category" th:field="*{category}">
+						<option value="" selected>Category</option>
+						<option 
+                        th:each="category : ${category}"
+                        th:value="${category.name}" 
+                        th:text="${category.name}"></option>
+					</select>
+				</div>
+				<div>
+					<select name="location" id="location" th:field="*{location}">
+						<option value="" selected>Location</option>
+						<option th:each="location : ${location}"
+                        th:value="${location.name}" 
+                        th:text="${location.name}"></option>
+					</select>
+				</div>
+				<div>
+					<select name="country" id="country" th:field="*{country}">
+						<option value="" selected>Country</option>
+						<option th:each="country : ${country}"
+                        th:value="${country.name}" 
+                        th:text="${country.name}"></option>
+					</select>
+				</div>
+				<input type="submit" value="UPLODE">
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
