@@ -21,15 +21,15 @@
             <div th:replace="board/form_errors :: formErrorsFragment"></div>
             <div class="mb-3">
                 <label for="userId" class="form-label">사용자ID</label>
-                <input type="text" th:field="*{userId}" class="form-control">
+                <input type="text" th:field="*{memberId}" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="userPw" class="form-label">비밀번호</label>
-                <input type="password" th:field="*{userPw}" class="form-control">
+                <input type="password" th:field="*{memberPw}" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="userPw2" class="form-label">비밀번호 확인</label>
-                <input type="password" th:field="*{userPw2}" class="form-control">
+                <input type="password" th:field="*{memberPw2}" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">이름</label>
