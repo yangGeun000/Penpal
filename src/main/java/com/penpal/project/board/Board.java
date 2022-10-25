@@ -21,7 +21,7 @@ import com.penpal.project.member.Member;
 import lombok.Getter;
 import lombok.Setter;
 
-// 장유란 2022-10-21 게시판 기능
+
 @Getter
 @Setter
 @Entity
@@ -46,6 +46,7 @@ public class Board {
 	@ManyToOne
 	private CategoryList category;
 	
+
 	// author -> writer
 	@ManyToOne
 	private Member writer;

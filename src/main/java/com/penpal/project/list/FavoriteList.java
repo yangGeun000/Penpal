@@ -1,5 +1,6 @@
 package com.penpal.project.list;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

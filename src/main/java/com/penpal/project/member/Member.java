@@ -19,11 +19,12 @@ import com.penpal.project.profile.Profile;
 import lombok.Getter;
 import lombok.Setter;
 
-// 장유란 2022-10-21 member(임시)
+
 @Getter
 @Setter
 @Entity
 public class Member {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +64,6 @@ public class Member {
 	// by 구양근, 프로필
 	@OneToOne(mappedBy = "member")
 	private Profile profile;
+
 
 }

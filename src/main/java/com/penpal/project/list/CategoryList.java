@@ -34,4 +34,5 @@ public class CategoryList {
 	public String toString() {
 	    return name;
 	}
+	
 }

@@ -1,5 +1,6 @@
 package com.penpal.project.list;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+
 @Data
 public class LocationList {
 	
@@ -26,4 +28,5 @@ public class LocationList {
 	public String toString() {
         return name;
     }
+
 }

@@ -1,5 +1,7 @@
 $('.header_navi').ready(function(){
-    var url=window.location.pathname,
+
+    var url = window.location.pathname,
+    
     urlRegExp = new RegExp(url.replace(/\/$/,) + "$");
 
     $('a').parent('li').removeClass('active');
@@ -9,6 +11,10 @@ $('.header_navi').ready(function(){
         }
     })
 }) // 메뉴에 active 클래스 추가하는 기능
+
+$('.community_category').ready(function(){
+    var category = 
+})
 
 function CheckLoginInput(){
     var loginForm = document.loginForm;

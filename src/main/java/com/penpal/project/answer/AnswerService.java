@@ -20,7 +20,7 @@ public class AnswerService {
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setBoard(board);
-        answer.setAuthor(member);        
+        answer.setWriter(member);        
         this.answerRepository.save(answer);
     }
 }
