@@ -26,17 +26,10 @@ public class Answer {
 	
 	@Column(columnDefinition = "TEXT")
 	private String content;
-<<<<<<< HEAD
 	
 	@ManyToOne
 	private Member writer;
 
-=======
-
-	@ManyToOne
-	private Member writer;
-	
->>>>>>> dev
 	private LocalDateTime createDate;
 	
 	// by 장유란, 수정일시 추가	

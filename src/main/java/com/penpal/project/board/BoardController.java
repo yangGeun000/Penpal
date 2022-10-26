@@ -5,10 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-<<<<<<< HEAD
-import org.springframework.data.domain.Page;
-=======
->>>>>>> dev
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,17 +38,6 @@ public class BoardController {
 	private final CategoryListRepository categoryListRepository;
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
-<<<<<<< HEAD
-
-	@RequestMapping("/list")
-    public String boardList(Model model, @RequestParam(value = "page", defaultValue = "0") int page, 
-    		@RequestParam(value = "kw", defaultValue = "") String kw) {
-        Page<Board> paging = this.boardService.getList(page, kw);
-        // by 장유란 board_list에서 paging, kw 값 받아오기
-        log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
-        model.addAttribute("paging", paging);
-        model.addAttribute("kw", kw);
-=======
 	private final LanguageListRepository languageListRepository; // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
 
 	// @RequestMapping("")
@@ -63,145 +48,10 @@ public class BoardController {
     //     log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
     //     model.addAttribute("paging", paging);
     //     model.addAttribute("kw", kw);
->>>>>>> dev
 
     //     return "community/community";
     // }  // by 조성빈, 게시글 리스트 아직 적용 안 해서 일시적으로 주석처리
 
-<<<<<<< HEAD
-	@RequestMapping(value = "/detail/{id}")
-	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
-		Board board = this.boardService.getBoard(id);
-		model.addAttribute("board", board);
-
-		return "board/board_detail";
-	}
-
-	// by 장유란, 답변기능 권한 주석처리/**/
-	//@PreAuthorize("isAuthenticated()") // 로그인 제약
-	@GetMapping("/create")
-	public String boardCreate(BoardForm boardForm) {
-		return "board/board_form";
-	}
-
-	// by 장유란, 답변기능 권한 주석처리
-	/*@PreAuthorize("isAuthenticated()")*/
-	@PostMapping("/create")
-	public String boardCreate(@Valid BoardForm boardForm, BindingResult bindingResult/*, Principal principal*/) {
-
-		if (bindingResult.hasErrors()) {
-			return "board/board_form";
-		}
-		/*Member member = this.memberService.getMember(principal.getName());*/
-		this.boardService.create(boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(),
-				boardForm.getLocation(), boardForm.getCountry()/*, member*/);
-
-		return "redirect:/board/list";
-	}
-	
-	/*@PreAuthorize("isAuthenticated()")*/
-	@GetMapping("/modify/{id}")
-	public String boardModify(BoardForm boardForm, @PathVariable("id") Integer id, Principal principal) {
-		Board board = this.boardService.getBoard(id);
-		// 작성자 == 수정요청자 동일한지 확인하는 기능
-		// if(!board.getWriter().getMemberId().equals(principal.getName())) {
-		// throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")
-		//	}
-		
-		// boardForm에서 검증받은 제목 내용 가져오기
-		boardForm.setTitle(board.getTitle());
-		boardForm.setContent(board.getContent());
-		return "board/board_form";	
-	}
-	
-	@PostMapping("/modify/{id}")
-	public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult, 
-			Principal principal, @PathVariable("id") Integer id) {
-		if(bindingResult.hasErrors()) {
-			return "board/board_form";
-		}
-		Board board = this.boardService.getBoard(id);
-		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent());
-		return String.format("redirect:/board/detail/%s", id);
-	}
-	
-	
-	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
-	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
-	@ModelAttribute("category")
-	public List<CategoryList> categoryList() {
-		List<CategoryList> categoryLists = categoryListRepository.findAll();
-		return categoryLists;
-	}
-
-	@ModelAttribute("location")
-	public List<LocationList> locationList() {
-		List<LocationList> locationLists = locationListRepository.findAll();
-		return locationLists;
-
-	}
-
-	@ModelAttribute("country")
-	public List<CountryList> countryList() {
-		List<CountryList> countryLists = countryListRepository.findAll();
-		return countryLists;
-	}
-
-	
-// h2 카테고리 추가방법
-//	  1. 위에 세개 주석처리/아래 주석 해제 후 /board/list 방문(1회) 
-// 	  2. 아래 주석/위 주석해제
-
-	
-	
-//    @ModelAttribute("category")
-//    public CategoryList categoryList2(){
-//        CategoryList categoryList = new CategoryList();
-//        categoryList.setName("FREE");
-//        categoryListRepository.save(categoryList);
-//        categoryList = new CategoryList();
-//        categoryList.setName("GAME");
-//        categoryListRepository.save(categoryList);
-//        categoryList = new CategoryList();
-//        categoryList.setName("TRAVEL");
-//        categoryListRepository.save(categoryList);
-//        
-//        return categoryList;
-//    }
-//    
-//    @ModelAttribute("location")
-//    public LocationList locationList2(){
-//        LocationList locationList = new LocationList();
-//        locationList.setName("Asia");
-//        locationListRepository.save(locationList);
-//        locationList = new LocationList();
-//        locationList.setName("America");
-//        locationListRepository.save(locationList);
-//        locationList = new LocationList();
-//        locationList.setName("Europe");
-//        locationListRepository.save(locationList);
-//        
-//        return locationList;
-//    }
-//    
-//    @ModelAttribute("country")
-//    public CountryList countryList2(){
-//        CountryList countryList = new CountryList();
-//        countryList.setName("Korea");
-//        countryListRepository.save(countryList);
-//        countryList = new CountryList();
-//        countryList.setName("USA");
-//        countryListRepository.save(countryList);
-//        countryList = new CountryList();
-//        countryList.setName("Japan");
-//        countryListRepository.save(countryList);
-//        countryList = new CountryList();
-//        countryList.setName("China");
-//        countryListRepository.save(countryList);
-//        
-//        return countryList;
-//    }
-=======
 	@RequestMapping("")
 	public String community(Model model){
 		model.addAttribute("community", "community");
@@ -293,6 +143,5 @@ public class BoardController {
 		return languageLists;
 	}
 	
->>>>>>> dev
 
 }
