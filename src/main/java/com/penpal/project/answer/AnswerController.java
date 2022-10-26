@@ -32,12 +32,20 @@ public class AnswerController {
 		/* Member member = this.memberService.getMember(principal.getName()); */
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("board", board);
+<<<<<<< HEAD
 			return "community/board_detail";
 		}
 		this.answerService.create(board, answerForm.getContent()/* , member */);
 		System.out.println("answer create post" + id);
 		return String.format("redirect:/community/detail/%s", id);// by 장유란, board/detail ==> community/detail
 
+=======
+			return "board/board_detail";
+		}
+		this.answerService.create(board, answerForm.getContent()/* , member */);
+
+		return String.format("redirect:/board/detail/%s", id);
+>>>>>>> c9bc248934a5d282c84d3e55d708a97deb0bf2ea
 	}
 
 }

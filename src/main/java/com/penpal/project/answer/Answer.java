@@ -29,7 +29,11 @@ public class Answer {
 
 	@ManyToOne
 	private Member writer;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> c9bc248934a5d282c84d3e55d708a97deb0bf2ea
 	private LocalDateTime createDate;
 	
 	// by 장유란, 수정일시 추가	
