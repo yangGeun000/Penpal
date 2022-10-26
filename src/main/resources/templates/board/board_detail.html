@@ -28,10 +28,10 @@
 				</div>
 				<div class="my-3">
 					<!-- *(1) 아무나 수정 가능* -->
-					<a th:href="@{|/board/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"
+					<a th:href="@{|/community/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"
 						th:text="수정"></a>
 					<!-- *(2) 회원만 수정가능*
-						<a th:href="@{|/board/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"
+						<a th:href="@{|/community/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"
 						sec:authorize="isAuthenticated()"
 						th:if="${board.writer != null and #authentication.getPrincipal().getMemberId() == board.writer.memberId}"
 						th:text="수정"></a> -->

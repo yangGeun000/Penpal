@@ -72,7 +72,7 @@
 			<!-- board_list -->
 			<ul class="board_content">
 				<li th:each="board, loop : ${paging}" class="text-center">
-					<a th:href="@{|/board/detail/${board.id}|}" class="text-start">
+					<a th:href="@{|/community/detail/${board.id}|}" class="text-start">
 						<div class="categorys">
 							<div th:text="${board.category}"></div>
 							<div th:text="${board.location}"></div>

@@ -31,7 +31,6 @@ public class BoardService {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
 		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
-		// (참고용)Specification<Board>  spec = search(kw);
 		return this.boardRepository.findAllByKeyword(kw, pageable);
 	}
 
