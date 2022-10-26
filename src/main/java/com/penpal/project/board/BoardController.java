@@ -81,18 +81,35 @@ public class BoardController {
 
 		return "redirect:/board/list";
 	}
-
+	
+	//@PreAuthorize("isAuthenticated()")
+	@GetMapping("/modify/{id}")
+	public String boardModify(BoardForm boardForm, @PathVariable("id") Integer id, Principal principal) {
+		Board board = this.boardService.getBoard(id);
+		// 작성자 == 수정요청자 동일한지 확인하는 기능
+		// if(!board.getWriter().getMemberId().equals(principal.getName())) {
+		// throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")
+//		}
+		
+		// boardForm에서 검증받은 제목 내용 가져오기
+		boardForm.setTitle(board.getTitle());
+		boardForm.setContent(board.getContent());
+		return "board/board_form";	
+	}
+	
+	
+	
+	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
+	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
 	@ModelAttribute("category")
 	public List<CategoryList> categoryList() {
 		List<CategoryList> categoryLists = categoryListRepository.findAll();
-
 		return categoryLists;
 	}
 
 	@ModelAttribute("location")
 	public List<LocationList> locationList() {
 		List<LocationList> locationLists = locationListRepository.findAll();
-
 		return locationLists;
 
 	}
@@ -100,11 +117,15 @@ public class BoardController {
 	@ModelAttribute("country")
 	public List<CountryList> countryList() {
 		List<CountryList> countryLists = countryListRepository.findAll();
-
 		return countryLists;
 	}
 
-// h2 카테고리 추가(위에 세개 주석처리 후 사용)
+// h2 카테고리 추가방법
+//	  1. 위에 세개 주석처리/아래 주석 해제 후 /board/list 방문(1회) 
+// 	  2. 아래 주석/위 주석해제
+
+	
+	
 //    @ModelAttribute("category")
 //    public CategoryList categoryList2(){
 //        CategoryList categoryList = new CategoryList();
