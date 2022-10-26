@@ -44,8 +44,6 @@ public class Member {
 	@Column(unique = true, length = 150)
 	private String email;
 
-	private boolean conn;
-
 	private LocalDateTime createDate;
 
 	// by 장유란, author -> writer 변수명 변경 
