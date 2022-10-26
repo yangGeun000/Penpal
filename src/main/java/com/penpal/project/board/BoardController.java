@@ -74,24 +74,6 @@ public class BoardController {
 		return "community/writeForm";
 	}
 
-<<<<<<< HEAD
-	// by 장유란, 답변기능 권한 주석처리
-	/* @PreAuthorize("isAuthenticated()") */
-	@PostMapping("/create")
-	public String boardCreate(@Valid BoardForm boardForm, BindingResult bindingResult/* , Principal principal */) {
-		if (bindingResult.hasErrors()) {
-			return "community/writeForm";
-		}
-		/* Member member = this.memberService.getMember(principal.getName()); */
-		this.boardService.create(boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(),
-				boardForm.getLocation(), boardForm.getCountry()/* , member */);
-
-		return "redirect:/community"; // by 장유란, "redirect:community/community"; ==> "redirect:/community";
-	}
-
-	/* @PreAuthorize("isAuthenticated()") */
-=======
-
 	// by 장유란, 답변기능 권한 주석처리
 	/*@PreAuthorize("isAuthenticated()")*/
 	@PostMapping("/create")
@@ -107,7 +89,6 @@ public class BoardController {
 	}
 	
 	/*@PreAuthorize("isAuthenticated()")*/
->>>>>>> c9bc248934a5d282c84d3e55d708a97deb0bf2ea
 	@GetMapping("/modify/{id}")
 	public String boardModify(BoardForm boardForm, @PathVariable("id") Integer id, Principal principal) {
 		Board board = this.boardService.getBoard(id);
@@ -130,17 +111,9 @@ public class BoardController {
 		}
 		Board board = this.boardService.getBoard(id);
 		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent());
-<<<<<<< HEAD
+
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
-
-=======
-		return String.format("redirect:/board/detail/%s", id);
-	}
-	
-	
->>>>>>> c9bc248934a5d282c84d3e55d708a97deb0bf2ea
-	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
 	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
 	@ModelAttribute("category")
 	public List<CategoryList> categoryList() {
@@ -166,9 +139,5 @@ public class BoardController {
 		List<LanguageList> languageLists = languageListRepository.findAll();
 		return languageLists;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> c9bc248934a5d282c84d3e55d708a97deb0bf2ea
 
 }
