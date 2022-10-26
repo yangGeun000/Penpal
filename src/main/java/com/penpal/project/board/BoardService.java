@@ -27,6 +27,7 @@ public class BoardService {
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
 
+	// by 장유란, 검색기능
 	public Page<Board> getList(int page, String kw) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
@@ -67,7 +68,5 @@ public class BoardService {
 		board.setModifyDate(LocalDateTime.now());
 		this.boardRepository.save(board);
 	}
-
-	
 
 }
