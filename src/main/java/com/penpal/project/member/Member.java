@@ -73,4 +73,5 @@ public class Member {
 	@OneToMany(mappedBy = "receive", cascade = CascadeType.REMOVE)
 	private List<FriendRequest> friendRequestList;
 
+
 }

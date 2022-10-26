@@ -13,6 +13,7 @@ public class YRNotepad {
 	// < 아래 두 개 중 하나 설정해주면 git push로 push 가능 >
 	// $ git push -u <원격 저장소명> <로컬 브랜치명>
 	// $ git push --set-upstream <원격 저장소명> <로컬 브랜치명> 
+
 	
 	/* < 로컬파일 변경 후 루틴 >
 	 * git status 				<== 빨강이면 반영 안된것

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.penpal.project.list.CategoryListRepository;
@@ -42,7 +43,7 @@ public class BoardService {
 			throw new DataNotFoundException("board not found");
 		}
 	}
-
+	
 	// by 장유란, 답변기능 권한 주석처리/**/
 	public void create(String title, String content, String category, String location, String country/*, Member member*/) {
 		Board board = new Board();
