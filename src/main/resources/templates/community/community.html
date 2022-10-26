@@ -68,30 +68,20 @@
                         </button>
                     </ul>
                 </div>
-                    <!-- 리스트 불러오는 loop문 -->
-                <div class="community_bbs"  th:each="board, loop : ${paging}">
-                    <div class="community_view view01">
+                    <div class="community_bbs">
+               		<!-- by 장유란, (페이징 사용시 ${community} ==> ${page} 변경 필요)-->
+                    <div th:each="board, loop : ${community}" th:class="|view0${board.id}|" th:classappend="community_view">
   							<a th:href="@{|/community/detail/${board.id}|}">
-							<div th:text="${board.category}"></div>
-							<div th:text="${board.location}"></div>
-							<div th:text="${board.country}"></div></a>
-							<div th:text="${board.title}"></div>
+  							<!-- 아래 카테고리 : ... 필요없어지면 
+  								th:text="|카테고리 : ${board.category}|" 
+  							==> th:text="${board.category}"형태로 변경 -->
+							<div th:text="|카테고리 : ${board.category}|"></div>
+							<div th:text="|지역 : ${board.location}|"></div>
+							<div th:text="|국가 : ${board.country}|"></div>
+							<div th:text="|제목 : ${board.title}|"></div>
+							<div th:text="|내용 : ${board.content}|"></div></a>
                     </div>
-                    <div class="community_view view02">
-						
-                    </div>
-                    <div class="community_view view03">
-
-                    </div>
-                    <div class="community_view view04">
-
-                    </div>
-                    <div class="community_view view05">
-
-                    </div>
-                    <div class="community_view view06">
-
-                    </div>
+                    <!-- for문 사용으로 대체(th:class(view01..06) + th:classappend(community_view)) -->
              		
                 </div>
             </div>
