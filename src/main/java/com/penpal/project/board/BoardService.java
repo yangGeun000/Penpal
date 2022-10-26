@@ -26,6 +26,11 @@ public class BoardService {
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
 
+<<<<<<< HEAD
+=======
+	
+	// by 장유란, 검색기능
+>>>>>>> dev
 	public Page<Board> getList(int page, String kw) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
@@ -33,6 +38,40 @@ public class BoardService {
 		// (참고용)Specification<Board>  spec = search(kw);
 		return this.boardRepository.findAllByKeyword(kw, pageable);
 	}
+<<<<<<< HEAD
+=======
+
+	public Board getBoard(Integer id) {
+		Optional<Board> board = this.boardRepository.findById(id);
+		if (board.isPresent()) {
+			return board.get();
+		} else {
+			throw new DataNotFoundException("board not found");
+		}
+	}
+
+	// by 장유란, 답변기능 권한 주석처리/**/
+	public void create(String title, String content, String category, String location, String country/*, Member member*/) {
+		Board board = new Board();
+		board.setTitle(title);
+		board.setContent(content);
+		board.setCategory(categoryListRepository.findByName(category));
+		board.setLocation(locationListRepository.findByName(location));
+		board.setCountry(countryListRepository.findByName(country));
+		board.setCreateDate(LocalDateTime.now());
+		/*board.setWriter(member);*/
+
+		this.boardRepository.save(board);
+	}
+	
+	// by 장유란, 수정분 받아와서 저장
+	public void modify(Board board, String title, String content) {
+		board.setTitle(title);
+		board.setContent(content);
+		board.setModifyDate(LocalDateTime.now());
+		this.boardRepository.save(board);
+	}
+>>>>>>> dev
 
 	public Board getBoard(Integer id) {
 		Optional<Board> board = this.boardRepository.findById(id);

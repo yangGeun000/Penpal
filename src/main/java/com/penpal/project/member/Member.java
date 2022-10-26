@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.penpal.project.chat.Room;
+import com.penpal.project.friend.Friend;
+import com.penpal.project.friend.FriendRequest;
 import com.penpal.project.profile.Profile;
 
 import lombok.Getter;
@@ -64,6 +66,14 @@ public class Member {
 	// by 구양근, 프로필
 	@OneToOne(mappedBy = "member")
 	private Profile profile;
+	
+	// by 안준언, 친구 목록 리스트
+	@OneToMany(mappedBy = "mine", cascade = CascadeType.REMOVE)
+	private List<Friend> friendList;
+	
+	// by 안준언, 친구 요청 목록 리스트
+	@OneToMany(mappedBy = "receive", cascade = CascadeType.REMOVE)
+	private List<FriendRequest> friendRequestList;
 
 
 }
