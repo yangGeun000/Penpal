@@ -52,8 +52,10 @@ public class FriendService {
     
     // by 안준언, 친구 삭제
     public void deleteFriend(Member mine, Member friend) {
-    	Friend df = this.friendRepository.findByMineAndFriend(mine, friend);
+    	Friend df1 = this.friendRepository.findByMineAndFriend(mine, friend);
+    	Friend df2 = this.friendRepository.findByMineAndFriend(friend, mine);
         
-        this.friendRepository.delete(df);
+        this.friendRepository.delete(df1);
+        this.friendRepository.delete(df2);
     }
 }

@@ -23,11 +23,9 @@ public class FriendRequest {
 	
 
 	@ManyToOne
-	@JoinColumn(name = "sendId")
 	private Member send;
 	
 	@ManyToOne
-	@JoinColumn(name = "receiveId")
 	private Member receive;
 	
 }
