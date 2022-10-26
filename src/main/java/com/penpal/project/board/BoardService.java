@@ -68,5 +68,4 @@ public class BoardService {
 		this.boardRepository.save(board);
 	}
 
-
 }
