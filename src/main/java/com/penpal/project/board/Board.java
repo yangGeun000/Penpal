@@ -26,8 +26,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Board {
-	// git commit --amend 최근 커밋 수정 
-	// :wq commit 상세설명 저장
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
