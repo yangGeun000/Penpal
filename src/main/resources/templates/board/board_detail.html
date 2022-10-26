@@ -19,37 +19,47 @@
 				<div class="d-flex justify-content-end">
 					<div class="badge bg-light text-dark p-2 text-start">
 						<div class="mb-2">
+							<!-- *작성자 표시*
 							<span th:if="${board.writer != null}" th:text="${board.writer.memberId}"></span>
+							-->
 						</div>
 						<div th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-                    </div>
-                </div>
+					</div>
+				</div>
 				<div class="my-3">
 					<!-- *(1) 아무나 수정 가능* -->
-					<a th:href="@{|/board/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"></a>
-					<!-- // -->
+					<a th:href="@{|/board/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"
+						th:text="수정"></a>
 					<!-- *(2) 회원만 수정가능*
 						<a th:href="@{|/board/modify/${board.id}|}" class="btn btn-sm btn-outline-secondary"
 						sec:authorize="isAuthenticated()"
 						th:if="${board.writer != null and #authentication.getPrincipal().getMemberId() == board.writer.memberId}"
 						th:text="수정"></a> -->
 				</div>
-            </div>
-		<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
-			<div th:replace="board/form_errors :: formErrorsFragment"></div>
-            <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control" rows="10"></textarea>
-            <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>			
-            <input type="submit" value="UPLODE">
-		</form>
+			</div>
+			<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
+				<!-- *(1) 아무나 답글 가능* -->
+				<textarea  th:field="*{content}" class="form-control" rows="10"></textarea>
+				<!-- // -->
+				<!-- *(2) 회원만 답글 가능*
+				<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control"
+					rows="10"></textarea>
+				<textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control"
+					rows="10"></textarea>
+												-->
+				<div th:replace="board/form_errors :: formErrorsFragment"></div>
 
-		<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
-		<div>
-			<ul>
-			<!-- 답변반복기능 -->
-				<li th:each="answer : ${board.answerList}" th:text="${answer.content}"></li>
-				<!-- <a th:id="|answer_${answer.id}|"> -->
-			</ul>
-		</div>
+				<input type="submit" value="UPLODE">
+			</form>
+
+			<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
+			<div>
+				<ul>
+					<!-- 답변반복기능 -->
+					<li th:each="answer : ${board.answerList}" th:text="${answer.content}"></li>
+					<!-- <a th:id="|answer_${answer.id}|"> -->
+				</ul>
+			</div>
 	</body>
 </div>
 

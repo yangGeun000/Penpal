@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,8 +23,6 @@ import com.penpal.project.list.CountryList;
 import com.penpal.project.list.CountryListRepository;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.list.LocationListRepository;
-import com.penpal.project.member.Member;
-import com.penpal.project.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 
 	private final BoardService boardService;
-	private final MemberService memberService;
+	/*private final MemberService memberService;*/
 	private final CategoryListRepository categoryListRepository;
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
@@ -62,34 +59,36 @@ public class BoardController {
 		return "board/board_detail";
 	}
 
-	@PreAuthorize("isAuthenticated()") // 로그인 제약
+	// by 장유란, 답변기능 권한 주석처리/**/
+	//@PreAuthorize("isAuthenticated()") // 로그인 제약
 	@GetMapping("/create")
 	public String boardCreate(BoardForm boardForm) {
 		return "board/board_form";
 	}
 
-	@PreAuthorize("isAuthenticated()")
+	// by 장유란, 답변기능 권한 주석처리
+	/*@PreAuthorize("isAuthenticated()")*/
 	@PostMapping("/create")
-	public String boardCreate(@Valid BoardForm boardForm, BindingResult bindingResult, Principal principal) {
+	public String boardCreate(@Valid BoardForm boardForm, BindingResult bindingResult/*, Principal principal*/) {
 
 		if (bindingResult.hasErrors()) {
 			return "board/board_form";
 		}
-		Member member = this.memberService.getMember(principal.getName());
+		/*Member member = this.memberService.getMember(principal.getName());*/
 		this.boardService.create(boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(),
-				boardForm.getLocation(), boardForm.getCountry(), member);
+				boardForm.getLocation(), boardForm.getCountry()/*, member*/);
 
 		return "redirect:/board/list";
 	}
 	
-	//@PreAuthorize("isAuthenticated()")
+	/*@PreAuthorize("isAuthenticated()")*/
 	@GetMapping("/modify/{id}")
 	public String boardModify(BoardForm boardForm, @PathVariable("id") Integer id, Principal principal) {
 		Board board = this.boardService.getBoard(id);
 		// 작성자 == 수정요청자 동일한지 확인하는 기능
 		// if(!board.getWriter().getMemberId().equals(principal.getName())) {
 		// throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")
-//		}
+		//	}
 		
 		// boardForm에서 검증받은 제목 내용 가져오기
 		boardForm.setTitle(board.getTitle());
@@ -97,6 +96,16 @@ public class BoardController {
 		return "board/board_form";	
 	}
 	
+	@PostMapping("/modify/{id}")
+	public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult, 
+			Principal principal, @PathVariable("id") Integer id) {
+		if(bindingResult.hasErrors()) {
+			return "board/board_form";
+		}
+		Board board = this.boardService.getBoard(id);
+		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent());
+		return String.format("redirect:/board/detail/%s", id);
+	}
 	
 	
 	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
@@ -120,6 +129,7 @@ public class BoardController {
 		return countryLists;
 	}
 
+	
 // h2 카테고리 추가방법
 //	  1. 위에 세개 주석처리/아래 주석 해제 후 /board/list 방문(1회) 
 // 	  2. 아래 주석/위 주석해제

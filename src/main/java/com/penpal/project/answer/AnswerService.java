@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
 import com.penpal.project.board.Board;
-import com.penpal.project.member.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,16 +13,23 @@ import lombok.RequiredArgsConstructor;
 public class AnswerService {
 
     private final AnswerRepository answerRepository;
+    /*(권한)private final BoardRepository boardRepository;*/
     
-    // 답변앵커기능
-    public Answer create(Board board, String content, Member member) {
+    // by 장유란, 답변기능 권한 주석처리
+    public Answer create(Board board, String content/*, Member member*/) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setBoard(board);
-        answer.setWriter(member);        
+        /*answer.setWriter(member);*/    
         this.answerRepository.save(answer);
         
         return answer;
     }
+
+	
+
+	
+
+	
 }
