@@ -22,11 +22,9 @@ public class Friend {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "myMemberId")
 	private Member mine;
 	
 	@ManyToOne
-	@JoinColumn(name = "friendMemberId")
 	private Member friend;
 	
 }
