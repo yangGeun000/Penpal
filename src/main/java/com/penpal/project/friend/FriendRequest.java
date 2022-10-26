@@ -21,10 +21,11 @@ public class FriendRequest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Integer sendId;
+
+	@ManyToOne
+	private Member send;
 	
-	@ManyToOne(targetEntity = Member.class)
-	@JoinColumn(name = "member_id")
-	private Integer receiveId;
+	@ManyToOne
+	private Member receive;
 	
 }

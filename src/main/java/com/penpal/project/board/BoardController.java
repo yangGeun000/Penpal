@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,37 +21,45 @@ import com.penpal.project.list.CategoryList;
 import com.penpal.project.list.CategoryListRepository;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.CountryListRepository;
+import com.penpal.project.list.LanguageList;
+import com.penpal.project.list.LanguageListRepository;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.list.LocationListRepository;
-import com.penpal.project.member.Member;
-import com.penpal.project.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/board")
+@RequestMapping("/community")
 @RequiredArgsConstructor
 @Controller
 @Slf4j
 public class BoardController {
 
 	private final BoardService boardService;
-	private final MemberService memberService;
+	/* private final MemberService memberService; */
 	private final CategoryListRepository categoryListRepository;
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
+	private final LanguageListRepository languageListRepository; // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
+	private final BoardRepository boardRepository; // by 장유란, paging 없는 메소드 이용시 필요(board list 가져오기)
 
-	@RequestMapping("/list")
-    public String boardList(Model model, @RequestParam(value = "page", defaultValue = "0") int page, 
-    		@RequestParam(value = "kw", defaultValue = "") String kw) {
-        Page<Board> paging = this.boardService.getList(page, kw);
-        // by 장유란 board_list에서 paging, kw 값 받아오기
-        log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
-        model.addAttribute("paging", paging);
-        model.addAttribute("kw", kw);
+	/*
+	 * @RequestMapping("") public String boardList(Model model, @RequestParam(value
+	 * = "page", defaultValue = "0") int page,
+	 * 
+	 * @RequestParam(value = "kw", defaultValue = "") String kw) { Page<Board>
+	 * paging = this.boardService.getList(page, kw); // by 장유란 board_list에서 paging,
+	 * kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
+	 * model.addAttribute("paging", paging); model.addAttribute("kw", kw); return
+	 * "community/community"; }
+	 */ // by 조성빈, 게시글 리스트 아직 적용 안 해서 일시적으로 주석처리
 
-        return "board/board_list";
-    }
+	@RequestMapping("")
+	public String community(Model model) {
+		List<Board> community = this.boardRepository.findAll();
+		model.addAttribute("community", community);
+		return "community/community";
+	}
 
 	@RequestMapping(value = "/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
@@ -62,95 +69,77 @@ public class BoardController {
 		return "board/board_detail";
 	}
 
-	@PreAuthorize("isAuthenticated()") // 로그인 제약
+	// by 장유란, 답변기능 권한 주석처리/**/
+	// @PreAuthorize("isAuthenticated()") // 로그인 제약
 	@GetMapping("/create")
 	public String boardCreate(BoardForm boardForm) {
-		return "board/board_form";
+		return "community/writeForm";
 	}
 
-	@PreAuthorize("isAuthenticated()")
+	// by 장유란, 답변기능 권한 주석처리
+	/* @PreAuthorize("isAuthenticated()") */
 	@PostMapping("/create")
-	public String boardCreate(@Valid BoardForm boardForm, BindingResult bindingResult, Principal principal) {
-
+	public String boardCreate(@Valid BoardForm boardForm, BindingResult bindingResult/* , Principal principal */) {
 		if (bindingResult.hasErrors()) {
-			return "board/board_form";
+			return "community/writeForm";
 		}
-		Member member = this.memberService.getMember(principal.getName());
+		/* Member member = this.memberService.getMember(principal.getName()); */
 		this.boardService.create(boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(),
-				boardForm.getLocation(), boardForm.getCountry(), member);
+				boardForm.getLocation(), boardForm.getCountry()/* , member */);
 
-		return "redirect:/board/list";
+		return "redirect:/community"; // by 장유란, "redirect:community/community"; ==> "redirect:/community";
 	}
 
+	/* @PreAuthorize("isAuthenticated()") */
+	@GetMapping("/modify/{id}")
+	public String boardModify(BoardForm boardForm, @PathVariable("id") Integer id, Principal principal) {
+		Board board = this.boardService.getBoard(id);
+		// 작성자 == 수정요청자 동일한지 확인하는 기능
+		// if(!board.getWriter().getMemberId().equals(principal.getName())) {
+		// throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")
+		// }
+		// boardForm에서 검증받은 제목 내용 가져오기
+		boardForm.setTitle(board.getTitle());
+		boardForm.setContent(board.getContent());
+		return "community/writeForm";
+	}
+
+	@PostMapping("/modify/{id}")
+	public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult/*																	 */,
+			@PathVariable("id") Integer id) {
+		if (bindingResult.hasErrors()) {
+			return "community/writeForm";
+		}
+		Board board = this.boardService.getBoard(id);
+		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent());
+		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
+	}
+
+	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
+	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
 	@ModelAttribute("category")
 	public List<CategoryList> categoryList() {
 		List<CategoryList> categoryLists = categoryListRepository.findAll();
-
 		return categoryLists;
 	}
 
 	@ModelAttribute("location")
 	public List<LocationList> locationList() {
 		List<LocationList> locationLists = locationListRepository.findAll();
-
 		return locationLists;
-
 	}
 
 	@ModelAttribute("country")
 	public List<CountryList> countryList() {
 		List<CountryList> countryLists = countryListRepository.findAll();
-
 		return countryLists;
 	}
 
-// h2 카테고리 추가(위에 세개 주석처리 후 사용)
-//    @ModelAttribute("category")
-//    public CategoryList categoryList2(){
-//        CategoryList categoryList = new CategoryList();
-//        categoryList.setName("FREE");
-//        categoryListRepository.save(categoryList);
-//        categoryList = new CategoryList();
-//        categoryList.setName("GAME");
-//        categoryListRepository.save(categoryList);
-//        categoryList = new CategoryList();
-//        categoryList.setName("TRAVEL");
-//        categoryListRepository.save(categoryList);
-//        
-//        return categoryList;
-//    }
-//    
-//    @ModelAttribute("location")
-//    public LocationList locationList2(){
-//        LocationList locationList = new LocationList();
-//        locationList.setName("Asia");
-//        locationListRepository.save(locationList);
-//        locationList = new LocationList();
-//        locationList.setName("America");
-//        locationListRepository.save(locationList);
-//        locationList = new LocationList();
-//        locationList.setName("Europe");
-//        locationListRepository.save(locationList);
-//        
-//        return locationList;
-//    }
-//    
-//    @ModelAttribute("country")
-//    public CountryList countryList2(){
-//        CountryList countryList = new CountryList();
-//        countryList.setName("Korea");
-//        countryListRepository.save(countryList);
-//        countryList = new CountryList();
-//        countryList.setName("USA");
-//        countryListRepository.save(countryList);
-//        countryList = new CountryList();
-//        countryList.setName("Japan");
-//        countryListRepository.save(countryList);
-//        countryList = new CountryList();
-//        countryList.setName("China");
-//        countryListRepository.save(countryList);
-//        
-//        return countryList;
-//    }
+	// by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
+	@ModelAttribute("language")
+	public List<LanguageList> languageList() {
+		List<LanguageList> languageLists = languageListRepository.findAll();
+		return languageLists;
+	}
 
 }

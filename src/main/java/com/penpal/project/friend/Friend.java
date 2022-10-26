@@ -20,11 +20,11 @@ public class Friend {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@ManyToOne
+	private Member mine;
 	
-	private Integer myId;
-	
-	@ManyToOne(targetEntity = Member.class)
-	@JoinColumn(name = "member_id")
-	private Integer friendId;
+	@ManyToOne
+	private Member friend;
 	
 }

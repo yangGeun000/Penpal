@@ -624,3 +624,81 @@
 }
 /* community contents section end */
 
+<<<<<<< HEAD
+=======
+/* ##### writeForm.html section ##### */
+
+#write_section01{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.write_title input{
+    position: absolute;
+    width: 500px;
+    top: -56px;
+    font-size: 32px;
+    font-weight: 500;
+    border:none;
+}
+
+#write_section01 .write_container{
+    position: relative;
+    top:90px;
+    left:90px;
+    width: 960px;
+    height: 360px;
+    background-color:#547296;
+    border: 1px solid #547296;
+    border-radius: 8px;
+}
+
+#write_section01 .write_container .write_content textarea{
+    z-index: 10;
+    position: relative;
+    display: block;
+    padding:4px;
+    background: #f6f7f7;
+    width: 860px;
+    height: 320px;
+    border:1px solid #f6f7f7;
+    border-radius: 8px;
+    top:20px;
+    margin:auto;
+    resize: none;
+}
+
+#write_form .select_form{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    top:70px;
+    width: 60%;
+}
+
+#write_form .select_form select{
+    margin-left:20px;
+    width: 200px;
+    padding: 4px 40px 4px 6px;
+    text-align: left;
+    border:1px solid #9d9ea2;
+    border-radius: 4px;
+    color:#9d9ea2;
+}
+
+#write_form .confirm_btn{
+    position: relative;
+    float:right;
+    top:32px;
+    border:1px solid #547296;
+    border-radius: 20px;
+    background-color: #547296;
+    color:#f6f7f7;
+    width: 100px;
+    height: 32px;
+    cursor: pointer;
+}
+
+/* ##### writeForm.html section end ##### */
+>>>>>>> dev

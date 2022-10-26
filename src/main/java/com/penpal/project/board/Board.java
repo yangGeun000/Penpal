@@ -26,8 +26,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Board {
-	// git commit --amend 최근 커밋 수정 
-	// :wq commit 상세설명 저장
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -47,13 +46,14 @@ public class Board {
 	@ManyToOne
 	private CategoryList category;
 	
-
-	// author -> writer
 	// by 장유란, author -> writer
 	@ManyToOne
 	private Member writer;
 	
 	private LocalDateTime createDate;
+	
+	// by 장유란, 수정일시
+	private LocalDateTime modifyDate;
 	
 	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;

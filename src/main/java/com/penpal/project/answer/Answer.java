@@ -27,12 +27,13 @@ public class Answer {
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	
-
 	@ManyToOne
 	private Member writer;
 
-	
 	private LocalDateTime createDate;
+	
+	// by 장유란, 수정일시 추가	
+	private LocalDateTime modifyDate;
 	
 	@ManyToOne
 	private Board board;

@@ -23,21 +23,13 @@
                 </ul>
             </div>
             <div class="header_language">
-                <ul>
-                    <li>
-                        <select>
-                            <option value="Languages">Languages</option>
-                            <option value="Korean">Korean</option>
-                            <option value="English">English</option>
-                            <option value="Japanese">Japanese</option>
-                            <option value="Chinese">Chinese</option>
-                            <option value="French">French</option>
-                        </select>
-                    </li>
-                </ul>
+                <select name="language" id="language" th:field="*{language}">
+                    <option value="" selected>Languages</option>
+                    <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                </select>
             </div>
             <div class="header_login">
-                <a href="/login">Login</a>
+                <a href="/member/login">Login</a>
             </div>
         </header>
         <section id="section01" class="potion">
@@ -45,7 +37,7 @@
                 <div class="tc_left">
                     <h1>Welcome to<br><span>#Penpal</span></h1><br><br>
                     <h3>This website is 'Trendy Penpaling Website',<br>Regist your Profile, and Find new friends!</h3><br><br>
-                    <a href="/sign_up">START NOW!</a>
+                    <a href="/member/signup">START NOW!</a>
                 </div>
                 <div class="tc_right">
                     <a href="#">Banner IMG Here</a>
