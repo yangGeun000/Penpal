@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.penpal.project.answer.AnswerForm;
 import com.penpal.project.list.CategoryList;
@@ -36,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 
 	private final BoardService boardService;
-	/* private final MemberService memberService; */
+	/*private final MemberService memberService;*/
 	private final CategoryListRepository categoryListRepository;
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
@@ -70,7 +69,7 @@ public class BoardController {
 	}
 
 	// by 장유란, 답변기능 권한 주석처리/**/
-	// @PreAuthorize("isAuthenticated()") // 로그인 제약
+	//@PreAuthorize("isAuthenticated()") // 로그인 제약
 	@GetMapping("/create")
 	public String boardCreate(BoardForm boardForm) {
 		return "community/writeForm";
@@ -97,17 +96,18 @@ public class BoardController {
 		// 작성자 == 수정요청자 동일한지 확인하는 기능
 		// if(!board.getWriter().getMemberId().equals(principal.getName())) {
 		// throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.")
-		// }
+		//	}
+		
 		// boardForm에서 검증받은 제목 내용 가져오기
 		boardForm.setTitle(board.getTitle());
 		boardForm.setContent(board.getContent());
-		return "community/writeForm";
+		return "community/writeForm";	
 	}
-
+	
 	@PostMapping("/modify/{id}")
-	public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult/*																	 */,
-			@PathVariable("id") Integer id) {
-		if (bindingResult.hasErrors()) {
+	public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult, 
+			Principal principal, @PathVariable("id") Integer id) {
+		if(bindingResult.hasErrors()) {
 			return "community/writeForm";
 		}
 		Board board = this.boardService.getBoard(id);
@@ -137,7 +137,7 @@ public class BoardController {
 
 	// by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
 	@ModelAttribute("language")
-	public List<LanguageList> languageList() {
+	public List<LanguageList> languageList(){
 		List<LanguageList> languageLists = languageListRepository.findAll();
 		return languageLists;
 	}

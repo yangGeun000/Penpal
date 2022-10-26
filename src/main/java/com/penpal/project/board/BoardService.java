@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.penpal.project.list.CategoryListRepository;
@@ -27,6 +26,7 @@ public class BoardService {
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
 
+	// by 장유란, 검색기능
 	public Page<Board> getList(int page, String kw) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
@@ -42,7 +42,7 @@ public class BoardService {
 			throw new DataNotFoundException("board not found");
 		}
 	}
-	
+
 	// by 장유란, 답변기능 권한 주석처리/**/
 	public void create(String title, String content, String category, String location, String country/*, Member member*/) {
 		Board board = new Board();
@@ -68,6 +68,5 @@ public class BoardService {
 		this.boardRepository.save(board);
 	}
 
-	
 
 }
