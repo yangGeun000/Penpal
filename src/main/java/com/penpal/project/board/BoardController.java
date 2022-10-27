@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.penpal.project.answer.AnswerForm;
 import com.penpal.project.list.CategoryList;
@@ -42,26 +44,26 @@ public class BoardController {
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
 	private final LanguageListRepository languageListRepository; // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
-	private final BoardRepository boardRepository; // by 장유란, paging 없는 메소드 이용시 필요(board list 가져오기)
+	// by 장유란, 미사용 boardRepository 제거
 
-	/*
-	 * @RequestMapping("") public String boardList(Model model, @RequestParam(value
-	 * = "page", defaultValue = "0") int page,
-	 * 
-	 * @RequestParam(value = "kw", defaultValue = "") String kw) { Page<Board>
-	 * paging = this.boardService.getList(page, kw); // by 장유란 board_list에서 paging,
-	 * kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
-	 * model.addAttribute("paging", paging); model.addAttribute("kw", kw); return
-	 * "community/community"; }
-	 */ // by 조성빈, 게시글 리스트 아직 적용 안 해서 일시적으로 주석처리
-
-	@GetMapping("")
-	public String community(Model model) {
-		List<Board> community = this.boardRepository.findAll(Sort.by(Direction.DESC, "createDate"));
-		model.addAttribute("community", community);
-		return "community/community";
-	}
 	
+	 @RequestMapping("") 
+	 public String boardList(Model model, @RequestParam(value= "page", defaultValue = "0") int page,
+	 						@RequestParam(value = "kw", defaultValue = "") String kw) { 
+		Page<Board> paging = this.boardService.getList(page, kw); // by 장유란 board_list에서 paging,
+		//kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
+		model.addAttribute("paging", paging); 
+		model.addAttribute("kw", kw); 
+			 
+		return "community/community"; 
+	}
+	// @RequestMapping("")
+	// public String community(Model model) {
+	// 	List<Board> community = this.boardRepository.findAll();
+	// 	model.addAttribute("community", community);
+	// 	return "community/community";
+	// }
+
 	@RequestMapping(value = "/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
 		Board board = this.boardService.getBoard(id);
@@ -111,12 +113,12 @@ public class BoardController {
 		if (bindingResult.hasErrors()) {
 			return "community/writeForm";
 		}
+
 		Board board = this.boardService.getBoard(id);
 		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(), boardForm.getLocation(), boardForm.getCountry());
 		
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
-
 	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
 
 	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능

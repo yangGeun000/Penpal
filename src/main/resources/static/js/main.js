@@ -12,10 +12,6 @@ $('.header_navi').ready(function(){
     })
 }) // 메뉴에 active 클래스 추가하는 기능
 
-$('.community_category').ready(function(){
-    var category = 
-})
-
 function CheckLoginInput(){
     var loginForm = document.loginForm;
     var uId = loginForm.uid.value;

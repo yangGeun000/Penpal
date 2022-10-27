@@ -1,13 +1,15 @@
 package com.penpal.project.friend;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.penpal.project.member.Member;
 
 public interface FriendRequestRepository extends JpaRepository<FriendRequest, Integer>{
-    ArrayList<FriendRequest> findBySend(Member send);
+
+    List<FriendRequest> findBySend(Member send);
     FriendRequest findBySendAndReceive(Member send, Member Receive);
 
 }
