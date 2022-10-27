@@ -21,7 +21,6 @@ public class FriendRequest {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-
 	@ManyToOne
 	private Member send;
 	

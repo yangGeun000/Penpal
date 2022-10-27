@@ -32,7 +32,7 @@ public class AnswerController {
 		/* Member member = this.memberService.getMember(principal.getName()); */
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("board", board);
-			return "community/board_detail";
+			return "board/board_detail";	// by 장유란, community/board_detail ==> board/board_detail
 		}
 		this.answerService.create(board, answerForm.getContent()/* , member */);
 		System.out.println("answer create post" + id);
