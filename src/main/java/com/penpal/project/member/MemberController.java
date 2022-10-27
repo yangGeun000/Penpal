@@ -64,7 +64,7 @@ public class MemberController {
             return "member/signup";
         }
         
-        return "redirect:";
+        return "member/login";
     }
     
     @RequestMapping("/login")
