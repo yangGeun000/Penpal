@@ -117,6 +117,7 @@ public class BoardController {
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
 	
+	// by 장유란, 게시글 삭제 Service에서 게시글 삭제 받은 후 redirect, 차후에 권한부여
 	@GetMapping("/delete/{id}")
 	public String boardDelete(@PathVariable("id") Integer id) {
 		Board board =this.boardService.getBoard(id);

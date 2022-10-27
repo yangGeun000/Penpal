@@ -8,6 +8,25 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
 	<title th:text="${board.title}">Document</title>
+	<style>
+		.answer_box {
+			margin: 0 auto;
+			width: 800px;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			margin-bottom: 5px;
+			background: beige;
+			align-items: center;
+		}
+
+		a:not([href]):not([class]),
+		a:not([href]):not([class]):hover {
+			color: inherit;
+			text-decoration: none;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -39,29 +58,35 @@
 					class="delete btn btn-sm btn-outline-secondary" th:text="삭제"></a>
 			</div>
 		</div>
+		<!-- 총 댓글 수 -->
+		<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
+		<!-- 댓글입력 -->
 		<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
-			<!-- *(1) 아무나 답글 가능* -->
-			<textarea th:field="*{content}" class="form-control" rows="10"></textarea>
-			<!-- // -->
-			<!-- *(2) 회원만 답글 가능*
+			<textarea th:field="*{content}" rows="2"></textarea>
+			<!-- *회원만 답글 가능*
 				<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control"
 					rows="10"></textarea>
 				<textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control"
 					rows="10"></textarea>
 												-->
+
 			<div th:replace="board/form_errors :: formErrorsFragment"></div>
-
 			<input type="submit" value="UPLODE">
-		</form>
-
-		<h5 th:text="|${#lists.size(board.answerList)}개의 답변이 있습니다.|"></h5>
-		<div>
-			<ul>
-				<!-- 답변반복기능 -->
-				<li th:each="answer : ${board.answerList}" th:text="${answer.content}"></li>
-				<!-- <a th:id="|answer_${answer.id}|"> -->
-			</ul>
-		</div>
+		</form>		
+		<!-- //댓글입력 -->
+		<!-- 댓글표시 -->
+		<div th:each="answer : ${board.answerList}" class="answer_box">
+			<div>
+				<span th:if="${answer.writer != null}" th:text="${answer.writer.username}"></span></a>
+				<a th:id="|answer_${answer.id}|">
+					<span th:text="${answerStat.size - answerStat.index}"></span>
+					<span th:text="${answer.content}"></span>
+					<span th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}">
+			</div>
+			<!-- 수정버튼, 차후에 권한부여 -->
+			<a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary" th:text="수정"></a>
+		</div><!-- //댓글표시 -->
+	</div>
 	</div>
 	<script>
 		const delete_elements = document.getElementsByClassName("delete");
