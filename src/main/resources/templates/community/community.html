@@ -68,31 +68,40 @@
                         </button>
                     </ul>
                 </div>
-                    <div class="community_bbs">
-               		<!-- by 장유란, (페이징 사용시 ${community} ==> ${page} 변경 필요)-->
-                    <div th:each="board, loop : ${community}" th:class="|view0${board.id}|" th:classappend="community_view">
-  							<a th:href="@{|/community/detail/${board.id}|}">
-  							<!-- 아래 카테고리 : ... 필요없어지면 
-  								th:text="|카테고리 : ${board.category}|" 
-  							==> th:text="${board.category}"형태로 변경 -->
-							<div th:text="|카테고리 : ${board.category}|"></div>
-							<div th:text="|지역 : ${board.location}|"></div>
-							<div th:text="|국가 : ${board.country}|"></div>
-							<div th:text="|제목 : ${board.title}|"></div>
-							<div th:text="|내용 : ${board.content}|"></div></a>
-                    </div>
-                    <!-- for문 사용으로 대체(th:class(view01..06) + th:classappend(community_view)) -->
-                </div>
+                <div class="community_bbs">
+                        <!-- by 장유란, (페이징 사용시 ${community} ==> ${page} 변경 필요)-->
+                     <div th:each="board, loop : ${community}" th:class="community_view" th:classappend="|view0${board.id}|">
+                               <a th:href="@{|/community/detail/${board.id}|}">
+                               <!-- 아래 카테고리 : ... 필요없어지면 
+                                   th:text="|카테고리 : ${board.category}|" 
+                               ==> th:text="${board.category}"형태로 변경 -->
+                             <div th:text="|카테고리 : ${board.category}|"></div>
+                             <div th:text="|지역 : ${board.location}|"></div>
+                             <div th:text="|국가 : ${board.country}|"></div>
+                             <div th:text="|제목 : ${board.title}|"></div>
+                             <div th:text="|내용 : ${board.content}|"></div></a>
+                     </div>
+                     <!-- for문 사용으로 대체(th:class(view01..06) + th:classappend(community_view)) -->
+                 </div>
             </div>
-            <div class="community_bbs_paging">
+            <div class="community_bbs_paging" th:if="${!paging.isEmpty()}">
                 <ul class="pagination">
-                    <li><</li> 
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                    <li>></li>
+                    <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+						<a class="page-link" href="javascript:void(0)" th:date-page="${paging.number-1}">
+							<span><</span>
+						</a>
+					</li>
+					<li th:each="page: ${#numbers.sequence(1, paging.totalPages-1)}"
+						th:if="${page >= paging.number-2 and page <= paging.number+2}"
+						th:classappend="${page == paging.number} ? 'active'" class="page-item">
+						<a th:text="${page}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
+					</li>
+					<!-- 검색기능, page-link 클릭 시 js 실행하여 문자(kw)값에 맞는 board검색하여 제출 -->
+					<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}" ]>
+							<span>></span>
+						</a>
+					</li>
                 </ul>
             </div>
             <div class="community_write">

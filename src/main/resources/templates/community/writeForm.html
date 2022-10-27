@@ -46,7 +46,7 @@
         </section>
         <section id="write_section01">
             <div class="write_container">
-                <form id="write_form" name="write_form" th:action="@{/community/write}" th:object="${boardForm}" method="post">
+                <form id="write_form" name="write_form" th:action="@{/community/create}" th:object="${boardForm}" method="post">
                     <div class="write_title">
                         <input type="text" name="title" id="title" th:field="*{title}" placeholder="title...">
                     </div>
