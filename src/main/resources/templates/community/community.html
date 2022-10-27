@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>#Penpal</title>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-	<script src="/js/main.js"></script>
+	
 	<link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -44,8 +44,9 @@
 				</h3>
 			</div>
 			<div class="search">
-				<input type="text" placeholder="Search">
-				<button></button>
+				<label name="search"></label>
+				<input type="text" id="search_kw" placeholder="Search" th:value="${kw}">
+				<button type="button" id="btn_search"></button>
 			</div>
 			<div class="search_nationality">
 				<select class="nation_select" name="location" id="location" th:field="*{location}">
@@ -70,14 +71,16 @@
 					</ul>
 				</div>
 				<div class="community_bbs">
-					<!-- by 장유란, (페이징 사용시 ${community} ==> ${page} 변경 필요)-->
-					<div th:each="board, loop : ${community}" th:class="community_view"
-						th:classappend="|view0${board.id}|">
+					<!-- by 장유란, 
+							th:classappend="|view0${count}|" 
+							==> style.css/ ..community_view:nth-child(1~6)  //css변경 -->
+					<div th:each="board, count : ${paging}" th:class="community_view">
 						<a th:href="@{|/community/detail/${board.id}|}">
 							<!-- 아래 카테고리 : ... 필요없어지면 
                                    th:text="|카테고리 : ${board.category}|" 
                                ==> th:text="${board.category}"형태로 변경 -->
-							<div th:text="|카테고리 : ${board.category}|"></div>
+							<div th:text="|no :${board.id}|"></div>
+							<div th:text="|카테고리 :${board.category}|"></div>
 							<div th:text="|지역 : ${board.location}|"></div>
 							<div th:text="|국가 : ${board.country}|"></div>
 							<div th:text="|제목 : ${board.title}|"></div>
@@ -87,16 +90,17 @@
 					<!-- for문 사용으로 대체(th:class(view01..06) + th:classappend(community_view)) -->
 				</div>
 			</div>
+			<!-- by 장유란, 페이지 링크 추가 -->
 			<div class="community_bbs_paging" th:if="${!paging.isEmpty()}">
 				<ul class="pagination">
 					<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
 						<a class="page-link" href="javascript:void(0)" th:date-page="${paging.number-1}">
 							<span>
-								<< /span>
+								<</span>
 						</a>
 					</li>
 					<li th:each="page: ${#numbers.sequence(1, paging.totalPages-1)}"
-						th:if="${page >= paging.number-2 and page <= paging.number+2}"
+						th:if="${page} > 5 ? ${page >= paging.number-2 and page <= paging.number+2} : paging.number+5"
 						th:classappend="${page == paging.number} ? 'active'" class="page-item">
 						<a th:text="${page}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
 					</li>
@@ -108,6 +112,10 @@
 					</li>
 				</ul>
 			</div>
+			<form th:action="@{/community}" method="get" id="searchForm">
+				<input type="hidden" id="kw" name="kw" th:value="${kw}">
+				<input type="hidden" id="page" name="page" th:value="${paging.number}">
+			</form>
 			<div class="community_write">
 				<a href="/community/create">
 					<button type="button" class="create_write" title="Write">
@@ -117,6 +125,7 @@
 			</div>
 		</section>
 	</div>
+	<script src="/js/main.js"></script>
 </body>
 
 </html>

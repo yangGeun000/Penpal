@@ -1,13 +1,10 @@
 package com.penpal.project.board;
 
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,22 +43,20 @@ public class BoardController {
 	private final LanguageListRepository languageListRepository; // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
 	// by 장유란, 미사용 boardRepository 제거
 
-	
-	 @RequestMapping("") 
-	 public String boardList(Model model, @RequestParam(value= "page", defaultValue = "0") int page,
-	 						@RequestParam(value = "kw", defaultValue = "") String kw) { 
+	@RequestMapping("")
+	public String boardList(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "kw", defaultValue = "") String kw) {
 		Page<Board> paging = this.boardService.getList(page, kw); // by 장유란 board_list에서 paging,
-		//kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
-		model.addAttribute("paging", paging); 
-		model.addAttribute("kw", kw); 
-			 
-		return "community/community"; 
+		// kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
+		model.addAttribute("paging", paging);
+		model.addAttribute("kw", kw);
+		return "community/community";
 	}
 	// @RequestMapping("")
 	// public String community(Model model) {
-	// 	List<Board> community = this.boardRepository.findAll();
-	// 	model.addAttribute("community", community);
-	// 	return "community/community";
+	// List<Board> community = this.boardRepository.findAll();
+	// model.addAttribute("community", community);
+	// return "community/community";
 	// }
 
 	@RequestMapping(value = "/detail/{id}")
@@ -108,15 +103,17 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify/{id}")
-	public String boardModify(@Valid BoardForm boardForm, BindingResult bindingResult/*																	 */,
+	public String boardModify(@Valid BoardForm boardForm,
+			BindingResult bindingResult/*																	 */,
 			@PathVariable("id") Integer id) {
 		if (bindingResult.hasErrors()) {
 			return "community/writeForm";
 		}
 
 		Board board = this.boardService.getBoard(id);
-		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(), boardForm.getLocation(), boardForm.getCountry());
-		
+		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(),
+				boardForm.getLocation(), boardForm.getCountry());
+
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
 	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
