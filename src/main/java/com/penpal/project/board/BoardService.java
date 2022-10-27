@@ -62,10 +62,13 @@ public class BoardService {
 	}
 	
 	// by 장유란, 수정분 받아와서 저장
-	public void modify(Board board, String title, String content) {
+	public void modify(Board board, String title, String content, String category, String location, String country) {
 		board.setTitle(title);
 		board.setContent(content);
 		board.setModifyDate(LocalDateTime.now());
+		board.setCategory(categoryListRepository.findByName(category));
+		board.setLocation(locationListRepository.findByName(location));
+		board.setCountry(countryListRepository.findByName(country));
 		this.boardRepository.save(board);
 	}
 
