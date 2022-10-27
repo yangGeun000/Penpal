@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,13 +55,13 @@ public class BoardController {
 	 * "community/community"; }
 	 */ // by 조성빈, 게시글 리스트 아직 적용 안 해서 일시적으로 주석처리
 
-	@RequestMapping("")
+	@GetMapping("")
 	public String community(Model model) {
-		List<Board> community = this.boardRepository.findAll();
+		List<Board> community = this.boardRepository.findAll(Sort.by(Direction.DESC, "createDate"));
 		model.addAttribute("community", community);
 		return "community/community";
 	}
-
+	
 	@RequestMapping(value = "/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
 		Board board = this.boardService.getBoard(id);
@@ -110,7 +112,7 @@ public class BoardController {
 			return "community/writeForm";
 		}
 		Board board = this.boardService.getBoard(id);
-		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent());
+		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent(), boardForm.getCategory(), boardForm.getLocation(), boardForm.getCountry());
 		
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
