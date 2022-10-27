@@ -72,7 +72,7 @@
 
 			<div th:replace="board/form_errors :: formErrorsFragment"></div>
 			<input type="submit" value="UPLODE">
-		</form>		
+		</form>
 		<!-- //댓글입력 -->
 		<!-- 댓글표시 -->
 		<div th:each="answer : ${board.answerList}" class="answer_box">
@@ -84,7 +84,9 @@
 					<span th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}">
 			</div>
 			<!-- 수정버튼, 차후에 권한부여 -->
-			<a th:href="@{|/answer/modify/${answer.id}|}" class="btn btn-sm btn-outline-secondary" th:text="수정"></a>
+			<a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}" th:text="수정"></a>
+			<a href="javascript:void(0);" th:data-uri="@{|/answer/delete/${answer.id}|}"
+				class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()" th:text="삭제"></a>
 		</div><!-- //댓글표시 -->
 	</div>
 	</div>

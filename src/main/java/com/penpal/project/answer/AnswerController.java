@@ -64,4 +64,9 @@ public class AnswerController {
 		return String.format("redirect:/community/detail/%s", answer.getBoard().getId());
 	}
 
+	@GetMapping("/delete/{id}")
+	public String answerDelete(@PathVariable("id") Integer id) {
+		Answer answer = this.answerService.getAnswer(id);
+		this.answerService.delete(answer);
+        return String.format("redirect:/community/detail/%s", answer.getBoard().getId());	}
 }
