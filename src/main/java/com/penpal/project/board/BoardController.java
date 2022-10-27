@@ -1,11 +1,11 @@
 package com.penpal.project.board;
 
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.penpal.project.answer.AnswerForm;
 import com.penpal.project.list.CategoryList;

@@ -59,21 +59,21 @@
 						<div class="write_category">
 							<select class="category_select" name="category" id="category" th:field="*{category}">
 								<option value="" selected>Category</option>
-								<option th:each="category : ${category}" th:value="${category}"
+								<option th:each="category : ${category}" th:value="*{category}"
 									th:text="${category.name}"></option>
 							</select>
 						</div>
 						<div class="write_nationality">
 							<select class="nation_select" name="location" id="location" th:field="*{location}">
 								<option value="" selected>Nationality</option>
-								<option th:each="location : ${location}" th:value="${location}"
+								<option th:each="location : ${location}" th:value="*{location}"
 									th:text="${location.name}"></option>
 							</select>
 						</div>
 						<div class="write_country">
 							<select class="country_select" name="country" id="country" th:field="*{country}">
 								<option value="" selected>Country</option>
-								<option th:each="country : ${country}" th:value="${country}" th:text="${country.name}">
+								<option th:each="country : ${country}" th:value="*{country}" th:text="${country.name}">
 								</option>
 							</select>
 						</div>

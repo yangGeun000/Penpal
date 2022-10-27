@@ -70,7 +70,7 @@
                 </div>
                     <div class="community_bbs">
                		<!-- by 장유란, (페이징 사용시 ${community} ==> ${page} 변경 필요)-->
-                    <div th:each="board, loop : ${community}" th:class="|view0${board.id}|" th:classappend="community_view">
+                    <div th:each="board : ${community}" th:class="|view0${board.id}|" th:classappend="community_view">
   							<a th:href="@{|/community/detail/${board.id}|}">
   							<!-- 아래 카테고리 : ... 필요없어지면 
   								th:text="|카테고리 : ${board.category}|" 
