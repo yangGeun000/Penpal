@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.penpal.project.answer.AnswerForm;
 import com.penpal.project.list.CategoryList;
@@ -112,17 +110,12 @@ public class BoardController {
 		}
 		Board board = this.boardService.getBoard(id);
 		this.boardService.modify(board, boardForm.getTitle(), boardForm.getContent());
-<<<<<<< HEAD
 
-		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
-	}
-=======
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
 
 	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
 
->>>>>>> yuran
 	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
 	@ModelAttribute("category")
 	public List<CategoryList> categoryList() {
