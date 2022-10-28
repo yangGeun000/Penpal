@@ -69,7 +69,7 @@ public class BoardController {
 		Board board = this.boardService.getBoard(id);
 		model.addAttribute("board", board);
 
-		return "board/board_detail";
+		return "community/community_detail";
 	}
 
 	// by 장유란, 답변기능 권한 주석처리/**/
