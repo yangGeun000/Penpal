@@ -7,8 +7,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>#Penpal</title>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-	
+
 	<link rel="stylesheet" href="/css/style.css">
+	<style>
+		.page-item.active {
+			font-weight: bolder;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -80,7 +86,8 @@
 							<!-- 아래 카테고리 : ... 필요없어지면 
                                    th:text="|카테고리 : ${board.category}|" 
                                ==> th:text="${board.category}"형태로 변경 -->
-							<div class="view_category_section"> <!-- 선택한 카테고리만 출력하는 영역 -->
+							<div class="view_category_section">
+								<!-- 선택한 카테고리만 출력하는 영역 -->
 								<div th:if="${board.category} != null" th:text="|${board.category}|"></div>
 								<div th:if="${board.location} != null" th:text="|${board.location}|"></div>
 								<div th:if="${board.country} != null" th:text="|${board.country}|"></div>
@@ -96,22 +103,21 @@
 				</div>
 			</div>
 			<!-- by 장유란, 페이지 링크 추가 -->
-			<div class="community_bbs_paging" th:if="${!paging.isEmpty()}">
+			<div class="community_bbs_paging">
 				<ul class="pagination">
 					<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
-						<a class="page-link" href="javascript:void(0)" th:date-page="${paging.number-1}">
-							<span>
-								<</span>
+						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
+							<span><</span>
 						</a>
 					</li>
-					<li th:each="page: ${#numbers.sequence(1, paging.totalPages-1)}"
-						th:if="${page} > 5 ? ${page >= paging.number-2 and page <= paging.number+2} : paging.number+5"
+					<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+						th:if="${page >= paging.number-5 and page <= paging.number+5}"
 						th:classappend="${page == paging.number} ? 'active'" class="page-item">
-						<a th:text="${page}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
+						<a th:text="${page+1}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
 					</li>
 					<!-- 검색기능, page-link 클릭 시 js 실행하여 문자(kw)값에 맞는 board검색하여 제출 -->
 					<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
-						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}" ]>
+						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}">
 							<span>></span>
 						</a>
 					</li>
