@@ -48,12 +48,13 @@ public class BoardController {
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "kw", defaultValue = "") String kw,
 			@RequestParam(value = "location", defaultValue = "") String location, 
-			@RequestParam(value = "country", defaultValue = "") String country) {
-		Page<Board> paging = this.boardService.getList(page, kw, location, country); // by 장유란 board_list에서 paging,
+			@RequestParam(value = "country", defaultValue = "") String country,
+			@RequestParam(value = "category", defaultValue = "") String category) {
+		Page<Board> paging = this.boardService.getList(page, kw, location, country, category); // by 장유란 board_list에서 paging,
 		// kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
 		model.addAttribute("paging", paging);
 		model.addAttribute("kw", kw);
-		System.out.println("kw: " + kw + " page: " + page + " location: " + location + " country: " + country);
+		System.out.println("kw: " + kw + " page: " + page + " location: " + location + " country: " + country + "catrgory: " + category);
 		return "community/community";
 	}
 	
