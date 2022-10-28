@@ -30,6 +30,12 @@ function CheckLoginInput() {
 const page_elements = document.getElementsByClassName("page-link");
 Array.from(page_elements).forEach(function(element) {
 	element.addEventListener('click', function() {
+		// by 장유란, 페이지 범위 밖으로 갈 수 없게 수정
+		if(this.dataset.page < 0 ) {
+			this.dataset.page = 0
+		}else if(this.dataset.page >= page_elements.length-3){
+			this.dataset.page = page_elements.length-3;
+		}
 		document.getElementById('page').value = this.dataset.page;
 		document.getElementById('searchForm').submit();
 	});
