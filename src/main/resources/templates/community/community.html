@@ -126,6 +126,8 @@
 			<form th:action="@{/community}" method="get" id="searchForm">
 				<input type="hidden" id="kw" name="kw" th:value="${kw}">
 				<input type="hidden" id="page" name="page" th:value="${paging.number}">
+				<input type="hidden" id="select_location" name="location" >
+				<input type="hidden" id="select_country" name="country" th:value="${country}">
 			</form>
 			<div class="community_write">
 				<a href="/community/create">

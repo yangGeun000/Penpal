@@ -44,7 +44,8 @@ Array.from(page_elements).forEach(function(element) {
 //by 장유란, 검색 js
 const btn_search = document.getElementById("btn_search");
 btn_search.addEventListener('click', function() {
-    document.getElementById('kw').value = document.getElementById('search_kw').value;
+    document.getElementById('select_country').value = document.getElementById('country').value;
+    document.getElementById('select_location').value = document.getElementById('location').value;
     document.getElementById('page').value = 0;  // 검색버튼을 클릭할 경우 0페이지부터 조회한다.
     document.getElementById('searchForm').submit();
 });

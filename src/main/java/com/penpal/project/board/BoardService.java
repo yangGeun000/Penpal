@@ -5,15 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.penpal.project.answer.Answer;
 import com.penpal.project.list.CategoryListRepository;
 import com.penpal.project.list.CountryListRepository;
 import com.penpal.project.list.LocationListRepository;
+import com.penpal.project.member.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,11 +37,35 @@ public class BoardService {
 	private final CountryListRepository countryListRepository;
 
 	// by 장유란, 검색기능
-	public Page<Board> getList(int page, String kw) {
+	public Page<Board> getList(int page, String kw, String location, String country) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
 		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
-		return this.boardRepository.findAllByKeyword(kw, pageable);
+		Page<Board> searchList;
+		if (location != "" && country != "") {
+			searchList = this.boardRepository.findAllByKeyword(kw, pageable, location, country);
+		} else if (location == "") {
+			searchList = this.boardRepository.findAllByKeyword(kw, pageable, country);
+		} else if (country == "") {
+			searchList = this.boardRepository.findAllByKeywordLocatuin(kw, pageable, location);
+		} else {
+			searchList = this.boardRepository.findAllByKeyword(kw, pageable);
+		}
+		return searchList;
+	}
+
+	public Page<Board> getList(int page, String kw, String category) {
+		List<Sort.Order> sorts = new ArrayList<>();
+		sorts.add(Sort.Order.desc("createDate"));
+		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
+		Page<Board> searchList;
+		if (category != "") {
+			searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, category);
+		}else {
+			searchList = this.boardRepository.findAllByKeyword(kw, pageable);	
+		}
+
+		return searchList;
 	}
 
 	public Board getBoard(Integer id) {
@@ -42,9 +76,10 @@ public class BoardService {
 			throw new DataNotFoundException("board not found");
 		}
 	}
-	
+
 	// by 장유란, 답변기능 권한 주석처리/**/
-	public void create(String title, String content, String category, String location, String country/*, Member member*/) {
+	public void create(String title, String content, String category, String location,
+			String country/* , Member member */) {
 		Board board = new Board();
 		board.setTitle(title);
 		board.setContent(content);
@@ -55,11 +90,11 @@ public class BoardService {
 		board.setLocation(locationListRepository.findByName(location));
 		board.setCountry(countryListRepository.findByName(country));
 		board.setCreateDate(LocalDateTime.now());
-		/*board.setWriter(member);*/
+		/* board.setWriter(member); */
 
 		this.boardRepository.save(board);
 	}
-	
+
 	// by 장유란, 수정분 받아와서 저장
 	public void modify(Board board, String title, String content, String category, String location, String country) {
 		board.setTitle(title);
@@ -70,7 +105,7 @@ public class BoardService {
 		board.setCountry(countryListRepository.findByName(country));
 		this.boardRepository.save(board);
 	}
-	
+
 	// by 장유란, 게시글 삭제
 	public void delete(Board board) {
 		this.boardRepository.delete(board);

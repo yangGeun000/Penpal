@@ -44,14 +44,19 @@ public class BoardController {
 	// by 장유란, 미사용 boardRepository 제거
 
 	@RequestMapping("")
-	public String boardList(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "kw", defaultValue = "") String kw) {
-		Page<Board> paging = this.boardService.getList(page, kw); // by 장유란 board_list에서 paging,
+	public String boardList(Model model, 
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "kw", defaultValue = "") String kw,
+			@RequestParam(value = "location", defaultValue = "") String location, 
+			@RequestParam(value = "country", defaultValue = "") String country) {
+		Page<Board> paging = this.boardService.getList(page, kw, location, country); // by 장유란 board_list에서 paging,
 		// kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
 		model.addAttribute("paging", paging);
 		model.addAttribute("kw", kw);
+		System.out.println("kw: " + kw + " page: " + page + " location: " + location + " country: " + country);
 		return "community/community";
 	}
+	
 	// @RequestMapping("")
 	// public String community(Model model) {
 	// List<Board> community = this.boardRepository.findAll();
