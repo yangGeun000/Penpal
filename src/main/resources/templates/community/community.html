@@ -12,7 +12,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 	<div id="wrap">
 		<header id="header" class="potion">
 			<h1 class="header_logo">
@@ -67,6 +66,7 @@
 				<div class="community_category">
 					<ul name="category" id="category" th:field="*{category}">
 						<button>
+							<li>ALL</li> <!-- category_list에 ALL은 필요 없음-->
 							<li th:each="category : ${category}" th:value="${category}" th:text="${category.name}"></li>
 						</button>
 					</ul>
@@ -80,12 +80,16 @@
 							<!-- 아래 카테고리 : ... 필요없어지면 
                                    th:text="|카테고리 : ${board.category}|" 
                                ==> th:text="${board.category}"형태로 변경 -->
-							<div th:text="|no :${board.id}|"></div>
-							<div th:text="|카테고리 :${board.category}|"></div>
-							<div th:text="|지역 : ${board.location}|"></div>
-							<div th:text="|국가 : ${board.country}|"></div>
-							<div th:text="|제목 : ${board.title}|"></div>
-							<div th:text="|내용 : ${board.content}|"></div>
+							<div class="view_category_section"> <!-- 선택한 카테고리만 출력하는 영역 -->
+								<div th:if="${board.category} != null" th:text="|${board.category}|"></div>
+								<div th:if="${board.location} != null" th:text="|${board.location}|"></div>
+								<div th:if="${board.country} != null" th:text="|${board.country}|"></div>
+							</div>
+							<div class="view_profile_section">
+								<!-- 해당 글 작성자 프로필 -->
+							</div>
+							<div class="view_title" th:text="|${board.title}|"></div>
+							<div class="view_content" th:text="|${board.content}|"></div>
 						</a>
 					</div>
 					<!-- for문 사용으로 대체(th:class(view01..06) + th:classappend(community_view)) -->
