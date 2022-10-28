@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.penpal.project.list.CategoryListRepository;
@@ -70,6 +69,11 @@ public class BoardService {
 		board.setLocation(locationListRepository.findByName(location));
 		board.setCountry(countryListRepository.findByName(country));
 		this.boardRepository.save(board);
+	}
+	
+	// by 장유란, 게시글 삭제
+	public void delete(Board board) {
+		this.boardRepository.delete(board);
 	}
 
 }

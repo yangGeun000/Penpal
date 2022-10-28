@@ -116,6 +116,15 @@ public class BoardController {
 
 		return String.format("redirect:/community/detail/%s", id); // 수정후 돌려주는 주소 변경
 	}
+	
+	// by 장유란, 게시글 삭제 Service에서 게시글 삭제 받은 후 redirect, 차후에 권한부여
+	@GetMapping("/delete/{id}")
+	public String boardDelete(@PathVariable("id") Integer id) {
+		Board board =this.boardService.getBoard(id);
+		this.boardService.delete(board);
+		return "redirect:/community";
+	}
+	
 	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
 
 	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능

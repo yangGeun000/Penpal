@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<!-- 답변수정용 폼 -->
+	<h5>답변 수정</h5>
+	<form th:object="${answerForm}" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div class="mb-3">
+			<label for="content" class="form-label">내용</label>
+			<textarea th:field="*{content}" rows="10"></textarea>
+		</div>
+		<input type="submit" value="저장하기" class="btn">
+	</form>
+</body>
+
+</html>
