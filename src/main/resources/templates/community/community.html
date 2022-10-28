@@ -1,45 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}">
+<head th:replace="fragments/config :: configFragment">
+</head>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>#Penpal</title>
-	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
-	<link rel="stylesheet" href="/css/style.css">
 	<style>
 		.page-item.active {
 			font-weight: bolder;
 		}
 	</style>
-
 </head>
-
 <body>
-	<div id="wrap">
-		<header id="header" class="potion">
-			<h1 class="header_logo">
-				<a href="/">#Penpal</a>
-			</h1>
-			<div class="header_navi">
-				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="/users">Users</a></li>
-					<li><a href="/community">Community</a></li>
-				</ul>
-			</div>
-			<div class="header_language">
-				<select name="language" id="language" th:field="*{language}">
-					<option value="" selected>Languages</option>
-					<option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
-				</select>
-			</div>
-			<div class="header_login">
-				<a href="/member/login">Login</a>
-			</div>
-		</header>
+    <div id="wrap">
+        <header th:replace="fragments/header :: headerFragment"></header>
 		<section id="community_section01" class="potion">
 			<div class="community_text">
 				<h1>Community</h1>
@@ -136,7 +109,6 @@
 			</div>
 		</section>
 	</div>
-	<script src="/js/main.js"></script>
 </body>
-
+<script th:src="@{/js/main.js}"></script>
 </html>
