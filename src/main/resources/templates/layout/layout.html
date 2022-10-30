@@ -7,6 +7,11 @@
 
     <div layout:fragment="content"></div>
 
+    <div th:replace="fragments/menu :: menuFragment"></div>
+    
+    <div th:replace="fragments/friend_list :: friendListFragment"></div>
+    <div th:replace="fragments/message_list :: messageListFragment"></div>
+
     <footer th:replace="fragments/footer :: footerFragment"></footer>
 </body>
 </html>
