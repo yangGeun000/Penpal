@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head th:replace="fragments/config :: configFragment">
 </head>
@@ -8,10 +8,20 @@
         <div class="modal_wrap">
             <button type="button" onclick="closePop()">X
             </button>
-            <div>
-                FRIEND
+            <div class="friend_list_function_btn">
+                <button class="friend_list_btn active" type="button">FRIEND</button>
+                <button class="friend_request_btn" type="button">ADD</button>
+            </div>
+            <div class="friend_list_section">
+                <div class="my_friends active">
+                    <div th:replace="fragments/my_friends :: myFriendsFragment"></div>
+                </div>
+                <div class="request_friend">
+                    <div th:replace="fragments/request_friend :: requestFriendFragment"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 </html>

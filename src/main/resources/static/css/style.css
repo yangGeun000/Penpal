@@ -1453,7 +1453,7 @@
     z-index: 100;
 }
 
-.modal_wrap button{
+.modal_wrap>button{
     position: absolute;
     right: 0;
     margin:4px 10px;
@@ -1465,6 +1465,217 @@
 
 /* ##### friend_list.html section ##### */
 
+.friend_list_function_btn{
+    position: absolute;
+    left: 160px;
+    top: 20px;
+    width: 320px;
+    height: 40px;
+    border:1px solid #9d9ea2;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
 
+.friend_list_function_btn .friend_list_btn{
+    position: absolute;
+    left: 0;
+    text-align: center;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    color:#384250;
+    margin:10px;
+}
 
-/* ##### friend_list.html section ##### */
+.friend_list_function_btn .friend_request_btn{
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    color:#384250;
+    margin:10px;
+}
+
+.friend_list_function_btn .active{
+    border:1px solid #547296;
+    border-radius: 4px;
+    background:#547296;
+    color:#f6f7f7;
+}
+
+.modal_wrap .friend_list_section{
+    position: relative;
+    top: 70px;
+    left: 10px;
+    width: 620px;
+    height: 530px;
+}
+
+.friend_list_section>div {
+    display: none;
+}
+
+.friend_list_section>div.active{
+    display: block;
+    height: 530px;
+}
+
+/* ##### friend_list.html section end ##### */
+
+/* ##### my_friends.html section ##### */
+
+.my_friend_section{
+    position: relative;
+    width: 620px;
+    height: 120px;
+    margin:8px auto;
+    border:1px solid #9d9ea2;
+}
+
+.my_friend_section .my_friend_img{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    margin:10px 0 0 10px;
+    background-image: url(../images/default_profile.png);
+    background-size: 100px 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.my_friend_section .my_friend_info{
+    position: relative;
+    width: 500px;
+    height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.my_friend_section .my_friend_info .my_friend_name{
+    position: relative;
+    margin-left:120px;
+    font-size: 24px;
+    color: #384250;
+}
+
+.my_friend_section .my_friend_info .my_friend_nationality{
+    position: relative;
+    margin-top: 10px;
+    margin-left:14px;
+    font-size: 14px;
+    color: #9d9ea2;
+}
+
+.my_friend_section .my_friend_comment{
+    position: absolute;
+    margin-top: 20px;
+    margin-left:130px;
+    color:#9d9ea2;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: hidden;
+    line-height: 1.2;
+    width: 480px;
+    height: 70px;
+    display: block;
+}
+
+.my_friend_paging{
+    position: relative;
+    width: 400px;
+    height: 40px;
+    margin:0 auto;
+    border:1px solid #547296;
+    bottom: 0;
+}
+/* ##### my_friends.html section end ##### */
+
+/* ##### request_friend.html section ##### */
+
+.request_friend_section{
+    position: relative;
+    width: 620px;
+    height: 120px;
+    margin:8px auto;
+    border:1px solid #9d9ea2;
+    background-color:#dddfe4;
+}
+
+.request_friend_section .request_friend_img{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    margin:10px 0 0 10px;
+    background-image: url(../images/default_profile.png);
+    background-size: 100px 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color:#547296;
+}
+
+.request_friend_section .request_friend_info{
+    position: relative;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.request_friend_section .request_friend_info .request_friend_name{
+    position: relative;
+    margin-left:200px;
+    font-size: 24px;
+    color: #384250;
+}
+.request_friend_section .request_friend_info .request_friend_nationality{
+    position: relative;
+    margin-top: 10px;
+    margin-left:14px;
+    font-size: 14px;
+    color: #9d9ea2;
+}
+
+.request_friend_section .request_friend_btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.request_friend_section .request_friend_btn .accept_btn{
+    position: relative;
+    width: 130px;
+    height: 36px;
+    border:1px solid #547296;
+    border-radius: 10px;
+    background-color:#547296;
+    color:#f6f7f7;
+}
+
+.request_friend_section .request_friend_btn .refuse_btn{
+    position: relative;
+    width: 130px;
+    height: 36px;
+    border:1px solid #547296;
+    border-radius: 10px;
+    color:#384250;
+    margin-top: 10px;
+}
+
+.request_friend_paging{
+    position: relative;
+    width: 400px;
+    height: 40px;
+    margin:0 auto;
+    border:1px solid #547296;
+    bottom: 0;
+}
+
+/* ##### request_friend.html section end ##### */

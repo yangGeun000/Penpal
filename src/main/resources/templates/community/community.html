@@ -46,7 +46,7 @@
 				<div class="community_category">
 					<ul name="category" id="category" th:field="*{category}">
 						<button>
-							<li>ALL</li> <!-- category_list에 ALL은 필요 없음-->
+							<li th:onclick="|location.href='@{/community}'|">ALL</li> <!-- category_list에 ALL은 필요 없음-->
 							<li th:each="category : ${category}" th:value="${category}" th:text="${category.name}"></li>
 						</button>
 					</ul>
