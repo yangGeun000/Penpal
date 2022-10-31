@@ -5,30 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.penpal.project.answer.Answer;
 import com.penpal.project.list.CategoryListRepository;
 import com.penpal.project.list.CountryListRepository;
 import com.penpal.project.list.LocationListRepository;
-import com.penpal.project.member.Member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class BoardService {
 
 	private final BoardRepository boardRepository;
@@ -37,32 +29,58 @@ public class BoardService {
 	private final CountryListRepository countryListRepository;
 
 	// by 장유란, 검색기능
-	public Page<Board> getList(int page, String kw, String location, String country) {
+	public Page<Board> getList(int page, String kw, String location, String country, String category) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
 		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
 		Page<Board> searchList;
-		if (location != "" && country != "") {
-			searchList = this.boardRepository.findAllByKeyword(kw, pageable, location, country);
-		} else if (location == "") {
-			searchList = this.boardRepository.findAllByKeyword(kw, pageable, country);
-		} else if (country == "") {
-			searchList = this.boardRepository.findAllByKeywordLocatuin(kw, pageable, location);
+		if (!category.equals("")) {
+			if (!location.equals("") && !country.equals("")) {
+				log.info("1. categoryO/locationO/countryO");
+				searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, location, country, category);
+			} else if(location.equals("") && country.equals("")){
+				log.info("2. categoryO/locationX/countryX");
+				searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, category);
+			} else if (location.equals("")) {
+				log.info("3. categoryO/locationX/countryO");
+				searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, country, category);
+			} else {
+				log.info("4. categoryO/locationX/countryX");
+				searchList = this.boardRepository.findAllByKeywordCategoryLocation(kw, pageable, location, category);
+			}
 		} else {
-			searchList = this.boardRepository.findAllByKeyword(kw, pageable);
+			if (!location.equals("") && !country.equals("")) {
+				log.info("5. categoryX/locationO/countryO");
+				searchList = this.boardRepository.findAllByKeyword(kw, pageable, location, country);
+			} else if(location.equals("") && country.equals("")){
+				log.info("6. categoryX/locationX/countryX");
+				searchList = this.boardRepository.findAllByKeyword(kw, pageable);
+			} else if (location.equals("")){
+				log.info("7. categoryX/locationX/countryO");
+				searchList = this.boardRepository.findAllByKeyword(kw, pageable, country);
+			} else  {
+				log.info("8. categoryX/locationO/countryX");
+				searchList = this.boardRepository.findAllByKeywordLocatuin(kw, pageable, location);
+			}
 		}
 		return searchList;
 	}
 
 	public Page<Board> getList(int page, String kw, String category) {
+		System.out.println(" no2");
+
+		System.out.println(page + "page");
+		System.out.println(kw + "kw");
+		System.out.println(kw + "kw");
+		System.out.println(category + "cat");
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
 		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
 		Page<Board> searchList;
 		if (category != "") {
 			searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, category);
-		}else {
-			searchList = this.boardRepository.findAllByKeyword(kw, pageable);	
+		} else {
+			searchList = this.boardRepository.findAllByKeyword(kw, pageable);
 		}
 
 		return searchList;
