@@ -8,12 +8,12 @@
         <header th:replace="fragments/header :: headerFragment"></header>
         <section id="log_section01">
             <h2 class="login_text">Login</h2>
-            <form name="loginForm" class="login_contents" action="">
+            <form name="loginForm" class="login_contents" th:action="@{/member/login}" method="post">
                 <div class="field">
-                    <input name="uid" class="userid" type="text" placeholder="ID">
+                    <input name="username" id="username" class="userid" type="text" placeholder="ID">
                 </div>
                 <div class="field">
-                    <input name="upw" class="userpw" type="password" placeholder="PASSWORD">
+                    <input name="password" id="password" class="userpw" type="password" placeholder="PASSWORD">
                 </div>
                 <input class="login_btn" type="button" onclick="CheckLoginInput()" value="LOGIN"
                     style="cursor:pointer;">

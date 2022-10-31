@@ -14,8 +14,8 @@ $('.header_navi').ready(function () {
 
 function CheckLoginInput() {
 	var loginForm = document.loginForm;
-	var uId = loginForm.uid.value;
-	var uPw = loginForm.upw.value;
+	var uId = loginForm.username.value;
+	var uPw = loginForm.password.value;
 
 	if (!uId || !uPw) {
 		alert("Please enter your ID & PASSWORD");
