@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout/layout}">
+
 <head th:replace="fragments/config :: configFragment">
 </head>
+
 <body>
     <div id="wrap">
         <header th:replace="fragments/header :: headerFragment"></header>
@@ -25,25 +27,29 @@
                         <input type="text" name="title" id="title" th:field="*{title}" placeholder="title...">
                     </div>
                     <div class="write_content">
-                        <textarea type="text" name="content" id="content" th:field="*{content}" placeholder="Write Something..."></textarea>
+                        <textarea type="text" name="content" id="content" th:field="*{content}"
+                            placeholder="Write Something..."></textarea>
                     </div>
                     <div class="select_form">
                         <div class="write_category">
                             <select class="category_select" name="category" id="category" th:field="*{category}">
                                 <option value="" selected>Category</option>
-                                <option th:each="category : ${category}" th:value="${category}" th:text="${category.name}"></option>
+                                <option th:each="category : ${category}" th:value="${category}"
+                                    th:text="${category.name}"></option>
                             </select>
                         </div>
                         <div class="write_nationality">
                             <select class="nation_select" name="location" id="location" th:field="*{location}">
                                 <option value="" selected>Nationality</option>
-                                <option th:each="location : ${location}" th:value="${location}" th:text="${location.name}"></option>
+                                <option th:each="location : ${location}" th:value="${location}"
+                                    th:text="${location.name}"></option>
                             </select>
                         </div>
                         <div class="write_country">
                             <select class="country_select" name="country" id="country" th:field="*{country}">
                                 <option value="" selected>Country</option>
-                                <option th:each="country : ${country}" th:value="${country}" th:text="${country.name}"></option>
+                                <option th:each="country : ${country}" th:value="${country}" th:text="${country.name}">
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -54,4 +60,5 @@
     </div>
 </body>
 <script th:src="@{/js/main.js}"></script>
+
 </html>

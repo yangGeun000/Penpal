@@ -47,6 +47,17 @@ $(".friend_list_section").ready(function(){
 	})
 })//by 조성빈, 목록 & 요청 버튼 클릭 시 list 영역 전환하는 기능
 
+$(document).mouseup(function (e){
+	if($("#pop_friend").has(e.target).length === 0){
+		$("#pop_friend").hide();
+	}
+
+	if($("#pop_message").has(e.target).length === 0){
+		$("#pop_message").hide();
+	}
+
+}); //by 조성빈, 외부 클릭 시 레이어 팝업 숨기는 기능
+
 //by 장유란, 페이징 js
 const page_elements = document.getElementsByClassName("page-link");
 Array.from(page_elements).forEach(function(element) {
