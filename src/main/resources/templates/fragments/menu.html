@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/config :: configFragment">
+</head>
+<div th:fragment="menuFragment">
+    <div id="menu_section">
+        <button id="menu_btn" onclick="sideMenuFunc()">
+        </button>
+        <div id="menu_content">
+            <div class="menu_profile_section">
+                <div class="menu_profile_img">
+                    <!-- 프로필 이미지 영역 -->
+                </div>
+                <div class="menu_profile_info">
+                    <!-- 프로필 정보 영역 -->
+                    <span class="menu_profile_username">
+                        <!-- 이름 -->
+                        Username
+                    </span><br>
+                    <span class="menu_profile_nationality">
+                        <!-- 국적 -->
+                        Korea
+                    </span>
+                    <div class="menu_profile_flag">
+                        <!-- 국가 아이콘 -->
+                    </div>
+                </div>
+            </div>
+            <div class="menu_friend_section">
+                <div class="menu_text">
+                    <span>FRIEND</span>
+                    <a id="pop_btn" href="javascript:openPopFriend()">+</a>
+                </div>
+                <ul class="menu_friend_list">
+                    <!-- 친구 리스트 -->
+                    <li class="menu_friend">
+                        <div class="menu_friend_profile_img">
+                            <!-- 친구 프로필 이미지 영역 -->
+                        </div>
+                        <div class="menu_friend_profile_name">
+                            <!-- 친구 이름 -->
+                            Unknown
+                        </div>
+                        <div class="menu_friend_profile_on_icon">
+                            <!-- 친구 온라인 상태 아이콘 -->
+                        </div>
+                    </li>
+                    <li class="menu_friend">
+                        <!-- 영역 확인용, 첫 li에 th:each 걸면 삭제 -->
+                    </li>
+                    <li class="menu_friend">
+                        <!-- 영역 확인용, 첫 li에 th:each 걸면 삭제 -->
+                    </li>
+                </ul>
+            </div>
+            <div class="menu_message_section">
+                <div class="menu_text">
+                    <span>MESSAGE</span>
+                    <a href="javascript:openPopMessage()">+</a>
+                </div>
+                <ul class="menu_message_list">
+                    <!-- 메시지 리스트 -->
+                    <li class="menu_message">
+                        <div class="menu_message_profile_img">
+                            <!-- 친구 프로필 이미지 영역 -->
+                        </div>
+                        <div class="menu_message_profile_name">
+                            <!-- 친구 이름 -->
+                            Unknown
+                        </div>
+                        <div class="menu_message_profile_on_icon">
+                            <!-- 신규 메시지 알림 아이콘 -->
+                        </div>
+                    </li>
+                    <li class="menu_message">
+                        <!-- 영역 확인용, 첫 li에 th:each 걸면 삭제 -->
+                    </li>
+                    <li class="menu_message">
+                        <!-- 영역 확인용, 첫 li에 th:each 걸면 삭제 -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/friend_list :: friendListFragment"></div>
+    <div th:replace="fragments/message_list :: messageListFragment"></div>
+</div>
+</html>

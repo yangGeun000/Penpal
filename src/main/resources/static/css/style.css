@@ -1227,3 +1227,244 @@
 
 /* ##### writeForm.html section end ##### */
 
+/* ##### menu.html section ##### */
+
+#menu_section{
+    z-index: 10;
+    position:fixed;
+    left: -320px;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    background:#547296;
+    border-radius: 8px;
+}
+
+
+#menu_btn{
+    position: relative;
+    float:right;
+    top: 130px;
+    right: -40px;
+    width: 40px;
+    height: 140px;
+    background:#547296;
+    border-radius: 4px;
+}
+
+#menu_content{
+    width: 100%;
+    height: 100%;
+}
+
+/* menu profile section */
+
+#menu_content .menu_profile_section{
+    width: 100%;
+    height: 140px;
+}
+
+#menu_content .menu_profile_section .menu_profile_img{
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    margin-left: 2px;
+    background-image: url(../images/default_profile.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 120px 120px;
+}
+
+#menu_content .menu_profile_section .menu_profile_info{
+    position: absolute;
+    right: 0;
+    top: 16px;
+    width: 180px;
+    height: 130px;
+}
+
+#menu_content .menu_profile_section .menu_profile_info>span{
+    display: inline-block;
+    color:#f6f7f7;
+    margin-bottom:6px;
+}
+
+#menu_content .menu_profile_section .menu_profile_info .menu_profile_username{
+    font-size: 24px;
+}
+
+/* menu profile section end */
+
+/* menu friend section */
+
+.menu_text{
+    display: flex;
+    align-items: center;
+}
+
+#menu_content .menu_friend_section{
+    width: 100%;
+    height: 260px;
+}
+
+#menu_content .menu_friend_section span{
+    display: inline-block;
+    padding:8px 0 10px 16px;
+    color:#f6f7f7;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+#menu_content .menu_friend_section a{
+    padding-left: 6px;
+    font-size: 32px;
+    color: #f6f7f7;
+}
+
+
+#menu_content .menu_friend_section .menu_friend{
+    position: relative;
+    height: 60px;
+    width: 280px;
+    border:1px solid #ffffff;
+    background:#ffffff;
+    border-radius: 10px;
+    margin:0 0 12px 16px;
+}
+
+#menu_content .menu_friend_section .menu_friend .menu_friend_profile_img{
+    position: absolute;
+    height: 100%;
+    width: 60px;
+    background-image: url(../images/default_profile.png);
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+#menu_content .menu_friend_section .menu_friend .menu_friend_profile_name{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    left:76px;
+    color:#547296;
+    font-size: 20px;
+    line-height: 58px;
+    
+}
+
+#menu_content .menu_friend_section .menu_friend .menu_friend_profile_on_icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    border:1px solid #547296;
+}
+
+/* menu friend section end */
+
+/* menu message section */
+
+#menu_content .menu_message_section{
+    position: relative;
+    width: 100%;
+    height: 260px;
+}
+
+#menu_content .menu_message_section span{
+    display: inline-block;
+    padding:8px 0 8px 16px;
+    color:#f6f7f7;
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+#menu_content .menu_message_section a{
+    padding-left: 6px;
+    font-size: 32px;
+    color: #f6f7f7;
+}
+
+#menu_content .menu_message_section .menu_message{
+    position: relative;
+    height: 60px;
+    width: 280px;
+    border:1px solid #ffffff;
+    background:#ffffff;
+    border-radius: 10px;
+    margin:0 0 12px 16px;
+}
+
+#menu_content .menu_message_section .menu_message .menu_message_profile_img{
+    position: absolute;
+    height: 100%;
+    width: 60px;
+    background-image: url(../images/default_profile.png);
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+}
+
+#menu_content .menu_message_section .menu_message .menu_message_profile_name{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    left:76px;
+    color:#547296;
+    font-size: 20px;
+    line-height: 58px;
+    
+}
+
+#menu_content .menu_message_section .menu_message .menu_message_profile_on_icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    border:1px solid #547296;
+}
+
+/* menu message section end */
+
+/* ##### menu.html section end ##### */
+
+/* pop up function */
+
+.modal_bg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: rgba(64,64,64,0.5);
+    z-index: 99;
+}
+
+.modal_wrap{
+    position: absolute;
+    top: 40px;
+    left: 460px;
+    width: 640px;
+    height:640px;
+    background:#f6f7f7;
+    z-index: 100;
+}
+
+.modal_wrap button{
+    position: absolute;
+    right: 0;
+    margin:4px 10px;
+    font-size: 26px;
+    color:#9d9ea2;
+}
+
+/* pop up function end */
+
+/* ##### friend_list.html section ##### */
+
+
+
+/* ##### friend_list.html section ##### */

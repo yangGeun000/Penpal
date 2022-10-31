@@ -51,12 +51,14 @@ public class BoardController {
 			@RequestParam(value = "country", defaultValue = "") String country,
 			@RequestParam(value = "category", defaultValue = "") String category) {
 		Page<Board> paging = this.boardService.getList(page, kw, location, country, category); // by 장유란 board_list에서 paging,
-		// kw 값 받아오기 log.info(">> list에서 받아온 값 // page=" + page + "kw=" + kw);
 		model.addAttribute("paging", paging);
 		model.addAttribute("kw", kw);
-		System.out.println("kw: " + kw + " page: " + page + " location: " + location + " country: " + country + "catrgory: " + category);
+		model.addAttribute("selectCategory", category);		
+		
+		log.info("kw: " + kw + " page: " + page + " location: " + location + " country: " + country + " catrgory: " + category);
 		return "community/community";
 	}
+	
 	
 	// @RequestMapping("")
 	// public String community(Model model) {

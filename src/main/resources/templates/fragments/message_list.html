@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/config :: configFragment">
+</head>
+<div th:fragment="messageListFragment">
+    <div id="pop_message" class="modal_bg" style="display : none;">
+        <div class="modal_wrap">
+            <button type="button" onclick="closePop()">X
+            </button>
+            <div>
+                MESSAGE
+            </div>
+        </div>
+    </div>
+</div>
+</html>

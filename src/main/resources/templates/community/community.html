@@ -13,6 +13,7 @@
 <body>
     <div id="wrap">
         <header th:replace="fragments/header :: headerFragment"></header>
+		<div th:replace="fragments/menu :: menuFragment"></div>
 		<section id="community_section01" class="potion">
 			<div class="community_text">
 				<h1>Community</h1>
@@ -43,10 +44,10 @@
 		<section id="community_sectino02">
 			<div class="community_contents">
 				<div class="community_category">
-					<ul name="category" id="category" th:field="*{category}">
-						<button>
-							<li>ALL</li> <!-- category_list에 ALL은 필요 없음-->
-							<li th:each="category : ${category}" th:value="${category}" th:text="${category.name}"></li>
+					<ul class="country_select" name="category" id="btn_list">
+						<li>ALL</li> <!-- category_list에 ALL은 필요 없음-->
+						<button  th:each="category : ${category}" type="button" class="click-category" th:id="${category.name}">
+							<li th:id="${category.name}" th:value="${category}" th:field="*{category}" th:text="${category.name}"></li>
 						</button>
 					</ul>
 				</div>
@@ -99,9 +100,9 @@
 			<form th:action="@{/community}" method="get" id="searchForm">
 				<input type="hidden" id="kw" name="kw" th:value="${kw}">
 				<input type="hidden" id="page" name="page" th:value="${paging.number}">
-				<input type="hidden" id="select_location" name="location" >
-				<input type="hidden" id="select_country" name="country" th:value="${country}">
-				<input type="hidden" id="select_category" name="category" th:value="${category}">
+				<input type="hidden" id="select_location" name="location">
+				<input type="hidden" id="select_country" name="country">
+				<input type="hidden" id="select_category" name="category" th:value="${selectCategory}">
 			</form>
 			<div class="community_write">
 				<a href="/community/create">
