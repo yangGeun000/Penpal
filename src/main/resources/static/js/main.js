@@ -106,10 +106,7 @@ function sideMenuFunc() {
 function openPopFriend() {
 	document.getElementById("pop_friend").style.display = "block";
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> yuran
 function openPopMessage() {
 	document.getElementById("pop_message").style.display = "block";
 }
