@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}">
+	layout:decorate="~{layout/layout}">
+
 <head th:replace="fragments/config :: configFragment">
 </head>
+
 <head>
 	<style>
 		.page-item.active {
@@ -10,9 +12,10 @@
 		}
 	</style>
 </head>
+
 <body>
-    <div id="wrap">
-        <header th:replace="fragments/header :: headerFragment"></header>
+	<div id="wrap">
+		<header th:replace="fragments/header :: headerFragment"></header>
 		<div th:replace="fragments/menu :: menuFragment"></div>
 		<section id="community_section01" class="potion">
 			<div class="community_text">
@@ -44,10 +47,11 @@
 		<section id="community_sectino02">
 			<div class="community_contents">
 				<div class="community_category">
-					<ul class="country_select" name="category" id="btn_list">
-						<li>ALL</li> <!-- category_list에 ALL은 필요 없음-->
-						<button  th:each="category : ${category}" type="button" class="click-category" th:id="${category.name}">
-							<li th:id="${category.name}" th:value="${category}" th:field="*{category}" th:text="${category.name}"></li>
+					<ul name="category" id="btn_list" th:field="*{category}">
+						<button>
+							<li th:onclick="|location.href='@{/community}'|">ALL</li> 
+							<li th:each="category : ${category}" class="click-category"
+							th:id="${category.name}" th:value="${category}" th:text="${category.name}"></li>
 						</button>
 					</ul>
 				</div>
@@ -81,10 +85,8 @@
 				<ul class="pagination">
 					<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
 						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
-							<span><</span>
-						</a>
-					</li>
-					<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+							<span>
+								<</span> </a> </li> <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
 						th:if="${page >= paging.number-5 and page <= paging.number+5}"
 						th:classappend="${page == paging.number} ? 'active'" class="page-item">
 						<a th:text="${page+1}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
