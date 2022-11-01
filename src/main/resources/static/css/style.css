@@ -1470,6 +1470,12 @@ section {
 
 /* ##### friend_list.html section ##### */
 
+#pop_friend .pop_friend{
+    background:#f6f7f7;
+    border-radius: 4px;
+}
+
+
 .friend_list_function_btn {
     position: absolute;
     left: 160px;
@@ -1609,6 +1615,7 @@ section {
     height: 120px;
     margin: 8px auto;
     border: 1px solid #9d9ea2;
+    border-radius: 4px;
     background-color: #dddfe4;
 }
 
