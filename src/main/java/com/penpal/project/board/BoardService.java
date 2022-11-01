@@ -16,11 +16,9 @@ import com.penpal.project.list.CountryListRepository;
 import com.penpal.project.list.LocationListRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class BoardService {
 
 	private final BoardRepository boardRepository;
@@ -33,55 +31,7 @@ public class BoardService {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));
 		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
-		Page<Board> searchList;
-		if (!category.equals("")) {
-			if (!location.equals("") && !country.equals("")) {
-				log.info("1. categoryO/locationO/countryO");
-				searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, location, country, category);
-			} else if(location.equals("") && country.equals("")){
-				log.info("2. categoryO/locationX/countryX");
-				searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, category);
-			} else if (location.equals("")) {
-				log.info("3. categoryO/locationX/countryO");
-				searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, country, category);
-			} else {
-				log.info("4. categoryO/locationX/countryX");
-				searchList = this.boardRepository.findAllByKeywordCategoryLocation(kw, pageable, location, category);
-			}
-		} else {
-			if (!location.equals("") && !country.equals("")) {
-				log.info("5. categoryX/locationO/countryO");
-				searchList = this.boardRepository.findAllByKeyword(kw, pageable, location, country);
-			} else if(location.equals("") && country.equals("")){
-				log.info("6. categoryX/locationX/countryX");
-				searchList = this.boardRepository.findAllByKeyword(kw, pageable);
-			} else if (location.equals("")){
-				log.info("7. categoryX/locationX/countryO");
-				searchList = this.boardRepository.findAllByKeyword(kw, pageable, country);
-			} else  {
-				log.info("8. categoryX/locationO/countryX");
-				searchList = this.boardRepository.findAllByKeywordLocatuin(kw, pageable, location);
-			}
-		}
-		return searchList;
-	}
-
-	public Page<Board> getList(int page, String kw, String category) {
-		System.out.println(" no2");
-
-		System.out.println(page + "page");
-		System.out.println(kw + "kw");
-		System.out.println(kw + "kw");
-		System.out.println(category + "cat");
-		List<Sort.Order> sorts = new ArrayList<>();
-		sorts.add(Sort.Order.desc("createDate"));
-		Pageable pageable = PageRequest.of(page, 6, Sort.by(sorts));
-		Page<Board> searchList;
-		if (category != "") {
-			searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, category);
-		} else {
-			searchList = this.boardRepository.findAllByKeyword(kw, pageable);
-		}
+		Page<Board> searchList = this.boardRepository.findAllByKeywordCategory(kw, pageable, country, location, category);
 
 		return searchList;
 	}

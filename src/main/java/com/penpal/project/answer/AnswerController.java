@@ -16,12 +16,10 @@ import com.penpal.project.board.Board;
 import com.penpal.project.board.BoardService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/answer")
 @RequiredArgsConstructor
 @Controller
-@Slf4j
 public class AnswerController {
 
 	private final BoardService boardService;
@@ -37,28 +35,22 @@ public class AnswerController {
 		/* Member member = this.memberService.getMember(principal.getName()); */
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("board", board);
-			return "board/board_detail";	// by 장유란, community/board_detail ==> board/board_detail
+			return "community/community_detail";	// by 장유란, community/board_detail ==> board/board_detail
 		}
 		this.answerService.create(board, answerForm.getContent()/* , member */);
 		System.out.println("answer create post" + id);
 		return String.format("redirect:/community/detail/%s", id);// by 장유란, board/detail ==> community/detail
 	}
 	
-	// by 장유란, 답변수정버튼 클릭시 요청되는 매핑 처리
-	@GetMapping("/modify/{id}")
-	public String answerModify(AnswerForm answerForm, @PathVariable("id") Integer id) {
-		Answer answer = this.answerService.getAnswer(id);
-		answerForm.setContent(answer.getContent());
-		log.info("answer modify>>" + answer.getContent());
-		return "answer_form";
-	}
-	
 	// by 장유란, answer_form에서 오는 정보 처리
 	@PostMapping("/modify/{id}")
 	public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult, @PathVariable("id") Integer id, Principal principal) {
+		System.out.println("modify post");
 		if(bindingResult.hasErrors()) {
+			System.out.println("modify post error");
 			return "answer_form";	// by 장유란, 리턴 폼 위치 옮길 시 수정 필요
 		}
+
 		Answer answer = this.answerService.getAnswer(id);
 		this.answerService.modify(answer, answerForm.getContent());
 		return String.format("redirect:/community/detail/%s", answer.getBoard().getId());
