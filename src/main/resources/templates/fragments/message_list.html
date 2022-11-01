@@ -7,51 +7,31 @@
     <div id="pop_message" class="modal_bg" style="display : none;">
         <div class="modal_wrap">
             <div class="message_list_section">
-                <div class="message_list_view">
-                    <div class="message_profile_img">
-                        <!-- message 보낸 사람 프로필 이미지 -->
+                <a id="pop_btn" class="pop_message" href="javascript:openMessageRoom()">
+                    <div class="message_list_view">
+                        <div class="message_profile_img">
+                            <!-- message 보낸 사람 프로필 이미지 -->
+                        </div>
+                        <div class="message_profile_name">
+                            <!-- message 보낸 사람 이름 -->
+                            Unknown
+                        </div>
+                        <div class="message_content">
+                            <!-- message 내용, 최대 세 줄 미리보기 -->
+                            <span>what's going on? what are you doing? what's up? what are you doing? what are you
+                                doing? what are you doing? what are you doing? what are you doing? what are you doing?
+                                what are you doing? what are you doing?</span>
+                        </div>
+                        <div class="message_new_count">
+                            <!-- 새로운 message 카운팅 -->
+                            <span>1</span>
+                        </div>
                     </div>
-                    <div class="message_profile_name">
-                        <!-- message 보낸 사람 이름 -->
-                        Unknown
-                    </div>
-                    <div class="message_content">
-                        <!-- message 내용, 최대 세 줄 미리보기 -->
-                        <span>what's going on? what are you doing? what's up? what are you doing? what are you doing? what are you doing? what are you doing? what are you doing? what are you doing? what are you doing? what are you doing?</span>
-                    </div>
-                    <div class="message_new_count">
-                        <!-- 새로운 message 카운팅 -->
-                        <span>1</span>
-                    </div>
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                    <!-- scroll test -->
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                    <!-- scroll test -->
-                </div>
-                <div class="message_list_view">
-                    <!-- each 들어가면 삭제 -->
-                    <!-- scroll test -->
-                </div>
+                </a>
             </div>
         </div>
     </div>
-</div>
+    <div th:replace="fragments/message_room :: messageRoomFragment"></div>
 </div>
 
 </html>

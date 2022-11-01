@@ -45,17 +45,30 @@ $(".friend_list_section").ready(function(){
 			$(".request_friend").addClass("active");
 		}
 	})
-})//by 조성빈, 목록 & 요청 버튼 클릭 시 list 영역 전환하는 기능
+})//by 조성빈, 친구 목록 & 친구 요청 버튼 클릭 시 list 영역 전환하는 기능
+
 
 $(document).mouseup(function (e){
+	if($("#message_room").has(e.target).length === 0){
+		$("#message_room").hide();
+		$(".message_list_section").removeClass("active");
+	}
+
 	if($("#pop_friend").has(e.target).length === 0){
 		$("#pop_friend").hide();
 	}
 
 	if($("#pop_message").has(e.target).length === 0){
-		$("#pop_message").hide();
+		if($("#message_room").css("display") == "block"){
+			return false;
+		}
+	
+		if($("#message_room").css("display") == "none"){
+			$(".message_list_seciton").removeClass("open_list")
+			$("#pop_message").hide();
+		}
 	}
-
+	
 }); //by 조성빈, 외부 클릭 시 레이어 팝업 숨기는 기능
 
 //by 장유란, 페이징 js
@@ -118,8 +131,14 @@ function openPopFriend() {
 	document.getElementById("pop_friend").style.display = "block";
 }
 
+function openMessageRoom(){
+	document.querySelector("#message_room").style.display = "block";
+	$(".message_list_section").addClass("active");
+}
+
 function openPopMessage() {
 	document.getElementById("pop_message").style.display = "block";
+	$(".message_list_section").addClass("open_list");
 }
 
 function closePop() {
