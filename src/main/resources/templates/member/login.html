@@ -6,7 +6,8 @@
             <h2 class="login_text">Login</h2>
             <form name="loginForm" class="login_contents" th:action="@{/member/login}" method="post">
                 <div class="field">
-                    <input name="username" id="username" class="userid" type="text" placeholder="ID" th:value="${memberId}" >
+                    <input name="username" id="username" class="userid" type="text" placeholder="ID"
+                        th:value="${memberId}">
                 </div>
                 <div class="field">
                     <input name="password" id="password" class="userpw" type="password" placeholder="PASSWORD">
@@ -24,6 +25,20 @@
             </div>
         </section>
     </div>
+    <script>
+        function CheckLoginInput() {
+            var loginForm = document.loginForm;
+            var uId = loginForm.username.value;
+            var uPw = loginForm.password.value;
+
+            if (!uId || !uPw) {
+                alert("Please enter your ID & PASSWORD");
+                return false;
+            }
+
+            loginForm.submit();
+        } // by 조성빈, 로그인 처리 기능, main.js에서 이동
+    </script>
 </div>
 
 </html>
