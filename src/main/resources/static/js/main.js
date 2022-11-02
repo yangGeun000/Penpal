@@ -12,18 +12,7 @@ $('.header_navi').ready(function() {
 	})
 }) // by 조성빈, 상단 NAVI에 active 클래스 추가하는 기능
 
-function CheckLoginInput() {
-	var loginForm = document.loginForm;
-	var uId = loginForm.username.value;
-	var uPw = loginForm.password.value;
-
-	if (!uId || !uPw) {
-		alert("Please enter your ID & PASSWORD");
-		return false;
-	}
-
-	loginForm.submit();
-} // by 조성빈, 로그인 처리 기능
+// by 조성빈, 로그인 null 처리 기능 해당 템플릿으로 이동
 
 $(".friend_list_function_btn").children().click(function () {
 	if ($('button').hasClass("active")) {
