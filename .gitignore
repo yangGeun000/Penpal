@@ -20,6 +20,7 @@ local.trace.db
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+.metadata
 
 ### IntelliJ IDEA ###
 .idea
