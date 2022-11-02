@@ -1,7 +1,6 @@
 package com.penpal.project.board;
 
 import java.security.Principal;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.penpal.project.answer.AnswerForm;
-import com.penpal.project.list.CategoryList;
-import com.penpal.project.list.CategoryListRepository;
-import com.penpal.project.list.CountryList;
-import com.penpal.project.list.CountryListRepository;
-import com.penpal.project.list.LanguageList;
-import com.penpal.project.list.LanguageListRepository;
-import com.penpal.project.list.LocationList;
-import com.penpal.project.list.LocationListRepository;
 import com.penpal.project.member.Member;
 import com.penpal.project.member.MemberService;
 
@@ -68,7 +58,7 @@ public class BoardController {
 	}
 
 	// by 장유란, 답변기능 권한 주석처리/**/
-	//@PreAuthorize("isAuthenticated()") // 로그인 제약
+	@PreAuthorize("isAuthenticated()") // 로그인 제약
 	@GetMapping("/create")
 	public String boardCreate(BoardForm boardForm) {
 		return "community/writeForm";

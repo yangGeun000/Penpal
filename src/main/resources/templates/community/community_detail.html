@@ -42,7 +42,7 @@
 					<form class="answer_modify" th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}"
 						method="post">
 						<textarea th:field="*{content}" rows="2"></textarea>
-						<div th:replace="board/form_errors :: formErrorsFragment"></div>
+						<div th:replace="community/form_errors :: formErrorsFragment"></div>
 						<input type="submit" value="Confirm">
 					</form>
 				</div>

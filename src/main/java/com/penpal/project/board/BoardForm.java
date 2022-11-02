@@ -18,15 +18,15 @@ public class BoardForm {
     @Size(max=300)
     private String content;
     
-//    @NotEmpty(message="카테고리를 선택해주세요")
+    @NotEmpty(message="카테고리를 선택해주세요")
     @Size(max=30)
     private String category;
     
-//    @NotEmpty(message="지역을 선택해주세요")
+    @NotEmpty(message="지역을 선택해주세요")
     @Size(max=100)
     private String location;
 
-//    @NotEmpty(message="국가를 선택해주세요")
+    @NotEmpty(message="국가를 선택해주세요")
     @Size(max=100)
     private String country;
 }
