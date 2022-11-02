@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}">
-<head th:replace="fragments/config :: configFragment">
-</head>
-<body>
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
     <div id="wrap">
-        <header th:replace="fragments/header :: headerFragment"></header>
-        <div th:replace="fragments/menu :: menuFragment"></div>
         <section id="profile_section01">
             <div class="profile_function_btn_section">
                 <button type="button" value="MESSAGE">
-                    MESSAGE <!-- 채팅 보내기 버튼 -->
+                    MESSAGE
+                    <!-- 채팅 보내기 버튼 -->
                 </button>
                 <button type="button" value="ADD FRIENDS">
-                    ADD FRIENDS <!-- 친구 요청 보내기 버튼 -->
+                    ADD FRIENDS
+                    <!-- 친구 요청 보내기 버튼 -->
                 </button>
             </div>
             <div class="profile_info_section01">
@@ -22,25 +19,31 @@
                 </div>
                 <div class="profile_info_data">
                     <div class="profile_name">
-                        Username <!-- 유저네임 -->
+                        Username
+                        <!-- 유저네임 -->
                     </div>
                     <h1 class="profile_last_date">
-                        Last Date : yyyy-MM-dd <!-- 유저 최근 접속일 -->
+                        Last Date : yyyy-MM-dd
+                        <!-- 유저 최근 접속일 -->
                     </h1>
                     <div class="profile_info_left">
                         <div class="profile_gender">
-                            Gender : Male <!-- 유저 성별 -->
+                            Gender : Male
+                            <!-- 유저 성별 -->
                         </div>
                         <div class="profile_age">
-                            Age : 26 <!-- 유저 연령 -->
+                            Age : 26
+                            <!-- 유저 연령 -->
                         </div>
                     </div>
                     <div class="profile_info_right">
                         <div class="profile_location">
-                            Nationality : Korea <!-- 유저 국적 -->
+                            Nationality : Korea
+                            <!-- 유저 국적 -->
                         </div>
                         <div class="profile_country">
-                            Country : Japan <!-- 유저 거주 국가 -->
+                            Country : Japan
+                            <!-- 유저 거주 국가 -->
                         </div>
                     </div>
                 </div>
@@ -54,19 +57,25 @@
                 <div class="profile_sns_section">
                     <h1>SNS</h1>
                     <ul>
-                        <li><!-- th:each로 유저 SNS --></li>
+                        <li>
+                            <!-- th:each로 유저 SNS -->
+                        </li>
                     </ul>
                 </div>
                 <div class="profile_favorite_section">
                     <h1>FAVORITES</h1>
                     <ul>
-                        <li> <!-- th:each로 유저 FAVORITES --> </li>
+                        <li>
+                            <!-- th:each로 유저 FAVORITES -->
+                        </li>
                     </ul>
                 </div>
                 <div class="profile_language_section">
                     <h1>LANGUAGES</h1>
                     <ul>
-                        <li> <!-- th:each로 유저 LANGUAGES --> </li>
+                        <li>
+                            <!-- th:each로 유저 LANGUAGES -->
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -75,12 +84,12 @@
                     <h1>Comment</h1>
                     <div class="profile_comment_area">
                         <!-- 유저 comment -->
-                        
+
                     </div>
                 </div>
             </div>
         </section>
     </div>
-</body>
-<script th:src="@{/js/main.js}"></script>
+</div>
+
 </html>

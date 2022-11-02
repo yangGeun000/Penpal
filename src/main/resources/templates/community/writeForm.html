@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}">
+<html layout:decorate="~{layout/layout}">
 
-<head th:replace="fragments/config :: configFragment">
-</head>
-
-<body>
+<div layout:fragment="content">
     <div id="wrap">
-        <header th:replace="fragments/header :: headerFragment"></header>
-        <div th:replace="fragments/menu :: menuFragment"></div>
         <section id="community_section01" class="potion">
             <div class="community_text">
                 <h1>Community</h1>
@@ -58,7 +51,6 @@
             </div>
         </section>
     </div>
-</body>
-<script th:src="@{/js/main.js}"></script>
+</div>
 
 </html>

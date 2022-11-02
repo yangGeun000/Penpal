@@ -1,0 +1,22 @@
+<nav th:fragment="navFragment">
+	<h1 class="header_logo">
+		<a href="/">#Penpal</a>
+	</h1>
+	<div class="header_navi">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/users">Users</a></li>
+			<li><a href="/community">Community</a></li>
+		</ul>
+	</div>
+	<div class="header_language">
+		<select name="language" id="language" th:field="*{language}">
+			<option value="" selected>Languages</option>
+			<option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+		</select>
+	</div>
+	<div class="header_login">
+		<a sec:authorize = "isAnonymous()" href="/member/login">Login</a>
+		<a sec:authorize = "isAuthenticated()" href="/member/logout">Logout</a>
+	</div>
+</nav>

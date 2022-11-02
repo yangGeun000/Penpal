@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
-<head th:replace="fragments/config :: configFragment">
-</head>
 <div th:fragment="menuFragment">
     <div id="menu_section">
         <button id="menu_btn" onclick="sideMenuFunc()">
@@ -16,7 +11,7 @@
                     <!-- 프로필 정보 영역 -->
                     <span class="menu_profile_username">
                         <!-- 이름 -->
-                        Username
+                        [[${loginMember.name}]]
                     </span><br>
                     <span class="menu_profile_nationality">
                         <!-- 국적 -->
@@ -86,5 +81,3 @@
     <div th:replace="fragments/friend_list :: friendListFragment"></div>
     <div th:replace="fragments/message_list :: messageListFragment"></div>
 </div>
-
-</html>

@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+<html layout:decorate="~{layout/layout}">
 
-<head th:replace="fragments/config :: configFragment">
-</head>
+<style>
+	.page-item.active {
+		font-weight: bolder;
+	}
+</style>
 
-<head>
-	<style>
-		.page-item.active {
-			font-weight: bolder;
-		}
-	</style>
-</head>
+<div layout:fragment="content">
 
-<body>
 	<div id="wrap">
-		<header th:replace="fragments/header :: headerFragment"></header>
-		<div th:replace="fragments/menu :: menuFragment"></div>
 		<section id="community_section01" class="potion">
 			<div class="community_text">
 				<h1>Community</h1>
@@ -49,9 +41,9 @@
 				<div class="community_category">
 					<ul name="category" id="btn_list" th:field="*{category}">
 						<button>
-							<li th:onclick="|location.href='@{/community}'|">ALL</li> 
-							<li th:each="category : ${category}" class="click-category"
-							th:id="${category.name}" th:value="${category}" th:text="${category.name}"></li>
+							<li th:onclick="|location.href='@{/community}'|">ALL</li>
+							<li th:each="category : ${category}" class="click-category" th:id="${category.name}"
+								th:value="${category}" th:text="${category.name}"></li>
 						</button>
 					</ul>
 				</div>
@@ -115,6 +107,7 @@
 			</div>
 		</section>
 	</div>
-</body>
-<script th:src="@{/js/main.js}"></script>
+
+</div>
+
 </html>

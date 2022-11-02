@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko">
 
-<head></head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+    <title>#Penpal</title>
+</head>
+
 <body>
-    <header th:replace="fragments/header :: headerFragment"></header>
+    <header id="postion">
+        <nav th:replace="fragments/navBar :: navFragment"></nav>
+    </header>
 
-    <div layout:fragment="content"></div>
+    <th:block layout:fragment="content"></th:block>
 
-    <div th:replace="fragments/menu :: menuFragment"></div>
-    
-    <div th:replace="fragments/friend_list :: friendListFragment"></div>
-    <div th:replace="fragments/my_friends :: myFriendsFragment"></div>
-    <div th:replace="fragments/request_friends :: requestFriendFragment"></div>
+    <div sec:authorize="isAuthenticated()" th:replace="fragments/menu :: menuFragment"></div>
 
-    <div th:replace="fragments/message_list :: messageListFragment"></div>
-    <div th:replace="fragments/message_room :: messageRoomFragment"></div>
-    <footer th:replace="fragments/footer :: footerFragment"></footer>
 </body>
+<script th:src="@{/js/main.js}"></script>
+
 </html>

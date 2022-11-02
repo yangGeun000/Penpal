@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}">
-<head th:replace="fragments/config :: configFragment">
-</head>
-<body>
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
     <div id="wrap">
-        <header th:replace="fragments/header :: headerFragment"></header>
-        <div th:replace="fragments/menu :: menuFragment"></div>
         <section id="users_section01">
             <div class="users_text">
                 <h1>Users</h1>
@@ -33,25 +28,31 @@
                 </select>
             </div>
         </section>
-        <section id="users_section02"> <!-- 유저 약식 프로필 리스트  -->
+        <section id="users_section02">
+            <!-- 유저 약식 프로필 리스트  -->
             <div class="users_profiles">
-                <div class="user_profile_view"> <!-- 해당 뷰에 th:each 예정 -->
+                <div class="user_profile_view">
+                    <!-- 해당 뷰에 th:each 예정 -->
                     <div class="user_profile_img" onclick="location.href='/users/profile';">
                         <!-- 프로필 이미지 data -->
                     </div>
                     <h3 class="user_profile_name">
-                        Username <!-- 프로필 유저 네임 data -->
+                        Username
+                        <!-- 프로필 유저 네임 data -->
                     </h3>
                     <h5 class="user_profile_country">
-                        Korea <!-- 프로필 유저 국가 data -->
+                        Korea
+                        <!-- 프로필 유저 국가 data -->
                     </h5>
                     <div class="user_profile_addline01"></div>
                     <div class="user_profile_sns">
-                        SNS ICON Area <!-- 프로필 유저 SNS data -->
+                        SNS ICON Area
+                        <!-- 프로필 유저 SNS data -->
                     </div>
                     <div class="user_profile_addline02"></div>
                     <div class="user_profile_favorite">
-                        Favorites Tag Area <!-- 프로필 유저 Favorites data -->
+                        Favorites Tag Area
+                        <!-- 프로필 유저 Favorites data -->
                     </div>
                 </div>
             </div>
@@ -60,6 +61,6 @@
             </div>
         </section>
     </div>
-</body>
-<script th:src="@{/js/main.js}"></script>
+</div>
+
 </html>

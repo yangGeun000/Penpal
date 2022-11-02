@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+<html layout:decorate="~{layout/layout}">
 
-<head th:replace="fragments/config :: configFragment">
-	<style>
-		.answerForm {
-			width: 500px;
-			height: 100px;
-		}
-	</style>
-</head>
-
-<body>
+<div layout:fragment="content">
 	<div id="wrap">
-		<header th:replace="fragments/header :: headerFragment"></header>
-		<div th:replace="fragments/menu :: menuFragment"></div>
 		<section id="community_section01" class="potion">
 			<div class="community_text">
 				<h1>Community</h1>
@@ -79,8 +66,7 @@
 
 
 						<a th:id="|answer_${answer.id}|">
-							<div class="answer_date"
-								th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+							<div class="answer_date" th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 							<div class="answer_content" th:text="${answer.content}">
 							</div>
 						</a>
@@ -99,7 +85,7 @@
 				</div>
 		</section>
 	</div>
-</body>
+</div>
 <script>
 
 	$(document).ready(function () {

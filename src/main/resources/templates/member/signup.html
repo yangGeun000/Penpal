@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}">
-<head th:replace="fragments/config :: configFragment">
-</head>
-<body>
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
     <div id="wrap">
-        <header th:replace="fragments/header :: headerFragment"></header>
         <section id="signup_section01">
             <h2 class="signup_text">Sign Up</h2>
-            <form class="signup_contents" th:action="@{/member/signup}" th:object="${memberCreateForm}" method="post">    
+            <form class="signup_contents" th:action="@{/member/signup}" th:object="${memberCreateForm}" method="post">
                 <div class="field">
                     <b>ID</b>
                     <input class="userid" type="text" th:field="*{memberId}">
@@ -33,6 +29,6 @@
             </form>
         </section>
     </div>
-</body>
-<script th:src="@{/js/main.js}"></script>
+</div>
+
 </html>

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}">
-<head th:replace="fragments/config :: configFragment">
-</head>
-<body>
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
     <div id="wrap">
-        <header th:replace="fragments/header :: headerFragment"></header>
         <section id="log_section01">
             <h2 class="login_text">Login</h2>
             <form name="loginForm" class="login_contents" th:action="@{/member/login}" method="post">
@@ -28,6 +24,6 @@
             </div>
         </section>
     </div>
-</body>
-<script th:src="@{/js/main.js}"></script>
+</div>
+
 </html>

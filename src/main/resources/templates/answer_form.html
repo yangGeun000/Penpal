@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<html layout:decorate="~{layout/layout}">
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-
-<body>
+<div layout:fragment="content">
 	<!-- 답변수정용 폼 -->
 	<h5>답변 수정</h5>
 	<form th:object="${answerForm}" method="post">
@@ -19,6 +11,7 @@
 		</div>
 		<input type="submit" value="저장하기" class="btn">
 	</form>
-</body>
+
+</div>
 
 </html>
