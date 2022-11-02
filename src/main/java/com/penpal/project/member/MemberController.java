@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -67,11 +68,13 @@ public class MemberController {
         return "member/login";
     }
     
-    @RequestMapping("/login")
-    public String login() {
+    @GetMapping("/login")
+    public String login(Model model, String memberId) {
+    	model.addAttribute("memberId", memberId);
         return "member/login";
     }
 
+    
     // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
 	@ModelAttribute("language")
 	public List<LanguageList> languageList(){

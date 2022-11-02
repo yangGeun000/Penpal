@@ -14,40 +14,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.penpal.project.board.Board;
 import com.penpal.project.board.BoardService;
+import com.penpal.project.member.Member;
+import com.penpal.project.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/answer")
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class AnswerController {
 
 	private final BoardService boardService;
 	private final AnswerService answerService;
-	/* private final MemberService memberService; */
+	private final MemberService memberService; 
 
 	// by 장유란, 답변기능 권한 주석처리/**/
 	@PostMapping("/create/{id}")
 	public String createAnswer(Model model, @PathVariable("id") Integer id, @Valid AnswerForm answerForm,
 			BindingResult bindingResult
-			/* , Principal principal */) {
+			, Principal principal) {
 		Board board = this.boardService.getBoard(id);
-		/* Member member = this.memberService.getMember(principal.getName()); */
+		Member member = this.memberService.getMember(principal.getName());
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("board", board);
 			return "community/community_detail";	// by 장유란, community/board_detail ==> board/board_detail
 		}
-		this.answerService.create(board, answerForm.getContent()/* , member */);
-		System.out.println("answer create post" + id);
+		this.answerService.create(board, answerForm.getContent(), member);
+		log.info("answer create post" + id);
 		return String.format("redirect:/community/detail/%s", id);// by 장유란, board/detail ==> community/detail
 	}
 	
 	// by 장유란, answer_form에서 오는 정보 처리
 	@PostMapping("/modify/{id}")
 	public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult, @PathVariable("id") Integer id, Principal principal) {
-		System.out.println("modify post");
+		log.info("modify post");
 		if(bindingResult.hasErrors()) {
-			System.out.println("modify post error");
+			log.error("modify post error");
 			return "answer_form";	// by 장유란, 리턴 폼 위치 옮길 시 수정 필요
 		}
 

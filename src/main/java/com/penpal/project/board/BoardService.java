@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.penpal.project.list.CategoryListRepository;
 import com.penpal.project.list.CountryListRepository;
 import com.penpal.project.list.LocationListRepository;
+import com.penpal.project.member.Member;
 
 import lombok.RequiredArgsConstructor;
 
@@ -47,7 +48,7 @@ public class BoardService {
 
 	// by 장유란, 답변기능 권한 주석처리/**/
 	public void create(String title, String content, String category, String location,
-			String country/* , Member member */) {
+			String country, Member member ) {
 		Board board = new Board();
 		board.setTitle(title);
 		board.setContent(content);
@@ -58,7 +59,7 @@ public class BoardService {
 		board.setLocation(locationListRepository.findByName(location));
 		board.setCountry(countryListRepository.findByName(country));
 		board.setCreateDate(LocalDateTime.now());
-		/* board.setWriter(member); */
+		board.setWriter(member);
 
 		this.boardRepository.save(board);
 	}
