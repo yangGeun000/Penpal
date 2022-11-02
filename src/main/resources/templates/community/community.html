@@ -1,12 +1,10 @@
 <html layout:decorate="~{layout/layout}">
-
 <style>
 	.page-item.active {
 		font-weight: bolder;
 	}
 </style>
 <div layout:fragment="content">
-
 	<div id="wrap">
 		<section id="community_section01" class="potion">
 			<div class="community_text">
@@ -40,9 +38,9 @@
 				<div class="community_category">
 					<ul name="category" id="btn_list" th:field="*{category}">
 						<button>
-							<li th:onclick="|location.href='@{/community}'|">ALL</li>
-							<li th:each="category : ${category}" class="click-category" th:id="${category.name}"
-								th:value="${category}" th:text="${category.name}"></li>
+							<li th:class="|click-category active|" th:onclick="|location.href='@{/community}'|">ALL</li>
+							<li th:each="category : ${category}" th:class="|click-category ${category.name}|"
+								th:id="${category.name}" th:value="${category}" th:text="${category.name}"></li>
 						</button>
 					</ul>
 				</div>
@@ -97,7 +95,7 @@
 				<input type="hidden" id="select_country" name="country">
 				<input type="hidden" id="select_category" name="category" th:value="${selectCategory}">
 			</form>
-			<div class="community_write">
+			<div class="community_write" sec:authorize="isAuthenticated()">
 				<a href="/community/create">
 					<button type="button" class="create_write" title="Write">
 						Write
