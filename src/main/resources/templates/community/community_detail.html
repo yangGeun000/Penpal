@@ -13,9 +13,12 @@
 			</div>
 		</section>
 		<section id="community_detail_section01">
-		<!-- 작성자 외 수정버튼 미표시 -->
-			<a class="detail_modify" th:href="@{|/community/modify/${board.id}|}" sec:authorize="isAuthenticated()" th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.memberId}">
-				<button type="button" value="Modify">Modify</button></a>
+			<!-- 작성자 외 수정버튼 미표시 -->
+			<div class="detail_modify">
+				<a class="detail_modify" th:href="@{|/community/modify/${board.id}|}" sec:authorize="isAuthenticated()"
+					th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.memberId}">
+					<button type="button" value="Modify">Modify</button></a>
+			</div>
 			<div class="detail_view_area potion">
 				<div class="detail_category_area">
 					<div th:if="${board.category} != null" th:text="|${board.category}|"></div>

@@ -3,7 +3,7 @@
 <div layout:fragment="content">
     <div id="wrap">
         <section id="profile_section01">
-            <div class="profile_function_btn_section">
+            <div class="profile_function_btn_section" sec:authorize="isAuthenticated()">
                 <button type="button" value="MESSAGE">
                     MESSAGE
                     <!-- 채팅 보내기 버튼 -->

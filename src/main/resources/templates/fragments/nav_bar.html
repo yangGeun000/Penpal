@@ -1,0 +1,48 @@
+<nav th:fragment="navFragment">
+	<h1 class="header_logo">
+		<a href="/">#Penpal</a>
+	</h1>
+	<div class="header_navi">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/users">Users</a></li>
+			<li><a href="/community">Community</a></li>
+		</ul>
+	</div>
+	<div class="header_language">
+		<select name="language" id="language" th:field="*{language}">
+			<option value="" selected>Languages</option>
+			<option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+		</select>
+	</div>
+	<div class="header_member_icon" sec:authorize="isAuthenticated()">
+		<!-- new message 있으면 바뀌는 건 .active, 데이터 지정 후 th:classappend 적용 예정 -->
+		<button type="button" onclick="openPopMessage()" class="new_message_btn">
+			<i class="far fa-bell"></i>
+		</button>
+		<button type="button" class="member_profile_btn">
+			<i class="far fa-user"></i>
+		</button>
+		<div class="member_menu_dropdown_btn">
+			<button type="button" class="member_menu_btn">
+				<i class="fas fa-sort-down"></i>
+			</button>
+			<div class="member_menu_dropdown">
+				<a href="#">My Info</a>
+				<a sec:authorize="isAuthenticated()" href="/member/logout">Logout</a>
+			</div>
+		</div>
+	</div>
+	<div class="header_login" sec:authorize="isAnonymous()">
+		<a href="/member/login">Login</a>
+	</div>
+	<script>
+		$(".member_menu_btn").click(function () {
+			if ($(".member_menu_btn").parent().hasClass("active")) {
+				$(".member_menu_btn").parent().removeClass("active");
+			} else {
+				$(".member_menu_btn").parent().addClass("active");
+			}
+		})
+	</script>
+</nav>
