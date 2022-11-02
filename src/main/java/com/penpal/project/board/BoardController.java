@@ -42,11 +42,6 @@ public class BoardController {
 
 	private final BoardService boardService;
 	private final MemberService memberService; 
-	private final CategoryListRepository categoryListRepository;
-	private final LocationListRepository locationListRepository;
-	private final CountryListRepository countryListRepository;
-	private final LanguageListRepository languageListRepository; // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
-	// by 장유란, 미사용 boardRepository 제거
 
 	@RequestMapping("")
 	public String boardList(Model model, 
@@ -128,34 +123,6 @@ public class BoardController {
 		Board board =this.boardService.getBoard(id);
 		this.boardService.delete(board);
 		return "redirect:/community";
-	}
-	
-	// by 장유란, 템플릿에서 category... 요청 시 리스트를 보내주는 기능
-
-	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
-	@ModelAttribute("category")
-	public List<CategoryList> categoryList() {
-		List<CategoryList> categoryLists = categoryListRepository.findAll();
-		return categoryLists;
-	}
-
-	@ModelAttribute("location")
-	public List<LocationList> locationList() {
-		List<LocationList> locationLists = locationListRepository.findAll();
-		return locationLists;
-	}
-
-	@ModelAttribute("country")
-	public List<CountryList> countryList() {
-		List<CountryList> countryLists = countryListRepository.findAll();
-		return countryLists;
-	}
-
-	// by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
-	@ModelAttribute("language")
-	public List<LanguageList> languageList() {
-		List<LanguageList> languageLists = languageListRepository.findAll();
-		return languageLists;
 	}
 
 }
