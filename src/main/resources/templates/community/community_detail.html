@@ -13,7 +13,8 @@
 			</div>
 		</section>
 		<section id="community_detail_section01">
-			<a class="detail_modify" th:href="@{|/community/modify/${board.id}|}">
+		<!-- 작성자 외 수정버튼 미표시 -->
+			<a class="detail_modify" th:href="@{|/community/modify/${board.id}|}" sec:authorize="isAuthenticated()" th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.memberId}">
 				<button type="button" value="Modify">Modify</button></a>
 			<div class="detail_view_area potion">
 				<div class="detail_category_area">
@@ -41,9 +42,10 @@
 				<div class="detail_answer_input_area">
 					<form class="answer_modify" th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}"
 						method="post">
-						<textarea th:field="*{content}" rows="2"></textarea>
+						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="2"></textarea>
+						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="2"></textarea>
 						<div th:replace="community/form_errors :: formErrorsFragment"></div>
-						<input type="submit" value="Confirm">
+						<input type="submit" value="Confirm" sec:authorize="isAuthenticated()">
 					</form>
 				</div>
 				<div class="detail_answer_list_area" th:each="answer : ${board.answerList}">
@@ -66,7 +68,8 @@
 
 
 						<a th:id="|answer_${answer.id}|">
-							<div class="answer_date" th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+							<div class="answer_date"
+								th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 							<div class="answer_content" th:text="${answer.content}">
 							</div>
 						</a>
@@ -74,11 +77,13 @@
 						<!-- 수정버튼, 차후에 권한부여 -->
 						<div class="answer_option_section">
 							<!-- th:href="@{|/answer/modify/${answer.id}|}" -->
-							<a class="answer_modify" th:text="Modify" sec:authorize="isAuthenticated()"></a>
-							<a class="answer_delete" href="javascript:void(0);"
+							<a class="answer_modify" th:text="Modify" sec:authorize="isAuthenticated()" th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"></a>
+							<a class="answer_delete" href="javascript:void(0);" 
+								sec:authorize="isAuthenticated()" th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"
 								th:data-uri="@{|/answer/delete/${answer.id}|}" th:text="Delete"></a>
 							<!-- by 장유란, 댓글 작성자 나타나게 수정(위치 임의), 위치, 클래스명 변경해도 정상작동 -->
-							<div class="answer_writer" th:if="${board.writer != null}" th:text="${answer.writer.memberId}">
+							<div class="answer_writer" th:if="${answer.writer != null}"
+								th:text="${answer.writer.memberId}">
 							</div>
 						</div>
 					</div>

@@ -26,7 +26,7 @@ public class MemberSecurityService implements UserDetailsService{
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
         Optional<Member> _member = this.memberRepository.findByMemberId(memberId);
         if (_member.isEmpty()) {
-        	log.error("username으로 member 찾지못함 // memberId => '" + memberId + "'");
+        	log.error("username으로 member 찾지못함, memberId => '" + memberId + "'");
             throw new UsernameNotFoundException("사용자를 찾을수 없습니다.");
         }
         Member member = _member.get();

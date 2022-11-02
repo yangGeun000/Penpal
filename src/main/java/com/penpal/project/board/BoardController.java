@@ -92,10 +92,10 @@ public class BoardController {
 		return "community/writeForm";
 	}
 
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/modify/{id}")
 	public String boardModify(@Valid BoardForm boardForm,
-			BindingResult bindingResult,
-			@PathVariable("id") Integer id) {
+			BindingResult bindingResult, @PathVariable("id") Integer id) {
 		if (bindingResult.hasErrors()) {
 			return "community/writeForm";
 		}
@@ -108,9 +108,10 @@ public class BoardController {
 	}
 	
 	// by 장유란, 게시글 삭제 Service에서 게시글 삭제 받은 후 redirect, 차후에 권한부여
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/delete/{id}")
 	public String boardDelete(@PathVariable("id") Integer id) {
-		Board board =this.boardService.getBoard(id);
+		Board board = this.boardService.getBoard(id);
 		this.boardService.delete(board);
 		return "redirect:/community";
 	}
