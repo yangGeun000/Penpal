@@ -1,0 +1,162 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div id="wrap">
+        <form>
+            <!-- 프로필 수정&등록 폼 -->
+            <section id="profile_section01">
+                <div class="profile_function_btn_section">
+                    <button class="profile_confirm_btn" type="button" value="Confirm">
+                        Confirm
+                        <!-- 프로필 수정&등록 저장 버튼 -->
+                    </button>
+                    <button class="profile_cancle_btn" type="button" value="Cancle">
+                        Cancle
+                        <!-- 프로필 수정&등록 취소 버튼 -->
+                    </button>
+                </div>
+                <div class="profile_info_section01">
+                    <div class="profile_img">
+                        <!-- 프로필 이미지 -->
+                    </div>
+                    <button type="button" class="profile_img_upload_btn" value="UPLOAD">
+                        <!-- 프로필 이미지 수정&등록 버튼 -->
+                        upload
+                    </button>
+                    <div class="profile_info_data">
+                        <input type="text" class="profile_name_form">
+                        <!-- 유저네임 -->
+                        <div class="profile_info_left">
+                            <div class="profile_gender_form" name="gender">
+                                Gender<br>
+                                <input type="radio" name="gender" th:text="Male">
+                                <input type="radio" name="gender" th:text="Female">
+                                <!-- 유저 성별 -->
+                            </div>
+                            <div class="profile_age_form">
+                                Age<br>
+                                <input type="text" name="age">
+                                <!-- 유저 연령 -->
+                            </div>
+                        </div>
+                        <div class="profile_info_right">
+                            <div class="profile_location_form">
+                                Nationality<br>
+                                <div class="write_nationality">
+                                    <select class="nation_select" name="location" id="location" th:field="*{location}">
+                                        <option value="" selected>Nationality</option>
+                                        <option th:each="location : ${location}" th:value="${location}"
+                                            th:text="${location.name}"></option>
+                                    </select>
+                                </div>
+                                <!-- 유저 국적 -->
+                            </div>
+                            <div class="profile_country_form">
+                                Country<br>
+                                <div class="write_country">
+                                    <select class="country_select" name="country" id="country" th:field="*{country}">
+                                        <option value="" selected>Country</option>
+                                        <option th:each="country : ${country}" th:value="${country}"
+                                            th:text="${country.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <!-- 유저 거주 국가 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile_country_map">
+                        <!-- 유저 거주 국가 기반 지도상 위치 -->
+                    </div>
+                </div>
+            </section>
+            <section id="profile_section02">
+                <div class="profile_left_section">
+                    <div class="profile_sns_section">
+                        <h1>SNS</h1>
+                        <ul>
+                            <!-- script로 색상 전환, disable이 있으면 미선택(연한색) -->
+                            <li class="sns_icon_selected checkbox">
+                                <!-- 유저 SNS1 -->
+                                <button type="button">
+                                    <i class="fab fa-twitter disable"></i>
+                                </button>
+                            </li>
+                            <li class="sns_icon_selected checkbox">
+                                <!-- 유저 SNS2 -->
+                                <button type="button">
+                                    <i class="fab fa-facebook-f disable"></i>
+                                </button>
+                            </li>
+                            <li class="sns_icon_selected checkbox">
+                                <!-- 유저 SNS3 -->
+                                <button type="button">
+                                    <i class="fab fa-instagram disable"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="profile_favorite_section">
+                        <h1>FAVORITES</h1>
+                        <ul class="favorite_checkbox">
+                            <li class="favorite_selected checkbox">
+                                <!-- th:if로 유저 FAVORITE1 -->
+                                #<span>
+                                    <!-- 여기에 선택한 favorite1 data -->
+                                    Game
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="profile_language_section">
+                        <h1>LANGUAGES</h1>
+                        <ul>
+                            <li class="language_selected">
+                                <!-- th:if로 유저 LANGUAGE1 -->
+                                #<span>
+                                    <!-- 여기에 선택한 language1 data-->
+                                    Korean
+                                </span>
+                            </li>
+                            <li class="language_selected">
+                                <!-- th:if로 유저 LANGUAGE2 -->
+                                #<span>
+                                    <!-- 여기에 선택한 language2 data-->
+                                    English
+                                </span>
+                            </li>
+                            <li class="language_selected">
+                                <!-- th:if로 유저 LANGUAGE3 -->
+                                #<span>
+                                    <!-- 여기에 선택한 language3 data-->
+                                    Japanese
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile_right_section">
+                    <div class="profile_comment_section">
+                        <h1>Comment</h1>
+                        <div class="profile_comment_area">
+                            <!-- 유저 comment -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+    <script>
+        $("profile_sns_section").ready(function () {
+            $("button").click(function () {
+                if ($(this).children("i").hasClass("disable")) {
+                    $(this).children("i").removeClass("disable");
+                } else {
+                    $(this).children("i").addClass("disable");
+                }
+            })
+        }) // by 조성빈, sns 아이콘 클릭하면 색 변환 기능
+    </script>
+</div>
+
+</html>

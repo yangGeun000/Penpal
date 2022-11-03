@@ -597,10 +597,21 @@ section {
     height: 140vh;
 }
 
+#users_section02 .users_profiles{
+    width: 1200px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin:0 auto;
+}
+
 #users_section02 .users_profiles .user_profile_view {
+    position: relative;
     width: 360px;
     height: 500px;
     border: 1px solid #9d9ea2;
+    margin: 20px;
 }
 
 #users_section02 .users_profiles .user_profile_view .user_profile_img {
@@ -690,7 +701,7 @@ section {
     position: absolute;
     top: 260px;
     left: 0;
-    background: #dddfe4;
+    background: #f6f7f7;
     width: 100%;
     height: 320px;
 }
@@ -724,57 +735,100 @@ section {
     font-weight: 500;
     left: 20px;
     top: 12px;
+    color:#547296;
 }
 
 #profile_section01 .profile_info_section01 .profile_last_date {
-    position: relative;
+    position: absolute;
     text-align: end;
-    top: 50px;
-    font-size: 18px;
+    top: 0;
+    right: -36px;
+    font-size: 14px;
     font-weight: 400;
+    color:#9d9ea2;
+}
+
+#profile_section01 .profile_info_section01 .profile_last_date span{
+    color:#9d9ea2;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_info_left {
     position: absolute;
-    width: 50%;
-    height: 320px;
-    top: 210px;
-    left: 30px;
+    width: 180px;
+    top: 160px;
+    left: 50px;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_info_right {
     position: absolute;
-    width: 50%;
-    height: 320px;
-    top: 210px;
-    right: 0;
+    width: 180px;
+    top: 160px;
+    right: 10px;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_gender {
-    position: absolute;
+    position: relative;
+    width: 140px;
     text-align: left;
     font-size: 20px;
+    color:#9d9ea2;
+}
+
+#profile_section01 .profile_info_section01 .profile_info_data .profile_gender span{
+    position: relative;
+    line-height: 28px;
+    font-size: 28px;
+    float:right;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_age {
-    position: absolute;
+    position: relative;
+    width: 110px;
     text-align: left;
     font-size: 20px;
-    margin-top: 44px;
+    margin-top: 40px;
+    color:#9d9ea2;
 }
 
+#profile_section01 .profile_info_section01 .profile_info_data .profile_age span{
+    position: relative;
+    line-height: 28px;
+    font-size: 28px;
+    float:right;
+}
+
+
 #profile_section01 .profile_info_section01 .profile_info_data .profile_location {
-    position: absolute;
-    text-align: right;
+    position: relative;
+    width: 180px;
+    text-align: left;
     font-size: 20px;
+    color:#9d9ea2;
+}
+
+#profile_section01 .profile_info_section01 .profile_info_data .profile_location span{
+    position: relative;
+    line-height: 28px;
+    font-size: 28px;
+    float:right;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_country {
-    position: absolute;
-    text-align: right;
+    position: relative;
+    width: 180px;
+    text-align: left;
     font-size: 20px;
-    margin-top: 44px;
+    margin-top: 40px;
+    color:#9d9ea2;
 }
+
+#profile_section01 .profile_info_section01 .profile_info_data .profile_country span{
+    position: relative;
+    line-height: 28px;
+    font-size: 28px;
+    float:right;
+}
+
 
 #profile_section01 .profile_info_section01 .profile_country_map {
     position: absolute;
@@ -797,6 +851,7 @@ section {
     height: 350px;
 }
 
+
 #profile_section02 .profile_left_section div {
     padding: 10px;
     height: 110px;
@@ -804,6 +859,72 @@ section {
 
 #profile_section02 .profile_left_section div>h1 {
     font-weight: 500;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section ul{
+    margin-left: 100px;
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected{
+    position: relative;
+    width: 64px;
+    height: 64px;
+    font-size: 32px;
+    margin:0 20px;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected>i{
+    position: relative;
+    font-size: 42px;
+}
+
+#profile_section02 .profile_left_section .profile_favorite_section ul{
+    margin-left: 100px;
+    width: 320px;
+    height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected{
+    position: relative;
+    font-size: 20px;
+    margin:0 10px;
+    border:1px solid #9d9ea2;
+    border-radius: 8px;
+    padding:4px 20px;
+    color:#9d9ea2;
+}
+
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected span{
+    color:#9d9ea2;
+}
+
+#profile_section02 .profile_left_section .profile_language_section ul{
+    margin-left: 100px;
+    width: 320px;
+    height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#profile_section02 .profile_left_section .profile_language_section .language_selected{
+    position: relative;
+    font-size: 20px;
+    margin:0 10px;
+    border:1px solid #9d9ea2;
+    border-radius: 8px;
+    padding:4px 20px;
+    color:#9d9ea2;
+}
+
+#profile_section02 .profile_left_section .profile_language_section .language_selected span{
+    color:#9d9ea2;
 }
 
 #profile_section02 .profile_right_section {
@@ -829,6 +950,130 @@ section {
 }
 
 /* ##### user_profile.html section end ##### */
+
+/* ##### user_profile_form.html section ##### */
+
+#profile_section01 .profile_confirm_btn{
+    border-color: #547296;
+    background-color: #547296;
+    color:#f6f7f7;
+}
+
+#profile_section01 .profile_info_section01 .profile_img_upload_btn{
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    top:186px;
+    left: 142px;
+    font-size: 16px;
+    line-height: 16px;
+    border:1px solid #9d9ea2;
+    border-radius: 10px;
+    color:#384250;
+    padding:4px 10px;
+}
+
+#profile_section01 .profile_info_section01 .profile_name_form {
+    position: relative;
+    font-size: 46px;
+    font-weight: 500;
+    left: 20px;
+    top: 20px;
+    width: 400px;
+}
+
+#profile_section01 .profile_info_section01 .profile_gender_form {
+    position: relative;
+    text-align: left;
+    font-size: 20px;
+    color:#9d9ea2;
+}
+
+#profile_section01 .profile_info_section01 .profile_gender_form input{
+    position: relative;
+    font-size: 18px;
+    margin:0 4px 0 12px;
+}
+
+#profile_section01 .profile_info_section01 .profile_age_form{
+    position: relative;
+    width: 110px;
+    text-align: left;
+    font-size: 20px;
+    margin-top: 10px;
+    color:#9d9ea2;
+}
+
+#profile_section01 .profile_info_section01 .profile_age_form input{
+    margin-left: 44px;
+    width: 100px;
+    font-size: 20px;
+}
+
+#profile_section01 .profile_info_section01 .profile_location_form{
+    position: relative;
+    height: 60px;
+    text-align: left;
+    font-size: 20px;
+    color:#9d9ea2;
+}
+
+#profile_section01 .profile_info_section01 .profile_location_form .nation_select{
+    position: relative;
+    float:right;
+    width: 140px;
+    margin-top: 2px;
+    padding: 4px 40px 4px 6px;
+    text-align: left;
+    border: 1px solid #9d9ea2;
+    border-radius: 4px;
+    color: #9d9ea2;    
+}
+
+
+#profile_section01 .profile_info_section01 .profile_country_form{
+    position: relative;
+    text-align: left;
+    font-size: 20px;
+    color:#9d9ea2;
+    margin-top: 10px;
+}
+
+#profile_section01 .profile_info_section01 .profile_country_form select{
+    position: relative;
+    float:right;
+    width: 140px;
+    margin-top: 2px;
+    padding: 4px 40px 4px 6px;
+    text-align: left;
+    border: 1px solid #9d9ea2;
+    border-radius: 4px;
+    color: #9d9ea2;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.checkbox button{
+    margin-top: -8.4px;
+    position: relative;
+    font-size: 42px;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.checkbox button i.disable{
+    color:#9d9ea2;
+}
+
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox{
+    margin-left: 100px;
+    width: 320px;
+    height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected.checkbox{
+    border:none;
+}
+
+/* ##### user_profile_form.html section end ##### */
 
 /* ##### community.html section ##### */
 

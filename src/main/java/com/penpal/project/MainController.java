@@ -45,5 +45,9 @@ public class MainController {
     public String userProfile(){
         return "member/user_profile";
     }
-
+    
+    @RequestMapping("users/profile/modify")
+    public String userProfileForm(){
+        return "member/user_profile_form";
+    } // by 조성빈, 템플릿 제작용 임시 mapping
 }

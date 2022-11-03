@@ -13,6 +13,9 @@
                     <!-- 친구 요청 보내기 버튼 -->
                 </button>
             </div>
+            <button type="button" value="Modify" onclick="location.href='/users/profile/modify';">
+                MODIFY
+            </button>
             <div class="profile_info_section01">
                 <div class="profile_img">
                     <!-- 프로필 이미지 -->
@@ -23,26 +26,46 @@
                         <!-- 유저네임 -->
                     </div>
                     <h1 class="profile_last_date">
-                        Last Date : yyyy-MM-dd
+                        Last Connect<br>
+                        <span>
+                            <!-- 여기에 last_date data -->
+                            yy-mm-dd
+                        </span>
                         <!-- 유저 최근 접속일 -->
                     </h1>
                     <div class="profile_info_left">
                         <div class="profile_gender">
-                            Gender : Male
+                            Gender<br>
+                            <span class="profile_gender_data">
+                                <!-- 여기에 gender data -->
+                                Male
+                            </span>
                             <!-- 유저 성별 -->
                         </div>
                         <div class="profile_age">
-                            Age : 26
+                            Age<br>
+                            <span class="profile_age_data">
+                                <!-- 여기에 age data-->
+                                22
+                            </span>
                             <!-- 유저 연령 -->
                         </div>
                     </div>
                     <div class="profile_info_right">
                         <div class="profile_location">
-                            Nationality : Korea
+                            Nationality<br>
+                            <span class="profile_location_data">
+                                <!-- 여기에 location data -->
+                                Korea
+                            </span>
                             <!-- 유저 국적 -->
                         </div>
                         <div class="profile_country">
-                            Country : Japan
+                            Country<br>
+                            <span class="profile_country_data">
+                                <!-- 여기에 country data -->
+                                Japan
+                            </span>
                             <!-- 유저 거주 국가 -->
                         </div>
                     </div>
@@ -57,24 +80,69 @@
                 <div class="profile_sns_section">
                     <h1>SNS</h1>
                     <ul>
-                        <li>
-                            <!-- th:each로 유저 SNS -->
+                        <li class="sns_icon_selected">
+                            <!-- th:if 유저 SNS1 -->
+                            <i class="fab fa-twitter"></i>
+                        </li>
+                        <li class="sns_icon_selected">
+                            <!-- th:if로 유저 SNS2 -->
+                            <i class="fab fa-facebook-f"></i>
+                        </li>
+                        <li class="sns_icon_selected">
+                            <!-- th:if로 유저 SNS3 -->
+                            <i class="fab fa-instagram"></i>
                         </li>
                     </ul>
                 </div>
                 <div class="profile_favorite_section">
                     <h1>FAVORITES</h1>
                     <ul>
-                        <li>
-                            <!-- th:each로 유저 FAVORITES -->
+                        <li class="favorite_selected">
+                            <!-- th:if로 유저 FAVORITE1 -->
+                            #<span>
+                                <!-- 여기에 선택한 favorite1 data -->
+                                Game
+                            </span>
+                        </li>
+                        <li class="favorite_selected">
+                            <!-- th:if로 유저 FAVORITE2 -->
+                            #<span>
+                                <!-- 여기에 선택한 favorite2 data -->
+                                Travel
+                            </span>
+                        </li>
+                        <li class="favorite_selected">
+                            <!-- th:if로 유저 FAVORITE3 -->
+                            #<span>
+                                <!-- 여기에 선택한 favorite3 data -->
+                                Netflix
+                            </span>
                         </li>
                     </ul>
                 </div>
                 <div class="profile_language_section">
                     <h1>LANGUAGES</h1>
                     <ul>
-                        <li>
-                            <!-- th:each로 유저 LANGUAGES -->
+                        <li class="language_selected">
+                            <!-- th:if로 유저 LANGUAGE1 -->
+                            #<span>
+                                <!-- 여기에 선택한 language1 data-->
+                                Korean
+                            </span>
+                        </li>
+                        <li class="language_selected">
+                            <!-- th:if로 유저 LANGUAGE2 -->
+                            #<span>
+                                <!-- 여기에 선택한 language2 data-->
+                                English
+                            </span>
+                        </li>
+                        <li class="language_selected">
+                            <!-- th:if로 유저 LANGUAGE3 -->
+                            #<span>
+                                <!-- 여기에 선택한 language3 data-->
+                                Japanese
+                            </span>
                         </li>
                     </ul>
                 </div>
