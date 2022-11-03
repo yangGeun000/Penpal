@@ -8,7 +8,7 @@
                     <h1>Welcome to<br><span>#Penpal</span></h1><br><br>
                     <h3>This website is 'Trendy Penpaling Website',<br>Regist your Profile, and Find new friends!</h3>
                     <br><br>
-                    <a href="/member/signup">START NOW!</a>
+                    <a href="/member/signup" sec:authorize="isAnonymous()">START NOW!</a>
                 </div>
                 <div class="tc_right">
                     <a href="#">Banner IMG Here</a>
@@ -17,8 +17,7 @@
         </section>
         <section id="section02" class="potion">
             <div class="middle_contents">
-                <h2><a href="/users">More new friends
-                        <span> -></span>
+                <h2><a href="/users">More new friends<span><i class="fas fa-arrow-right"></i></span>
                     </a></h2>
                 <div>
                     <ul class="profile_list">

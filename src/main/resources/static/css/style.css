@@ -261,6 +261,7 @@ section {
 }
 
 .middle_contents a span {
+    margin-left: 4px;
     text-decoration: none;
 }
 
@@ -520,7 +521,6 @@ section {
 
 .search>button {
     position: absolute;
-    background: #000;
     right: 6px;
     top: 2px;
     width: 24px;
@@ -1459,10 +1459,15 @@ section {
 #menu_content .menu_friend_section .menu_friend .menu_friend_profile_on_icon {
     position: absolute;
     right: 10px;
-    top: 10px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #547296;
+    top: 14px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+#menu_content .menu_friend_section .menu_friend .menu_friend_profile_on_icon i{
+    font-size: 30px;
+    color:lightgreen;
 }
 
 /* menu friend section end */
@@ -1523,10 +1528,14 @@ section {
 #menu_content .menu_message_section .menu_message .menu_message_profile_on_icon {
     position: absolute;
     right: 10px;
-    top: 10px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #547296;
+    top: 14px;
+    width: 30px;
+    height: 30px;
+}
+
+#menu_content .menu_message_section .menu_message .menu_message_profile_on_icon i{
+    color:gold;
+    font-size: 30px;
 }
 
 /* menu message section end */
