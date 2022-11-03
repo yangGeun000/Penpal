@@ -18,7 +18,9 @@
 			<div class="search">
 				<label name="search"></label>
 				<input type="text" id="search_kw" placeholder="Search" th:value="${kw}">
-				<button type="button" id="btn_search"></button>
+				<button type="button" id="btn_search">
+					<i class="fas fa-search"></i>
+				</button>
 			</div>
 			<div class="search_nationality">
 				<select class="nation_select" name="location" id="location" th:field="*{location}">
