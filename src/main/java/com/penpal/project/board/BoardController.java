@@ -45,7 +45,7 @@ public class BoardController {
 		model.addAttribute("kw", kw);
 		model.addAttribute("selectCategory", category);		
 		
-		log.info("kw: " + kw + " page: " + page + " location: " + location + " country: " + country + " catrgory: " + category);
+		log.info("kw: " + kw + " page: " + page + " location: " + location + " country: " + country + " category: " + category);
 		return "community/community";
 	}
 

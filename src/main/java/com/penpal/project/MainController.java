@@ -35,13 +35,15 @@ public class MainController {
 			@RequestParam(value = "kw", defaultValue = "") String kw,
 			@RequestParam(value = "location", defaultValue = "") String location, 
 			@RequestParam(value = "country", defaultValue = "") String country){
-    	List<Profile> profilList = this.profileRepository.findAll();
     	
-    	model.addAttribute("profilList", profilList);
-    	Page<Profile> paging = this.profileService.getList(page, kw, location, country); 
-		model.addAttribute("kw", kw);	
-		
-		log.info("kw: " + kw + " page: " + page + " location: " + location + " country: " + country);
+        List<Profile> profileList = this.profileRepository.findAll();
+        Page<Profile> paging = this.profileService.getList(page, kw, location, country);
+        //model.addAttribute("profileList", profileList);
+		model.addAttribute("kw", kw);
+        model.addAttribute("paging", paging);
+
+
+        log.info("userSearch = kw: " + kw + " page: " + page + " location: " + location + " country: " + country);
 		
         return "member/users";
     }
