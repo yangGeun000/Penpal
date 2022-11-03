@@ -27,27 +27,29 @@
 				</div>
 				<div class="detail_title" th:text="${board.title}"></div>
 				<div class="detail_content" th:text="${board.content}"></div>
-				<!-- by 장유란, Board 작성자 나타나게 수정(위치 임의), 클래스명 변경(제거)해도 정상작동 -->
-				<div class="게시글작성자명" th:if="${board.writer != null}" th:text="${board.writer.memberId}"></div>
-				<div class="게시글작성자이메일" th:if="${board.writer != null}" th:text="${board.writer.email}"></div>
-				<div class="게시글작성일시" th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-
 				<div class="detail_profile">
-
-					<!-- contentor profile -->
+					<!-- by 장유란, Board 작성자 나타나게 수정(위치 임의), 클래스명 변경(제거)해도 정상작동 -->
+					<div class="detail_profile_img">
+						<!-- 작성자 프로필 사진 -->
+					</div>
+					<div class="detail_profile_info">
+						<!-- 작성자 이름 -->
+						<div class="detail_content_writer" th:if="${board.writer != null}" th:text="${board.writer.memberId}"></div>
+						<!-- 작성자 국적 -->
+						<div class="detail_content_writer_country" th:text="Korea"></div>
+					</div>
 				</div>
 			</div>
-			<div class="detail_answer_area potion">
+			<div id="detail_answer_area" class="detail_answer_area potion">
 				<div class="answer_text">Answer</div>
-				<div class="answer_profile">
-					<!-- answer profile -->
+				<div class="answer_profile" sec:authorize="isAuthenticated()" >
 				</div>
-				<div class="detail_answer_input_area">
+				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()">
 					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
 						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="2"></textarea>
 						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="2"></textarea>
 						<div th:replace="community/form_errors :: formErrorsFragment"></div>
-						<input type="submit" value="Confirm" sec:authorize="isAuthenticated()">
+						<input type="submit" value="Confirm">
 					</form>
 				</div>
 				<div class="detail_answer_list_area" th:each="answer : ${board.answerList}">
@@ -60,17 +62,21 @@
 							th:action="@{|/answer/modify/${answer.id}|}" th:object="${answerForm}" method="post"
 							style="position:absolute; visibility: hidden; margin-left:200px;">
 							<div role="alert" th:if="${#fields.hasAnyErrors()}">
-								<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+								<div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
 							</div>
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-							<div class="mb-3">
+							<div class="detail_answer_modify">
 								<label for="content" class="form-label"></label>
 								<textarea th:field="*{content}" rows="2"></textarea>
 
 								<div th:replace="community/form_errors :: formErrorsFragment"></div>
 							</div>
-							<input type="submit" value="저장하기" class="btn">
+							<input class="answer_modify_confirm_btn btn" type="submit" value="Confirm">
+							<button class="answer_modify_cancle_btn" type="button">
+								Cancle
+							</button>
 						</form>
+						
 						<!-- //수정폼 -->
 						<a th:id="|answer_${answer.id}|" style="visibility: inherit">
 							<div class="answer_date"
@@ -87,17 +93,15 @@
 							<a class="answer_delete" href="javascript:void(0);" sec:authorize="isAuthenticated()"
 								th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"
 								th:data-uri="@{|/answer/delete/${answer.id}|}" th:text="Delete"></a>
-							<!-- by 장유란, 댓글 작성자 나타나게 수정(위치 임의), 위치, 클래스명 변경해도 정상작동 -->
-							<div class="answer_writer" th:if="${answer.writer != null}"
-								th:text="${answer.writer.memberId}">
-							</div>
+						</div>
+						<!-- by 장유란, 댓글 작성자 나타나게 수정(위치 임의), 위치, 클래스명 변경해도 정상작동 -->
+						<div class="answer_writer" th:if="${answer.writer != null}" th:text="${answer.writer.memberId}">
 						</div>
 					</div>
 				</div>
 		</section>
 	</div>
 	<script>
-
 		// by 장유란, 수정 토글(차후에 보완필요/ 수정취소 등)
 		var sw = 0;
 
@@ -136,6 +140,12 @@
 				};
 			});
 		});
+
+		$("#detail_answer_area").ready(function(){
+			if(document.querySelector(".detail_answer_input_area") == null){
+				document.querySelector(".detail_answer_list_area").style.top = '0';
+			}
+		})
 	</script>
 </div>
 
