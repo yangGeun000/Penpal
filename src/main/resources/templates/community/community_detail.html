@@ -43,8 +43,7 @@
 					<!-- answer profile -->
 				</div>
 				<div class="detail_answer_input_area">
-					<form class="answer_modify" th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}"
-						method="post">
+					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
 						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="2"></textarea>
 						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="2"></textarea>
 						<div th:replace="community/form_errors :: formErrorsFragment"></div>
@@ -57,32 +56,36 @@
 					</div>
 					<div>
 						<!-- 수정폼 -->
-						<form class="answer_modify" th:action="@{|/answer/modify/${answer.id}|}"
-							th:object="${answerForm}" method="post" style="display: none; margin-left:200px;">
-
+						<form th:id="${answer.id}" th:data-id="${answer.id}"
+							th:action="@{|/answer/modify/${answer.id}|}" th:object="${answerForm}" method="post"
+							style="position:absolute; visibility: hidden; margin-left:200px;">
+							<div role="alert" th:if="${#fields.hasAnyErrors()}">
+								<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+							</div>
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<div class="mb-3">
-								<label for="content" class="form-label">수정폼</label>
+								<label for="content" class="form-label"></label>
 								<textarea th:field="*{content}" rows="2"></textarea>
+
+								<div th:replace="community/form_errors :: formErrorsFragment"></div>
 							</div>
 							<input type="submit" value="저장하기" class="btn">
 						</form>
 						<!-- //수정폼 -->
-
-
-						<a th:id="|answer_${answer.id}|">
+						<a th:id="|answer_${answer.id}|" style="visibility: inherit">
 							<div class="answer_date"
 								th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 							<div class="answer_content" th:text="${answer.content}">
 							</div>
 						</a>
-
 						<!-- 수정버튼, 차후에 권한부여 -->
 						<div class="answer_option_section">
 							<!-- th:href="@{|/answer/modify/${answer.id}|}" -->
-							<a class="answer_modify" th:text="Modify" sec:authorize="isAuthenticated()" th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"></a>
-							<a class="answer_delete" href="javascript:void(0);" 
-								sec:authorize="isAuthenticated()" th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"
+							<a class="answer_modify" th:text="Modify" sec:authorize="isAuthenticated()"
+								th:data-id="${answer.id}"
+								th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"></a>
+							<a class="answer_delete" href="javascript:void(0);" sec:authorize="isAuthenticated()"
+								th:if="${answer.writer != null and #authentication.getPrincipal().getUsername() == answer.writer.memberId}"
 								th:data-uri="@{|/answer/delete/${answer.id}|}" th:text="Delete"></a>
 							<!-- by 장유란, 댓글 작성자 나타나게 수정(위치 임의), 위치, 클래스명 변경해도 정상작동 -->
 							<div class="answer_writer" th:if="${answer.writer != null}"
@@ -93,24 +96,47 @@
 				</div>
 		</section>
 	</div>
+	<script>
+
+		// by 장유란, 수정 토글(차후에 보완필요/ 수정취소 등)
+		var sw = 0;
+
+		$(document).ready(function () {
+			$(".answer_modify").on('click', function (e) {
+				let modify_btn = e.currentTarget;
+				let delete_btn = modify_btn.offsetParent.children[1];
+				let current_target = modify_btn.dataset.id;
+				let modifyForm = document.getElementById(current_target);
+				let answer_content = null;
+				let content = null;
+				if (sw == 0) {
+					sw = 1;
+					console.log(e)
+					modifyForm.style.visibility = 'inherit';
+					answer_content = "answer_" + current_target;
+					modify_btn.style.visibility = 'hidden';
+					delete_btn.style.visibility = 'hidden';
+					content = document.getElementById(answer_content).children[1];
+					content.style.visibility = 'hidden';
+				} else {
+					delete_btn.style.visibility = 'inherit';
+					modify_btn.style.visibility = 'inherit';
+					modifyForm.style.visibility = 'hidden';
+					content.style.visibility = 'inherit';
+					sw = 0;
+				}
+			});
+		});
+
+		const delete_elements = document.getElementsByClassName("answer_delete");
+		Array.from(delete_elements).forEach(function (element) {
+			element.addEventListener('click', function () {
+				if (confirm("Really?")) {
+					location.href = this.dataset.uri;
+				};
+			});
+		});
+	</script>
 </div>
-<script>
-
-	$(document).ready(function () {
-		$(".answer_modify").on('click', function (e) {
-			console.log("click");
-
-		});
-	});
-
-	const delete_elements = document.getElementsByClassName("answer_delete");
-	Array.from(delete_elements).forEach(function (element) {
-		element.addEventListener('click', function () {
-			if (confirm("Really?")) {
-				location.href = this.dataset.uri;
-			};
-		});
-	});
-</script>
 
 </html>
