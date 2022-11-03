@@ -29,8 +29,12 @@
                         <div class="profile_info_left">
                             <div class="profile_gender_form" name="gender">
                                 Gender<br>
-                                <input type="radio" name="gender" th:text="Male">
-                                <input type="radio" name="gender" th:text="Female">
+                                <button class="gender_male_btn disable" type="button" name="male">
+                                    Male
+                                </button>
+                                <button class="gender_female_btn disable" type="button" name="female">
+                                    Female
+                                </button>
                                 <!-- 유저 성별 -->
                             </div>
                             <div class="profile_age_form">
@@ -78,19 +82,19 @@
                             <!-- script로 색상 전환, disable이 있으면 미선택(연한색) -->
                             <li class="sns_icon_selected checkbox">
                                 <!-- 유저 SNS1 -->
-                                <button type="button">
+                                <button type="button" name="twitter">
                                     <i class="fab fa-twitter disable"></i>
                                 </button>
                             </li>
                             <li class="sns_icon_selected checkbox">
                                 <!-- 유저 SNS2 -->
-                                <button type="button">
+                                <button type="button" name="facebook">
                                     <i class="fab fa-facebook-f disable"></i>
                                 </button>
                             </li>
                             <li class="sns_icon_selected checkbox">
                                 <!-- 유저 SNS3 -->
-                                <button type="button">
+                                <button type="button" name="instagram">
                                     <i class="fab fa-instagram disable"></i>
                                 </button>
                             </li>
@@ -99,38 +103,110 @@
                     <div class="profile_favorite_section">
                         <h1>FAVORITES</h1>
                         <ul class="favorite_checkbox">
-                            <li class="favorite_selected checkbox">
-                                <!-- th:if로 유저 FAVORITE1 -->
-                                #<span>
-                                    <!-- 여기에 선택한 favorite1 data -->
-                                    Game
-                                </span>
-                            </li>
+                            <!-- script로 색상 전환, disable이 있으면 미선택(연한색) -->
+                            <button type="button" name="game">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Game
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button" name="travel">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Travel
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button" name="sports">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Sports
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button" name="cooking">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Cooking
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Youtube
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Netflix
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Game
+                                    </span>
+                                </li>
+                            </button>
+                            <button type="button">
+                                <li class="favorite_selected checkbox disable">
+                                    <!-- th:if로 유저 FAVORITE1 -->
+                                    #<span>
+                                        <!-- 여기에 선택한 favorite1 data -->
+                                        Game
+                                    </span>
+                                </li>
+                            </button>
                         </ul>
                     </div>
                     <div class="profile_language_section">
                         <h1>LANGUAGES</h1>
-                        <ul>
+                        <ul class="language_checkbox">
                             <li class="language_selected">
                                 <!-- th:if로 유저 LANGUAGE1 -->
-                                #<span>
-                                    <!-- 여기에 선택한 language1 data-->
-                                    Korean
-                                </span>
+                                <div>
+                                    <select name="language" id="language" th:field="*{language}">
+                                        <option value="" selected>Languages</option>
+                                        <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                                    </select>
+                                </div>
                             </li>
                             <li class="language_selected">
-                                <!-- th:if로 유저 LANGUAGE2 -->
-                                #<span>
-                                    <!-- 여기에 선택한 language2 data-->
-                                    English
-                                </span>
+                                <!-- th:if로 유저 LANGUAGE1 -->
+                                <div>
+                                    <select name="language" id="language" th:field="*{language}">
+                                        <option value="" selected>Languages</option>
+                                        <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                                    </select>
+                                </div>
                             </li>
                             <li class="language_selected">
-                                <!-- th:if로 유저 LANGUAGE3 -->
-                                #<span>
-                                    <!-- 여기에 선택한 language3 data-->
-                                    Japanese
-                                </span>
+                                <!-- th:if로 유저 LANGUAGE1 -->
+                                <div>
+                                    <select name="language" id="language" th:field="*{language}">
+                                        <option value="" selected>Languages</option>
+                                        <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                                    </select>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -138,9 +214,8 @@
                 <div class="profile_right_section">
                     <div class="profile_comment_section">
                         <h1>Comment</h1>
-                        <div class="profile_comment_area">
-                            <!-- 유저 comment -->
-                        </div>
+                        <!-- 유저 comment -->
+                        <textarea class="profile_comment_area"></textarea>
                     </div>
                 </div>
             </section>
@@ -156,6 +231,16 @@
                 }
             })
         }) // by 조성빈, sns 아이콘 클릭하면 색 변환 기능
+
+        $("profile_favorite_section").ready(function () {
+            $("button").click(function () {
+                if ($(this).children("li").hasClass("disable")) {
+                    $(this).children("li").removeClass("disable");
+                } else {
+                    $(this).children("li").addClass("disable");
+                }
+            })
+        }) // by 조성빈, favorite tag 클릭하면 색 변환 기능
     </script>
 </div>
 
