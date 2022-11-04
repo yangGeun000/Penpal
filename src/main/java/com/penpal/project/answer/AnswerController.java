@@ -4,7 +4,7 @@ import java.security.Principal;
 
 import javax.validation.Valid;
 
-
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.penpal.project.board.Board;
 import com.penpal.project.board.BoardService;
@@ -47,21 +48,25 @@ public class AnswerController {
 		}
 		this.answerService.create(board, answerForm.getContent(), member);
 		log.info("answer create post" + id);
-		return String.format("redirect:/community/detail/%s", id);// by 장유란, board/detail ==> community/detail
+		return String.format("redirect:/community/detail/%s", id);
 	}
 
 	// by 장유란, answer_form에서 오는 정보 처리
-	@PreAuthorize("isAuthenticated()")
+	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/modify/{id}")
-	public String answerModify(@Valid AnswerForm answerForm, BindingResult bindingResult,
+	public String answerModify(Model model,@Valid AnswerForm answerForm, BindingResult bindingResult,
 			@PathVariable("id") Integer id, Principal principal) {
 		log.info("modify post");
 		Answer answer = this.answerService.getAnswer(id);
-		this.answerService.modify(answer, answerForm.getContent());
-
+		Board board = this.boardService.getBoard(answer.getBoard().getId());
+		String content = answerForm.getContent();
+		this.answerService.modify(answer, content);
+		model.addAttribute("content", content);
+		
 		if (bindingResult.hasErrors()) {
-			log.error("modify post error");
-			return String.format("redirect:/community/detail/%s", answer.getBoard().getId());
+			model.addAttribute("board", board);
+			model.addAttribute("answer", answer);
+			return "community/community_detail"; 
 		}
 
 		return String.format("redirect:/community/detail/%s", answer.getBoard().getId());

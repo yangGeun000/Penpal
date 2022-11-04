@@ -34,7 +34,8 @@
 					</div>
 					<div class="detail_profile_info">
 						<!-- 작성자 이름 -->
-						<div class="detail_content_writer" th:if="${board.writer != null}" th:text="${board.writer.memberId}"></div>
+						<div class="detail_content_writer" th:if="${board.writer != null}"
+							th:text="${board.writer.memberId}"></div>
 						<!-- 작성자 국적 -->
 						<div class="detail_content_writer_country" th:text="Korea"></div>
 					</div>
@@ -42,7 +43,7 @@
 			</div>
 			<div id="detail_answer_area" class="detail_answer_area potion">
 				<div class="answer_text">Answer</div>
-				<div class="answer_profile" sec:authorize="isAuthenticated()" >
+				<div class="answer_profile" sec:authorize="isAuthenticated()">
 				</div>
 				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()">
 					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
@@ -61,17 +62,19 @@
 						<form th:id="${answer.id}" th:data-id="${answer.id}"
 							th:action="@{|/answer/modify/${answer.id}|}" th:object="${answerForm}" method="post"
 							style="position:absolute; visibility: hidden; margin-left:200px;">
+							<!-- by 장유란, 수정내용 비었을 시 경고창-->
+							<div class="content_null" style="position: absolute; color: #9d9ea2; "></div>
 							<div role="alert" th:if="${#fields.hasAnyErrors()}">
 								<div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
 							</div>
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<div class="detail_answer_modify">
 								<label for="content" class="form-label"></label>
-								<textarea th:field="*{content}" rows="2"></textarea>
+								<textarea th:field="*{content}" rows="2" th:text="${content}" th:value="${content}" style="z-index: 50;"></textarea>
 
 								<div th:replace="community/form_errors :: formErrorsFragment"></div>
 							</div>
-							<input class="answer_modify_confirm_btn btn" type="submit" value="Confirm">
+							<input th:id="|answer_modify_confirm_btn_${answer.id}|" class="answer_modify_confirm_btn btn" value="Confirm" type="submit">
 							<button class="answer_modify_cancle_btn" type="button">
 								Cancle
 							</button>
@@ -84,7 +87,6 @@
 							<div class="answer_content" th:text="${answer.content}">
 							</div>
 						</a>
-						<!-- 수정버튼, 차후에 권한부여 -->
 						<div class="answer_option_section">
 							<!-- th:href="@{|/answer/modify/${answer.id}|}" -->
 							<a class="answer_modify" th:text="Modify" sec:authorize="isAuthenticated()"
@@ -102,36 +104,58 @@
 		</section>
 	</div>
 	<script>
-		// by 장유란, 수정 토글(차후에 보완필요/ 수정취소 등)
-		var sw = 0;
+		// by 장유란, modify 관련 script
+		var modify_btn = document.querySelector('.answer_modify');
 
-		$(document).ready(function () {
-			$(".answer_modify").on('click', function (e) {
-				let modify_btn = e.currentTarget;
-				let delete_btn = modify_btn.offsetParent.children[1];
-				let current_target = modify_btn.dataset.id;
-				let modifyForm = document.getElementById(current_target);
-				let answer_content = null;
-				let content = null;
-				if (sw == 0) {
-					sw = 1;
-					console.log(e)
-					modifyForm.style.visibility = 'inherit';
-					answer_content = "answer_" + current_target;
-					modify_btn.style.visibility = 'hidden';
-					delete_btn.style.visibility = 'hidden';
-					content = document.getElementById(answer_content).children[1];
-					content.style.visibility = 'hidden';
-				} else {
-					delete_btn.style.visibility = 'inherit';
-					modify_btn.style.visibility = 'inherit';
-					modifyForm.style.visibility = 'hidden';
-					content.style.visibility = 'inherit';
-					sw = 0;
+		$(".answer_modify").on('click', function (e) {
+			//수정대상 지정
+			let targetForm = document.getElementById(e.currentTarget.dataset.id);
+			//원본 폼 지정
+			let original_form = document.getElementById(`answer_${e.currentTarget.dataset.id}`);	
+			//원본내용 변수에 기록
+			let original_content = original_form.querySelector('.answer_content').innerHTML;	
+			//원본내용 대상에 입력
+			targetForm.querySelector('textArea').value = original_content;	
+			//수정 버튼 지정
+			let confirm_btn = targetForm.querySelector('.answer_modify_confirm_btn');
+			
+			//수정버튼 클릭시
+			confirm_btn.addEventListener('click', function(e){
+				targetForm.querySelector('.content_null').innerHTML='';
+				if(targetForm.querySelector('textArea').value != ''){
+					//수정 버튼 유효화
+					confirm_btn.type = 'submit';
+				}else{
+					//수정 버튼 무효화
+					confirm_btn.type = null;
+					targetForm.querySelector('.content_null').innerHTML='내용을 입력해주세요.';
 				}
-			});
-		});
+			})
 
+			//textarea 클릭시
+			targetForm.querySelector('textArea').addEventListener('click', function(){
+				targetForm.querySelector('.content_null').innerHTML='';
+			})
+			
+			targetForm.querySelector('textArea').addEventListener('focusout', function(e){
+				if(e.currentTarget.value == ''){
+					confirm_btn.type = null;
+					targetForm.querySelector('.content_null').innerHTML='내용을 입력해주세요.';
+				}else{
+					//수정 버튼 유효화
+					targetForm.querySelector('.content_null').innerHTML='';
+				}
+				confirm_btn.type = 'submit';
+			})
+			
+			//수정폼 출력, 원본 폼 숨김
+			targetForm.style.visibility = 'inherit';	
+			original_form.style.visibility = 'hidden';	
+		})
+	</script>
+
+	<script>
+		// answer delete
 		const delete_elements = document.getElementsByClassName("answer_delete");
 		Array.from(delete_elements).forEach(function (element) {
 			element.addEventListener('click', function () {
