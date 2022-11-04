@@ -241,6 +241,18 @@
                 }
             })
         }) // by 조성빈, favorite tag 클릭하면 색 변환 기능
+
+        $("profile_gender_form").ready(function () {
+            $("button").click(function () {
+                if ($(".gender_male_btn").hasClass("disable")) {
+                    $(".gender_male_btn").removeClass("disable");
+                    $(".gender_female_btn").addClass("disable");
+                } else {
+                    $(".gender_female_btn").removeClass("disable");
+                    $(".gender_male_btn").addClass("disable");
+                }
+            })
+        }) // by 조성빈, gender button 클릭하면 남/여 전환 기능
     </script>
 </div>
 

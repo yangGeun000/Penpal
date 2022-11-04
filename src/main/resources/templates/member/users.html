@@ -38,9 +38,7 @@
                         <!-- 프로필 이미지 data -->
                     </div>
                         <!-- by 장유란, 프로필 유저 네임 추가 -->
-                    <h3 class="user_profile_name" th:text="${profile.member.name}">
-                        Username
-                        <!-- 프로필 유저 네임 data -->
+                    <h3 class="user_profile_name" th:text="${profile.member.name}">                        <!-- 프로필 유저 네임 data -->
                     </h3>
                     <h5 class="user_profile_country">
                         Korea
@@ -48,12 +46,47 @@
                     </h5>
                     <div class="user_profile_addline01"></div>
                     <div class="user_profile_sns">
-                        SNS ICON Area
+                        <ul>
+                            <li class="sns_icon_selected">
+                                <!-- th:if 유저가 선택한 SNS1 -->
+                                <i class="fab fa-twitter"></i>
+                            </li>
+                            <li class="sns_icon_selected">
+                                <!-- th:if로 유저가 선택한 SNS2 -->
+                                <i class="fab fa-facebook-f"></i>
+                            </li>
+                            <li class="sns_icon_selected">
+                                <!-- th:if로 유저가 선택한 SNS3 -->
+                                <i class="fab fa-instagram"></i>
+                            </li>
+                        </ul>
                         <!-- 프로필 유저 SNS data -->
                     </div>
                     <div class="user_profile_addline02"></div>
                     <div class="user_profile_favorite">
-                        Favorites Tag Area
+                        <ul>
+                            <li class="favorite_selected">
+                                <!-- th:if로 유저가 선택한 FAVORITE1 -->
+                                #<span>
+                                    <!-- 여기에 선택한 favorite1 data -->
+                                    Game
+                                </span>
+                            </li>
+                            <li class="favorite_selected">
+                                <!-- th:if로 유저가 선택한 FAVORITE2 -->
+                                #<span>
+                                    <!-- 여기에 선택한 favorite2 data -->
+                                    Travel
+                                </span>
+                            </li>
+                            <li class="favorite_selected">
+                                <!-- th:if로 유저가 선택한 FAVORITE3 -->
+                                #<span>
+                                    <!-- 여기에 선택한 favorite3 data -->
+                                    Netflix
+                                </span>
+                            </li>
+                        </ul>
                         <!-- 프로필 유저 Favorites data -->
                     </div>
                 </div>
