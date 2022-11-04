@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.penpal.project.board.Board;
 import com.penpal.project.board.DataNotFoundException;
+
 import com.penpal.project.member.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -52,5 +53,4 @@ public class AnswerService {
     }
 	
 
-	
 }

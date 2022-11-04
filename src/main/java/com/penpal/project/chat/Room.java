@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.penpal.project.member.Member;
 
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class Room {
 	private Member guest;
 	
 	@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
+	@JsonBackReference
 	private List<Message> messageList;
 	
 }

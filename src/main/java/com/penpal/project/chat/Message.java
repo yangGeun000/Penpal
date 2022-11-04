@@ -30,7 +30,7 @@ public class Message {
 	private String content;
 	
 	private LocalDateTime sendDate;
-	
+
 	@ManyToOne
 	private Room room;
 	

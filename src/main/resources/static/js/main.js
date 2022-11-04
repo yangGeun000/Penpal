@@ -55,6 +55,11 @@ $(document).mouseup(function (e){
 		if($("#message_room").css("display") == "none"){
 			$(".message_list_seciton").removeClass("open_list")
 			$("#pop_message").hide();
+			document.removeEventListener("keypress", Enter);
+            if(ws != null){
+            	ws.close();
+            	console.log("소켓 종료");
+            }
 		}
 	}
 	

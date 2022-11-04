@@ -1,19 +1,14 @@
 package com.penpal.project.member;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.penpal.project.list.LanguageList;
-import com.penpal.project.list.LanguageListRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 
     private final MemberService memberService;
-    private final LanguageListRepository languageListRepository;
     
     @GetMapping("/signup")
     public String signup(MemberCreateForm memberCreateForm) {
@@ -72,11 +66,4 @@ public class MemberController {
         return "member/login";
     }
 
-    
-    // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
-	@ModelAttribute("language")
-	public List<LanguageList> languageList(){
-		List<LanguageList> languageLists = languageListRepository.findAll();
-		return languageLists;
-	}
 }

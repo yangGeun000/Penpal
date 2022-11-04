@@ -33,12 +33,21 @@ public class MemberService {
         
         return user;
     }
-   
+
     public Member getMember(String memberId) {
         Optional<Member> member = this.memberRepository.findByMemberId(memberId);
         
         if(member.isPresent()) {
-        	
+            return member.get();
+        } else {
+            throw new DataNotFoundException("sitemember not found");
+        }
+    }
+    
+    public Member getMember(Integer Id) {
+        Optional<Member> member = this.memberRepository.findById(Id);
+        
+        if(member.isPresent()) {
             return member.get();
         } else {
             throw new DataNotFoundException("sitemember not found");

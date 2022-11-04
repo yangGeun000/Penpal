@@ -28,6 +28,7 @@ public class BoardService {
 	private final CountryListRepository countryListRepository;
 
 	// by 장유란, 검색기능
+
 	public Page<Board> getList(int page, String kw, String location, String country, String category) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("createDate"));

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.penpal.project.chat.Room;
 import com.penpal.project.friend.Friend;
 import com.penpal.project.friend.FriendRequest;
@@ -53,22 +55,27 @@ public class Member {
 
 	// by 구양근, 내가 만든 대화방 리스트
 	@OneToMany(mappedBy = "maker", cascade = CascadeType.REMOVE)
+	@JsonBackReference
 	private List<Room> makerList;
 
 	// by 구양근, 내가 초대된 대화방 리스트
 	@OneToMany(mappedBy = "guest", cascade = CascadeType.REMOVE)
+	@JsonBackReference
 	private List<Room> guestList;
 
 	// by 구양근, 프로필
 	@OneToOne(mappedBy = "member")
+	@JsonBackReference
 	private Profile profile;
-
+	
 	// by 안준언, 친구 목록 리스트
 	@OneToMany(mappedBy = "mine", cascade = CascadeType.REMOVE)
+	@JsonBackReference
 	private List<Friend> friendList;
-
+	
 	// by 안준언, 친구 요청 목록 리스트
 	@OneToMany(mappedBy = "receive", cascade = CascadeType.REMOVE)
+	@JsonBackReference
 	private List<FriendRequest> friendRequestList;
 
 }

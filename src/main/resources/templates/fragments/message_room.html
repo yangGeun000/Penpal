@@ -13,7 +13,7 @@
                             <!-- 메시지 보낸 친구 이름 -->
                         </div>
                     </div>
-                    <div class="message_room_chat_view">
+                    <div class="message_room_chat_view" id="chating">
                         <!-- 채팅 영역 -->
                         <div class="friend_message_log">
                             <!-- 친구 메시지 영역 -->
@@ -34,8 +34,10 @@
                 <div class="message_room_input">
                     <!-- 채팅 입력 영역 form -->
                     <!-- 메시지 내용 입력 -->
-                    <textarea></textarea>
-                    <input type="button" value="PUSH"> <!-- 메시지 전송 버튼 -->
+                    <textarea id="chatting"></textarea>
+                    <input type="button" value="PUSH" onclick="send()"> <!-- 메시지 전송 버튼 -->
+                    <input type="hidden" id="sessionId" value="">
+                    <input type="hidden" id="roomId" value="">
                 </div>
             </div>
         </div>

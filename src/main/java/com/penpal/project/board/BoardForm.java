@@ -27,6 +27,7 @@ public class BoardForm {
     private String location;
 
     @NotEmpty(message="국가를 선택해주세요")
+
     @Size(max=100)
     private String country;
 }

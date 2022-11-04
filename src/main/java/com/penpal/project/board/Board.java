@@ -21,7 +21,6 @@ import com.penpal.project.member.Member;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @Entity
@@ -58,5 +57,4 @@ public class Board {
 	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
 	
-
 }

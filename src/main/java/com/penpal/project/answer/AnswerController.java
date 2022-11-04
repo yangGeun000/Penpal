@@ -4,7 +4,9 @@ import java.security.Principal;
 
 import javax.validation.Valid;
 
+
 import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.penpal.project.board.Board;
 import com.penpal.project.board.BoardService;
+
 import com.penpal.project.member.Member;
 import com.penpal.project.member.MemberService;
 
@@ -47,7 +50,6 @@ public class AnswerController {
 		return String.format("redirect:/community/detail/%s", id);// by 장유란, board/detail ==> community/detail
 	}
 
-
 	// by 장유란, answer_form에서 오는 정보 처리
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/modify/{id}")
@@ -71,4 +73,5 @@ public class AnswerController {
 		this.answerService.delete(answer);
 		return String.format("redirect:/community/detail/%s", answer.getBoard().getId());
 	}
+
 }
