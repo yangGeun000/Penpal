@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.penpal.project.chat.Room;
 import com.penpal.project.friend.Friend;
 import com.penpal.project.friend.FriendRequest;
@@ -33,21 +33,26 @@ public class Member {
 	private Integer id;
 	// by 장유란, user* -> member 변수명 변경
 	@Column(unique = true, length = 30)
+	@JsonIgnore
 	private String memberId;
 
 	@Column
+	@JsonIgnore
 	private String memberPw;
 
 	@Column(unique = true, length = 60)
 	private String name;
 
 	@Column(unique = true, length = 150)
+	@JsonIgnore
 	private String email;
-
+	
+	@JsonIgnore
 	private LocalDateTime createDate;
 
 	// by 장유란, author -> writer 변수명 변경
 	@ManyToOne
+	@JsonIgnore
 	private Member writer;
 
 	// by 구양근, db에서 처리하지말고 세션을 통해서 구분하는게 좋을것 같습니다

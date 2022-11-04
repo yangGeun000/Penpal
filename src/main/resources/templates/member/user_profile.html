@@ -5,7 +5,7 @@
         <section id="profile_section01">
 
             <div class="profile_function_btn_section" sec:authorize="isAuthenticated()">
-                <button type="button" value="MESSAGE">
+                <button id="request_message" type="button" value="MESSAGE" onclick="requestMessage()">
                     MESSAGE
                     <!-- 채팅 보내기 버튼 -->
                 </button>
@@ -13,6 +13,19 @@
                     ADD FRIENDS
                     <!-- 친구 요청 보내기 버튼 -->
                 </button>
+                <script>
+                	let id = "6"
+                	let name = "test";
+                    function requestMessage() {
+                        let msg = {
+                            makerId: "5",
+                            guestId: id // 프로필 멤버 아이디
+                        };
+                        commonAjax('/requestRoom', msg, 'post', function (result) {
+                            openRoom(result.id, name);
+                        });
+                    }
+                </script>
             </div>
             <button type="button" value="Modify" onclick="location.href='/users/profile/modify';">
                 MODIFY

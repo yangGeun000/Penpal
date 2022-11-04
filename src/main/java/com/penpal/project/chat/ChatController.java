@@ -22,30 +22,24 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatController {
 	
 	private final RoomService roomService;
-	private final MessageService messageService;
 	private final MemberService memberService;
 	
-	@RequestMapping("/chat")
-	public String chat() {
-		return "chat";
-	}
-	
-	@RequestMapping("/room")
-	public String room() {
-		return "room";
-	}
-	
-	// by 구양근, 대화방 생성하고 만든 대화방 객체 반환
-	@RequestMapping("/createRoom")
+	// by 구양근, 방을 검색하고 없으면 만들어서 반환
+	@RequestMapping("/requestRoom")
 	@ResponseBody
-	public  Room createRoom(@RequestParam HashMap<Object, Object> params){
+	public  Room requestRoom(@RequestParam HashMap<Object, Object> params){
 		Member maker = this.memberService.getMember(Integer.parseInt((String) params.get("makerId")));
 		Member guest = this.memberService.getMember(Integer.parseInt((String) params.get("guestId")));
-		log.info("maker: "+ maker.getId());
-		log.info("guest: "+ guest.getId());
-		Room room = this.roomService.createRoom(maker, guest);
+		Room room = this.roomService.requestRoom(maker, guest);
 		return room;
 	}
+	
+	// by 구양근, 대화방 메세지 리스트 
+		@RequestMapping("/deleteRoom")
+		@ResponseBody
+		public  void deleteRoom(@RequestParam HashMap<Object, Object> params){
+			this.roomService.deleteRoom(Integer.parseInt((String) params.get("roomId")));
+		}
 	
 	// by 구양근, 개인 대화방 리스트 가져오기
 	@RequestMapping("/getRoom")

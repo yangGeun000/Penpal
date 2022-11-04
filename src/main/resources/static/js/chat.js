@@ -1,7 +1,3 @@
-window.onload = function() {
-	getRoom();
-}
-
 function getRoom() {
 	let msg = {
 		memberId: member.id
@@ -13,7 +9,7 @@ function getRoom() {
 	});
 }
 
-// by 구양근, 최근 대화방 5개만 출력
+// by 구양근, 메뉴 사이드바 최근 대화방 5개만 출력
 function createRecentRoom(result) {
 	let index = 5;
 	let tag = "";
@@ -25,7 +21,7 @@ function createRecentRoom(result) {
 			} else {
 				your = room.guest;
 			}
-			tag += "<li class='menu_message' onclick = 'openRoom(\"" + room.id + "\")'>" +
+			tag += "<li class='menu_message' onclick = 'openRoom(\"" + room.id + "\", \"" + your.name + "\")'>" +
 				"<div class='menu_message_profile_img'>" +
 				"</div>" +
 				"<div class='menu_message_profile_name'>" +
@@ -57,7 +53,7 @@ function createRoomList(result) {
 				your = room.guest;
 			}
 			tag +=
-				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\")'>" +
+				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.name + "\")'>" +
 				"<div class='message_list_view'>" +
 				"<div class='message_profile_img'>" +
 				"</div>" +
@@ -70,6 +66,9 @@ function createRoomList(result) {
 				"<div class='message_new_count'>" +
 				"<span>1</span>" +
 				"</div>" +
+				"<button type='button' id='message_room_delete_btn' value='DELETE'>" +
+				"Delete" +
+				"</button>" +
 				"</div>" +
 				"</a>";
 		});
@@ -97,9 +96,9 @@ function commonAjax(url, parameter, type, calbak) {
 let ws; // by 구양근, 웹 소켓 변수
 
 // by 구양근, 클릭하면 소켓 열고 초기화
-function openRoom(roomId) {
+function openRoom(roomId, name) {
 	$('#roomId').val(roomId);
-	console.log($('#roomId').val());
+	createRoomProfile(name);
 	ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomId").val());
 	wsEvt();
 }
@@ -108,6 +107,7 @@ function wsEvt() {
 	ws.onopen = function(data) {
 		//소켓이 열리면 동작
 		console.log($("#roomId").val() + "번방 연결");
+		console.log($("#roomId").val());
 		getMessage();
 		document.addEventListener("keypress", Enter);
 	}
@@ -159,8 +159,9 @@ function Enter(e) {
 }
 
 // by 구양근, 메세지창 스크롤 맨 밑으로 이동
-function scrollBottom(){
-	let chatView = document.querySelector(".message_room_chat_view");
+function scrollBottom() {
+	let chatView = document.getElementById("chating");
+	console.log("scroll");
 	chatView.scrollTop = chatView.scrollHeight;
 }
 
@@ -173,6 +174,19 @@ function getMessage() {
 	commonAjax('/getMessage', msg, 'post', function(result) {
 		createRoomMessage(result);
 	});
+}
+// by 구양근, 대화방 프로필 갱신
+function createRoomProfile(name) {
+	let tag = "";
+	tag += "<div class='message_room_friend_img'>" +
+		"</div>" +
+		"<div class='message_room_friend_name'>" +
+		name +
+		"</div>" +
+		"<button id='message_room_exit_btn' type='button' value='EXIT' onclick='closeMessageRoom()'>" +
+		"EXIT" +
+		"</button>";
+	$(".message_room_friend_profile").empty().append(tag);
 }
 
 // by 구양근, 예전 메세지 갱신
@@ -190,7 +204,7 @@ function createRoomMessage(result) {
 			}
 		});
 		$("#chating").empty().append(tag);
-		scrollBottom();
 		document.querySelector("#message_room").style.display = "block";
+		scrollBottom();
 	}
 }

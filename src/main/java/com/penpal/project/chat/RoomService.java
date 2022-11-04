@@ -27,6 +27,12 @@ public class RoomService {
 		return room;
 	}
 	
+	// by 구양근, 대화방 삭제
+		public void deleteRoom(Integer roomId) {
+			Room room = getRoom(roomId);
+			this.roomRepository.delete(room);
+		}
+	
 	// by 구양근, 대화방 아이디로 찾아서 반환
 	public Room getRoom(Integer roomId) {
 		Optional<Room> OpRoom = this.roomRepository.findById(roomId);
@@ -38,4 +44,16 @@ public class RoomService {
         }
        
 	}
+	
+	// by 구양근, 방을 조회하고 없으면 생성해서 반환
+	public Room requestRoom(Member maker, Member guest) {
+		Optional<Room> OpRoom = this.roomRepository.findByRoom(maker.getId(), guest.getId());
+		
+		if(OpRoom.isPresent()) {
+           return OpRoom.get();
+        } else {
+        	return createRoom(maker, guest);
+        }
+	}
+	
 }

@@ -68,6 +68,7 @@ function sideMenuFunc() {
 			"left": "-320px"
 		}, "Fast");
 	}
+	getRoom(); // 대화방 갱신
 } // by 조성빈, 사이드 메뉴 열고 닫기 기능
 
 function openPopFriend() {
@@ -86,6 +87,7 @@ function closeMessageRoom() {
 	document.removeEventListener("keypress", Enter);
 	if (ws != null) {
 		ws.close();
+		ws = null;
 		console.log("소켓 종료");
 	}
 } // by 조성빈, 채팅받 닫기 기능
