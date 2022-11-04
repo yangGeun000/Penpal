@@ -27,39 +27,4 @@
         </div>
     </div>
     <div th:replace="fragments/message_room :: messageRoomFragment"></div>
-    <script>
-        // by 구양근, 대화방 리스트 출력
-        function createRoomList(result) {
-            console.log(result);
-            let tag = "";
-            if (result != null) {
-                result.forEach(function (room) {
-                    let your;
-                    if (member.id != room.maker.id) {
-                        your = room.maker;
-                    } else {
-                        your = room.guest;
-                    }
-                    tag +=
-                        "<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick = 'openRoom(" +
-                        room + ")'>" +
-                        "<div class='message_list_view'>" +
-                        "<div class='message_profile_img'>" +
-                        "</div>" +
-                        "<div class='message_profile_name'>" +
-                        your.name +
-                        "</div>" +
-                        "<div class='message_content'>" +
-                        "<span>test</span>" +
-                        "</div>" +
-                        "<div class='message_new_count'>" +
-                        "<span>1</span>" +
-                        "</div>" +
-                        "</div>" +
-                        "</a>";
-                });
-                $(".message_list_section").empty().append(tag);
-            }
-        }
-    </script>
 </div>

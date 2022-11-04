@@ -2358,8 +2358,6 @@ section {
     width: 360px;
     height: 480px;
     margin:10px 10px 0 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile{
@@ -2393,6 +2391,8 @@ section {
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view{
     position: relative;
     height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log{
