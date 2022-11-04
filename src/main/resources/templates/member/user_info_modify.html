@@ -1,0 +1,29 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div id="wrap">
+        <section id="info_modify_section">
+            <h2 class="info_modify_text">Change Password</h2>
+            <form class="info_modify_contents" method="post">
+                <div class="field">
+                    <b>Current Password</b>
+                    <!-- 현재 비밀번호 확인 -->
+                    <input class="current_pw" type="password">
+                </div>
+                <div class="field">
+                    <b>New Password</b>
+                    <!-- 새 비밀번호 -->
+                    <input class="modify_pw" type="password">
+                </div>
+                <div class="field">
+                    <b>Confirm New Passwrod</b>
+                    <!-- 새 비밀번호 확인 -->
+                    <input class="modify_pw" type="password">
+                </div>
+                <input class="info_modify_btn" type="submit" value="Confirm">
+            </form>
+        </section>
+    </div>
+</div>
+
+</html>
