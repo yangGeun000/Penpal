@@ -57,8 +57,7 @@ function createRoomList(result) {
 				your = room.guest;
 			}
 			tag +=
-				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(" +
-				room + ")'>" +
+				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\")'>" +
 				"<div class='message_list_view'>" +
 				"<div class='message_profile_img'>" +
 				"</div>" +
@@ -97,6 +96,7 @@ function commonAjax(url, parameter, type, calbak) {
 
 let ws; // by 구양근, 웹 소켓 변수
 
+// by 구양근, 클릭하면 소켓 열고 초기화
 function openRoom(roomId) {
 	$('#roomId').val(roomId);
 	console.log($('#roomId').val());
@@ -110,7 +110,6 @@ function wsEvt() {
 		console.log($("#roomId").val() + "번방 연결");
 		getMessage();
 		document.addEventListener("keypress", Enter);
-		document.querySelector("#message_room").style.display = "block";
 	}
 
 	ws.onmessage = function(data) {
@@ -192,5 +191,6 @@ function createRoomMessage(result) {
 		});
 		$("#chating").empty().append(tag);
 		scrollBottom();
+		document.querySelector("#message_room").style.display = "block";
 	}
 }
