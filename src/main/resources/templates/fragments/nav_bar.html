@@ -28,7 +28,12 @@
 				<i class="fas fa-sort-down"></i>
 			</button>
 			<div class="member_menu_dropdown">
-				<a href="#">My Info</a>
+			<!-- 프로필 있을 시 본인 프로필, 없을 시 생성창 -->
+				<a th:if="${loginMember} != null "
+				   th:href="${loginMember.profile}!=null? 
+							@{|users/profile/${loginMember.id}|} : 
+							@{|users/profile/create/${loginMember.id}|}
+							">My Info</a>
 				<a sec:authorize="isAuthenticated()" href="/member/logout">Logout</a>
 			</div>
 		</div>
