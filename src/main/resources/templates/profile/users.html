@@ -32,11 +32,13 @@
         <section id="users_section02">
             <!-- 유저 약식 프로필 리스트  -->
             <div class="users_profiles">
-                <div class="user_profile_view" th:each="profile : ${paging}">
+                <div class="user_profile_view" th:each="profile : ${paging}" >
                     <!-- 해당 뷰에 th:each 예정 -->
-                    <div class="user_profile_img" onclick="location.href='/users/profile';">
+                    <a  th:href="@{|users/profile/${profile.member.id}|}">
+                    <div class="user_profile_img" >
                         <!-- 프로필 이미지 data -->
                     </div>
+                    </a>
                         <!-- by 장유란, 프로필 유저 네임 추가 -->
                     <h3 class="user_profile_name" th:text="${profile.member.name}">                        <!-- 프로필 유저 네임 data -->
                     </h3>

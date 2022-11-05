@@ -32,9 +32,11 @@ public class Profile {
 	@Column(length=60)
 	private String nickname;
 	
-	private int gender;
+	// 성별 int -> String(varchar(20)) 변환
+	private String gender;
 	
-	private int age;
+	// 성별 int -> Integer 변환
+	private Integer age;
 	
 	@OneToOne
 	private Member member;

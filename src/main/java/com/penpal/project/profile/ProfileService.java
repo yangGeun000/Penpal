@@ -2,6 +2,7 @@ package com.penpal.project.profile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.penpal.project.board.DataNotFoundException;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.member.Member;
@@ -29,6 +31,7 @@ public class ProfileService {
 
 	private final ProfileRepository profileRepository;
 
+	// by 장유란, 프로필 검색 기능
 	public Page<Profile> getList(int page, String kw, String location, String country) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("id")); // 날짜 관련(lastDate)으로 변경예정
@@ -55,5 +58,16 @@ public class ProfileService {
 			}
 		};
 	}
+	
+	// 프로필 상세 조회
+    public Profile getProfile(Integer id) {  
+        Optional<Profile> profile = this.profileRepository.findById(id);
+        if (profile.isPresent()) {
+            return profile.get();
+        } else {
+            throw new DataNotFoundException("프로필이 없습니다.");
+        }
+    }
+	
 
 }
