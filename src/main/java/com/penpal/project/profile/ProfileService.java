@@ -60,16 +60,6 @@ public class ProfileService {
 		};
 	}
 	
-	// 프로필 상세 조회
-    public Profile getProfile(Integer id) {  
-        Optional<Profile> profile = this.profileRepository.findById(id);
-        if (profile.isPresent()) {
-            return profile.get();
-        } else {
-            throw new DataNotFoundException("프로필이 없습니다.");
-        }
-    }
-	
 
 	// 프로필 상세 조회
 	public Profile getProfile(Integer id) {
