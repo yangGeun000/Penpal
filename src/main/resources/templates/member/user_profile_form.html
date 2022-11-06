@@ -29,10 +29,10 @@
                         <div class="profile_info_left">
                             <div class="profile_gender_form" name="gender">
                                 Gender<br>
-                                <button class="gender_male_btn disable" type="button" name="male">
+                                <button class="gender_male_btn disable" onclick="genderButton()" type="button" name="male">
                                     Male
                                 </button>
-                                <button class="gender_female_btn disable" type="button" name="female">
+                                <button class="gender_female_btn disable" onclick="genderButton()" type="button" name="female">
                                     Female
                                 </button>
                                 <!-- 유저 성별 -->
@@ -186,7 +186,8 @@
                                 <div>
                                     <select name="language" id="language" th:field="*{language}">
                                         <option value="" selected>Languages</option>
-                                        <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                                        <option th:each="language : ${language}" th:value="${language}"
+                                            th:text="${language.name}"></option>
                                     </select>
                                 </div>
                             </li>
@@ -195,7 +196,8 @@
                                 <div>
                                     <select name="language" id="language" th:field="*{language}">
                                         <option value="" selected>Languages</option>
-                                        <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                                        <option th:each="language : ${language}" th:value="${language}"
+                                            th:text="${language.name}"></option>
                                     </select>
                                 </div>
                             </li>
@@ -204,7 +206,8 @@
                                 <div>
                                     <select name="language" id="language" th:field="*{language}">
                                         <option value="" selected>Languages</option>
-                                        <option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
+                                        <option th:each="language : ${language}" th:value="${language}"
+                                            th:text="${language.name}"></option>
                                     </select>
                                 </div>
                             </li>
@@ -241,9 +244,10 @@
                 }
             })
         }) // by 조성빈, favorite tag 클릭하면 색 변환 기능
-
-        $("profile_gender_form").ready(function () {
-            $("button").click(function () {
+    </script>
+    <script>
+        function genderButton(e) {
+            if ($(".profile_gender_form").children("button").click(e)) {
                 if ($(".gender_male_btn").hasClass("disable")) {
                     $(".gender_male_btn").removeClass("disable");
                     $(".gender_female_btn").addClass("disable");
@@ -251,8 +255,8 @@
                     $(".gender_female_btn").removeClass("disable");
                     $(".gender_male_btn").addClass("disable");
                 }
-            })
-        }) // by 조성빈, gender button 클릭하면 남/여 전환 기능
+            }
+        } // by 조성빈, gender button 클릭하면 남/여 전환 기능
     </script>
 </div>
 
