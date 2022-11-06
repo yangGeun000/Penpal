@@ -5,13 +5,13 @@
         <section id="profile_section01">
 
             <div class="profile_function_btn_section" sec:authorize="isAuthenticated()">
-                <button id="request_message" type="button" value="MESSAGE" onclick="requestMessage()">
+                <button id="request_message" th:if="${profile.member.id} != ${loginMember.id}" type="button" value="MESSAGE" onclick="requestMessage()">
                     MESSAGE
-                    <!-- 채팅 보내기 버튼 -->
+                    <!-- 채팅 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
-                <button type="button" value="ADD FRIENDS">
+                <button type="button" value="ADD FRIENDS" th:if="${profile.member.id} != ${loginMember.id}">
                     ADD FRIENDS
-                    <!-- 친구 요청 보내기 버튼 -->
+                    <!-- 친구 요청 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
                 <script th:inline="javascript">
                 	// by 구양근
@@ -26,10 +26,10 @@
                         });
                     }
                 </script>
+                <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}" th:onclick="|location.href='/users/profile/modify/${id}'|">
+                    MODIFY <!-- 로그인 id와 프로필 페이지 id 가 같으면 버튼 등장(본인 페이지일 때) -->
+                </button>
             </div>
-            <button type="button" value="Modify" onclick="location.href='/users/profile/modify';">
-                MODIFY
-            </button>
             <div class="profile_info_section01">
                 <div class="profile_img">
                     <!-- 프로필 이미지 -->

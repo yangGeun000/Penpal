@@ -44,6 +44,17 @@
 			<div id="detail_answer_area" class="detail_answer_area potion">
 				<div class="answer_text">Answer</div>
 				<div class="answer_profile" sec:authorize="isAuthenticated()">
+					<div class="answer_profile_img">
+						<!-- 로그인 멤버 프로필 이미지 -->
+					</div>
+					<div class="answer_writer_section">
+						<div class="answer_writer" th:text="${loginMember.name}">
+						</div>
+						<div class="answer_writer_country">
+							<!-- 로그인 멤버 국적 -->
+							Korea
+						</div>
+					</div>
 				</div>
 				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()">
 					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
@@ -55,7 +66,18 @@
 				</div>
 				<div class="detail_answer_list_area" th:each="answer : ${board.answerList}">
 					<div class="answer_profile">
-						<!-- answer profile -->
+						<div class="answer_profile_img">
+							<!-- answer 프로필 이미지 -->
+						</div>
+						<div class="answer_writer_section">
+							<div class="answer_writer" th:if="${answer.writer != null}"
+								th:text="${answer.writer.memberId}">
+							</div>
+							<div class="answer_writer_country">
+								<!-- answer 국적 -->
+								United States
+							</div>
+						</div>
 					</div>
 					<div>
 						<!-- 수정폼 -->
@@ -97,8 +119,7 @@
 								th:data-uri="@{|/answer/delete/${answer.id}|}" th:text="Delete"></a>
 						</div>
 						<!-- by 장유란, 댓글 작성자 나타나게 수정(위치 임의), 위치, 클래스명 변경해도 정상작동 -->
-						<div class="answer_writer" th:if="${answer.writer != null}" th:text="${answer.writer.memberId}">
-						</div>
+						
 					</div>
 				</div>
 		</section>

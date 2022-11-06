@@ -66,6 +66,18 @@
 							</div>
 							<div class="view_profile_section">
 								<!-- 해당 글 작성자 프로필 -->
+								<div class="view_profile_writer_img">
+									<!-- 글 작성자 프로필 이미지 -->
+								</div>
+								<div class="view_profile_writer_info">
+									<div class="view_profile_writer" th:text="${board.writer.name}">
+										<!-- 글 작성자 닉네임 -->
+									</div>
+									<div class="view_profile_writer_nationality" th:text="${board.writer.email}">
+										<!-- 글 작성자 국적, 프로필 기능 완성 전이라 임시로 이메일 -->
+										Korea
+									</div>
+								</div>
 							</div>
 							<div class="view_title" th:text="|${board.title}|"></div>
 							<div class="view_content" th:text="|${board.content}|"></div>

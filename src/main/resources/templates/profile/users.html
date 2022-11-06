@@ -34,18 +34,14 @@
             <div class="users_profiles">
                 <div class="user_profile_view" th:each="profile : ${paging}" >
                     <!-- 해당 뷰에 th:each 예정 -->
-                    <a  th:href="@{|users/profile/${profile.member.id}|}">
+                    <a th:href="@{|users/profile/${profile.member.id}|}">
                     <div class="user_profile_img" >
                         <!-- 프로필 이미지 data -->
                     </div>
                     </a>
                         <!-- by 장유란, 프로필 유저 네임 추가 -->
-                    <h3 class="user_profile_name" th:text="${profile.nickname}">                        <!-- 프로필 유저 네임 data -->
-                    </h3>
-                    <h5 class="user_profile_country">
-                        Korea
-                        <!-- 프로필 유저 국가 data -->
-                    </h5>
+                    <h3 class="user_profile_name" th:text="${profile.nickname}"></h3>
+                    <h5 class="user_profile_country" th:text="${profile.country}"></h5>
                     <div class="user_profile_addline01"></div>
                     <div class="user_profile_sns">
                         <ul>
