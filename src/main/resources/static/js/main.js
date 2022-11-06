@@ -84,7 +84,7 @@ function closeMessageRoom() {
 	$("#message_room").hide();
 	$(".message_list_section").removeClass("active");
 
-	document.removeEventListener("keypress", Enter);
+	document.getElementById("chatting").removeEventListener("keyup",Enter);
 	if (ws != null) {
 		ws.close();
 		ws = null;

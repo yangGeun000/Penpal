@@ -50,11 +50,10 @@ public class ChatController {
 		roomList.addAll(member.getMakerList());
 		roomList.addAll(member.getGuestList());
 		// by 구양근, 마지막 메세지 날짜를 비교해서 오름차순 정렬
-		roomList.sort((room1,room2) -> 
-			room1.getMessageList().get(room1.getMessageList().size() - 1).getSendDate().compareTo(
-					room2.getMessageList().get(room2.getMessageList().size() - 1).getSendDate()
-					)
-			);
+//		roomList.sort((room1,room2) -> 
+//			room1.getMessageList().get(room1.getMessageList().size() - 1).getSendDate().compareTo(
+//					room2.getMessageList().get(room2.getMessageList().size() - 1).getSendDate())
+//			);
 		return roomList;
 	}
 	
