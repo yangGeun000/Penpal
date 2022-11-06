@@ -2136,6 +2136,33 @@ section {
     display: block;
 }
 
+.friend_btn_section{
+    position: absolute;
+    width: 100px;
+    right: 10px;
+    top: 10px;
+    text-align: right;
+}
+
+.friend_remove_btn{
+    position: relative;
+    border:1px solid #9d9ea2;
+    border-radius: 10px;
+    padding:4px 6px;
+    font-size: 12px;
+    color:#9d9ea2;
+}
+
+.friend_message_btn{
+    position: relative;
+    border:1px solid #9d9ea2;
+    border-radius: 10px;
+    padding:4px 6px;
+    font-size: 12px;
+    color:#9d9ea2;
+    margin-top: 10px;
+}
+
 .my_friend_paging {
     position: relative;
     width: 400px;
