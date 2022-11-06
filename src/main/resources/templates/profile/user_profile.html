@@ -13,16 +13,16 @@
                     ADD FRIENDS
                     <!-- 친구 요청 보내기 버튼 -->
                 </button>
-                <script>
-                	let id = "6"
-                	let name = "test";
+                <script th:inline="javascript">
+                	// by 구양근
+                	let profile = /*[[${profile}]]*/ "프로필 멤버";
                     function requestMessage() {
                         let msg = {
-                            makerId: "5",
-                            guestId: id // 프로필 멤버 아이디
+                            makerId: member.id,
+                            guestId: profile.member.id // 프로필 멤버 아이디
                         };
                         commonAjax('/requestRoom', msg, 'post', function (result) {
-                            openRoom(result.id, name);
+                            openRoom(result.id, profile.member.name);
                         });
                     }
                 </script>

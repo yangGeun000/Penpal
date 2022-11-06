@@ -66,7 +66,7 @@ function createRoomList(result) {
 				"<div class='message_new_count'>" +
 				"<span>1</span>" +
 				"</div>" +
-				"<button type='button' id='message_room_delete_btn' value='DELETE'>" +
+				"<button type='button' id='message_room_delete_btn' value='DELETE' onclick = 'deleteRoom(\"" + room.id + "\")'>" +
 				"Delete" +
 				"</button>" +
 				"</div>" +
@@ -101,6 +101,18 @@ function openRoom(roomId, name) {
 	createRoomProfile(name);
 	ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomId").val());
 	wsEvt();
+}
+
+function deleteRoom(roomId){
+	event.preventDefault(); // by 구양근, a 태그 기본 이벤트 중지
+	event.stopPropagation(); // by 구양근, 상위로 이벤트 전파 중지
+	let msg = {
+		roomId: roomId
+	};
+	console.log("delete : " + msg);
+	commonAjax('/deleteRoom', msg, 'post', function(result) {
+		getRoom();
+	});
 }
 
 function wsEvt() {
