@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Controller
 @Slf4j
-public class profileController {
+public class ProfileController {
 
 	private final ProfileService profileService;
 
@@ -107,9 +107,9 @@ public class profileController {
 
         return "profile/user_profile";	//user_profile폼으로 이동
     }
-//    
-//    @RequestMapping("/profile/modify/{id}")
-//    public String userProfileForm(){
-//        return "profile/user_profile_form";
-//    } // by 조성빈, 템플릿 제작용 임시 mapping
+   
+   @RequestMapping("/profile/modify/{id}")
+   public String userProfileForm(){
+       return "member/user_profile_form";
+   } // by 조성빈, 템플릿 제작용 임시 mapping
 }
