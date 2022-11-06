@@ -33,7 +33,8 @@
 				   th:href="${loginMember.profile}!=null? 
 							@{|users/profile/${loginMember.id}|} : 
 							@{|users/profile/create/${loginMember.id}|}
-							">My Info</a>
+							">My Profile</a>
+				<a href="/member/modify">My Info</a>
 				<a sec:authorize="isAuthenticated()" href="/member/logout">Logout</a>
 			</div>
 		</div>

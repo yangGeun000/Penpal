@@ -66,4 +66,8 @@ public class MemberController {
         return "member/login";
     }
 
+    @RequestMapping("/modify")
+    public String infoModify(){
+        return "member/user_info_modify";
+    } //by 조성빈, 유저 정보(비밀번호) 수정 템플릿 작성용 임시 매핑
 }
