@@ -185,6 +185,7 @@ section {
 .top_contents {
     position: relative;
     display: flex;
+    justify-content: center;
     margin: 0 auto;
     width: 1200px;
     top: 100px;
@@ -192,9 +193,7 @@ section {
 }
 
 .top_contents .tc_left {
-    width: 48%;
-    left: 0;
-
+    width: 500px;
 }
 
 .top_contents .tc_left h1 {
@@ -220,23 +219,30 @@ section {
 .top_contents .tc_left a {
     position: relative;
     float: right;
-    margin-right: 40px;
     border: 1px solid #547296;
     border-radius: 4px;
-    padding: 10px 40px;
-    font-size: 10px;
+    padding: 9px 20px;
+    width: 130px;
+    font-size: 12px;
+    text-align: center;
     background: #547296;
     color: #dddfe4;
 }
 
 .top_contents .tc_right {
-    width: 48%;
+    width: 500px;
     height: 268px;
+    margin-left: 70px;
     border: 1px solid #384250;
     right: 0;
     text-align: center;
     line-height: 240px;
+}
 
+.top_contents .tc_right a img{
+    width: 576px;
+    height: 268px;
+    position: relative;
 }
 
 /* welcome section end */
@@ -871,7 +877,7 @@ section {
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_gender {
     position: relative;
-    width: 140px;
+    width: 160px;
     text-align: left;
     font-size: 20px;
     color:#9d9ea2;
@@ -879,14 +885,16 @@ section {
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_gender span{
     position: relative;
+    width: 100px;
     line-height: 28px;
-    font-size: 28px;
+    font-size: 24px;
+    text-align: center;
     float:right;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_age {
     position: relative;
-    width: 110px;
+    width: 126px;
     text-align: left;
     font-size: 20px;
     margin-top: 40px;
@@ -896,7 +904,7 @@ section {
 #profile_section01 .profile_info_section01 .profile_info_data .profile_age span{
     position: relative;
     line-height: 28px;
-    font-size: 28px;
+    font-size: 24px;
     float:right;
 }
 
@@ -912,7 +920,7 @@ section {
 #profile_section01 .profile_info_section01 .profile_info_data .profile_location span{
     position: relative;
     line-height: 28px;
-    font-size: 28px;
+    font-size: 24px;
     float:right;
 }
 
@@ -928,7 +936,7 @@ section {
 #profile_section01 .profile_info_section01 .profile_info_data .profile_country span{
     position: relative;
     line-height: 28px;
-    font-size: 28px;
+    font-size: 24px;
     float:right;
 }
 
@@ -1358,7 +1366,7 @@ section {
 }
 
 .community_contents .community_bbs .community_view a .view_profile_section {
-    margin: 10px auto;
+    margin: 30px auto 10px;
     width: 320px;
     height: 80px;
     display: flex;
@@ -1537,7 +1545,7 @@ section {
 #community_detail_section01 .detail_view_area .detail_profile {
     position: relative;
     float: right;
-    margin-right: 10px;
+    margin-right: 30px;
     width: 200px;
     height: 70px;
     display: flex;
@@ -1558,7 +1566,7 @@ section {
 
 #community_detail_section01 .detail_view_area .detail_profile .detail_profile_info{
     position: relative;
-    width: 100px;
+    width: 130px;
     height: 70px;
 }
 
@@ -2464,6 +2472,7 @@ section {
     border: 1px solid #9d9ea2;
     border-radius: 10px;
     font-size: 14px;
+    z-index: 1000;
 }
 
 .message_list_section .message_list_view:last-child {

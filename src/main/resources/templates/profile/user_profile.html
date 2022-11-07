@@ -36,7 +36,6 @@
                 </div>
                 <div class="profile_info_data">
                     <div class="profile_name" th:text="${profile.member.name}">
-                        Username
                         <!-- 유저네임 -->
                     </div>
                     <h1 class="profile_last_date">
@@ -44,24 +43,23 @@
                         <span th:text="${profile.lastDate} != null? 
                         			   ${profile.lastDate} : '- - - - / - - / - -'">
                             <!-- 여기에 last_date data // by 장유란, : 뒤의 대체택스트('') 제거or수정해도 정상작동 -->
-                            yy-mm-dd
                         </span>
                         <!-- 유저 최근 접속일 -->
                     </h1>
                     <div class="profile_info_left">
                         <div class="profile_gender">
-                            Gender<br>
-                            <span class="profile_gender_data" th:text="${profile.gender}">
-                                <!-- 여기에 gender data -->
+                            Gender<br> <!-- th:if문 적용하여 gender 출력 -->
+                            <span class="profile_gender_data" th:if="${profile.gender} == 0">
                                 Male
+                            </span>
+                            <span class="profile_gender_data" th:if="${profile.gender} == 1">
+                                Female
                             </span>
                             <!-- 유저 성별 -->
                         </div>
                         <div class="profile_age">
                             Age<br>
                             <span class="profile_age_data" th:text="${profile.age}">
-                                <!-- 여기에 age data-->
-                                22
                             </span>
                             <!-- 유저 연령 -->
                         </div>
@@ -70,16 +68,12 @@
                         <div class="profile_location">
                             Nationality<br>
                             <span class="profile_location_data" th:text="${profile.location}">
-                                <!-- 여기에 location data -->
-                                Korea
                             </span>
                             <!-- 유저 국적 -->
                         </div>
                         <div class="profile_country">
                             Country<br>
                             <span class="profile_country_data" th:text="${profile.country}">
-                                <!-- 여기에 country data -->
-                                Japan
                             </span>
                             <!-- 유저 거주 국가 -->
                         </div>
@@ -94,17 +88,17 @@
             <div class="profile_left_section">
                 <div class="profile_sns_section">
                     <h1>SNS</h1>
-                    <ul>
-                        <li class="sns_icon_selected">
-                            <!-- th:if 유저 SNS1 -->
+                    <ul> <!-- 임시로 sns1: twitter, sns2: facebook, sns3: instagram -->
+                        <li class="sns_icon_selected" th:if="${profile.sns.sns1 != null}">
+                            <!-- 유저 SNS1 -->
                             <i class="fab fa-twitter"></i>
                         </li>
-                        <li class="sns_icon_selected">
-                            <!-- th:if로 유저 SNS2 -->
+                        <li class="sns_icon_selected" th:if="${profile.sns.sns2 != null}">
+                            <!-- 유저 SNS2 -->
                             <i class="fab fa-facebook-f"></i>
                         </li>
-                        <li class="sns_icon_selected">
-                            <!-- th:if로 유저 SNS3 -->
+                        <li class="sns_icon_selected" th:if="${profile.sns.sns3 != null}">
+                            <!-- 유저 SNS3 -->
                             <i class="fab fa-instagram"></i>
                         </li>
                     </ul>
@@ -113,25 +107,13 @@
                     <h1>FAVORITES</h1>
                     <ul>
                         <li class="favorite_selected" th:text="'# '+${profile.favorite.favorite1}">
-                            <!-- th:if로 유저 FAVORITE1 -->
-                            #<span>
-                                <!-- 여기에 선택한 favorite1 data -->
-                                Game
-                            </span>
+                            <!-- 유저 FAVORITE1 -->
                         </li>
                         <li class="favorite_selected" th:text="'# '+${profile.favorite.favorite2}">
-                            <!-- th:if로 유저 FAVORITE2 -->
-                            #<span>
-                                <!-- 여기에 선택한 favorite2 data -->
-                                Travel
-                            </span>
+                            <!-- 유저 FAVORITE2 -->
                         </li>
                         <li class="favorite_selected" th:text="'# '+${profile.favorite.favorite3}">
-                            <!-- th:if로 유저 FAVORITE3 -->
-                            #<span>
-                                <!-- 여기에 선택한 favorite3 data -->
-                                Netflix
-                            </span>
+                            <!-- 유저 FAVORITE3 -->
                         </li>
                     </ul>
                 </div>
@@ -139,25 +121,13 @@
                     <h1>LANGUAGES</h1>
                     <ul>
                         <li class="language_selected" th:text="'# '+${profile.language.language1}">
-                            <!-- th:if로 유저 LANGUAGE1 -->
-                            #<span>
-                                <!-- 여기에 선택한 language1 data-->
-                                Korean
-                            </span>
+                            <!-- 유저 LANGUAGE1 -->
                         </li>
                         <li class="language_selected" th:text="'# '+${profile.language.language2}">
-                            <!-- th:if로 유저 LANGUAGE2 -->
-                            #<span>
-                                <!-- 여기에 선택한 language2 data-->
-                                English
-                            </span>
+                            <!-- 유저 LANGUAGE2 -->
                         </li>
                         <li class="language_selected" th:text="'# '+${profile.language.language3}">
-                            <!-- th:if로 유저 LANGUAGE3 -->
-                            #<span>
-                                <!-- 여기에 선택한 language3 data-->
-                                Japanese
-                            </span>
+                            <!-- 유저 LANGUAGE3 -->
                         </li>
                     </ul>
                 </div>
@@ -167,7 +137,6 @@
                     <h1>Comment</h1>
                     <div class="profile_comment_area" th:text="${profile.comment}">
                         <!-- 유저 comment -->
-
                     </div>
                 </div>
             </div>
