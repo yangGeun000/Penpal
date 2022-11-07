@@ -20,19 +20,18 @@
 		<button type="button" onclick="openPopMessage()" class="new_message_btn">
 			<i class="far fa-bell"></i>
 		</button>
-		<button type="button" class="member_profile_btn">
+		<button type="button" class="member_profile_btn" onclick="menuDrop()">
 			<i class="far fa-user"></i>
 		</button>
 		<div class="member_menu_dropdown_btn">
-			<button type="button" class="member_menu_btn">
+			<button type="button" class="member_menu_btn" onclick="menuDrop()">
 				<i class="fas fa-sort-down"></i>
 			</button>
 			<div class="member_menu_dropdown">
-			<!-- 프로필 있을 시 본인 프로필, 없을 시 생성창 -->
-				<a th:if="${loginMember} != null "
-				   th:href="${loginMember.profile}!=null? 
-							@{|users/profile/${loginMember.id}|} : 
-							@{|users/profile/create/${loginMember.id}|}
+				<!-- 프로필 있을 시 본인 프로필, 없을 시 생성창 -->
+				<a th:if="${loginMember} != null " th:href="${loginMember.profile}!=null? 
+							@{|/users/profile/${loginMember.id}|} : 
+							@{|/users/profile/create/${loginMember.id}|}
 							">My Profile</a>
 				<a href="/member/modify">My Info</a>
 				<a sec:authorize="isAuthenticated()" href="/member/logout">Logout</a>
@@ -43,12 +42,12 @@
 		<a href="/member/login">Login</a>
 	</div>
 	<script>
-		$(".member_menu_btn").click(function () {
+		function menuDrop() {
 			if ($(".member_menu_btn").parent().hasClass("active")) {
 				$(".member_menu_btn").parent().removeClass("active");
 			} else {
 				$(".member_menu_btn").parent().addClass("active");
 			}
-		})
+		}
 	</script>
 </nav>
