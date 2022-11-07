@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AnswerForm {
-
-    @NotEmpty(message = "내용이 없습니다.")
+    // by 조성빈, 메시지 변경
+    @NotEmpty(message = "Enter your Content")
     private String content;
 }
