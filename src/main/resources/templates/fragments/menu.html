@@ -14,9 +14,9 @@
                         <!-- 이름 -->
                         [[${loginMember.name}]]
                     </span><br>
-                    <span class="menu_profile_nationality">
+                    <span class="menu_profile_nationality" th:if="${loginMember.profile != null}">
                         <!-- 국적 -->
-                        Korea
+                        [[${loginMember.profile.country}]]
                     </span>
                     <div class="menu_profile_flag">
                         <!-- 국가 아이콘 -->

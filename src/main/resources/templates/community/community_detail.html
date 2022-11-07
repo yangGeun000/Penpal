@@ -37,7 +37,7 @@
 						<div class="detail_content_writer" th:text="${board.writer.memberId}"></div>
 						<!-- 작성자 국적 -->
 						<div class="detail_content_writer_country" th:text="${board.writer.profile.country}" 
-							th:if="${board.writer.profile.country != null}"></div>
+							th:if="${board.writer.profile != null}"></div>
 					</div>
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 						<div class="answer_writer" th:text="${loginMember.name}">
 							<!-- 로그인 멤버 닉네임 -->
 						</div>
-						<div class="answer_writer_country" th:if="${loginMember.profile.country != null}" th:text="${loginMember.profile.country}">
+						<div class="answer_writer_country" th:if="${loginMember.profile != null}" th:text="${loginMember.profile.country}">
 							<!-- 로그인 멤버 국적 -->
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 							<div class="answer_writer" th:text="${answer.writer.memberId}">
 								<!-- answer 닉네임 -->
 							</div>
-							<div class="answer_writer_country" th:if="${answer.writer.profile.country != null}"
+							<div class="answer_writer_country" th:if="${answer.writer.profile != null}"
 								th:text="${answer.writer.profile.country}">
 								<!-- answer 국적 -->
 							</div>
