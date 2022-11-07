@@ -9,9 +9,12 @@
                     <h3>This website is 'Trendy Penpaling Website',<br>Regist your Profile, and Find new friends!</h3>
                     <br><br>
                     <a href="/member/signup" sec:authorize="isAnonymous()">START NOW!</a>
+                    <a th:href="@{|/users/profile/${loginMember.id}|}" sec:authorize="isAuthenticated()">Regist Profile!</a>
                 </div>
                 <div class="tc_right">
-                    <a href="#">Banner IMG Here</a>
+                    <a href="#">
+                        <img src="/images/penpal_banner.png" alt="Banner Image">
+                    </a>
                 </div>
             </div>
         </section>
