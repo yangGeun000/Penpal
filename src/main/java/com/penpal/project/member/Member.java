@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.penpal.project.chat.Room;
 import com.penpal.project.friend.Friend;
 import com.penpal.project.friend.FriendRequest;
@@ -55,8 +56,8 @@ public class Member {
 	@JsonIgnore
 	private Member writer;
 
-	// by 구양근, db에서 처리하지말고 세션을 통해서 구분하는게 좋을것 같습니다
-	// private boolean conn;
+	// by 안준언, 현재 접속여부 구분을 위해 해당 필드 살렸습니다.
+	private boolean conn;
 
 	// by 구양근, 내가 만든 대화방 리스트
 	@OneToMany(mappedBy = "maker", cascade = CascadeType.REMOVE)

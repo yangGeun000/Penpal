@@ -37,6 +37,7 @@ public class MemberSecurityService implements UserDetailsService{
             authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
         }
     	log.info(">> login '" + memberId + "/" + authorities + "'");
+    	
         return new User(member.getMemberId(), member.getMemberPw(), authorities);
     }
 }

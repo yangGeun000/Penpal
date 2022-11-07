@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.penpal.project.friend.Friend;
 import com.penpal.project.friend.FriendRepository;
 import com.penpal.project.friend.FriendRequest;
 import com.penpal.project.friend.FriendRequestRepository;

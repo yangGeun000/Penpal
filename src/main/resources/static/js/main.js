@@ -69,6 +69,9 @@ function sideMenuFunc() {
 		}, "Fast");
 	}
 	getRoom(); // 대화방 갱신
+	getOnlineFriend(); // 접속중인 친구 리스트 갱신
+	getFriend(); // 전체 친구 리스트 갱신
+	getFriendRequest(); // 친구 요청 리스트 갱신
 } // by 조성빈, 사이드 메뉴 열고 닫기 기능
 
 function openPopFriend() {

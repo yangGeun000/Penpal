@@ -4,11 +4,11 @@
             <button type="button" onclick="closePop()">X
             </button>
             <div class="friend_list_function_btn">
-                <button class="friend_list_btn active" type="button">FRIEND</button>
-                <button class="friend_request_btn" type="button">ADD</button>
+                <button class="friend_list_btn active" type="button" onclick="getFriend()">FRIEND</button>
+                <button class="friend_request_btn" type="button" onclick="getFriendRequest()">ADD</button>
             </div>
             <div class="friend_list_section">
-                <div class="my_friends active">
+                <div id="my_friends" class="my_friends active">
                     <div th:replace="fragments/my_friends :: myFriendsFragment"></div>
                 </div>
                 <div class="request_friend">
