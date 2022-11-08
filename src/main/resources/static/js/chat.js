@@ -46,6 +46,7 @@ function createRoomList(result) {
 	let tag = "";
 	if (result != null) {
 		result.forEach(function(room) {
+			let length = room.messageList.length;
 			let your;
 			if (member.id != room.maker.id) {
 				your = room.maker;
@@ -61,11 +62,11 @@ function createRoomList(result) {
 				your.name +
 				"</div>" +
 				"<div class='message_content'>" +
-				"<span>test</span>" +
+				"<span>" + room.messageList[length - 1].content + "</span>" +
 				"</div>" +
-				"<div class='message_new_count'>" +
-				"<span>1</span>" +
-				"</div>" +
+//				"<div class='message_new_count'>" +
+//				"<span></span>" +
+//				"</div>" +
 				"<button type='button' id='message_room_delete_btn' value='DELETE' onclick = 'deleteRoom(\"" + room.id + "\")'>" +
 				"Delete" +
 				"</button>" +

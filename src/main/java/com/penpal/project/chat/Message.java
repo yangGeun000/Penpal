@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.penpal.project.member.Member;
 
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Message {
 	private LocalDateTime sendDate;
 
 	@ManyToOne
+	@JsonBackReference
 	private Room room;
 	
 }

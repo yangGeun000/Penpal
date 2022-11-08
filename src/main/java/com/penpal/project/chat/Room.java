@@ -32,7 +32,6 @@ public class Room {
 	private Member guest;
 	
 	@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-	@JsonBackReference
 	private List<Message> messageList;
 	
 }
