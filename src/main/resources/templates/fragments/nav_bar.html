@@ -9,12 +9,6 @@
 			<li><a href="/community">Community</a></li>
 		</ul>
 	</div>
-	<div class="header_language">
-		<select name="language" id="language" th:field="*{language}">
-			<option value="" selected>Languages</option>
-			<option th:each="language : ${language}" th:value="${language}" th:text="${language.name}"></option>
-		</select>
-	</div>
 	<div class="header_member_icon" sec:authorize="isAuthenticated()">
 		<!-- new message 있으면 바뀌는 건 .active, 데이터 지정 후 th:classappend 적용 예정 -->
 		<button type="button" onclick="openPopMessage()" class="new_message_btn">
