@@ -45,14 +45,16 @@ public class SocketHandler extends TextWebSocketHandler{
 						temp = rls.get(i); //해당 방번호의 세션리스트의 존재하는 모든 object값을 가져온다.
 						break;
 					}
+					if(i == rls.size()) return; // by 구양근, 방이 없다면 그냥 종료
 				}
 				
 				// by 구양근, 메세제 db에 저장
 				Room room = this.roomService.getRoom(Integer.parseInt((String) obj.get("roomId")));
 				Member sender = this.memberService.getMember(Integer.parseInt((String) obj.get("memberId")));
 				String content = (String) obj.get("msg");
-				
-				this.messageService.createMessage(sender, room, content);
+				// by 구양근, 보낸시간을 대화방의 마지막 시간으로 설정
+				room.setLastDate(this.messageService.createMessage(sender, room, content).getSendDate());
+				//this.messageService.createMessage(sender, room, content);
 				
 				// by 구양근, 메세제 발송
 				for(String k : temp.keySet()) { 
@@ -120,6 +122,8 @@ public class SocketHandler extends TextWebSocketHandler{
 			super.afterConnectionClosed(session, status);
 		}
 		
+		
+		// by 구양근, json 파서 함수
 		private static JSONObject jsonToObjectParser(String jsonStr) {
 			JSONParser parser = new JSONParser();
 			JSONObject obj = null;

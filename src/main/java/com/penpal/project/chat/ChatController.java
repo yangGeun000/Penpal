@@ -51,6 +51,7 @@ public class ChatController {
 		roomList.addAll(member.getGuestList());
 		// by 구양근, 대화방의 최근시간 순으로 정렬
 		roomList.sort((room1,room2) -> room2.getLastDate().compareTo(room1.getLastDate()));
+		
 		return roomList;
 	}
 	

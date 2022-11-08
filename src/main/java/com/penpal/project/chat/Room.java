@@ -1,5 +1,6 @@
 package com.penpal.project.chat;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,6 +31,8 @@ public class Room {
 	
 	@ManyToOne
 	private Member guest;
+	
+	private LocalDateTime lastDate;
 	
 	@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
 	private List<Message> messageList;

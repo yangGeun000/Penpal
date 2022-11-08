@@ -1,5 +1,6 @@
 package com.penpal.project.chat;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class RoomService {
 		Room room = new Room();
 		room.setMaker(maker);
 		room.setGuest(guest);
+		room.setLastDate(LocalDateTime.now());
 		room = this.roomRepository.save(room);
 		log.info("room -> id : " + room.getId() + " maker : " + room.getMaker() + " guest: " + room.getGuest());
 		return room;
