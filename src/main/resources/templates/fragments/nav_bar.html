@@ -27,6 +27,7 @@
 							My Profile
 				</a>
 				<a href="/member/modify">My Info</a>
+				<a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin">Admin</a>
 				<a sec:authorize="isAuthenticated()" href="/member/logout">Logout</a>
 			</div>
 		</div>

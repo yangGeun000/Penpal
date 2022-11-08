@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+<style>
+	.continer{
+		border: 1px solid gray;
+		display: flex;
+    	justify-content: space-evenly;
+    	align-items: flex-start;
+	}
+
+</style>
+</head>
+<h1>관리자 페이지</h1>
+<!-- 카테고리 추가 -->
+<div class="continer" >
+<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+	<thead>
+		<tr>
+			<th th:text="|< 카테고리 관리 >|"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr style="border: 1px solid black;">
+			<th style="border: 1px solid black;">no</th>
+			<th style="border: 1px solid black;">categoryName</th>
+			<th>option</th>
+		</tr>
+		<tr th:each="categoryList, index : ${categoryList}">
+			<td th:text="${categoryList.id}" style="border-right: 1px solid black;"></td>
+			<td th:text="${categoryList.name}"></td>
+			<td>
+				<input type="hidden" name="id" value="${categoryList.id}">
+				<button type="button" class="category_delete"
+					th:data-uri="@{|/category/delete/${categoryList.id}|}">delete</button>
+			</td>
+		</tr>
+		</div>
+	</tbody>
+	<tfoot>
+		<tr style="border-top: 1px solid black;">
+			<form th:action="@{admin}" method="post" id="category">
+				<td><label for="categoryName">new category</label></td>
+				<td><input type="text" name="categoryName"></td>
+				<td><button type="submit">submit</button></td>
+			</form>
+		</tr>
+	</tfoot>
+</table>
+<!-- //카테고리 추가 -->
+<!-- 지역 추가 -->
+<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead><tr><th th:text="|< 지역 관리 >|"></th></tr></thead>
+	<tbody>
+		<tr style="border: 1px solid black;">
+			<th style="border: 1px solid black;">no</th>
+			<th style="border: 1px solid black;">locationName</th>
+			<th>option</th>
+		</tr>
+		<tr th:each="locationList, index : ${locationList}">
+			<td th:text="${locationList.id}" style="border-right: 1px solid black;"></td>
+			<td th:text="${locationList.name}"></td>
+			<td>
+				<input type="hidden" name="id" value="${locationList.id}">
+				<button type="button" class="location_delete"
+					th:data-uri="@{|/location/delete/${locationList.id}|}">delete</button>
+			</td>
+		</tr>
+		</div>
+	</tbody>
+	<tfoot>
+		<tr style="border-top: 1px solid black;">
+			<form th:action="@{admin}" method="post" id="location">
+				<td><label for="locationName">new location</label></td>
+				<td><input type="text" name="locationName"></td>
+				<td><button type="submit">submit</button></td>
+			</form>
+		</tr>
+	</tfoot>
+</table>
+<!-- //지역 추가 -->
+<!-- 국가 추가 -->
+<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+	<thead><tr><th th:text="|< 국가 관리 >|"></th></tr></thead>
+	<tbody>
+		<tr style="border: 1px solid black;">
+			<th style="border: 1px solid black;">no</th>
+			<th style="border: 1px solid black;">countryName</th>
+			<th>option</th>
+		</tr>
+		<tr th:each="countryList, index : ${countryList}">
+			<td th:text="${countryList.id}" style="border-right: 1px solid black;"></td>
+			<td th:text="${countryList.name}"></td>
+			<td>
+				<input type="hidden" name="id" value="${countryList.id}">
+				<button type="button" class="country_delete"
+					th:data-uri="@{|/country/delete/${countryList.id}|}">delete</button>
+			</td>
+		</tr>
+		</div>
+	</tbody>
+	<tfoot>
+		<tr style="border-top: 1px solid black;">
+			<form th:action="@{admin}" method="post" id="country">
+				<td><label for="countryName">new country</label></td>
+				<td><input type="text" name="countryName"></td>
+				<td><button type="submit">submit</button></td>
+			</form>
+		</tr>
+	</tfoot>
+</table>
+<!-- //국가 추가 -->
+</div>
+<script>
+	const delete_elements1 = document.getElementsByClassName("category_delete");
+	Array.from(delete_elements1).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements2 = document.getElementsByClassName("location_delete");
+	Array.from(delete_elements2).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements3 = document.getElementsByClassName("country_delete");
+	Array.from(delete_elements3).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+
+</script>
