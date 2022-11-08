@@ -58,8 +58,8 @@
 				</div>
 				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()">
 					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
-						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="2"></textarea>
-						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="2"></textarea>
+						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="3"></textarea>
+						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="3"></textarea>
 						<div th:replace="community/form_errors :: formErrorsFragment"></div>
 						<input type="submit" value="Confirm">
 					</form>
@@ -166,7 +166,8 @@
 			
 			//수정폼 출력, 원본 폼 숨김
 			targetForm.style.visibility = 'inherit';	
-			original_form.style.visibility = 'hidden';	
+			original_form.style.visibility = 'hidden';
+
 		})
 	</script>
 
