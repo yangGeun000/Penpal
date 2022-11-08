@@ -23,8 +23,9 @@
 			</button>
 			<div class="member_menu_dropdown">
 				<!-- 프로필 있을 시 본인 프로필, 없을 시 생성창 -->
-				<a th:if="${loginMember} != null " th:href="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}">
-							My Profile
+				<a th:if="${loginMember} != null"
+					th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.id}|} : @{/users/profile/create}">
+					My Profile
 				</a>
 				<a href="/member/modify">My Info</a>
 				<a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin">Admin</a>
