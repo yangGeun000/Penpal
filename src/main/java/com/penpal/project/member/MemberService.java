@@ -1,6 +1,7 @@
 package com.penpal.project.member;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,4 +55,18 @@ public class MemberService {
         }
     }
     
+    // by 구양근, 총 멤버 수
+    public long memberCount() {
+    	return this.memberRepository.count();
+    }
+    
+    // by 구양근, 온라인 중인 멤버 수
+    public long onlineMemberCount() {
+    	return this.memberRepository.countByConn(true);
+    }
+    
+    // by 구양근, 최근 가입한 5명 멤버
+    public List<Member> recentMember(){
+    	return this.memberRepository.findTop5ByOrderByCreateDateDesc();
+    }
 }

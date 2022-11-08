@@ -24,11 +24,9 @@
                     </a></h2>
                 <div>
                     <ul class="profile_list">
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
+                    	<th:block th:each = "member : ${recentMember}">
+                        	<li><a href="#">[[${member.getName()}]]</a></li>
+                    	</th:block>
                     </ul>
                 </div>
             </div>
@@ -37,17 +35,17 @@
             <div class="middle_infodata">
                 <div class="info01">
                     <div>All accounts<br>
-                        <h2>40k++</h2>
+                        <h2>[[${memberCount}]]</h2>
                     </div>
                 </div>
                 <div class="info02">
                     <div>Online users<br>
-                        <h2>90000+</h2>
+                        <h2>[[${onlineMemberCount}]]</h2>
                     </div>
                 </div>
                 <div class="info03">
                     <div>Sending Messages<br>
-                        <h2>110k++</h2>
+                        <h2>[[${messageCount}]]</h2>
                     </div>
                 </div>
             </div>

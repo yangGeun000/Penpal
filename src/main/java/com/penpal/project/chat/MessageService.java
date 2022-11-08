@@ -28,4 +28,9 @@ public class MessageService {
 		return message;
 	}
 	
+	//by 구양근, 총 메세지 개수
+	public long messageCount() {
+		return this.messageRepository.count();
+	}
+	
 }
