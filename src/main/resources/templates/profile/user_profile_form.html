@@ -2,7 +2,8 @@
 
 <div layout:fragment="content">
 	<div id="wrap">
-		<form th:action="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}" th:object="${profileForm}" method="post">
+		<form th:action="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}"
+			th:object="${profileForm}" method="post">
 			<!-- 프로필 수정&등록 폼 -->
 			<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
@@ -76,9 +77,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="profile_country_map">
-						<!-- 유저 거주 국가 기반 지도상 위치 -->
-					</div>
+					<!-- <div class="profile_country_map">
+						 유저 거주 국가 기반 지도상 위치
+					</div> -->
 				</div>
 			</section>
 			<section id="profile_section02">
