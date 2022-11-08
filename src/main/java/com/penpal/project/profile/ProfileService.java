@@ -21,9 +21,7 @@ import org.springframework.stereotype.Service;
 import com.penpal.project.board.DataNotFoundException;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.LocationList;
-import com.penpal.project.list.SnsList;
 import com.penpal.project.member.Member;
-import com.penpal.project.member.list.MemberSns;
 
 import lombok.RequiredArgsConstructor;
 

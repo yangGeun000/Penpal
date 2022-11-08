@@ -5,9 +5,6 @@ import javax.validation.constraints.NotEmpty;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.member.Member;
-import com.penpal.project.member.list.MemberFavorite;
-import com.penpal.project.member.list.MemberLanguage;
-import com.penpal.project.member.list.MemberSns;
 
 import lombok.Data;
 import lombok.Getter;

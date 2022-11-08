@@ -13,9 +13,6 @@ import javax.persistence.OneToOne;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.member.Member;
-import com.penpal.project.member.list.MemberFavorite;
-import com.penpal.project.member.list.MemberLanguage;
-import com.penpal.project.member.list.MemberSns;
 
 import lombok.Getter;
 import lombok.Setter;
