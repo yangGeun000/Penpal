@@ -25,7 +25,7 @@
                 <div>
                     <ul class="profile_list">
                     	<th:block th:each = "member : ${recentMember}">
-                        	<li><a th:href="@{|users/profile/${member.id}|}">[[${member.getName()}]]</a></li>
+                        	<li th:if = "${member.profile}!=null"><a th:href="@{|users/profile/${member.profile.id}|}">[[${member.getProfile().getNickname()}]]</a></li>
                     	</th:block>
                     </ul>
                 </div>
