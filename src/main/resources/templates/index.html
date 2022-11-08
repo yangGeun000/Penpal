@@ -25,7 +25,7 @@
                 <div>
                     <ul class="profile_list">
                     	<th:block th:each = "member : ${recentMember}">
-                        	<li><a href="#">[[${member.getName()}]]</a></li>
+                        	<li><a th:href="@{|users/profile/${member.id}|}">[[${member.getName()}]]</a></li>
                     	</th:block>
                     </ul>
                 </div>
@@ -34,12 +34,12 @@
         <section id="section03">
             <div class="middle_infodata">
                 <div class="info01">
-                    <div>All accounts<br>
+                    <div>All Accounts<br>
                         <h2>[[${memberCount}]]</h2>
                     </div>
                 </div>
                 <div class="info02">
-                    <div>Online users<br>
+                    <div>Online Users<br>
                         <h2>[[${onlineMemberCount}]]</h2>
                     </div>
                 </div>
