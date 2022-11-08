@@ -728,9 +728,9 @@ section {
 
 
 #users_section02 .users_profiles .user_profile_view .user_profile_name {
-    margin-top: 20px;
+    margin-top: 16px;
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 500;
 }
 
@@ -738,6 +738,7 @@ section {
     margin-top: 2px;
     text-align: center;
     font-weight: 400;
+    color:#9d9ea2;
 }
 
 #users_section02 .users_profiles .user_profile_view .user_profile_addline01 {
@@ -763,6 +764,11 @@ section {
     font-size: 28px;
 }
 
+#users_section02 .users_profiles .user_profile_view .user_profile_sns ul li.nothing{
+    line-height: 30px;
+    color:#9d9ea2;
+}
+
 #users_section02 .users_profiles .user_profile_view .user_profile_addline02 {
     width: 60%;
     border: 0.1px solid #9d9ea2;
@@ -785,6 +791,11 @@ section {
 #users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li{
     margin: 0 10px;
     color:#9d9ea2;
+}
+
+#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li.nothing{
+    line-height: 50px;
+    font-size: 28px;
 }
 
 #users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li span{
@@ -894,7 +905,7 @@ section {
     text-align: end;
     top: 10px;
     right: 0;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     color:#9d9ea2;
 }
@@ -1019,7 +1030,7 @@ section {
 
 #profile_section02 .profile_left_section .profile_sns_section ul{
     margin-left: 100px;
-    width: 300px;
+    width: 320px;
     display: flex;
     justify-content: space-evenly;
 }
@@ -1030,6 +1041,12 @@ section {
     height: 64px;
     font-size: 32px;
     margin:0 20px;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.nothing{
+    color:#9d9ea2;
+    font-size: 24px;
+    margin-left:26px;
 }
 
 #profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected>i{
@@ -1056,6 +1073,11 @@ section {
     color:#9d9ea2;
 }
 
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected.nothing{
+    font-size: 24px;
+    border:none;
+}
+
 #profile_section02 .profile_left_section .profile_favorite_section .favorite_selected span{
     color:#9d9ea2;
 }
@@ -1077,6 +1099,11 @@ section {
     border-radius: 8px;
     padding:4px 20px;
     color:#9d9ea2;
+}
+
+#profile_section02 .profile_left_section .profile_language_section .language_selected.nothing{
+    font-size: 24px;
+    border:none;
 }
 
 #profile_section02 .profile_left_section .profile_language_section .language_selected span{
@@ -1103,6 +1130,10 @@ section {
     border: 1px solid #9d9ea2;
     border-radius: 4px;
     padding: 10px;
+}
+
+#profile_section02 .profile_right_section .profile_comment_area.nothing {
+    color:#9d9ea2;
 }
 
 /* ##### user_profile.html section end ##### */
@@ -1140,14 +1171,16 @@ section {
 
 #profile_section01 .profile_info_section01 .profile_gender_form {
     position: relative;
+    width: 240px;
     text-align: left;
-    font-size: 20px;
+    font-size: 24px;
     color:#9d9ea2;
 }
 
 #profile_section01 .profile_info_section01 .profile_gender_form button{
     position: relative;
-    font-size: 20px;
+    left: 30px;
+    font-size: 24px;
     margin:0 4px 0 20px;
     color:#384250;
 }
@@ -1158,32 +1191,34 @@ section {
 
 #profile_section01 .profile_info_section01 .profile_age_form{
     position: relative;
-    width: 110px;
+    width: 240px;
     text-align: left;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 24px;
+    margin-top: 4px;
     color:#9d9ea2;
 }
 
 #profile_section01 .profile_info_section01 .profile_age_form input{
-    margin-left: 44px;
+    margin-left: 80px;
     width: 100px;
     font-size: 20px;
 }
 
 #profile_section01 .profile_info_section01 .profile_location_form{
     position: relative;
-    height: 60px;
+    width: 260px;
+    height: 66px;
     text-align: left;
-    font-size: 20px;
+    font-size: 24px;
     color:#9d9ea2;
 }
 
 #profile_section01 .profile_info_section01 .profile_location_form .nation_select{
     position: relative;
     float:right;
-    width: 140px;
+    width: 160px;
     margin-top: 2px;
+    margin-left: 10px;
     padding: 4px 40px 4px 6px;
     text-align: left;
     border: 1px solid #9d9ea2;
@@ -1194,8 +1229,9 @@ section {
 
 #profile_section01 .profile_info_section01 .profile_country_form{
     position: relative;
+    width: 260px;
     text-align: left;
-    font-size: 20px;
+    font-size: 24px;
     color:#9d9ea2;
     margin-top: 10px;
 }
@@ -1203,7 +1239,7 @@ section {
 #profile_section01 .profile_info_section01 .profile_country_form select{
     position: relative;
     float:right;
-    width: 140px;
+    width: 160px;
     margin-top: 2px;
     padding: 4px 40px 4px 6px;
     text-align: left;
@@ -1212,36 +1248,53 @@ section {
     color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.checkbox button{
-    margin-top: -8.4px;
-    position: relative;
-    font-size: 42px;
+#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin-left:140px;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.checkbox button i.disable{
+#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox .sns_selected{
+    position: relative;
+    width: 140px;
     color:#9d9ea2;
+    border:none;
+    margin-right:20px;
+}
+
+#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox .sns_selected #sns{
+    position: relative;
+    width: 140px;
+    padding: 4px 6px;
+    text-align: left;
+    border: 1px solid #9d9ea2;
+    border-radius: 4px;
+    color: #9d9ea2;  
 }
 
 #profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox{
-    margin-left: 20px;
-    width: 540px;
-    height: 70px;
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-wrap: nowrap;    
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected.checkbox{
-    border:none;
-    padding:0;
-}
-
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected.checkbox span{
-    color:#384250;
-}
-
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected.checkbox.disable span{
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected{
+    position: relative;
+    width: 140px;
+    margin-top: 40px;
     color:#9d9ea2;
+    border:none;
+}
+
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected #favorite{
+    position: relative;
+    width: 140px;
+    padding: 4px 6px;
+    text-align: left;
+    border: 1px solid #9d9ea2;
+    border-radius: 4px;
+    color: #9d9ea2;  
 }
 
 #profile_section02 .profile_left_section .profile_language_section .language_checkbox{
@@ -1253,7 +1306,7 @@ section {
 #profile_section02 .profile_left_section .profile_language_section .language_checkbox .language_selected{
     position: relative;
     width: 140px;
-    margin-top: 30px;
+    margin-top: 40px;
     color:#9d9ea2;
     border:none;
 }
@@ -1261,7 +1314,6 @@ section {
 #profile_section02 .profile_left_section .profile_language_section .language_checkbox .language_selected #language{
     position: relative;
     width: 140px;
-    margin-top: 2px;
     padding: 4px 6px;
     text-align: left;
     border: 1px solid #9d9ea2;
@@ -1823,12 +1875,12 @@ section {
 
 #community_detail_section01 .detail_answer_list_area form .answer_modify_confirm_btn{
     position: absolute;
-    top: -10px;
+    top: 0;
     right: -148px;
     text-align: center;
     margin-top: 6px;
     width: 70px;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border: 1px solid #547296;
     border-radius: 20px;
     color: #f6f7f7;
@@ -1840,19 +1892,18 @@ section {
 
 #community_detail_section01 .detail_answer_list_area .answer_modify_cancle_btn{
     position: absolute;
-    top: -10px;
+    top: 34px;
     right: -148px;
     display: inline-block;
     text-align: center;
     margin-top: 6px;
     width: 70px;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border: 1px solid #9d9ea2;
     border-radius: 20px;
-    color:#384250;
+    color:#9d9ea2;
     font-size: 12px;
     background-color:#fff;
-    top: 24px;
     cursor: pointer;
 }
 
@@ -2283,12 +2334,18 @@ section {
 
 /* ##### my_friends.html section ##### */
 
+#myFriendSection{
+    position: relative;
+    width: 620px;
+    height: 560px;
+    overflow: auto;
+}
+
 .my_friend_section {
     position: relative;
     width: 620px;
     height: 120px;
     margin: 8px auto;
-    border: 1px solid #9d9ea2;
 }
 
 .my_friend_section .my_friend_img {
@@ -2306,6 +2363,8 @@ section {
     position: relative;
     width: 500px;
     height: 20px;
+    top:10px;
+    left:10px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -2328,10 +2387,10 @@ section {
 
 .my_friend_section .my_friend_comment {
     position: absolute;
-    margin-top: 20px;
-    margin-left: 130px;
+    margin-top: 22px;
+    margin-left: 140px;
     color: #9d9ea2;
-    font-size: 18px;
+    font-size: 16px;
     text-overflow: ellipsis;
     white-space: normal;
     overflow: hidden;
@@ -2369,8 +2428,8 @@ section {
 }
 
 .my_friend_paging {
-    position: relative;
-    width: 400px;
+    position: absolute;
+    width: 50%;
     height: 40px;
     margin: 0 auto;
     border: 1px solid #547296;
@@ -2381,47 +2440,50 @@ section {
 
 /* ##### request_friend.html section ##### */
 
+#requestFriendSection{
+    position: relative;
+    width: 620px;
+    height: 560px;
+    overflow: auto;
+}
+
 .request_friend_section {
     position: relative;
     width: 620px;
     height: 120px;
     margin: 8px auto;
-    border: 1px solid #9d9ea2;
     border-radius: 4px;
     background-color: #dddfe4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .request_friend_section .request_friend_img {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    margin: 10px 0 0 10px;
+    position: relative;
+    height: 120px;
+    width: 120px;
     background-image: url(../images/default_profile.png);
     background-size: 100px 100px;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #547296;
+    background-color: #f6f7f7;
 }
 
 .request_friend_section .request_friend_info {
     position: relative;
-    width: 300px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left:50px;
+    width: 300px;    
 }
 
 .request_friend_section .request_friend_info .request_friend_name {
     position: relative;
-    margin-left: 200px;
-    font-size: 24px;
+    font-size: 30px;
     color: #384250;
 }
 
 .request_friend_section .request_friend_info .request_friend_nationality {
     position: relative;
-    margin-top: 10px;
     margin-left: 14px;
     font-size: 14px;
     color: #9d9ea2;

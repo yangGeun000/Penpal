@@ -36,7 +36,7 @@
 						<!-- 작성자 이름 -->
 						<div class="detail_content_writer" th:text="${board.writer.memberId}"></div>
 						<!-- 작성자 국적 -->
-						<div class="detail_content_writer_country" th:text="${board.writer.profile.country}" 
+						<div class="detail_content_writer_country" th:text="${board.writer.profile.country}"
 							th:if="${board.writer.profile != null}"></div>
 					</div>
 				</div>
@@ -51,7 +51,8 @@
 						<div class="answer_writer" th:text="${loginMember.name}">
 							<!-- 로그인 멤버 닉네임 -->
 						</div>
-						<div class="answer_writer_country" th:if="${loginMember.profile != null}" th:text="${loginMember.profile.country}">
+						<div class="answer_writer_country" th:if="${loginMember.profile != null}"
+							th:text="${loginMember.profile.country}">
 							<!-- 로그인 멤버 국적 -->
 						</div>
 					</div>
@@ -89,18 +90,19 @@
 							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 							<div class="detail_answer_modify">
 								<label for="content" class="form-label"></label>
-								<textarea th:field="*{content}" rows="2" th:text="${content}" th:value="${content}" style="z-index: 50;"></textarea>
+								<textarea th:field="*{content}" rows="2" th:text="${content}" th:value="${content}"
+									style="z-index: 50;"></textarea>
 							</div>
-							<input th:id="|answer_modify_confirm_btn_${answer.id}|" class="answer_modify_confirm_btn btn" value="Confirm" type="submit">
+							<input th:id="|answer_modify_confirm_btn_${answer.id}|"
+								class="answer_modify_confirm_btn btn" value="Confirm" type="submit">
 							<button class="answer_modify_cancle_btn" type="button">
 								Cancle
 							</button>
 						</form>
-						
+
 						<!-- //수정폼 -->
 						<a th:id="|answer_${answer.id}|" style="visibility: inherit">
-							<div class="answer_date"
-								th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+							<div class="answer_date" th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
 							<div class="answer_content" th:text="${answer.content}">
 							</div>
 						</a>
@@ -178,9 +180,6 @@
 			})
 
 		})
-		
-		
-		
 	</script>
 
 	<script>
