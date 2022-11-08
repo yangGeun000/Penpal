@@ -35,11 +35,11 @@
 							<div class="profile_gender_form" name="gender">
 								Gender<br>
 								<label for="gender"></label>
-								<input class="gender_select_btn disable" type="hidden" th:field="*{gender}" value="${gender}">
-								<button class="gender_male_btn disable" type="button" name="gender" id="male">
+								<input class="gender_select_btn" type="hidden" th:field="*{gender}" value="${gender}">
+								<button class="gender_btn male disable" type="button" name="gender" id="male">
 									Male
 								</button>
-								<button class="gender_female_btn disable" type="button" name="gender" id="female">
+								<button class="gender_btn female disable" type="button" name="gender" id="female">
 									Female
 								</button>
 								<!-- 유저 성별 -->
@@ -77,38 +77,35 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div class="profile_country_map">
-						 유저 거주 국가 기반 지도상 위치
-					</div> -->
 				</div>
 			</section>
 			<section id="profile_section02">
 				<div class="profile_left_section">
 					<div class="profile_sns_section">
 						<h1>SNS</h1>
-						<ul class="language_checkbox">
-							<li class="language_selected">
+						<ul class="sns_checkbox">
+							<li class="sns_selected">
 								<div>
-									<select th:field="*{sns1}">
-										<option value="" selected>sns1</option>
+									<select id="sns" th:field="*{sns1}">
+										<option value="" selected>SNS 1</option>
+										<option th:each="sns : ${sns}" th:value="${sns}"
+											th:text="${sns.name}"></option>	
+									</select>
+								</div>
+							</li>
+							<li class="sns_selected">
+								<div>
+									<select id="sns" th:field="*{sns2}">
+										<option value="" selected>SNS 2</option>
 										<option th:each="sns : ${sns}" th:value="${sns}"
 											th:text="${sns.name}"></option>
 									</select>
 								</div>
 							</li>
-							<li class="language_selected">
+							<li class="sns_selected">
 								<div>
-									<select th:field="*{sns2}">
-										<option value="" selected>sns2</option>
-										<option th:each="sns : ${sns}" th:value="${sns}"
-											th:text="${sns.name}"></option>
-									</select>
-								</div>
-							</li>
-							<li class="language_selected">
-								<div>
-									<select th:field="*{sns3}">
-										<option value="" selected>sns3</option>
+									<select id="sns" th:field="*{sns3}">
+										<option value="" selected>SNS 3</option>
 										<option th:each="sns : ${sns}" th:value="${sns}"
 											th:text="${sns.name}"></option>
 									</select>
@@ -118,29 +115,29 @@
 					</div>
 					<div class="profile_favorite_section">
 						<h1>FAVORITES</h1>
-						<ul class="language_checkbox">
-							<li class="language_selected">
+						<ul class="favorite_checkbox">
+							<li class="favorite_selected">
 								<div>
-									<select th:field="*{favorite1}">
-										<option value="" selected>favorite1</option>
+									<select id="favorite" th:field="*{favorite1}">
+										<option value="" selected>Favorite 1</option>
 										<option th:each="favorite : ${favorite}" th:value="${favorite}"
 											th:text="${favorite.name}"></option>
 									</select>
 								</div>
 							</li>
-							<li class="language_selected">
+							<li class="favorite_selected">
 								<div>
-									<select th:field="*{favorite2}">
-										<option value="" selected>favorite2</option>
+									<select id="favorite" th:field="*{favorite2}">
+										<option value="" selected>Favorite 2</option>
 										<option th:each="favorite : ${favorite}" th:value="${favorite}"
 											th:text="${favorite.name}"></option>
 									</select>
 								</div>
 							</li>
-							<li class="language_selected">
+							<li class="favorite_selected">
 								<div>
-									<select th:field="*{favorite3}">
-										<option value="" selected>favorite3</option>
+									<select id="favorite" th:field="*{favorite3}">
+										<option value="" selected>Favorite 3</option>
 										<option th:each="favorite : ${favorite}" th:value="${favorite}"
 											th:text="${favorite.name}"></option>
 									</select>
@@ -154,8 +151,8 @@
 							<li class="language_selected">
 								<!-- th:if로 유저 LANGUAGE1 -->
 								<div>
-									<select th:field="*{language1}">
-										<option value="" selected>Languages1</option>
+									<select id="language" th:field="*{language1}">
+										<option value="" selected>Language 1</option>
 										<option th:each="language : ${language}" th:value="${language}"
 											th:text="${language.name}"></option>
 									</select>
@@ -164,8 +161,8 @@
 							<li class="language_selected">
 								<!-- th:if로 유저 LANGUAGE2 -->
 								<div>
-									<select th:field="*{language2}">
-										<option value="" selected>Languages2</option>
+									<select id="language" th:field="*{language2}">
+										<option value="" selected>Language 2</option>
 										<option th:each="language : ${language}" th:value="${language}"
 											th:text="${language.name}"></option>
 									</select>
@@ -174,8 +171,8 @@
 							<li class="language_selected">
 								<!-- th:if로 유저 LANGUAGE3 -->
 								<div>
-									<select th:field="*{language3}">
-										<option value="" selected>Languages3</option>
+									<select id="language" th:field="*{language3}">
+										<option value="" selected>Language 3</option>
 										<option th:each="language : ${language}" th:value="${language}"
 											th:text="${language.name}"></option>
 									</select>
@@ -195,59 +192,26 @@
 		</form>
 	</div>
 	<script>
-		
-		$("profile_sns_section").ready(function () {
-			$("button").click(function (e) {
-				if ($(this).children("i").hasClass("disable")) {
-					$(this).children("i").removeClass("disable");
-					
-				} else {
-					$(this).children("i").addClass("disable");
-				}
-			})
-		}) // by 조성빈, sns 아이콘 클릭하면 색 변환 기능
-	
-		$("profile_favorite_section").ready(function (section) {
-			$("button").click(function (e) {
-				if ($(this).children("li").hasClass("disable")) {
-					$(this).children("li").removeClass("disable");
+		var selectedGender = $(".gender_select_btn").val();
+		genderDisable();
 
-				} else {
-					$(this).children("li").addClass("disable");
-				}
-			})
-		}) // by 조성빈, favorite tag 클릭하면 색 변환 기능
-
-		$(".profile_gender_form").ready(function () {
-			$("button").click(function (e) {
-				if ($(".gender_male_btn").hasClass("disable")) {
-					$(".gender_male_btn").removeClass("disable");
-					$(".gender_female_btn").addClass("disable");
-					document.querySelector('.gender_select_btn').value = 'Male';
-				} else {
-					$(".gender_female_btn").removeClass("disable");
-					$(".gender_male_btn").addClass("disable");
-					document.querySelector('.gender_select_btn').value = 'Female'
-				}
-			})
-		}) // by 조성빈, gender button 클릭하면 남/여 전환 기능
-		
-		
-		const confirm_btn = document.getElementById("confirm_btn");
-		confirm_btn.addEventListener('click', function () {
-			if($('.fa-twitter').hasClass('disable') == false){
-				document.querySelector('.sns1_select_btn ').value='twitter'
-			}
-			if($('.fa-facebook-f').hasClass('disable') == false){
-				document.querySelector('.sns2_select_btn ').value='facebook'
-			}
-			if($('.fa-instagram').hasClass('disable') == false){
-				document.querySelector('.sns3_select_btn ').value='instagram'
-			}
-			document.getElementById('profileForm').submit();
-	
+		$(".gender_btn").on('click', function(){
+			selectedGender = this.id;
+			$(".gender_select_btn").val(this.id);
+			genderDisable();
 		})
+
+		function genderDisable(){
+			if(selectedGender == 'male'){
+				$("#male").removeClass("disable");
+				$("#female").addClass("disable");
+			}else if(selectedGender == 'female'){
+				$("#male").addClass("disable");
+				$("#female").removeClass("disable");
+			}
+		} // by 조성빈, gender button 클릭하면 남/여 전환 기능
 	</script>
+        
 </div>
 
 </html>

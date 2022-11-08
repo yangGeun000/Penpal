@@ -32,51 +32,59 @@
         <section id="users_section02">
             <!-- 유저 약식 프로필 리스트  -->
             <div class="users_profiles">
-                <div class="user_profile_view" th:each="profile : ${paging}" >
+                <div class="user_profile_view" th:each="profile : ${paging}">
                     <!-- 해당 뷰에 th:each 예정 -->
                     <a th:href="@{|users/profile/${profile.member.id}|}">
-                    <div class="user_profile_img" >
-                        <!-- 프로필 이미지 data -->
-                    </div>
+                        <div class="user_profile_img">
+                            <!-- 프로필 이미지 data -->
+                        </div>
                     </a>
-                        <!-- by 장유란, 프로필 유저 네임 추가 -->
+                    <!-- by 장유란, 프로필 유저 네임 추가 -->
                     <h3 class="user_profile_name" th:text="${profile.nickname}"></h3>
                     <h5 class="user_profile_country" th:text="${profile.country.name}"></h5>
                     <div class="user_profile_addline01"></div>
                     <div class="user_profile_sns">
                         <ul>
                             <li class="sns_icon_selected" th:if="${profile.sns1} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'twitter'" ></i>
-                            <i class="fab fa-facebook-f" th:if = "${profile.sns1} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if = "${profile.sns1} == 'instagram'"></i>
-                        </li>
-                        <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'twitter'" ></i>
-                            <i class="fab fa-facebook-f" th:if = "${profile.sns2} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if = "${profile.sns2} == 'instagram'"></i>
-                        </li>
-                        <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'twitter'" ></i>
-                            <i class="fab fa-facebook-f" th:if = "${profile.sns3} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if = "${profile.sns3} == 'instagram'"></i>
-                        </li>
+                                <i class="fab fa-twitter" th:if="${profile.sns1} == 'Twitter'"></i>
+                                <i class="fab fa-facebook-f" th:if="${profile.sns1} == 'Facebook'"></i>
+                                <i class="fab fa-instagram" th:if="${profile.sns1} == 'Instagram'"></i>
+                            </li>
+                            <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
+                                <i class="fab fa-twitter" th:if="${profile.sns2} == 'Twitter'"></i>
+                                <i class="fab fa-facebook-f" th:if="${profile.sns2} == 'Facebook'"></i>
+                                <i class="fab fa-instagram" th:if="${profile.sns2} == 'Instagram'"></i>
+                            </li>
+                            <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
+                                <i class="fab fa-twitter" th:if="${profile.sns3} == 'Twitter'"></i>
+                                <i class="fab fa-facebook-f" th:if="${profile.sns3} == 'Facebook'"></i>
+                                <i class="fab fa-instagram" th:if="${profile.sns3} == 'Instagram'"></i>
+                            </li>
+                            <li class="sns_icon_selected nothing"
+                                th:if="${profile.sns1} == '' and ${profile.sns2} == '' and ${profile.sns3} == ''">
+                                none
+                            </li>
                         </ul>
                         <!-- 프로필 유저 SNS data -->
                     </div>
                     <div class="user_profile_addline02"></div>
                     <div class="user_profile_favorite">
                         <ul>
-                            <li class="favorite_selected" >
-                                #<span th:if="${profile.favorite1 != null}" th:text="' '+${profile.favorite1}">
-                                </span>
+                            <li class="favorite_selected" th:if="${profile.favorite1} != ''"
+                                th:text="'# '+${profile.favorite1}">
+                                <!-- 유저 FAVORITE1 -->
                             </li>
-                            <li class="favorite_selected">
-                                #<span th:if="${profile.favorite2 != null}" th:text="' '+${profile.favorite2}">
-                                </span>
+                            <li class="favorite_selected" th:if="${profile.favorite2} != ''"
+                                th:text="'# '+${profile.favorite2}">
+                                <!-- 유저 FAVORITE2 -->
                             </li>
-                            <li class="favorite_selected">
-                                #<span th:if="${profile.favorite3 != null}" th:text="' '+${profile.favorite3}">
-                                </span>
+                            <li class="favorite_selected" th:if="${profile.favorite3} != ''"
+                                th:text="'# '+${profile.favorite3}">
+                                <!-- 유저 FAVORITE3 -->
+                            </li>
+                            <li class="favorite_selected nothing"
+                                th:if="${profile.favorite1} == '' and ${profile.favorite2} == '' and ${profile.favorite3} == ''">
+                                none
                             </li>
                         </ul>
                     </div>
@@ -89,8 +97,8 @@
                     <ul class="pagination">
                         <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
                             <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
-							<span>
-								<</span> </a> </li> <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                                <span>
+                                    <</span> </a> </li> <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
                                                         th:if="${page >= paging.number-5 and page <= paging.number+5}"
                                                         th:classappend="${page == paging.number} ? 'active'" class="page-item">
                         <a th:text="${page+1}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>

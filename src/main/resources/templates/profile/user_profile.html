@@ -39,7 +39,7 @@
                     <!-- 프로필 이미지 -->
                 </div>
                 <div class="profile_info_data">
-                    <div class="profile_name" th:text="${profile.member.name}">
+                    <div class="profile_name" th:text="${profile.nickname}">
                         <!-- 유저네임 -->
                     </div>
                     <h1 class="profile_last_date">
@@ -53,10 +53,10 @@
                     <div class="profile_info_left">
                         <div class="profile_gender">
                             Gender<br> <!-- th:if문 적용하여 gender 출력 -->
-                            <span class="profile_gender_data" th:if="${profile.gender} == 'Male'">
+                            <span class="profile_gender_data" th:if="${profile.gender} == 'male'">
                                 Male
                             </span>
-                            <span class="profile_gender_data" th:if="${profile.gender} == 'Female'">
+                            <span class="profile_gender_data" th:if="${profile.gender} == 'female'">
                                 Female
                             </span>
                             <!-- 유저 성별 -->
@@ -90,49 +90,66 @@
                 <div class="profile_sns_section">
                     <h1>SNS</h1>
                     <ul>
-                        <!-- 임시로 sns1: twitter, sns2: facebook, sns3: instagram -->
                         <li class="sns_icon_selected" th:if="${profile.sns1} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'twitter'"></i>
-                            <i class="fab fa-facebook-f" th:if="${profile.sns1} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if="${profile.sns1} == 'instagram'"></i>
+                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'Twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns1} == 'Facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns1} == 'Instagram'"></i>
                         </li>
                         <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'twitter'"></i>
-                            <i class="fab fa-facebook-f" th:if="${profile.sns2} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if="${profile.sns2} == 'instagram'"></i>
+                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'Twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns2} == 'Facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns2} == 'Instagram'"></i>
                         </li>
                         <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'twitter'"></i>
-                            <i class="fab fa-facebook-f" th:if="${profile.sns3} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if="${profile.sns3} == 'instagram'"></i>
+                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'Twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns3} == 'Facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns3} == 'Instagram'"></i>
+                        </li>
+                        <li class="sns_icon_selected nothing"
+                            th:if="${profile.sns1} == '' and ${profile.sns2} == '' and ${profile.sns3} == ''">
+                            none
                         </li>
                     </ul>
                 </div>
                 <div class="profile_favorite_section">
                     <h1>FAVORITES</h1>
                     <ul>
-                        <li class="favorite_selected" th:text="'# '+${profile.favorite1}">
+                        <li class="favorite_selected" th:if="${profile.favorite1} != ''"
+                            th:text="'# '+${profile.favorite1}">
                             <!-- 유저 FAVORITE1 -->
                         </li>
-                        <li class="favorite_selected" th:text="'# '+${profile.favorite2}">
+                        <li class="favorite_selected" th:if="${profile.favorite2} != ''"
+                            th:text="'# '+${profile.favorite2}">
                             <!-- 유저 FAVORITE2 -->
                         </li>
-                        <li class="favorite_selected" th:text="'# '+${profile.favorite3}">
+                        <li class="favorite_selected" th:if="${profile.favorite3} != ''"
+                            th:text="'# '+${profile.favorite3}">
                             <!-- 유저 FAVORITE3 -->
+                        </li>
+                        <li class="favorite_selected nothing"
+                            th:if="${profile.favorite1} == '' and ${profile.favorite2} == '' and ${profile.favorite3} == ''">
+                            none
                         </li>
                     </ul>
                 </div>
                 <div class="profile_language_section">
                     <h1>LANGUAGES</h1>
                     <ul>
-                        <li class="language_selected" th:text="'# '+${profile.language1}">
+                        <li class="language_selected" th:if="${profile.language1} != ''"
+                            th:text="'# '+${profile.language1}">
                             <!-- 유저 LANGUAGE1 -->
                         </li>
-                        <li class="language_selected" th:text="'# '+${profile.language2}">
+                        <li class="language_selected" th:if="${profile.language2} != ''"
+                            th:text="'# '+${profile.language2}">
                             <!-- 유저 LANGUAGE2 -->
                         </li>
-                        <li class="language_selected" th:text="'# '+${profile.language3}">
+                        <li class="language_selected" th:if="${profile.language3} != ''"
+                            th:text="'# '+${profile.language3}">
                             <!-- 유저 LANGUAGE3 -->
+                        </li>
+                        <li class="language_selected nothing"
+                            th:if="${profile.language1} == '' and ${profile.language2} == '' and ${profile.language3} == ''">
+                            none
                         </li>
                     </ul>
                 </div>
@@ -140,8 +157,10 @@
             <div class="profile_right_section">
                 <div class="profile_comment_section">
                     <h1>Comment</h1>
-                    <div class="profile_comment_area" th:text="${profile.comment}">
-                        <!-- 유저 comment -->
+                    <div class="profile_comment_area" th:if="${profile.comment != ''}" th:text="${profile.comment}">
+                    </div>
+                    <div class="profile_comment_area nothing" th:if="${profile.comment == ''}">
+                        no comment
                     </div>
                 </div>
             </div>
