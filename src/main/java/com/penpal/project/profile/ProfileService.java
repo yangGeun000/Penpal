@@ -73,10 +73,12 @@ public class ProfileService {
 	
 	// 프로필 생성
     public void create(
-    		String nickname, String gender, Integer age,
+    		String nickname, String gender, int age,
     		String comment, Member member,
     		LocationList location, CountryList country,
-    		MemberSns memberSns
+    		String sns1, String sns2, String sns3,
+    		String favorite1, String favorite2, String favorite3,
+    		String language1, String language2, String language3
     		) {
     	System.out.println("service");
         Profile p = new Profile();
@@ -87,8 +89,45 @@ public class ProfileService {
         p.setMember(member);
         p.setLocation(location);
         p.setCountry(country);
-        p.setMember(member);
-        p.setSns(memberSns);
+        p.setSns1(sns1);
+        p.setSns2(sns2);
+        p.setSns3(sns3);
+        p.setFavorite1(favorite1);
+        p.setFavorite2(favorite2);
+        p.setFavorite3(favorite3);
+        p.setLanguage1(language1);
+        p.setLanguage2(language2);
+        p.setLanguage3(language3);
+        
+        this.profileRepository.save(p);
+    }
+    
+ // 프로필 수정
+    public void modify(
+    		String nickname, String gender, int age,
+    		String comment, Profile profile,
+    		LocationList location, CountryList country,
+    		String sns1, String sns2, String sns3,
+    		String favorite1, String favorite2, String favorite3,
+    		String language1, String language2, String language3
+    		) {
+    	System.out.println("service");
+        Profile p = profile;
+        p.setNickname(nickname);
+        p.setGender(gender);
+        p.setAge(age);
+        p.setComment(comment);
+        p.setLocation(location);
+        p.setCountry(country);
+        p.setSns1(sns1);
+        p.setSns2(sns2);
+        p.setSns3(sns3);
+        p.setFavorite1(favorite1);
+        p.setFavorite2(favorite2);
+        p.setFavorite3(favorite3);
+        p.setLanguage1(language1);
+        p.setLanguage2(language2);
+        p.setLanguage3(language3);
         
         this.profileRepository.save(p);
     }

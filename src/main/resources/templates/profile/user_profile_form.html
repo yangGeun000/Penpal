@@ -2,7 +2,7 @@
 
 <div layout:fragment="content">
 	<div id="wrap">
-		<form th:action="@{|/users/profile/create/${loginMember.id}|}" th:object="${profileForm}" method="post">
+		<form th:action="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}" th:object="${profileForm}" method="post">
 			<!-- 프로필 수정&등록 폼 -->
 			<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
@@ -28,14 +28,13 @@
 					</button>
 					<div class="profile_info_data">
 						<label for="nickname" class="form-label"></label>
-						<input type="text" class="profile_name_form" id="nickname" name="nickname">
+						<input type="text" class="profile_name_form" th:field="*{nickname}">
 						<!-- 유저네임 -->
 						<div class="profile_info_left">
 							<div class="profile_gender_form" name="gender">
 								Gender<br>
 								<label for="gender"></label>
-								<input class="gender_select_btn disable" type="hidden" name="gender" id="gender"
-									value="${gender}">
+								<input class="gender_select_btn disable" type="hidden" th:field="*{gender}" value="${gender}">
 								<button class="gender_male_btn disable" type="button" name="gender" id="male">
 									Male
 								</button>
@@ -47,7 +46,7 @@
 							<div class="profile_age_form">
 								Age<br>
 								<label for="age"></label>
-								<input type="text" name="age" id="age">
+								<input type="number" step="1" min = "0" max = "100" th:field="*{age}">
 								<!-- 유저 연령 -->
 							</div>
 						</div>
@@ -86,108 +85,66 @@
 				<div class="profile_left_section">
 					<div class="profile_sns_section">
 						<h1>SNS</h1>
-						<ul>
-							<!-- script로 색상 전환, disable이 있으면 미선택(연한색) -->
-
-							<li class="sns_icon_selected checkbox">
-								<!-- 유저 SNS1 -->
-								<input class="sns1_select_btn disable" type="hidden" name="sns1" th:value="${sns1}">
-								<button type="button" name="twitter" >
-									<i class="fab fa-twitter disable"></i>
-								</button>
+						<ul class="language_checkbox">
+							<li class="language_selected">
+								<div>
+									<select th:field="*{sns1}">
+										<option value="" selected>sns1</option>
+										<option th:each="sns : ${sns}" th:value="${sns}"
+											th:text="${sns.name}"></option>
+									</select>
+								</div>
 							</li>
-							<li class="sns_icon_selected checkbox">
-								<input class="sns2_select_btn disable" type="hidden" name="sns2">
-								<!-- 유저 SNS2 -->
-								<button type="button" name="facebook" id=2>
-									<i class="fab fa-facebook-f disable"></i>
-								</button>
+							<li class="language_selected">
+								<div>
+									<select th:field="*{sns2}">
+										<option value="" selected>sns2</option>
+										<option th:each="sns : ${sns}" th:value="${sns}"
+											th:text="${sns.name}"></option>
+									</select>
+								</div>
 							</li>
-							<li class="sns_icon_selected checkbox">
-								<input class="sns3_select_btn disable" type="hidden" name="sns3" >
-								<!-- 유저 SNS3 -->
-								<button type="button" name="instagram" id=3>
-									<i class="fab fa-instagram disable"></i>
-								</button>
+							<li class="language_selected">
+								<div>
+									<select th:field="*{sns3}">
+										<option value="" selected>sns3</option>
+										<option th:each="sns : ${sns}" th:value="${sns}"
+											th:text="${sns.name}"></option>
+									</select>
+								</div>
 							</li>
 						</ul>
 					</div>
 					<div class="profile_favorite_section">
 						<h1>FAVORITES</h1>
-						<ul class="favorite_checkbox">
-							<!-- script로 색상 전환, disable이 있으면 미선택(연한색) -->
-							<button type="button" name="game" >
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Game
-									</span>
-								</li>
-							</button>
-							<button type="button" name="travel">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Travel
-									</span>
-								</li>
-							</button>
-							<button type="button" name="sports">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Sports
-									</span>
-								</li>
-							</button>
-							<button type="button" name="cooking">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Cooking
-									</span>
-								</li>
-							</button>
-							<button type="button">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Youtube
-									</span>
-								</li>
-							</button>
-							<button type="button">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Netflix
-									</span>
-								</li>
-							</button>
-							<button type="button">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Game
-									</span>
-								</li>
-							</button>
-							<button type="button">
-								<li class="favorite_selected checkbox disable">
-									<!-- th:if로 유저 FAVORITE1 -->
-									#<span>
-										<!-- 여기에 선택한 favorite1 data -->
-										Game
-									</span>
-								</li>
-							</button>
+						<ul class="language_checkbox">
+							<li class="language_selected">
+								<div>
+									<select th:field="*{favorite1}">
+										<option value="" selected>favorite1</option>
+										<option th:each="favorite : ${favorite}" th:value="${favorite}"
+											th:text="${favorite.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="language_selected">
+								<div>
+									<select th:field="*{favorite2}">
+										<option value="" selected>favorite2</option>
+										<option th:each="favorite : ${favorite}" th:value="${favorite}"
+											th:text="${favorite.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="language_selected">
+								<div>
+									<select th:field="*{favorite3}">
+										<option value="" selected>favorite3</option>
+										<option th:each="favorite : ${favorite}" th:value="${favorite}"
+											th:text="${favorite.name}"></option>
+									</select>
+								</div>
+							</li>
 						</ul>
 					</div>
 					<div class="profile_language_section">
@@ -196,28 +153,28 @@
 							<li class="language_selected">
 								<!-- th:if로 유저 LANGUAGE1 -->
 								<div>
-									<select name="language" id="language" th:field="*{language}">
-										<option value="" selected>Languages</option>
+									<select th:field="*{language1}">
+										<option value="" selected>Languages1</option>
 										<option th:each="language : ${language}" th:value="${language}"
 											th:text="${language.name}"></option>
 									</select>
 								</div>
 							</li>
 							<li class="language_selected">
-								<!-- th:if로 유저 LANGUAGE1 -->
+								<!-- th:if로 유저 LANGUAGE2 -->
 								<div>
-									<select name="language" id="language" th:field="*{language}">
-										<option value="" selected>Languages</option>
+									<select th:field="*{language2}">
+										<option value="" selected>Languages2</option>
 										<option th:each="language : ${language}" th:value="${language}"
 											th:text="${language.name}"></option>
 									</select>
 								</div>
 							</li>
 							<li class="language_selected">
-								<!-- th:if로 유저 LANGUAGE1 -->
+								<!-- th:if로 유저 LANGUAGE3 -->
 								<div>
-									<select name="language" id="language" th:field="*{language}">
-										<option value="" selected>Languages</option>
+									<select th:field="*{language3}">
+										<option value="" selected>Languages3</option>
 										<option th:each="language : ${language}" th:value="${language}"
 											th:text="${language.name}"></option>
 									</select>
@@ -230,14 +187,14 @@
 					<div class="profile_comment_section">
 						<h1>Comment</h1>
 						<!-- 유저 comment -->
-						<textarea class="profile_comment_area"></textarea>
+						<textarea class="profile_comment_area" th:field="*{comment}"></textarea>
 					</div>
 				</div>
 			</section>
 		</form>
 	</div>
 	<script>
-	
+		
 		$("profile_sns_section").ready(function () {
 			$("button").click(function (e) {
 				if ($(this).children("i").hasClass("disable")) {
@@ -260,7 +217,7 @@
 			})
 		}) // by 조성빈, favorite tag 클릭하면 색 변환 기능
 
-		$("profile_gender_form").ready(function () {
+		$(".profile_gender_form").ready(function () {
 			$("button").click(function (e) {
 				if ($(".gender_male_btn").hasClass("disable")) {
 					$(".gender_male_btn").removeClass("disable");
@@ -290,7 +247,6 @@
 	
 		})
 	</script>
-	
 </div>
 
 </html>

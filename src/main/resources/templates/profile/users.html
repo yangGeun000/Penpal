@@ -41,19 +41,25 @@
                     </a>
                         <!-- by 장유란, 프로필 유저 네임 추가 -->
                     <h3 class="user_profile_name" th:text="${profile.nickname}"></h3>
-                    <h5 class="user_profile_country" th:text="${profile.country}"></h5>
+                    <h5 class="user_profile_country" th:text="${profile.country.name}"></h5>
                     <div class="user_profile_addline01"></div>
                     <div class="user_profile_sns">
                         <ul>
-                            <li class="sns_icon_selected" th:if="${profile.sns.sns1 != null}">
-                                <i class="fab fa-twitter"></i>
-                            </li>
-                            <li class="sns_icon_selected" th:if="${profile.sns.sns2 != null}">
-                                <i class="fab fa-facebook-f"></i>
-                            </li>
-                            <li class="sns_icon_selected" th:if="${profile.sns.sns3 != null}">
-                                <i class="fab fa-instagram"></i>
-                            </li>
+                            <li class="sns_icon_selected" th:if="${profile.sns1} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'twitter'" ></i>
+                            <i class="fab fa-facebook-f" th:if = "${profile.sns1} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if = "${profile.sns1} == 'instagram'"></i>
+                        </li>
+                        <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'twitter'" ></i>
+                            <i class="fab fa-facebook-f" th:if = "${profile.sns2} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if = "${profile.sns2} == 'instagram'"></i>
+                        </li>
+                        <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'twitter'" ></i>
+                            <i class="fab fa-facebook-f" th:if = "${profile.sns3} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if = "${profile.sns3} == 'instagram'"></i>
+                        </li>
                         </ul>
                         <!-- 프로필 유저 SNS data -->
                     </div>
@@ -61,15 +67,15 @@
                     <div class="user_profile_favorite">
                         <ul>
                             <li class="favorite_selected" >
-                                #<span th:if="${profile.favorite.favorite1 != null}" th:text="' '+${profile.favorite.favorite1}">
+                                #<span th:if="${profile.favorite1 != null}" th:text="' '+${profile.favorite1}">
                                 </span>
                             </li>
                             <li class="favorite_selected">
-                                #<span th:if="${profile.favorite.favorite2 != null}" th:text="' '+${profile.favorite.favorite2}">
+                                #<span th:if="${profile.favorite2 != null}" th:text="' '+${profile.favorite2}">
                                 </span>
                             </li>
                             <li class="favorite_selected">
-                                #<span th:if="${profile.favorite.favorite3 != null}" th:text="' '+${profile.favorite.favorite3}">
+                                #<span th:if="${profile.favorite3 != null}" th:text="' '+${profile.favorite3}">
                                 </span>
                             </li>
                         </ul>

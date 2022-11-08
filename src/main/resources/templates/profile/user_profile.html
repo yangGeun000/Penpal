@@ -26,7 +26,7 @@
                         });
                     }
                 </script>
-                <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}" th:onclick="|location.href='/users/profile/modify/${id}'|">
+                <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}" th:onclick="|location.href='/users/profile/modify'|">
                     MODIFY <!-- 로그인 id와 프로필 페이지 id 가 같으면 버튼 등장(본인 페이지일 때) -->
                 </button>
             </div>
@@ -49,10 +49,10 @@
                     <div class="profile_info_left">
                         <div class="profile_gender">
                             Gender<br> <!-- th:if문 적용하여 gender 출력 -->
-                            <span class="profile_gender_data" th:if="${profile.gender} == 0">
+                            <span class="profile_gender_data" th:if="${profile.gender} == 'Male'">
                                 Male
                             </span>
-                            <span class="profile_gender_data" th:if="${profile.gender} == 1">
+                            <span class="profile_gender_data" th:if="${profile.gender} == 'Female'">
                                 Female
                             </span>
                             <!-- 유저 성별 -->
@@ -86,30 +86,33 @@
                 <div class="profile_sns_section">
                     <h1>SNS</h1>
                     <ul> <!-- 임시로 sns1: twitter, sns2: facebook, sns3: instagram -->
-                        <li class="sns_icon_selected" th:if="${profile.sns.sns1 != null}">
-                            <!-- 유저 SNS1 -->
-                            <i class="fab fa-twitter"></i>
+                        <li class="sns_icon_selected" th:if="${profile.sns1} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'twitter'" ></i>
+                            <i class="fab fa-facebook-f" th:if = "${profile.sns1} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if = "${profile.sns1} == 'instagram'"></i>
                         </li>
-                        <li class="sns_icon_selected" th:if="${profile.sns.sns2 != null}">
-                            <!-- 유저 SNS2 -->
-                            <i class="fab fa-facebook-f"></i>
+                        <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'twitter'" ></i>
+                            <i class="fab fa-facebook-f" th:if = "${profile.sns2} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if = "${profile.sns2} == 'instagram'"></i>
                         </li>
-                        <li class="sns_icon_selected" th:if="${profile.sns.sns3 != null}">
-                            <!-- 유저 SNS3 -->
-                            <i class="fab fa-instagram"></i>
+                        <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'twitter'" ></i>
+                            <i class="fab fa-facebook-f" th:if = "${profile.sns3} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if = "${profile.sns3} == 'instagram'"></i>
                         </li>
                     </ul>
                 </div>
                 <div class="profile_favorite_section">
                     <h1>FAVORITES</h1>
                     <ul>
-                        <li class="favorite_selected" th:text="'# '+${profile.favorite.favorite1}">
+                        <li class="favorite_selected" th:text="'# '+${profile.favorite1}">
                             <!-- 유저 FAVORITE1 -->
                         </li>
-                        <li class="favorite_selected" th:text="'# '+${profile.favorite.favorite2}">
+                        <li class="favorite_selected" th:text="'# '+${profile.favorite2}">
                             <!-- 유저 FAVORITE2 -->
                         </li>
-                        <li class="favorite_selected" th:text="'# '+${profile.favorite.favorite3}">
+                        <li class="favorite_selected" th:text="'# '+${profile.favorite3}">
                             <!-- 유저 FAVORITE3 -->
                         </li>
                     </ul>
@@ -117,13 +120,13 @@
                 <div class="profile_language_section">
                     <h1>LANGUAGES</h1>
                     <ul>
-                        <li class="language_selected" th:text="'# '+${profile.language.language1}">
+                        <li class="language_selected" th:text="'# '+${profile.language1}">
                             <!-- 유저 LANGUAGE1 -->
                         </li>
-                        <li class="language_selected" th:text="'# '+${profile.language.language2}">
+                        <li class="language_selected" th:text="'# '+${profile.language2}">
                             <!-- 유저 LANGUAGE2 -->
                         </li>
-                        <li class="language_selected" th:text="'# '+${profile.language.language3}">
+                        <li class="language_selected" th:text="'# '+${profile.language3}">
                             <!-- 유저 LANGUAGE3 -->
                         </li>
                     </ul>
