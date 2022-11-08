@@ -65,30 +65,30 @@ public class FriendTest {
 //	}
 
 	// by 안준언, 친구 요청 기능 테스트
-//	@Test
-//	void requestFriend() {
-//		List<Member> all = this.memberRepository.findAll();
-//		Member m1 = all.get(0);
-//		Member m2 = all.get(1);
-//		Member m3 = all.get(2);
-//		Member m4 = all.get(3);
-//		
-//		FriendRequest fr1 = new FriendRequest();
-//		fr1.setReceive(m1);
-//		fr1.setSend(m2);
-//		
-//		FriendRequest fr2 = new FriendRequest();
-//		fr2.setReceive(m1);
-//		fr2.setSend(m3);
-//		
-//		FriendRequest fr3 = new FriendRequest();
-//		fr3.setReceive(m1);
-//		fr3.setSend(m4);
-//		
-//		this.friendRequestRepository.save(fr1);
-//		this.friendRequestRepository.save(fr2);
-//		this.friendRequestRepository.save(fr3);
-//	}
+	@Test
+	void requestFriend() {
+		List<Member> all = this.memberRepository.findAll();
+		Member m1 = all.get(0);
+		Member m2 = all.get(1);
+		Member m3 = all.get(2);
+		Member m4 = all.get(3);
+		
+		FriendRequest fr1 = new FriendRequest();
+		fr1.setReceive(m1);
+		fr1.setSend(m2);
+		
+		FriendRequest fr2 = new FriendRequest();
+		fr2.setReceive(m1);
+		fr2.setSend(m3);
+		
+		FriendRequest fr3 = new FriendRequest();
+		fr3.setReceive(m1);
+		fr3.setSend(m4);
+		
+		this.friendRequestRepository.save(fr1);
+		this.friendRequestRepository.save(fr2);
+		this.friendRequestRepository.save(fr3);
+	}
 	
 //	// by 안준언, 친구 요청 목록 조회 테스트
 //	@Transactional
@@ -125,7 +125,7 @@ public class FriendTest {
 //		
 //	}
 	
-//	// by 안준언, Member PK 값을 참조한 Friend 데이터 생성
+	// by 안준언, Member PK 값을 참조한 Friend 데이터 생성
 //	@Test
 //	void addFriend() {
 //		Optional<Member> member1 = memberRepository.findById(1);
@@ -147,23 +147,18 @@ public class FriendTest {
 //		friendRepository.save(fr1);
 //		
 //		Friend fr2 = new Friend();
-//		fr2.setMine(mb1);
-//		fr2.setFriend(mb3);
+//		fr2.setMine(mb2);
+//		fr2.setFriend(mb1);
 //		friendRepository.save(fr2);
 //		
 //		Friend fr3 = new Friend();
 //		fr3.setMine(mb1);
-//		fr3.setFriend(mb4);
+//		fr3.setFriend(mb3);
 //		friendRepository.save(fr3);
 //		
 //		Friend fr4 = new Friend();
-//		fr4.setMine(mb2);
-//		fr4.setFriend(mb3);
+//		fr4.setMine(mb1);
+//		fr4.setFriend(mb4);
 //		friendRepository.save(fr4);
-//		
-//		Friend fr5 = new Friend();
-//		fr5.setMine(mb2);
-//		fr5.setFriend(mb4);
-//		friendRepository.save(fr5);
 //	}
 }

@@ -3,6 +3,7 @@ package com.penpal.project.friend;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class FriendController {
    private final MemberService memberService;
+   private final FriendService friendService;
+   private final FriendRepository friendRepository;
+   private final FriendRequestRepository friendRequestRepository;
    
    // by 안준언, 친구 리스트 가져오기 (임시)
    @RequestMapping("/getFriend")
@@ -57,5 +61,33 @@ public class FriendController {
 	   friendRequestList.addAll(member.getFriendRequestList());
 	   
 	   return friendRequestList;
+   }
+   
+   // by 안준언, 친구 삭제 (임시)
+   @RequestMapping("/deleteFriend")
+   public void delfriend(@RequestParam HashMap<Object, Object> params) {
+	   Optional<Friend> df = this.friendRepository.findById(Integer.parseInt((String) params.get("friendId")));
+	   Friend friend = df.get();
+	   this.friendService.deleteFriend(friend.getMine(), friend.getFriend());
+	   
+   }
+   
+   // by 안준언, 친구 요청 수락(임시)
+   @RequestMapping("/agreeFriend")
+   @ResponseBody
+   public void agFriend(@RequestParam HashMap<Object, Object> params) {
+	   Optional<FriendRequest> fr = this.friendRequestRepository.findById(Integer.parseInt((String) params.get("friendRequestId")));
+	   FriendRequest friendRequest = fr.get();
+	   this.friendService.agreeFriend(friendRequest.getSend(), friendRequest.getReceive());
+	   
+   }
+   
+   // by 안준언, 친구 요청 거절(임시)
+   @RequestMapping("/rejectFriend")
+   @ResponseBody
+   public void rjFriend(@RequestParam HashMap<Object, Object> params) {
+	   Optional<FriendRequest> fr = this.friendRequestRepository.findById(Integer.parseInt((String) params.get("friendRequestId")));
+	   FriendRequest friendRequest = fr.get();
+	   this.friendService.rejectFriend(friendRequest);
    }
 }

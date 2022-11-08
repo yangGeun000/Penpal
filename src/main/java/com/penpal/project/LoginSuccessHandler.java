@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 	
 	private final MemberRepository mr;
+
 	// by 안준언, 로그인한 세션으로 멤버의 접속 상태를 true로 변경
 	@Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response, Authentication authentication) throws IOException, ServletException{
