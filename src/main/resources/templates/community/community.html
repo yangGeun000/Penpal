@@ -73,7 +73,7 @@
 									<div class="view_profile_writer" th:text="${board.writer.name}">
 										<!-- 글 작성자 닉네임 -->
 									</div>
-									<div class="view_profile_writer_nationality" th:text="${board.writer.profile.country}">
+									<div class="view_profile_writer_nationality" th:if="${board.writer.profile != null}" th:text="${board.writer.profile.country}">
 										<!-- 글 작성자 국적 -->
 									</div>
 								</div>
