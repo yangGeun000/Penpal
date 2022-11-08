@@ -5,7 +5,8 @@
         <section id="profile_section01">
 
             <div class="profile_function_btn_section" sec:authorize="isAuthenticated()">
-                <button id="request_message" th:if="${profile.member.id} != ${loginMember.id}" type="button" value="MESSAGE" onclick="requestMessage()">
+                <button id="request_message" th:if="${profile.member.id} != ${loginMember.id}" type="button"
+                    value="MESSAGE" onclick="requestMessage()">
                     MESSAGE
                     <!-- 채팅 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
@@ -14,8 +15,9 @@
                     <!-- 친구 요청 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
                 <script th:inline="javascript">
-                	// by 구양근
-                	let profile = /*[[${profile}]]*/ "프로필 멤버";
+                    // by 구양근
+                    let profile = /*[[${profile}]]*/ "프로필 멤버";
+
                     function requestMessage() {
                         let msg = {
                             makerId: member.id,
@@ -26,8 +28,10 @@
                         });
                     }
                 </script>
-                <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}" th:onclick="|location.href='/users/profile/modify'|">
-                    MODIFY <!-- 로그인 id와 프로필 페이지 id 가 같으면 버튼 등장(본인 페이지일 때) -->
+                <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}"
+                    th:onclick="|location.href='/users/profile/modify'|">
+                    MODIFY
+                    <!-- 로그인 id와 프로필 페이지 id 가 같으면 버튼 등장(본인 페이지일 때) -->
                 </button>
             </div>
             <div class="profile_info_section01">
@@ -85,21 +89,22 @@
             <div class="profile_left_section">
                 <div class="profile_sns_section">
                     <h1>SNS</h1>
-                    <ul> <!-- 임시로 sns1: twitter, sns2: facebook, sns3: instagram -->
+                    <ul>
+                        <!-- 임시로 sns1: twitter, sns2: facebook, sns3: instagram -->
                         <li class="sns_icon_selected" th:if="${profile.sns1} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'twitter'" ></i>
-                            <i class="fab fa-facebook-f" th:if = "${profile.sns1} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if = "${profile.sns1} == 'instagram'"></i>
+                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns1} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns1} == 'instagram'"></i>
                         </li>
                         <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'twitter'" ></i>
-                            <i class="fab fa-facebook-f" th:if = "${profile.sns2} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if = "${profile.sns2} == 'instagram'"></i>
+                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns2} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns2} == 'instagram'"></i>
                         </li>
                         <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
-                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'twitter'" ></i>
-                            <i class="fab fa-facebook-f" th:if = "${profile.sns3} == 'facebook'"></i>
-                            <i class="fab fa-instagram" th:if = "${profile.sns3} == 'instagram'"></i>
+                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns3} == 'facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns3} == 'instagram'"></i>
                         </li>
                     </ul>
                 </div>
