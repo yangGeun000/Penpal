@@ -122,7 +122,7 @@
 	<script>
 		// by 장유란, modify 관련 script
 		var modify_btn = document.querySelector('.answer_modify');
-
+		var modify_btn_section;
 		$(".answer_modify").on('click', function (e) {
 			//수정대상 지정
 			let targetForm = document.getElementById(e.currentTarget.dataset.id);
@@ -134,7 +134,8 @@
 			targetForm.querySelector('textArea').value = original_content;	
 			//수정 버튼 지정
 			let confirm_btn = targetForm.querySelector('.answer_modify_confirm_btn');
-			
+			//수정, 삭제버튼 지정
+			modify_btn_section = e.currentTarget.parentElement;
 			//수정버튼 클릭시
 			confirm_btn.addEventListener('click', function(e){
 				targetForm.querySelector('.content_null').innerHTML='';
@@ -167,8 +168,19 @@
 			//수정폼 출력, 원본 폼 숨김
 			targetForm.style.visibility = 'inherit';	
 			original_form.style.visibility = 'hidden';
+			modify_btn_section.style.visibility = 'hidden';
+		
+			//answer_modify_cancle_btn
+			$(".answer_modify_cancle_btn").on('click', function (e) {
+				targetForm.style.visibility = 'hidden';	
+				original_form.style.visibility = 'inherit';
+				modify_btn_section.style.visibility = 'inherit';
+			})
 
 		})
+		
+		
+		
 	</script>
 
 	<script>

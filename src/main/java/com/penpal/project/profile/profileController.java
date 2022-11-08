@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Controller
 @Slf4j
-public class ProfileController {
+public class profileController {
 
 	private final ProfileService profileService;
 
