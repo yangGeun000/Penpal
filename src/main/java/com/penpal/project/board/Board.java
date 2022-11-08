@@ -30,7 +30,7 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 50)
+	@Column(length = 20)
 	private String title;
 	
 	@Column(columnDefinition = "TEXT")

@@ -11,7 +11,7 @@ import lombok.Setter;
 public class BoardForm {
     // by 조성빈, 메시지 변경(전체)
     @NotEmpty(message="Enter your Content's Title")
-    @Size(max=50)
+    @Size(max=20)
     private String title;
     
     @NotEmpty(message="Enter your Content")
