@@ -12,8 +12,15 @@ import com.penpal.project.list.CategoryList;
 import com.penpal.project.list.CategoryListRepository;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.CountryListRepository;
+import com.penpal.project.list.FavoriteList;
+import com.penpal.project.list.FavoriteListRepository;
+import com.penpal.project.list.LanguageList;
+import com.penpal.project.list.LanguageListRepository;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.list.LocationListRepository;
+import com.penpal.project.list.SnsList;
+import com.penpal.project.list.SnsListRepository;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +31,9 @@ public class AdminController {
 	private final CategoryListRepository categoryListRepository;
 	private final LocationListRepository locationListRepository;
 	private final CountryListRepository countryListRepository;
+	private final SnsListRepository snsListRepository;
+	private final FavoriteListRepository favoriteListRepository;
+	private final LanguageListRepository languageListRepository;
 
 	@GetMapping("/admin")
 	public String admin(Model model) {
@@ -35,12 +45,23 @@ public class AdminController {
 
 		List<CountryList> countryList = countryListRepository.findAll();
 		model.addAttribute("countryList", countryList);
+		
+		List<SnsList> snsList = snsListRepository.findAll();
+		model.addAttribute("snsList", snsList);
+		
+		List<FavoriteList> favoriteList = favoriteListRepository.findAll();
+		model.addAttribute("favoriteList", favoriteList);
+		
+		List<LanguageList> languageList = languageListRepository.findAll();
+		model.addAttribute("languageList", languageList);
 
 		return "admin/admin";
 	}
 
 	@PostMapping("/admin")
-	public String admin(String categoryName, String locationName, String countryName) {
+	public String admin(
+			String categoryName, String locationName, String countryName,
+			String snsName, String favoriteName, String languageName) {
 		CategoryList category = new CategoryList();
 		category.setName(categoryName);
 		if (categoryName != null) {
@@ -58,6 +79,25 @@ public class AdminController {
 		if (countryName != null) {
 			countryListRepository.save(country);
 		}
+		
+		SnsList sns = new SnsList();
+		sns.setName(snsName);
+		if (snsName != null) {
+			snsListRepository.save(sns);
+		}
+		
+		FavoriteList favorite = new FavoriteList();
+		favorite.setName(favoriteName);
+		if (favoriteName != null) {
+			favoriteListRepository.save(favorite);
+		}
+		
+		LanguageList language = new LanguageList();
+		language.setName(languageName);
+		if (languageName != null) {
+			languageListRepository.save(language);
+		}
+		
 		return "redirect:/admin";
 	}
 
@@ -76,6 +116,24 @@ public class AdminController {
 	@GetMapping("/country/delete/{id}")
 	public String countryDelete(@PathVariable("id") CountryList id) {
 		this.countryListRepository.delete(id);
+		return "redirect:/admin";
+	}
+	
+	@GetMapping("/sns/delete/{id}")
+	public String snsDelete(@PathVariable("id") SnsList id) {
+		this.snsListRepository.delete(id);
+		return "redirect:/admin";
+	}
+	
+	@GetMapping("/favorite/delete/{id}")
+	public String favoriteDelete(@PathVariable("id") FavoriteList id) {
+		this.favoriteListRepository.delete(id);
+		return "redirect:/admin";
+	}
+	
+	@GetMapping("/language/delete/{id}")
+	public String languageDelete(@PathVariable("id") LanguageList id) {
+		this.languageListRepository.delete(id);
 		return "redirect:/admin";
 	}
 }
