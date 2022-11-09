@@ -58,8 +58,7 @@
                     </div>
                     <h1 class="profile_last_date">
                         Last Connect<br>
-                        <span th:text="${profile.lastDate} != null? 
-                        			   ${profile.lastDate} : '- - - - / - - / - -'">
+                        <span th:text="${#temporals.format(profile.lastDate, 'yyyy-MM-dd HH:mm')}">
                             <!-- 여기에 last_date data // by 장유란, : 뒤의 대체택스트('') 제거or수정해도 정상작동 -->
                         </span>
                         <!-- 유저 최근 접속일 -->
