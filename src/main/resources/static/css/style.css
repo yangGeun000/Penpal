@@ -425,7 +425,7 @@ section {
 
 .continent_count .asia_count{
     top: 80px;
-    right: 480px;
+    left: 800px;
 }
 
 .continent_count .north_america_count{
@@ -446,7 +446,7 @@ section {
     top: 240px;
 }
 .continent_count .oceania_count{
-    right: 260px;
+    left: 1050px;
     top: 400px;
 }
 
