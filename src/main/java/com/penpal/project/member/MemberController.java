@@ -33,7 +33,7 @@ public class MemberController {
         }
         
         if(!memberCreateForm.getMemberPw().equals(memberCreateForm.getMemberPw2())) {
-            bindingResult.rejectValue("userPw2", "passwordInCorrect", 
+            bindingResult.rejectValue("memberPw2", "passwordInCorrect", 
                     "2개의 패스워드가 일치하지 않습니다.");
             return "member/signup";
         }

@@ -5,25 +5,28 @@
         <section id="signup_section01">
             <h2 class="signup_text">Sign Up</h2>
             <form class="signup_contents" th:action="@{/member/signup}" th:object="${memberCreateForm}" method="post">
+            	<div  role="alert" th:if="${#fields.hasAnyErrors()}">
+					<div th:each="err : ${#fields.allErrors()}">[[${err}]]</div>
+				</div>
                 <div class="field">
                     <b>ID</b><span id="userid_error1"></span>
-                    <input id="userid" class="userid" type="text" th:field="*{memberId}">
+                    <input class="userid" type="text" th:field="*{memberId}">
                 </div>
                 <div class="field">
                     <b>PASSWORD</b>
-                    <input id=userpw class="userpw" type="password" th:field="*{memberPw}">
+                    <input class="userpw" type="password" th:field="*{memberPw}">
                 </div>
                 <div class="field">
                     <b>Confirm PASSWORD</b>
-                    <input id="userid" class="userpw" type="password" th:field="*{memberPw2}">
+                    <input class="userpw" type="password" th:field="*{memberPw2}">
                 </div>
                 <div class="field">
                     <b>Username</b>
-                    <input id="userid" class="userpw" type="text" th:field="*{name}">
+                    <input class="userpw" type="text" th:field="*{name}">
                 </div>
                 <div class="field">
                     <b>E-Mail</b>
-                    <input id="userid" class="userpw" type="email" th:field="*{email}">
+                    <input class="userpw" type="email" th:field="*{email}">
                 </div>
                 <input class="signup_btn" type="submit" value="SIGN UP">
             </form>
