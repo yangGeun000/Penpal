@@ -1,5 +1,6 @@
 package com.penpal.project.profile;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -96,6 +97,7 @@ public class ProfileService {
         p.setLanguage1(language1);
         p.setLanguage2(language2);
         p.setLanguage3(language3);
+        p.setLastDate(LocalDateTime.now());
         
         this.profileRepository.save(p);
     }
