@@ -13,28 +13,22 @@
                     MESSAGE
                     <!-- 채팅 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
-                <div th:each="friend : ${loginMember.friendList}"
-                    th:if="${profile.member.id} != ${loginMember.id} and ${loginMember.profile != null}">
-                    <div th:each="request : ${loginMember.friendRequestList}">
-                        <div
-                            th:if="${friend.friend.id} != ${profile.member.id} and ${request.send.id} != ${profile.member.id}">
-                            <button type="button" value="ADD FRIENDS" onclick="requestFriend()">
-                                ADD FRIENDS
-                            </button>
-                        </div><!-- 친구 요청 X, 로그인 멤버 != 프로필 멤버 && 친구가 아닐 때 -->
-                        <div
-                            th:if="${friend.friend.id} != ${profile.member.id} and ${request.send.id} == ${loginMember.id}">
-                            <button type="button" value="WAITING">
-                                Wait Response
-                            </button>
-                        </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 // 인데 작동 안 됨 -->
-                        <div
-                            th:if="${friend.friend.id} != ${profile.member.id} and ${request.send.id} == ${profile.member.id}">
-                            <button type="button" value="REQUEST">
-                                Check Request
-                            </button>
-                        </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 -->
-                    </div>
+                <div id="friend_request_variable" th:if="${profile.member.id} != ${loginMember.id} and ${loginMember.profile != null}">
+                    <div>
+                        <button type="button" value="ADD" onclick="requestFriend()">
+                            ADD FRIENDS
+                        </button>
+                    </div><!-- 친구 요청 X, 로그인 멤버 != 프로필 멤버 && 친구가 아닐 때 -->
+                    <div style="display:none;"><!-- 이전 코드 오작동으로 수정 예정 -->
+                        <button type="button" value="WAITING">
+                            Wait Response
+                        </button>
+                    </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 -->
+                    <div style="display:none;"><!-- 이전 코드 오작동으로 수정 예정 -->
+                        <button type="button" value="REQUEST">
+                            Check Request
+                        </button>
+                    </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 -->
                 </div>
                 <script th:inline="javascript">
                     // by 구양근
@@ -196,6 +190,8 @@
                     </div>
                     <div class="profile_comment_area nothing" th:if="${profile.comment == ''}">
                         no comment
+
+                        
                     </div>
                 </div>
             </div>
