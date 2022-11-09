@@ -19,11 +19,15 @@ public class FriendService {
     	Friend f2 = this.friendRepository.findByMineAndFriend(friend, mine);
     	
     	if (f1 == null && f2 == null) {
-    		FriendRequest friendRequest = new FriendRequest();
-    		friendRequest.setSend(mine);
-    		friendRequest.setReceive(friend);
+    		FriendRequest rf1 = this.friendRequestRepository.findBySendAndReceive(mine, friend);
+    		FriendRequest rf2 = this.friendRequestRepository.findBySendAndReceive(friend, friend);
+    		if(rf1 == null && rf2 == null) {
+    			FriendRequest friendRequest = new FriendRequest();
+    			friendRequest.setSend(mine);
+    			friendRequest.setReceive(friend);
+    			this.friendRequestRepository.save(friendRequest);    			
+    		}
     		
-    		this.friendRequestRepository.save(friendRequest);
     	}
     	
     }
