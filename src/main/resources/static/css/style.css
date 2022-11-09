@@ -192,6 +192,7 @@ section {
 
 .top_contents .tc_left h1 {
     font-size: 46px;
+    height: 136px;
     font-weight: 400;
     line-height: 46px;
     letter-spacing: 1px;
@@ -203,7 +204,7 @@ section {
 }
 
 .top_contents .tc_left h3 {
-    font-size: 14px;
+    font-size: 16px;
     margin-left: 140px;
     text-align: left;
     font-weight: 300;
@@ -425,7 +426,7 @@ section {
 
 .continent_count .asia_count {
     top: 80px;
-    left:800px;
+    left: 800px;
 }
 
 .continent_count .north_america_count {
@@ -450,7 +451,7 @@ section {
 }
 
 .continent_count .oceania_count {
-    left:1050px;
+    left: 1050px;
     top: 400px;
 }
 
@@ -858,7 +859,7 @@ section {
     position: absolute;
     top: 24px;
     right: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #profile_section01 .profile_function_btn_section button {
@@ -1504,7 +1505,7 @@ section {
     color: #9d9ea2;
 }
 
-.community_contents #profile_not_found{
+.community_contents #profile_not_found {
     position: absolute;
     top: -108px;
     left: 560px;
@@ -1725,7 +1726,7 @@ section {
     margin-right: 40px;
 }
 
-#community_detail_section01 .detail_answer_area #profile_not_found{
+#community_detail_section01 .detail_answer_area #profile_not_found {
     position: absolute;
     top: 32px;
     left: 150px;
@@ -1886,6 +1887,14 @@ section {
 
 .answer_writer_section .answer_writer_country {
     font-size: 14px;
+    color: #9d9ea2;
+}
+
+.content_null {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 300;
     color: #9d9ea2;
 }
 
@@ -2373,6 +2382,17 @@ section {
     margin: 8px auto;
 }
 
+.my_friend_section::after {
+    content:"";
+    display: block;
+    height: 100px;
+    border-bottom: 1px solid #9d9ea2;
+    width: 580px;
+    margin:0 auto;
+    margin-top: 1px;
+    z-index: -5;
+}
+
 .my_friend_section .my_friend_img {
     position: absolute;
     height: 100px;
@@ -2412,17 +2432,19 @@ section {
 
 .my_friend_section .my_friend_comment {
     position: absolute;
-    margin-top: 22px;
+    margin-top: 26px;
     margin-left: 140px;
     color: #9d9ea2;
     font-size: 16px;
-    text-overflow: ellipsis;
     white-space: normal;
     overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 1.2;
-    width: 480px;
-    height: 70px;
-    display: block;
+    width: 430px;
+    height: 56px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .friend_btn_section {
@@ -2478,11 +2500,23 @@ section {
     height: 120px;
     margin: 8px auto;
     border-radius: 4px;
-    background-color: #dddfe4;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+
+.request_friend_section::after {
+    content:"";
+    display: block;
+    border-bottom: 1px solid #9d9ea2;
+    height: 120px;
+    position: absolute;
+    width: 580px;
+    left:20px;
+    top: 1px;
+    z-index: -5;
+}
+
 
 .request_friend_section .request_friend_img {
     position: relative;
