@@ -31,11 +31,10 @@ function createOnlineFriendList(res) {
     let tag ="";
     if (res != null) {
         res.forEach(function (friend) {
-            let your;
-			your = friend.friend.profile.nickname;
+            let nickname = friend.friend.profile.nickname;
 			tag += "<li class='menu_friend'>" + "<div class='menu_friend_profile_img'>" + "</div>" +
                 		"<div class='menu_friend_profile_name'>" +
-                    	your +
+                    	nickname +
                 		"</div>" +
                 		"<div class='menu_friend_profile_on_icon'>" + "<i class='far fa-user'>" + "</i>" +
                 		"</div>" + "</li>";
@@ -61,15 +60,16 @@ function createFriendList(res) {
     let tag ="";
     if (res != null) {
         res.forEach(function (friend) {
-            let your;
-			your = friend.friend.profile.nickname;
+            let nickname  = friend.friend.profile.nickname;
+            let country   = friend.friend.profile.country.name;
+            let comment   = friend.friend.profile.comment;
 			tag += "<div class='my_friend_section'>" +
 						"<div class='my_friend_img'>" + "</div>" +
 						"<div class='my_friend_info'>" +
                 		"<div class='my_friend_name'>" +
-                    		your +
-                		"</div>" + "<div class='my_friend_nationality'>" + "United States" +
-                		"</div>" + "</div>" + "<div class='my_friend_comment'>" + "최대 세 줄 까지 출력됨" +
+                    		nickname +
+                		"</div>" + "<div class='my_friend_nationality'>" + country +
+                		"</div>" + "</div>" + "<div class='my_friend_comment'>" + comment +
                 		"</div>" + "<div class='friend_btn_section'>" +
                 		"<button type='button' class='friend_remove_btn' onclick='deleteFriend(\"" + friend.id + "\")'>" + "Delete" +
                 		"</button>" + "</div>" +
@@ -95,14 +95,14 @@ function createFriendRequestList(res) {
     let tag ="";
     if (res != null) {
         res.forEach(function (friendRequest) {
-            let your;
-			your = friendRequest.send.profile.nickname;
+            let nickname = friendRequest.send.profile.nickname;
+            let country  = friendRequest.send.profile.country.name;
 			tag += "<div class='request_friend_section'>" +
 						"<div class='request_friend_img'>" + "</div>" +
 						"<div class='request_friend_info'>" +
                 		"<div class='request_friend_name'>" +
-                    		your +
-                		"</div>" + "<div class='request_friend_nationality'>" +
+                    		nickname +
+                		"</div>" + "<div class='request_friend_nationality'>" + country +
                 		"</div>" + "</div>" + "<div class='request_friend_btn'>" +
                 		"<ul>" + "<li>" + "<button class='accept_btn' type='button' onclick='agreeFriend(\"" + friendRequest.id + "\")'>" +
                 		"ACCEPT" + "</button>" + "</li>" +
