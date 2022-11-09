@@ -43,12 +43,15 @@
 			</div>
 			<div id="detail_answer_area" class="detail_answer_area potion">
 				<div class="answer_text">Answer</div>
-				<div class="answer_profile" sec:authorize="isAuthenticated()">
+				<div id="profile_not_found" th:if="${loginMember.profile == null}">
+                    <a th:href="@{/users/profile/create}">Answer after registering your profile.</a>
+                </div>
+				<div class="answer_profile" sec:authorize="isAuthenticated()"  th:if="${loginMember.profile != null}">
 					<div class="answer_profile_img">
 						<!-- 로그인 멤버 프로필 이미지 -->
 					</div>
 					<div class="answer_writer_section">
-						<div class="answer_writer" th:text="${loginMember.name}">
+						<div class="answer_writer" th:text="${loginMember.name}"  th:if="${loginMember.profile != null}">
 							<!-- 로그인 멤버 닉네임 -->
 						</div>
 						<div class="answer_writer_country" th:if="${loginMember.profile != null}"
@@ -57,7 +60,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()">
+				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()"  th:if="${loginMember.profile != null}">
 					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
 						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="3"></textarea>
 						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="3"></textarea>
