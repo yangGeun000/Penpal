@@ -65,7 +65,7 @@ public class FriendController {
    
    // by 안준언, 친구 삭제 (임시)
    @RequestMapping("/deleteFriend")
-   public void delfriend(@RequestParam HashMap<Object, Object> params) {
+   public void deletefriend(@RequestParam HashMap<Object, Object> params) {
 	   Optional<Friend> df = this.friendRepository.findById(Integer.parseInt((String) params.get("friendId")));
 	   Friend friend = df.get();
 	   this.friendService.deleteFriend(friend.getMine(), friend.getFriend());
@@ -75,7 +75,7 @@ public class FriendController {
    // by 안준언, 친구 요청 수락(임시)
    @RequestMapping("/agreeFriend")
    @ResponseBody
-   public void agFriend(@RequestParam HashMap<Object, Object> params) {
+   public void agreeFriend(@RequestParam HashMap<Object, Object> params) {
 	   Optional<FriendRequest> fr = this.friendRequestRepository.findById(Integer.parseInt((String) params.get("friendRequestId")));
 	   FriendRequest friendRequest = fr.get();
 	   this.friendService.agreeFriend(friendRequest.getSend(), friendRequest.getReceive());
@@ -85,9 +85,18 @@ public class FriendController {
    // by 안준언, 친구 요청 거절(임시)
    @RequestMapping("/rejectFriend")
    @ResponseBody
-   public void rjFriend(@RequestParam HashMap<Object, Object> params) {
+   public void rejectFriend(@RequestParam HashMap<Object, Object> params) {
 	   Optional<FriendRequest> fr = this.friendRequestRepository.findById(Integer.parseInt((String) params.get("friendRequestId")));
 	   FriendRequest friendRequest = fr.get();
 	   this.friendService.rejectFriend(friendRequest);
+   }
+   
+   // by 안준언, 친구 요청 보내기(임시)
+   @RequestMapping("/requestFriend")
+   @ResponseBody
+   public void requestFriend(@RequestParam HashMap<Object, Object> params) {
+	   Member mine = this.memberService.getMember(Integer.parseInt((String) params.get("mine")));
+	   Member friend = this.memberService.getMember(Integer.parseInt((String) params.get("friend")));
+	   this.friendService.sendRequest(mine, friend);
    }
 }

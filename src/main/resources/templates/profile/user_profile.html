@@ -10,7 +10,8 @@
                     MESSAGE
                     <!-- 채팅 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
-                <button type="button" value="ADD FRIENDS" th:if="${profile.member.id} != ${loginMember.id}">
+                <button type="button" value="ADD FRIENDS" th:if="${profile.member.id} != ${loginMember.id}" 
+                	onclick="requestFriend()">
                     ADD FRIENDS
                     <!-- 친구 요청 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
@@ -27,6 +28,19 @@
                             openRoom(result.id, profile.member.name);
                         });
                     }
+                    
+                    // by 안준언, 친구 요청 보내기
+					function requestFriend() {
+						let msg = {
+							mine:   member.id,
+							friend: profile.member.id
+						};
+						commonAjax('/requestFriend', msg, 'post', function (result) {
+							getFriend();
+					        getOnlineFriend();
+					        getFriendRequest();
+						});
+					}
                 </script>
                 <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}"
                     th:onclick="|location.href='/users/profile/modify'|">
