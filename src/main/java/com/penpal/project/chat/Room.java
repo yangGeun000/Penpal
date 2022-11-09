@@ -35,7 +35,6 @@ public class Room {
 	private LocalDateTime lastDate;
 	
 	@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-	@JsonBackReference
 	private List<Message> messageList;
 	
 }
