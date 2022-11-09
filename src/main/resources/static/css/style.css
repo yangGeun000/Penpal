@@ -18,7 +18,7 @@ header {
     align-items: center;
 }
 
-nav{
+nav {
     width: 90%;
     display: flex;
     justify-content: space-around;
@@ -54,7 +54,7 @@ section {
     color: #547296;
 }
 
-.header_navi{
+.header_navi {
     width: 500px;
     margin-right: 50px;
 }
@@ -85,18 +85,18 @@ section {
     color: #384250;
 }
 
-.header_member_btn{
+.header_member_btn {
     width: 100px;
     height: 40px;
 }
 
-.header_member_icon{
+.header_member_icon {
     width: 110px;
     z-index: 10;
     margin-right: 40px;
 }
 
-.header_member_icon .new_message_btn{
+.header_member_icon .new_message_btn {
     width: 40px;
     height: 40px;
     font-family: 'FONT AWESOME 5 FREE';
@@ -105,11 +105,11 @@ section {
     text-align: center;
 }
 
-.header_member_icon .new_message_btn.active i{
-    color:#547296;
+.header_member_icon .new_message_btn.active i {
+    color: #547296;
 }
 
-.header_member_icon .member_profile_btn{
+.header_member_icon .member_profile_btn {
     width: 40px;
     height: 40px;
     font-family: 'FONT AWESOME 5 FREE';
@@ -118,12 +118,12 @@ section {
     text-align: center;
 }
 
-.header_member_icon .member_menu_dropdown_btn{
+.header_member_icon .member_menu_dropdown_btn {
     position: relative;
     display: inline-block;
 }
 
-.header_member_icon .member_menu_dropdown_btn .member_menu_btn{
+.header_member_icon .member_menu_dropdown_btn .member_menu_btn {
     position: relative;
     width: 15px;
     height: 24px;
@@ -131,29 +131,29 @@ section {
     content: "\f0dd";
     font-size: 24px;
     text-align: center;
-    bottom:5px;
-    left:-2px;
+    bottom: 5px;
+    left: -2px;
     cursor: pointer;
 }
 
-.header_member_icon .member_menu_dropdown_btn .member_menu_dropdown{
+.header_member_icon .member_menu_dropdown_btn .member_menu_dropdown {
     position: absolute;
     margin-top: 4px;
     right: 0;
     width: 100px;
     border: 1px solid #9d9ea2;
     border-radius: 4px;
-    padding:8px;
+    padding: 8px;
     display: none;
 }
 
-.header_member_icon .member_menu_dropdown_btn .member_menu_dropdown>a{
+.header_member_icon .member_menu_dropdown_btn .member_menu_dropdown>a {
     display: block;
-    margin:2px 0;
+    margin: 2px 0;
 }
 
 
-.member_menu_dropdown_btn.active .member_menu_dropdown{
+.member_menu_dropdown_btn.active .member_menu_dropdown {
     display: block;
 }
 
@@ -233,7 +233,7 @@ section {
     line-height: 240px;
 }
 
-.top_contents .tc_right a img{
+.top_contents .tc_right a img {
     width: 576px;
     height: 268px;
     position: relative;
@@ -292,7 +292,7 @@ section {
     text-align: center;
     line-height: 266px;
     font-size: 16px;
-    padding-right:2px;
+    padding-right: 2px;
     text-decoration: none;
 }
 
@@ -389,28 +389,28 @@ section {
     background-repeat: no-repeat;
 }
 
-.continent_count{
+.continent_count {
     width: 100%;
     position: absolute;
 }
 
-.continent_count>span{
+.continent_count>span {
     position: absolute;
     width: 110px;
     height: 60px;
     font-size: 20px;
     line-height: 40px;
     text-align: center;
-    padding:10px;
+    padding: 10px;
     border: 1px solid #547296;
     border-radius: 4px;
-    color:#f6f7f7;
+    color: #f6f7f7;
     background-color: #547296;
     opacity: 80%;
 }
 
-.continent_count span::after{
-    content:'';
+.continent_count span::after {
+    content: '';
     position: absolute;
     top: 58px;
     left: 0;
@@ -423,30 +423,34 @@ section {
     border-right: 12px solid transparent;
 }
 
-.continent_count .asia_count{
+.continent_count .asia_count {
     top: 80px;
-    left: 800px;
+    left:800px;
 }
 
-.continent_count .north_america_count{
+.continent_count .north_america_count {
     top: 70px;
     left: 100px;
 }
-.continent_count .south_america_count{
+
+.continent_count .south_america_count {
     top: 330px;
     left: 230px;
 }
-.continent_count .europe_count{
+
+.continent_count .europe_count {
     top: 50px;
     left: 560px;
 
 }
-.continent_count .africa_count{
+
+.continent_count .africa_count {
     left: 570px;
     top: 240px;
 }
-.continent_count .oceania_count{
-    left: 1050px;
+
+.continent_count .oceania_count {
+    left:1050px;
     top: 400px;
 }
 
@@ -631,7 +635,7 @@ section {
     border: 1px solid #9d9ea2;
     border-radius: 4px;
     color: #9d9ea2;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .search_country .country_select {
@@ -697,13 +701,13 @@ section {
     height: 140vh;
 }
 
-#users_section02 .users_profiles{
+#users_section02 .users_profiles {
     width: 1200px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     flex-wrap: wrap;
-    margin:0 auto;
+    margin: 0 auto;
 }
 
 #users_section02 .users_profiles .user_profile_view {
@@ -738,7 +742,7 @@ section {
     margin-top: 2px;
     text-align: center;
     font-weight: 400;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
 #users_section02 .users_profiles .user_profile_view .user_profile_addline01 {
@@ -753,20 +757,20 @@ section {
     text-align: center;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_sns ul{
+#users_section02 .users_profiles .user_profile_view .user_profile_sns ul {
     display: flex;
     justify-content: center;
-    margin:15px 0;
+    margin: 15px 0;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_sns ul li{
-    margin:0 15px;
+#users_section02 .users_profiles .user_profile_view .user_profile_sns ul li {
+    margin: 0 15px;
     font-size: 28px;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_sns ul li.nothing{
+#users_section02 .users_profiles .user_profile_view .user_profile_sns ul li.nothing {
     line-height: 30px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
 #users_section02 .users_profiles .user_profile_view .user_profile_addline02 {
@@ -782,24 +786,24 @@ section {
     line-height: 60px;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul{
+#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul {
     display: flex;
     justify-content: center;
-    margin:6px 0;
+    margin: 6px 0;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li{
+#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li {
     margin: 0 10px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li.nothing{
+#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li.nothing {
     line-height: 50px;
     font-size: 28px;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li span{
-    color:#9d9ea2;
+#users_section02 .users_profiles .user_profile_view .user_profile_favorite ul li span {
+    color: #9d9ea2;
 }
 
 .users_section02 .users_paging {
@@ -850,13 +854,20 @@ section {
     align-items: center;
 }
 
-#profile_section01 .profile_function_btn_section>button {
+#profile_section01 .profile_function_btn_section #profile_not_found {
+    position: absolute;
+    top: 24px;
+    right: 10px;
+    cursor:pointer;
+}
+
+#profile_section01 .profile_function_btn_section button {
     position: relative;
     width: 160px;
     height: 40px;
     border: 1px solid #9d9ea2;
     border-radius: 20px;
-    margin-right:14px;
+    margin-right: 14px;
 }
 
 #profile_section01 .profile_info_section01 {
@@ -897,7 +908,7 @@ section {
     font-weight: 500;
     left: 20px;
     top: 10px;
-    color:#547296;
+    color: #547296;
 }
 
 #profile_section01 .profile_info_section01 .profile_last_date {
@@ -907,11 +918,11 @@ section {
     right: 0;
     font-size: 20px;
     font-weight: 400;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_last_date span{
-    color:#9d9ea2;
+#profile_section01 .profile_info_section01 .profile_last_date span {
+    color: #9d9ea2;
 }
 
 #profile_section01 .profile_info_section01 .profile_info_data .profile_info_left {
@@ -932,10 +943,10 @@ section {
     position: relative;
     width: 200px;
     font-size: 24px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_info_data .profile_gender span{
+#profile_section01 .profile_info_section01 .profile_info_data .profile_gender span {
     position: absolute;
     width: 280px;
     line-height: 28px;
@@ -948,10 +959,10 @@ section {
     width: 140px;
     font-size: 24px;
     margin-top: 40px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_info_data .profile_age span{
+#profile_section01 .profile_info_section01 .profile_info_data .profile_age span {
     position: absolute;
     width: 280px;
     text-align: center;
@@ -964,10 +975,10 @@ section {
     position: relative;
     width: 220px;
     font-size: 24px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_info_data .profile_location span{
+#profile_section01 .profile_info_section01 .profile_info_data .profile_location span {
     position: absolute;
     width: 400px;
     line-height: 28px;
@@ -981,10 +992,10 @@ section {
     width: 314px;
     font-size: 24px;
     margin-top: 40px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_info_data .profile_country span{
+#profile_section01 .profile_info_section01 .profile_info_data .profile_country span {
     position: absolute;
     width: 400px;
     line-height: 28px;
@@ -1020,7 +1031,7 @@ section {
     height: 100px;
 }
 
-#profile_section02 .profile_left_section .profile_language_section{
+#profile_section02 .profile_left_section .profile_language_section {
     margin-top: 10px;
 }
 
@@ -1028,33 +1039,33 @@ section {
     font-weight: 500;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section ul{
+#profile_section02 .profile_left_section .profile_sns_section ul {
     margin-left: 100px;
     width: 320px;
     display: flex;
     justify-content: space-evenly;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected{
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected {
     position: relative;
     width: 64px;
     height: 64px;
     font-size: 32px;
-    margin:0 20px;
+    margin: 0 20px;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.nothing{
-    color:#9d9ea2;
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected.nothing {
+    color: #9d9ea2;
     font-size: 24px;
-    margin-left:26px;
+    margin-left: 26px;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected>i{
+#profile_section02 .profile_left_section .profile_sns_section .sns_icon_selected>i {
     position: relative;
     font-size: 42px;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section ul{
+#profile_section02 .profile_left_section .profile_favorite_section ul {
     margin-left: 100px;
     width: 320px;
     height: 70px;
@@ -1063,26 +1074,26 @@ section {
     align-items: center;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected{
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected {
     position: relative;
     font-size: 20px;
-    margin:0 10px;
-    border:1px solid #9d9ea2;
+    margin: 0 10px;
+    border: 1px solid #9d9ea2;
     border-radius: 8px;
-    padding:4px 20px;
-    color:#9d9ea2;
+    padding: 4px 20px;
+    color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected.nothing{
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected.nothing {
     font-size: 24px;
-    border:none;
+    border: none;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected span{
-    color:#9d9ea2;
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_selected span {
+    color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_language_section ul{
+#profile_section02 .profile_left_section .profile_language_section ul {
     margin-left: 100px;
     width: 320px;
     height: 70px;
@@ -1091,23 +1102,23 @@ section {
     align-items: center;
 }
 
-#profile_section02 .profile_left_section .profile_language_section .language_selected{
+#profile_section02 .profile_left_section .profile_language_section .language_selected {
     position: relative;
     font-size: 20px;
-    margin:0 10px;
-    border:1px solid #9d9ea2;
+    margin: 0 10px;
+    border: 1px solid #9d9ea2;
     border-radius: 8px;
-    padding:4px 20px;
-    color:#9d9ea2;
+    padding: 4px 20px;
+    color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_language_section .language_selected.nothing{
+#profile_section02 .profile_left_section .profile_language_section .language_selected.nothing {
     font-size: 24px;
-    border:none;
+    border: none;
 }
 
-#profile_section02 .profile_left_section .profile_language_section .language_selected span{
-    color:#9d9ea2;
+#profile_section02 .profile_left_section .profile_language_section .language_selected span {
+    color: #9d9ea2;
 }
 
 #profile_section02 .profile_right_section {
@@ -1133,31 +1144,31 @@ section {
 }
 
 #profile_section02 .profile_right_section .profile_comment_area.nothing {
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
 /* ##### user_profile.html section end ##### */
 
 /* ##### user_profile_form.html section ##### */
 
-#profile_section01 .profile_confirm_btn{
+#profile_section01 .profile_confirm_btn {
     border-color: #547296;
     background-color: #547296;
-    color:#f6f7f7;
+    color: #f6f7f7;
 }
 
-#profile_section01 .profile_info_section01 .profile_img_upload_btn{
+#profile_section01 .profile_info_section01 .profile_img_upload_btn {
     position: absolute;
     width: 100px;
     height: 30px;
-    top:186px;
+    top: 186px;
     left: 142px;
     font-size: 16px;
     line-height: 16px;
-    border:1px solid #9d9ea2;
+    border: 1px solid #9d9ea2;
     border-radius: 10px;
-    color:#384250;
-    padding:4px 10px;
+    color: #384250;
+    padding: 4px 10px;
 }
 
 #profile_section01 .profile_info_section01 .profile_name_form {
@@ -1174,48 +1185,48 @@ section {
     width: 240px;
     text-align: left;
     font-size: 24px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_gender_form button{
+#profile_section01 .profile_info_section01 .profile_gender_form button {
     position: relative;
     left: 30px;
     font-size: 24px;
-    margin:0 4px 0 20px;
-    color:#384250;
+    margin: 0 4px 0 20px;
+    color: #384250;
 }
 
-#profile_section01 .profile_info_section01 .profile_gender_form button.disable{
-    color:#9d9ea2;
+#profile_section01 .profile_info_section01 .profile_gender_form button.disable {
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_age_form{
+#profile_section01 .profile_info_section01 .profile_age_form {
     position: relative;
     width: 240px;
     text-align: left;
     font-size: 24px;
     margin-top: 4px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_age_form input{
+#profile_section01 .profile_info_section01 .profile_age_form input {
     margin-left: 80px;
     width: 100px;
     font-size: 20px;
 }
 
-#profile_section01 .profile_info_section01 .profile_location_form{
+#profile_section01 .profile_info_section01 .profile_location_form {
     position: relative;
     width: 260px;
     height: 66px;
     text-align: left;
     font-size: 24px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#profile_section01 .profile_info_section01 .profile_location_form .nation_select{
+#profile_section01 .profile_info_section01 .profile_location_form .nation_select {
     position: relative;
-    float:right;
+    float: right;
     width: 160px;
     margin-top: 2px;
     margin-left: 10px;
@@ -1223,22 +1234,22 @@ section {
     text-align: left;
     border: 1px solid #9d9ea2;
     border-radius: 4px;
-    color: #9d9ea2;    
+    color: #9d9ea2;
 }
 
 
-#profile_section01 .profile_info_section01 .profile_country_form{
+#profile_section01 .profile_info_section01 .profile_country_form {
     position: relative;
     width: 260px;
     text-align: left;
     font-size: 24px;
-    color:#9d9ea2;
+    color: #9d9ea2;
     margin-top: 10px;
 }
 
-#profile_section01 .profile_info_section01 .profile_country_form select{
+#profile_section01 .profile_info_section01 .profile_country_form select {
     position: relative;
-    float:right;
+    float: right;
     width: 160px;
     margin-top: 2px;
     padding: 4px 40px 4px 6px;
@@ -1248,82 +1259,82 @@ section {
     color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox{
+#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox {
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
-    margin-left:140px;
+    margin-left: 140px;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox .sns_selected{
+#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox .sns_selected {
     position: relative;
     width: 140px;
-    color:#9d9ea2;
-    border:none;
-    margin-right:20px;
+    color: #9d9ea2;
+    border: none;
+    margin-right: 20px;
 }
 
-#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox .sns_selected #sns{
+#profile_section02 .profile_left_section .profile_sns_section .sns_checkbox .sns_selected #sns {
     position: relative;
     width: 140px;
     padding: 4px 6px;
     text-align: left;
     border: 1px solid #9d9ea2;
     border-radius: 4px;
-    color: #9d9ea2;  
+    color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox{
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;    
+    flex-wrap: nowrap;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected{
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected {
     position: relative;
     width: 140px;
     margin-top: 40px;
-    color:#9d9ea2;
-    border:none;
+    color: #9d9ea2;
+    border: none;
 }
 
-#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected #favorite{
+#profile_section02 .profile_left_section .profile_favorite_section .favorite_checkbox .favorite_selected #favorite {
     position: relative;
     width: 140px;
     padding: 4px 6px;
     text-align: left;
     border: 1px solid #9d9ea2;
     border-radius: 4px;
-    color: #9d9ea2;  
+    color: #9d9ea2;
 }
 
-#profile_section02 .profile_left_section .profile_language_section .language_checkbox{
+#profile_section02 .profile_left_section .profile_language_section .language_checkbox {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;    
+    flex-wrap: nowrap;
 }
 
-#profile_section02 .profile_left_section .profile_language_section .language_checkbox .language_selected{
+#profile_section02 .profile_left_section .profile_language_section .language_checkbox .language_selected {
     position: relative;
     width: 140px;
     margin-top: 40px;
-    color:#9d9ea2;
-    border:none;
+    color: #9d9ea2;
+    border: none;
 }
 
-#profile_section02 .profile_left_section .profile_language_section .language_checkbox .language_selected #language{
+#profile_section02 .profile_left_section .profile_language_section .language_checkbox .language_selected #language {
     position: relative;
     width: 140px;
     padding: 4px 6px;
     text-align: left;
     border: 1px solid #9d9ea2;
     border-radius: 4px;
-    color: #9d9ea2;  
+    color: #9d9ea2;
 }
 
-#profile_section02 .profile_right_section textarea{
+#profile_section02 .profile_right_section textarea {
     resize: none;
-    padding:0;
+    padding: 0;
 }
 
 /* ##### user_profile_form.html section end ##### */
@@ -1396,26 +1407,26 @@ section {
     width: 100%;
 }
 
-.community_contents .community_category ul button{
+.community_contents .community_category ul button {
     width: 100%;
-    padding:10px 20px;
+    padding: 10px 20px;
 }
 
 .community_contents .community_category ul button li {
     width: 100%;
     border-radius: 4px;
-    padding:8px 20px;
+    padding: 8px 20px;
     font-size: 12px;
     width: 100%;
     white-space: nowrap;
-    margin-bottom:8px;
+    margin-bottom: 8px;
 }
 
 .community_contents .community_category ul button li:last-child {
     margin-bottom: 0;
 }
 
-.community_contents .community_category ul button li.active{
+.community_contents .community_category ul button li.active {
     background-color: #547296;
     border: 1px solid #547296;
     color: #f6f7f7;
@@ -1467,7 +1478,7 @@ section {
     align-items: center;
 }
 
-.view_profile_section .view_profile_writer_img{
+.view_profile_section .view_profile_writer_img {
     position: relative;
     width: 140px;
     height: 80px;
@@ -1477,20 +1488,26 @@ section {
     background-repeat: no-repeat;
 }
 
-.view_profile_section .view_profile_writer_info{
+.view_profile_section .view_profile_writer_info {
     position: relative;
     width: 120px;
     height: 76px;
 }
 
-.view_profile_section .view_profile_writer_info .view_profile_writer{
+.view_profile_section .view_profile_writer_info .view_profile_writer {
     font-size: 20px;
-    color:#384250;
+    color: #384250;
 }
 
-.view_profile_section .view_profile_writer_info .view_profile_writer_nationality{
+.view_profile_section .view_profile_writer_info .view_profile_writer_nationality {
     font-size: 14px;
-    color:#9d9ea2;
+    color: #9d9ea2;
+}
+
+.community_contents #profile_not_found{
+    position: absolute;
+    top: -108px;
+    left: 560px;
 }
 
 .community_contents .community_bbs .community_view a .view_title {
@@ -1512,12 +1529,12 @@ section {
     white-space: normal;
     line-height: 1.2;
     height: 2.4em;
-    display:-webkit-box; 
-    word-wrap:break-word; 
-    -webkit-line-clamp:2; 
-    -webkit-box-orient:vertical; 
-    overflow:hidden; 
-    text-overflow:ellipsis;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .community_contents .community_bbs .community_view:nth-child(1) {}
@@ -1581,6 +1598,8 @@ section {
     color: #dddfe4;
 }
 
+
+
 /* community contents section end */
 
 /* ##### community.html section end ##### */
@@ -1593,7 +1612,7 @@ section {
     height: calc(max-content + 100px);
 }
 
-#community_detail_section01 .detail_modify{
+#community_detail_section01 .detail_modify {
     height: 40px;
 }
 
@@ -1648,30 +1667,30 @@ section {
     align-items: center;
 }
 
-#community_detail_section01 .detail_view_area .detail_profile .detail_profile_img{
+#community_detail_section01 .detail_view_area .detail_profile .detail_profile_img {
     position: relative;
     width: 70px;
     height: 70px;
-    margin-right:24px;
+    margin-right: 24px;
     background-image: url(../images/default_profile.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
-#community_detail_section01 .detail_view_area .detail_profile .detail_profile_info{
+#community_detail_section01 .detail_view_area .detail_profile .detail_profile_info {
     position: relative;
     width: 130px;
     height: 70px;
 }
 
-#community_detail_section01 .detail_view_area .detail_profile .detail_profile_info .detail_content_writer{
+#community_detail_section01 .detail_view_area .detail_profile .detail_profile_info .detail_content_writer {
     font-size: 20px;
 }
 
-#community_detail_section01 .detail_view_area .detail_profile .detail_profile_info .detail_content_writer_country{
+#community_detail_section01 .detail_view_area .detail_profile .detail_profile_info .detail_content_writer_country {
     font-size: 16px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
 #community_detail_section01 .detail_view_area .detail_category_area {
@@ -1693,7 +1712,7 @@ section {
     line-height: 0;
     margin-left: 10px;
     font-size: 16px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
 /* detail answer section */
@@ -1704,6 +1723,12 @@ section {
     height: 340px;
     float: right;
     margin-right: 40px;
+}
+
+#community_detail_section01 .detail_answer_area #profile_not_found{
+    position: absolute;
+    top: 32px;
+    left: 150px;
 }
 
 #community_detail_section01 .detail_answer_area.potion::after {
@@ -1732,30 +1757,30 @@ section {
     width: 840px;
     height: 80px;
     margin: 10px 0 10px 200px;
-    padding:4px;
+    padding: 4px;
     resize: none;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
 }
 
-#community_detail_section01 .detail_answer_area .detail_answer_input_area form .alert-danger{
-    margin-left:50px;
+#community_detail_section01 .detail_answer_area .detail_answer_input_area form .alert-danger {
+    margin-left: 50px;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform:translate(-50%, -50%);
-    border:1px solid #384250;
+    transform: translate(-50%, -50%);
+    border: 1px solid #384250;
     border-radius: 4px;
-    padding:4px 10px;
+    padding: 4px 10px;
     text-align: center;
     font-size: 14px;
     z-index: 200;
     cursor: pointer;
-    background:#f6f7f7;
+    background: #f6f7f7;
     opacity: 90%;
 }
 
-#community_detail_section01 .detail_answer_area .detail_answer_input_area form .alert-danger.disable{
+#community_detail_section01 .detail_answer_area .detail_answer_input_area form .alert-danger.disable {
     display: none;
 }
 
@@ -1793,7 +1818,7 @@ section {
 #community_detail_section01 .detail_answer_area .detail_answer_list_area .answer_content {
     position: relative;
     width: 840px;
-    top:4px;
+    top: 4px;
     margin: auto 0 auto 200px;
     padding: 10px 4px;
     color: #9d9ea2;
@@ -1822,12 +1847,12 @@ section {
 }
 
 #community_detail_section01 .detail_answer_area .detail_answer_list_area .answer_option_section .answer_delete {
-    background-color:#fff;
+    background-color: #fff;
     border: 1px solid #9d9ea2;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-.answer_profile{
+.answer_profile {
     position: absolute;
     z-index: 10;
     width: 180px;
@@ -1836,10 +1861,10 @@ section {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding:4px;
+    padding: 4px;
 }
 
-.answer_profile_img{
+.answer_profile_img {
     position: relative;
     width: 70px;
     height: 70px;
@@ -1847,33 +1872,33 @@ section {
     background-size: 70px 70px;
     background-position: center;
     background-repeat: no-repeat;
-    margin-right:12px;
+    margin-right: 12px;
 }
 
-.answer_writer_section{
+.answer_writer_section {
     position: relative;
     height: 70px;
 }
 
-.answer_writer_section .answer_writer{
+.answer_writer_section .answer_writer {
     font-size: 18px;
 }
 
-.answer_writer_section .answer_writer_country{
+.answer_writer_section .answer_writer_country {
     font-size: 14px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-#community_detail_section01 .detail_answer_modify textarea{
+#community_detail_section01 .detail_answer_modify textarea {
     position: relative;
     margin-top: 10px;
     width: 720px;
     height: 80px;
     resize: none;
-    padding:4px;
+    padding: 4px;
 }
 
-#community_detail_section01 .detail_answer_list_area form .answer_modify_confirm_btn{
+#community_detail_section01 .detail_answer_list_area form .answer_modify_confirm_btn {
     position: absolute;
     top: 0;
     right: -148px;
@@ -1890,7 +1915,7 @@ section {
     z-index: 100;
 }
 
-#community_detail_section01 .detail_answer_list_area .answer_modify_cancle_btn{
+#community_detail_section01 .detail_answer_list_area .answer_modify_cancle_btn {
     position: absolute;
     top: 34px;
     right: -148px;
@@ -1901,9 +1926,9 @@ section {
     padding: 5px 10px;
     border: 1px solid #9d9ea2;
     border-radius: 20px;
-    color:#9d9ea2;
+    color: #9d9ea2;
     font-size: 12px;
-    background-color:#fff;
+    background-color: #fff;
     cursor: pointer;
 }
 
@@ -1986,28 +2011,28 @@ section {
     cursor: pointer;
 }
 
-#write_form .alert-danger{
+#write_form .alert-danger {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform:translate(-50%, -50%);
-    border:1px solid #384250;
+    transform: translate(-50%, -50%);
+    border: 1px solid #384250;
     border-radius: 4px;
-    padding:4px 10px;
+    padding: 4px 10px;
     text-align: left;
     font-size: 14px;
     z-index: 200;
     cursor: pointer;
-    background:#f6f7f7;
+    background: #f6f7f7;
     opacity: 90%;
 }
 
-#write_form .alert-danger>div{
-    margin:10px 0;
+#write_form .alert-danger>div {
+    margin: 10px 0;
 }
 
 
-#write_form .alert-danger.disable{
+#write_form .alert-danger.disable {
     display: none;
 }
 
@@ -2039,10 +2064,10 @@ section {
     border-radius: 4px;
 }
 
-#menu_btn span{
+#menu_btn span {
     writing-mode: vertical-rl;
     text-orientation: upright;
-    color:#f6f7f7;
+    color: #f6f7f7;
 }
 
 #menu_content {
@@ -2155,9 +2180,9 @@ section {
     text-align: center;
 }
 
-#menu_content .menu_friend_section .menu_friend .menu_friend_profile_on_icon i{
+#menu_content .menu_friend_section .menu_friend .menu_friend_profile_on_icon i {
     font-size: 30px;
-    color:lightgreen;
+    color: lightgreen;
 }
 
 /* menu friend section end */
@@ -2223,8 +2248,8 @@ section {
     height: 30px;
 }
 
-#menu_content .menu_message_section .menu_message .menu_message_profile_on_icon i{
-    color:gold;
+#menu_content .menu_message_section .menu_message .menu_message_profile_on_icon i {
+    color: gold;
     font-size: 30px;
 }
 
@@ -2266,8 +2291,8 @@ section {
 
 /* ##### friend_list.html section ##### */
 
-#pop_friend .pop_friend{
-    background:#f6f7f7;
+#pop_friend .pop_friend {
+    background: #f6f7f7;
     border-radius: 4px;
 }
 
@@ -2334,7 +2359,7 @@ section {
 
 /* ##### my_friends.html section ##### */
 
-#myFriendSection{
+#myFriendSection {
     position: relative;
     width: 620px;
     height: 560px;
@@ -2363,8 +2388,8 @@ section {
     position: relative;
     width: 500px;
     height: 20px;
-    top:10px;
-    left:10px;
+    top: 10px;
+    left: 10px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -2400,7 +2425,7 @@ section {
     display: block;
 }
 
-.friend_btn_section{
+.friend_btn_section {
     position: absolute;
     width: 100px;
     right: 10px;
@@ -2408,22 +2433,22 @@ section {
     text-align: right;
 }
 
-.friend_remove_btn{
+.friend_remove_btn {
     position: relative;
-    border:1px solid #9d9ea2;
+    border: 1px solid #9d9ea2;
     border-radius: 10px;
-    padding:4px 6px;
+    padding: 4px 6px;
     font-size: 12px;
-    color:#9d9ea2;
+    color: #9d9ea2;
 }
 
-.friend_message_btn{
+.friend_message_btn {
     position: relative;
-    border:1px solid #9d9ea2;
+    border: 1px solid #9d9ea2;
     border-radius: 10px;
-    padding:4px 6px;
+    padding: 4px 6px;
     font-size: 12px;
-    color:#9d9ea2;
+    color: #9d9ea2;
     margin-top: 10px;
 }
 
@@ -2440,7 +2465,7 @@ section {
 
 /* ##### request_friend.html section ##### */
 
-#requestFriendSection{
+#requestFriendSection {
     position: relative;
     width: 620px;
     height: 560px;
@@ -2472,8 +2497,8 @@ section {
 
 .request_friend_section .request_friend_info {
     position: relative;
-    margin-left:50px;
-    width: 300px;    
+    margin-left: 50px;
+    width: 300px;
 }
 
 .request_friend_section .request_friend_info .request_friend_name {
@@ -2540,18 +2565,19 @@ section {
     border-radius: 8px;
 }
 
-.message_list_section.active{
-    animation:message-room-active;
+.message_list_section.active {
+    animation: message-room-active;
     animation-duration: 0.8s;
     animation-fill-mode: forwards;
 }
 
 @keyframes message-room-active {
-    0%{
-        left:0;   
+    0% {
+        left: 0;
     }
-    100%{
-        left:-300px;
+
+    100% {
+        left: -300px;
     }
 }
 
@@ -2589,7 +2615,7 @@ section {
     width: 120px;
     margin-left: 20px;
     font-size: 24px;
-    color:#547296;
+    color: #547296;
     text-align: left;
 }
 
@@ -2611,7 +2637,7 @@ section {
     position: relative;
     width: 60px;
     height: 40px;
-    padding:7px 0;
+    padding: 7px 0;
 }
 
 .message_list_section .message_list_view .message_new_count span {
@@ -2623,12 +2649,12 @@ section {
     padding: 0 10px;
 }
 
-#message_room_delete_btn{
+#message_room_delete_btn {
     position: absolute;
     top: 6px;
     right: 6px;
-    padding:2px 6px;
-    color:#9d9ea2;
+    padding: 2px 6px;
+    color: #9d9ea2;
     border: 1px solid #9d9ea2;
     border-radius: 10px;
     font-size: 14px;
@@ -2647,11 +2673,9 @@ section {
 
 /* ##### message_room.html section ##### */
 
-#pop_message{
-    
-}
+#pop_message {}
 
-#message_room .modal_wrap_message{
+#message_room .modal_wrap_message {
     position: fixed;
     right: 140px;
     top: 40px;
@@ -2660,33 +2684,33 @@ section {
     background: #547296;
     z-index: 101;
     border-radius: 8px;
-    padding:10px;
+    padding: 10px;
 }
 
-.modal_wrap_message .message_room_section{
+.modal_wrap_message .message_room_section {
     position: absolute;
-    background-color:#f6f7f7;
+    background-color: #f6f7f7;
     height: 620px;
     width: 380px;
     border-radius: 8px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view{
+.modal_wrap_message .message_room_section .message_room_view {
     position: relative;
     width: 360px;
     height: 480px;
-    margin:10px 10px 0 10px;
+    margin: 10px 10px 0 10px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile{
+.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile {
     position: relative;
     width: 360px;
     height: 80px;
-    background:#384250;
+    background: #384250;
     border-radius: 8px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_img{
+.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_img {
     position: absolute;
     width: 80px;
     height: 80px;
@@ -2697,101 +2721,101 @@ section {
     margin-left: 10px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_name{
+.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_name {
     position: absolute;
     right: 0;
-    color:#f6f7f7;
+    color: #f6f7f7;
     width: 250px;
     top: 26px;
     font-size: 18px;
 }
 
-#message_room_exit_btn{
+#message_room_exit_btn {
     position: absolute;
     right: 10px;
     bottom: 10px;
-    padding:4px 10px;
+    padding: 4px 10px;
     border-radius: 10px;
     font-size: 14px;
     z-index: 10;
-    color:#9d9ea2;
+    color: #9d9ea2;
     background: #f6f7f7;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view{
+.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view {
     position: relative;
     height: 400px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log{
+.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log {
     position: relative;
     width: 100%;
     height: fit-content;
-    float:right;
+    float: right;
     margin-top: 10px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log .friend_message{
+.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log .friend_message {
     position: relative;
     width: fit-content;
     height: fit-content;
-    border:1px solid #9d9ea2;
+    border: 1px solid #9d9ea2;
     border-radius: 2px;
-    padding:4px 16px;
+    padding: 4px 16px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log{
+.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log {
     position: relative;
-    float:left;
+    float: left;
     width: 100%;
     height: fit-content;
     margin-top: 10px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log .my_message{
+.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log .my_message {
     position: relative;
-    float:right;
+    float: right;
     width: fit-content;
     height: fit-content;
-    border:1px solid #9d9ea2;
+    border: 1px solid #9d9ea2;
     border-radius: 2px;
-    padding:4px 16px;   
+    padding: 4px 16px;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view>div:last-child{
+.modal_wrap_message .message_room_section .message_room_view .message_room_chat_view>div:last-child {
     margin-bottom: 10px;
 }
 
-.modal_wrap_message .message_room_section .message_room_input{
+.modal_wrap_message .message_room_section .message_room_input {
     position: absolute;
-    padding:0;
+    padding: 0;
     width: 380px;
     height: 130px;
-    border:1px solid #9d9ea2;
+    border: 1px solid #9d9ea2;
     border-radius: 0px 0px 8px 8px;
 }
 
-.modal_wrap_message .message_room_section .message_room_input textarea{
+.modal_wrap_message .message_room_section .message_room_input textarea {
     position: relative;
-    padding:4px;
+    padding: 4px;
     width: 280px;
     height: 100%;
-    border:none;
+    border: none;
     border-radius: 0px 0px 8px 8px;
     resize: none;
 
 }
 
-.modal_wrap_message .message_room_section .message_room_input input{
+.modal_wrap_message .message_room_section .message_room_input input {
     position: absolute;
     width: 98px;
     height: 128px;
-    border:none;
+    border: none;
     border-radius: 0px 0px 8px 0px;
-    background:#547296;
-    color:#f6f7f7;
+    background: #547296;
+    color: #f6f7f7;
     cursor: pointer;
 }
 

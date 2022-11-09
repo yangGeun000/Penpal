@@ -34,7 +34,7 @@
             <div class="users_profiles">
                 <div class="user_profile_view" th:each="profile : ${paging}">
                     <!-- 해당 뷰에 th:each 예정 -->
-                    <a th:href="@{|users/profile/${profile.member.id}|}">
+                    <a th:href="@{|users/profile/${profile.id}|}">
                         <div class="user_profile_img">
                             <!-- 프로필 이미지 data -->
                         </div>
@@ -112,7 +112,7 @@
                     </ul>
                 </div>
             </div>
-<!--            by 장유란, form 추가-->
+            <!-- by 장유란, form 추가-->
             <form th:action="@{/users}" method="get" id="searchForm">
                 <input type="hidden" id="kw" name="kw" th:value="${kw}">
                 <input type="hidden" id="page" name="page" th:value="${paging.number}">

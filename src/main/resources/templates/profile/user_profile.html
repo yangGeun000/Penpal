@@ -3,22 +3,44 @@
 <div layout:fragment="content">
     <div id="wrap">
         <section id="profile_section01">
-
             <div class="profile_function_btn_section" sec:authorize="isAuthenticated()">
-                <button id="request_message" th:if="${profile.member.id} != ${loginMember.id}" type="button"
+                <div id="profile_not_found" th:if="${loginMember.profile == null}">
+                    <a th:href="@{/users/profile/create}">First, regist your profile!</a>
+                </div>
+                <button id="request_message"
+                    th:if="${profile.member.id} != ${loginMember.id} and ${loginMember.profile != null}" type="button"
                     value="MESSAGE" onclick="requestMessage()">
                     MESSAGE
                     <!-- 채팅 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
                 </button>
-                <button type="button" value="ADD FRIENDS" th:if="${profile.member.id} != ${loginMember.id}" 
-                	onclick="requestFriend()">
-                    ADD FRIENDS
-                    <!-- 친구 요청 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
-                </button>
+                <div th:each="friend : ${loginMember.friendList}"
+                    th:if="${profile.member.id} != ${loginMember.id} and ${loginMember.profile != null}">
+                    <div th:each="request : ${loginMember.friendRequestList}">
+                        <div
+                            th:if="${friend.friend.id} != ${profile.member.id} and ${request.send.id} != ${profile.member.id}">
+                            <button type="button" value="ADD FRIENDS" onclick="requestFriend()">
+                                ADD FRIENDS
+                            </button>
+                        </div><!-- 친구 요청 X, 로그인 멤버 != 프로필 멤버 && 친구가 아닐 때 -->
+                        <div
+                            th:if="${friend.friend.id} != ${profile.member.id} and ${request.send.id} == ${loginMember.id}">
+                            <button type="button" value="WAITING">
+                                Wait Response
+                            </button>
+                        </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 // 인데 작동 안 됨 -->
+                        <div
+                            th:if="${friend.friend.id} != ${profile.member.id} and ${request.send.id} == ${profile.member.id}">
+                            <button type="button" value="REQUEST">
+                                Check Request
+                            </button>
+                        </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 -->
+                    </div>
+                </div>
                 <script th:inline="javascript">
                     // by 구양근
                     let profileMember = /*[[${profile.member}]]*/ "프로필 멤버";
-					console.log(profileMember);
+                    console.log(profileMember);
+
                     function requestMessage() {
                         let msg = {
                             makerId: member.id,
@@ -28,19 +50,19 @@
                             openRoom(result.id, profileMember.profile.nickname);
                         });
                     }
-                    
+
                     // by 안준언, 친구 요청 보내기
-					function requestFriend() {
-						let msg = {
-							mine:   member.id,
-							friend: profileMember.id
-						};
-						commonAjax('/requestFriend', msg, 'post', function (result) {
-							getFriend();
-					        getOnlineFriend();
-					        getFriendRequest();
-						});
-					}
+                    function requestFriend() {
+                        let msg = {
+                            mine: member.id,
+                            friend: profileMember.id
+                        };
+                        commonAjax('/requestFriend', msg, 'post', function (result) {
+                            getFriend();
+                            getOnlineFriend();
+                            getFriendRequest();
+                        });
+                    }
                 </script>
                 <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}"
                     th:onclick="|location.href='/users/profile/modify'|">
