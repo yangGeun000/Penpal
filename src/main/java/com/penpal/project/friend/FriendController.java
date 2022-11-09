@@ -30,6 +30,9 @@ public class FriendController {
 		Member member = this.memberService.getMember(Integer.parseInt((String) params.get("memberId")));
 		List<Friend> friendList = new ArrayList<>();
 		friendList.addAll(member.getFriendList());
+		// by 안준언, 가장 최근 접속 순으로 친구 정렬
+		friendList.sort((friend1, friend2) -> 
+			friend2.getFriend().getProfile().getLastDate().compareTo(friend1.getFriend().getProfile().getLastDate()));
 		
 		return friendList;
 	}
@@ -48,7 +51,9 @@ public class FriendController {
 				onlineFriendList.add(friendList.get(i));
 			}
 		}
-		
+		// by 안준언, 가장 최근 접속 순으로 친구 정렬
+		onlineFriendList.sort((friend1, friend2) -> 
+			friend2.getFriend().getProfile().getLastDate().compareTo(friend1.getFriend().getProfile().getLastDate()));
 		return onlineFriendList;
    }
    
