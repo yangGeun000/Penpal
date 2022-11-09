@@ -12,7 +12,7 @@
                     <!-- 프로필 정보 영역 -->
                     <span class="menu_profile_username">
                         <!-- 이름 -->
-                        [[${loginMember.name}]]
+                        [[${loginMember.profile} != null ? ${loginMember.profile.nickname} : ${loginMember.name}]]
                     </span><br>
                     <span class="menu_profile_nationality" th:if="${loginMember.profile != null}">
                         <!-- 국적 -->

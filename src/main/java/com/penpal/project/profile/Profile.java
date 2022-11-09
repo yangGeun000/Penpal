@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.LocationList;
 import com.penpal.project.member.Member;
@@ -36,6 +37,7 @@ public class Profile {
 	private int age;
 	
 	@OneToOne
+	@JsonBackReference
 	private Member member;
 	
 	@ManyToOne

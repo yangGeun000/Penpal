@@ -21,11 +21,11 @@ function createRecentRoom(result) {
 			} else {
 				your = room.guest;
 			}
-			tag += "<li class='menu_message' onclick = 'openRoom(\"" + room.id + "\", \"" + your.name + "\")'>" +
+			tag += "<li class='menu_message' onclick = 'openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\")'>" +
 				"<div class='menu_message_profile_img'>" +
 				"</div>" +
 				"<div class='menu_message_profile_name'>" +
-				your.name +
+				your.profile.nickname +
 				"</div>" +
 				"<div class='menu_message_profile_on_icon'>" +
 				"<i class='far fa-envelope'></i>" +
@@ -54,12 +54,12 @@ function createRoomList(result) {
 				your = room.guest;
 			}
 			tag +=
-				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.name + "\")'>" +
+				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\")'>" +
 				"<div class='message_list_view'>" +
 				"<div class='message_profile_img'>" +
 				"</div>" +
 				"<div class='message_profile_name'>" +
-				your.name +
+				your.profile.nickname +
 				"</div>" +
 				"<div class='message_content'>" +
 				"<span>";

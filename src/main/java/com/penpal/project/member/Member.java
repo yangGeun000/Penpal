@@ -71,7 +71,7 @@ public class Member {
 
 	// by 구양근, 프로필
 	@OneToOne(mappedBy = "member")
-	@JsonBackReference
+	//@JsonBackReference
 	private Profile profile;
 	
 	// by 안준언, 친구 목록 리스트

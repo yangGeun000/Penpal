@@ -32,7 +32,7 @@ function createOnlineFriendList(res) {
     if (res != null) {
         res.forEach(function (friend) {
             let your;
-			your = friend.friend.name;
+			your = friend.friend.profile.nickname;
 			tag += "<li class='menu_friend'>" + "<div class='menu_friend_profile_img'>" + "</div>" +
                 		"<div class='menu_friend_profile_name'>" +
                     	your +
@@ -62,7 +62,7 @@ function createFriendList(res) {
     if (res != null) {
         res.forEach(function (friend) {
             let your;
-			your = friend.friend.name;
+			your = friend.friend.profile.nickname;
 			tag += "<div class='my_friend_section'>" +
 						"<div class='my_friend_img'>" + "</div>" +
 						"<div class='my_friend_info'>" +
@@ -96,7 +96,7 @@ function createFriendRequestList(res) {
     if (res != null) {
         res.forEach(function (friendRequest) {
             let your;
-			your = friendRequest.send.name;
+			your = friendRequest.send.profile.nickname;
 			tag += "<div class='request_friend_section'>" +
 						"<div class='request_friend_img'>" + "</div>" +
 						"<div class='request_friend_info'>" +
