@@ -36,6 +36,8 @@ public class Profile {
 	// 성별 int -> Integer 변환
 	private int age;
 	
+	private String url;
+	
 	@OneToOne
 	@JsonBackReference
 	private Member member;

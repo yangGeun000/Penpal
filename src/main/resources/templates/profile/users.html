@@ -37,6 +37,7 @@
                     <a th:href="@{|users/profile/${profile.id}|}">
                         <div class="user_profile_img">
                             <!-- 프로필 이미지 data -->
+                            <img th:if = "${profile.url} != null" th:src = "|/users/image?url=${profile.url}|" alt = "프로필 이미지">
                         </div>
                     </a>
                     <!-- by 장유란, 프로필 유저 네임 추가 -->

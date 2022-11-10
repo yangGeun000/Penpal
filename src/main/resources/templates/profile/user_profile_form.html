@@ -3,7 +3,7 @@
 <div layout:fragment="content">
 	<div id="wrap">
 		<form th:action="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}"
-			th:object="${profileForm}" method="post">
+			th:object="${profileForm}" method="post" enctype="multipart/form-data">
 			<!-- 프로필 수정&등록 폼 -->
 			<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
 				<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
@@ -22,6 +22,11 @@
 				<div class="profile_info_section01">
 					<div class="profile_img">
 						<!-- 프로필 이미지 -->
+						<img id="preview" 
+							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
+							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
+						<img id="preview" th:if="${loginMember.profile.url} == null" >
+						<input type="file" name="picture" accept="image/*" onchange="readURL(this)">
 					</div>
 					<button type="button" class="profile_img_upload_btn" value="UPLOAD">
 						<!-- 프로필 이미지 수정&등록 버튼 -->
@@ -47,7 +52,7 @@
 							<div class="profile_age_form">
 								Age<br>
 								<label for="age"></label>
-								<input type="number" step="1" min = "0" max = "100" th:field="*{age}">
+								<input type="number" step="1" min="0" max="100" th:field="*{age}">
 								<!-- 유저 연령 -->
 							</div>
 						</div>
@@ -88,8 +93,7 @@
 								<div>
 									<select id="sns" th:field="*{sns1}">
 										<option value="" selected>SNS 1</option>
-										<option th:each="sns : ${sns}" th:value="${sns}"
-											th:text="${sns.name}"></option>	
+										<option th:each="sns : ${sns}" th:value="${sns}" th:text="${sns.name}"></option>
 									</select>
 								</div>
 							</li>
@@ -97,8 +101,7 @@
 								<div>
 									<select id="sns" th:field="*{sns2}">
 										<option value="" selected>SNS 2</option>
-										<option th:each="sns : ${sns}" th:value="${sns}"
-											th:text="${sns.name}"></option>
+										<option th:each="sns : ${sns}" th:value="${sns}" th:text="${sns.name}"></option>
 									</select>
 								</div>
 							</li>
@@ -106,8 +109,7 @@
 								<div>
 									<select id="sns" th:field="*{sns3}">
 										<option value="" selected>SNS 3</option>
-										<option th:each="sns : ${sns}" th:value="${sns}"
-											th:text="${sns.name}"></option>
+										<option th:each="sns : ${sns}" th:value="${sns}" th:text="${sns.name}"></option>
 									</select>
 								</div>
 							</li>
@@ -192,26 +194,41 @@
 		</form>
 	</div>
 	<script>
-		var selectedGender = $(".gender_select_btn").val();
+		let selectedGender = $(".gender_select_btn").val();
+		let url = document.getElementById('preview').src;
 		genderDisable();
 
-		$(".gender_btn").on('click', function(){
+		$(".gender_btn").on('click', function () {
 			selectedGender = this.id;
 			$(".gender_select_btn").val(this.id);
 			genderDisable();
 		})
 
-		function genderDisable(){
-			if(selectedGender == 'male'){
+		function genderDisable() {
+			if (selectedGender == 'male') {
 				$("#male").removeClass("disable");
 				$("#female").addClass("disable");
-			}else if(selectedGender == 'female'){
+			} else if (selectedGender == 'female') {
 				$("#male").addClass("disable");
 				$("#female").removeClass("disable");
 			}
 		} // by 조성빈, gender button 클릭하면 남/여 전환 기능
+		
+		// by 구양근, input 이미지 미리보기
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				let reader = new FileReader();
+				reader.onload = function (e) {
+					document.getElementById('preview').src = e.target.result;
+				};
+				reader.readAsDataURL(input.files[0]);
+			} else {
+				document.getElementById('preview').src = url;
+			}
+		}
+		
 	</script>
-        
+
 </div>
 
 </html>

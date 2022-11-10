@@ -2,9 +2,7 @@ package com.penpal.project.profile;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.penpal.project.list.CountryList;
-import com.penpal.project.list.LocationList;
-import com.penpal.project.member.Member;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import lombok.Getter;
@@ -33,6 +31,7 @@ public class ProfileForm {
 	@NotEmpty(message="나라를 입력해주세요")
 	private String country;
 	
+	private MultipartFile picture;
 	
 	//@NotEmpty(message="사용하는 sns를 입력해주세요")
 	private String sns1;

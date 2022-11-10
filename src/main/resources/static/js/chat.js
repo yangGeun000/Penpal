@@ -21,9 +21,12 @@ function createRecentRoom(result) {
 			} else {
 				your = room.guest;
 			}
-			tag += "<li class='menu_message' onclick = 'openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\")'>" +
-				"<div class='menu_message_profile_img'>" +
-				"</div>" +
+			tag += "<li class='menu_message' onclick = 'openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\", \"" + your.profile.url + "\")'>" +
+				"<div class='menu_message_profile_img'>";
+				if( your.profile.url != null){ 
+						tag+="<img src = '/users/image?url="+  your.profile.url +"' alt = '프로필 이미지'>";
+						} 
+						tag+="</div>" +
 				"<div class='menu_message_profile_name'>" +
 				your.profile.nickname +
 				"</div>" +
@@ -56,8 +59,11 @@ function createRoomList(result) {
 			tag +=
 				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\")'>" +
 				"<div class='message_list_view'>" +
-				"<div class='message_profile_img'>" +
-				"</div>" +
+				"<div class='message_profile_img'>";
+				if( your.profile.url != null){ 
+						tag+="<img src = '/users/image?url="+  your.profile.url +"' alt = '프로필 이미지'>";
+						} 
+						tag+="</div>" +
 				"<div class='message_profile_name'>" +
 				your.profile.nickname +
 				"</div>" +
@@ -101,9 +107,9 @@ function commonAjax(url, parameter, type, calbak) {
 let ws; // by 구양근, 웹 소켓 변수
 
 // by 구양근, 클릭하면 소켓 열고 초기화
-function openRoom(roomId, name) {
+function openRoom(roomId, name, url) {
 	$('#roomId').val(roomId);
-	createRoomProfile(name);
+	createRoomProfile(name, url);
 	ws = new WebSocket("ws://" + location.host + "/chating/" + $("#roomId").val());
 	wsEvt();
 }
@@ -204,10 +210,13 @@ function getMessage() {
 	});
 }
 // by 구양근, 대화방 프로필 갱신
-function createRoomProfile(name) {
+function createRoomProfile(name, url) {
 	let tag = "";
-	tag += "<div class='message_room_friend_img'>" +
-		"</div>" +
+	tag += "<div class='message_room_friend_img'>";
+		if( url != null){ 
+						tag+="<img src = '/users/image?url="+  url +"' alt = '프로필 이미지'>";
+						} 
+						tag+="</div>" +
 		"<div class='message_room_friend_name'>" +
 		name +
 		"</div>" +

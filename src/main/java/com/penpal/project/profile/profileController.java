@@ -1,10 +1,13 @@
 package com.penpal.project.profile;
 
+import java.net.MalformedURLException;
 import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.penpal.project.list.CountryList;
 import com.penpal.project.list.CountryListRepository;
@@ -89,7 +93,8 @@ public class profileController {
     			member,location , country,
     			profileForm.getSns1(), profileForm.getSns2(), profileForm.getSns3(),
     			profileForm.getFavorite1(), profileForm.getFavorite2(), profileForm.getFavorite3(),
-    			profileForm.getLanguage1(), profileForm.getLanguage2(), profileForm.getLanguage3()
+    			profileForm.getLanguage1(), profileForm.getLanguage2(), profileForm.getLanguage3(),
+    			profileForm.getPicture()
     			);
     	
     	return "redirect:/";
@@ -144,11 +149,20 @@ public class profileController {
    			member.getProfile(),location , country,
    			profileForm.getSns1(), profileForm.getSns2(), profileForm.getSns3(),
    			profileForm.getFavorite1(), profileForm.getFavorite2(), profileForm.getFavorite3(),
-   			profileForm.getLanguage1(), profileForm.getLanguage2(), profileForm.getLanguage3()
+   			profileForm.getLanguage1(), profileForm.getLanguage2(), profileForm.getLanguage3(),
+   			profileForm.getPicture()
    			);
    	
    	return "redirect:/";
    } 
+   
+   // by 구양근, img 태그 이미지
+   @RequestMapping("/image")
+   @ResponseBody
+   public Resource getImage(@RequestParam String url) throws MalformedURLException {
+	   log.info(url);
+       return new UrlResource("file:" + url);
+   }
    
    @ModelAttribute("sns")
 	public List<SnsList> snsList() {

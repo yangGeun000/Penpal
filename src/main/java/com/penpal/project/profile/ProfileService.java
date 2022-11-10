@@ -1,9 +1,11 @@
 package com.penpal.project.profile;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,12 +14,14 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.penpal.project.board.DataNotFoundException;
 import com.penpal.project.list.CountryList;
@@ -25,12 +29,18 @@ import com.penpal.project.list.LocationList;
 import com.penpal.project.member.Member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class ProfileService {
 
 	private final ProfileRepository profileRepository;
+	
+	@Value("${upload.path}")
+	private String uploadPath;
 
 	// by 장유란, 프로필 검색 기능
 	public Page<Profile> getList(int page, String kw, String location, String country) {
@@ -77,7 +87,8 @@ public class ProfileService {
     		LocationList location, CountryList country,
     		String sns1, String sns2, String sns3,
     		String favorite1, String favorite2, String favorite3,
-    		String language1, String language2, String language3
+    		String language1, String language2, String language3,
+    		MultipartFile picture
     		) {
     	System.out.println("service");
         Profile p = new Profile();
@@ -98,7 +109,10 @@ public class ProfileService {
         p.setLanguage2(language2);
         p.setLanguage3(language3);
         p.setLastDate(LocalDateTime.now());
-        
+        if(!picture.isEmpty()) {
+        	p.setUrl(savePicture(picture));
+        	log.info(p.getUrl());
+        }
         this.profileRepository.save(p);
     }
     
@@ -109,7 +123,8 @@ public class ProfileService {
     		LocationList location, CountryList country,
     		String sns1, String sns2, String sns3,
     		String favorite1, String favorite2, String favorite3,
-    		String language1, String language2, String language3
+    		String language1, String language2, String language3,
+    		MultipartFile picture
     		) {
     	System.out.println("service");
         Profile p = profile;
@@ -128,8 +143,41 @@ public class ProfileService {
         p.setLanguage1(language1);
         p.setLanguage2(language2);
         p.setLanguage3(language3);
+        if(!picture.isEmpty()) {
+        	p.setUrl(savePicture(picture));
+        	log.info(p.getUrl());
+        }
         
         this.profileRepository.save(p);
+    }
+    
+    public String savePicture(MultipartFile picture) {
+    	
+    	// 원래 파일 이름 추출
+        String origName = picture.getOriginalFilename();
+
+        // 파일 이름으로 쓸 uuid 생성
+        String uuid = UUID.randomUUID().toString();
+
+        // 확장자 추출(ex : .png)
+        String extension = origName.substring(origName.lastIndexOf("."));
+
+        // uuid와 확장자 결합
+        String savedName = uuid + extension;
+
+        // 파일을 불러올 때 사용할 파일 경로
+        String savedPath =  uploadPath + savedName;
+
+        // 실제로 로컬에 uuid를 파일명으로 저장
+        try {
+        	picture.transferTo(new File(savedPath));
+        }
+        catch(Exception e){
+        	e.printStackTrace();
+        	log.info("파일 저장 오류");
+        }
+        
+        return savedPath;
     }
 
 }

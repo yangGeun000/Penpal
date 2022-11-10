@@ -7,6 +7,9 @@
             <div class="menu_profile_section">
                 <div class="menu_profile_img">
                     <!-- 프로필 이미지 영역 -->
+                    <img id="preview" 
+							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
+							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
                 </div>
                 <div class="menu_profile_info">
                     <!-- 프로필 정보 영역 -->

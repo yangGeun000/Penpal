@@ -32,7 +32,11 @@ function createOnlineFriendList(res) {
     if (res != null) {
         res.forEach(function (friend) {
             let nickname = friend.friend.profile.nickname;
-			tag += "<li class='menu_friend'>" + "<div class='menu_friend_profile_img'>" + "</div>" +
+			tag += "<li class='menu_friend'>" + "<div class='menu_friend_profile_img'>";
+						if( friend.friend.profile.url != null){ 
+						tag+="<img src = '/users/image?url="+  friend.friend.profile.url +"' alt = '프로필 이미지'>";
+						} 
+						tag+="</div>" +
                 		"<div class='menu_friend_profile_name'>" +
                     	nickname +
                 		"</div>" +
@@ -64,7 +68,11 @@ function createFriendList(res) {
             let country   = friend.friend.profile.country.name;
             let comment   = friend.friend.profile.comment;
 			tag += "<div class='my_friend_section'>" +
-						"<div class='my_friend_img'>" + "</div>" +
+						"<div class='my_friend_img'>";
+						if( friend.friend.profile.url != null){ 
+						tag+="<img src = '/users/image?url="+  friend.friend.profile.url +"' alt = '프로필 이미지'>";
+						} 
+						tag+="</div>" +
 						"<div class='my_friend_info'>" +
                 		"<div class='my_friend_name'>" +
                     		nickname +
@@ -98,7 +106,11 @@ function createFriendRequestList(res) {
             let nickname = friendRequest.send.profile.nickname;
             let country  = friendRequest.send.profile.country.name;
 			tag += "<div class='request_friend_section'>" +
-						"<div class='request_friend_img'>" + "</div>" +
+						"<div class='request_friend_img'>";
+						if(friendRequest.send.profile.url != null){ 
+						tag+="<img src = '/users/image?url="+ friendRequest.send.profile.url +"' alt = '프로필 이미지'>";
+						} 
+						tag+="</div>" +
 						"<div class='request_friend_info'>" +
                 		"<div class='request_friend_name'>" +
                     		nickname +
