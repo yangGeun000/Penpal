@@ -97,6 +97,7 @@ section {
 }
 
 .header_member_icon .new_message_btn {
+    position: relative;
     width: 40px;
     height: 40px;
     font-family: 'FONT AWESOME 5 FREE';
@@ -105,8 +106,13 @@ section {
     text-align: center;
 }
 
-.header_member_icon .new_message_btn.active i {
-    color: #547296;
+.header_member_icon .new_message_btn i ul {
+    position: absolute;
+    width: 200px;
+    top: 4px;
+    right: 44px;
+    text-align: right;
+    font-size: 18px;
 }
 
 .header_member_icon .member_profile_btn {
@@ -2955,7 +2961,7 @@ section {
     width: 100%;
     height: max-content;
     margin-top: 10px;
-    margin-left:4px;
+    margin-left: 4px;
     text-align: left;
 }
 
@@ -2966,7 +2972,7 @@ section {
     height: fit-content;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
-    margin-right:6px;
+    margin-right: 6px;
     padding: 4px 16px;
 }
 
@@ -2979,7 +2985,7 @@ section {
     width: 100%;
     height: fit-content;
     margin-top: 10px;
-    margin-left:-4px;
+    margin-left: -4px;
     text-align: right;
 }
 
@@ -2990,7 +2996,7 @@ section {
     height: fit-content;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
-    margin-left:4px;
+    margin-left: 4px;
     padding: 4px 16px;
 }
 
