@@ -297,12 +297,12 @@ section {
     z-index: 3;
 }
 
-.middle_contents .profile_list li #preview{
+.middle_contents .profile_list li #preview {
     position: relative;
     top: 50%;
     left: 50%;
     width: 200%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
     cursor: pointer;
 }
@@ -715,7 +715,7 @@ section {
 #users_section02 .users_profiles {
     width: 1200px;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: flex-end;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -731,7 +731,7 @@ section {
 
 #users_section02 .users_profiles .user_profile_view .user_profile_img {
     position: relative;
-    margin:4px auto;
+    margin: 4px auto;
     width: 220px;
     height: 220px;
     border-radius: 50%;
@@ -744,11 +744,11 @@ section {
     overflow: hidden;
 }
 
-#users_section02 .users_profiles .user_profile_view .user_profile_img #preview{
+#users_section02 .users_profiles .user_profile_view .user_profile_img #preview {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -918,19 +918,19 @@ section {
     overflow: hidden;
 }
 
-#profile_section01 .profile_info_section01 .profile_img #preview{
+#profile_section01 .profile_info_section01 .profile_img #preview {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
-#profile_section01 .profile_info_section01 #profile_img_input{
+#profile_section01 .profile_info_section01 #profile_img_input {
     display: none;
 }
 
-#profile_section01 .profile_info_section01 #profile_input_label{
+#profile_section01 .profile_info_section01 #profile_input_label {
     position: absolute;
     width: 110px;
     height: 30px;
@@ -1538,15 +1538,15 @@ section {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
-    margin:0 30px 0 50px;
+    margin: 0 30px 0 50px;
     overflow: hidden;
 }
 
-.view_profile_section .view_profile_writer_img #preview{
+.view_profile_section .view_profile_writer_img #preview {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -1675,19 +1675,38 @@ section {
     height: calc(max-content + 100px);
 }
 
-#community_detail_section01 .detail_modify {
-    height: 40px;
+#community_detail_section01 .detail_btn_section {
+    position: relative;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
 }
+
+#community_detail_section01 .detail_modify {}
 
 #community_detail_section01 .detail_modify button {
     position: relative;
     float: right;
     padding: 10px 40px;
-    margin: 14px 50px;
+    margin: 14px 0;
     border: 1px solid #547296;
     border-radius: 20px;
     color: #f6f7f7;
     background-color: #547296;
+    width: 126px;
+}
+
+#community_detail_section01 .detail_delete {}
+
+#community_detail_section01 .detail_delete button {
+    position: relative;
+    float: right;
+    padding: 10px 40px;
+    margin: 14px 50px 14px 8px;
+    border: 1px solid #9d9ea2;
+    border-radius: 20px;
+    color: #9d9ea2;
+    width: 126px;
 }
 
 #community_detail_section01 .detail_view_area {
@@ -1743,11 +1762,11 @@ section {
     overflow: hidden;
 }
 
-#community_detail_section01 .detail_view_area .detail_profile .detail_profile_img #preview{
+#community_detail_section01 .detail_view_area .detail_profile .detail_profile_img #preview {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -1951,11 +1970,11 @@ section {
     border-radius: 50%;
 }
 
-.answer_profile_img #preview{
+.answer_profile_img #preview {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2189,11 +2208,11 @@ section {
     overflow: hidden;
 }
 
-#menu_content .menu_profile_section .menu_profile_img #preview{
+#menu_content .menu_profile_section .menu_profile_img #preview {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2335,11 +2354,11 @@ section {
     border-radius: 50%;
 }
 
-#menu_content .menu_message_section .menu_message .menu_message_profile_img img{
+#menu_content .menu_message_section .menu_message .menu_message_profile_img img {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2488,12 +2507,12 @@ section {
 }
 
 .my_friend_section::after {
-    content:"";
+    content: "";
     display: block;
     height: 100px;
     border-bottom: 1px solid #9d9ea2;
     width: 580px;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 1px;
     z-index: -5;
 }
@@ -2511,11 +2530,11 @@ section {
     border-radius: 50%;
 }
 
-.my_friend_section .my_friend_img img{
+.my_friend_section .my_friend_img img {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2621,13 +2640,13 @@ section {
 }
 
 .request_friend_section::after {
-    content:"";
+    content: "";
     display: block;
     border-bottom: 1px solid #9d9ea2;
     height: 120px;
     position: absolute;
     width: 580px;
-    left:20px;
+    left: 20px;
     top: 1px;
     z-index: -5;
 }
@@ -2646,11 +2665,11 @@ section {
     border-radius: 50%;
 }
 
-.request_friend_section .request_friend_img img{
+.request_friend_section .request_friend_img img {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2772,11 +2791,11 @@ section {
     border-radius: 50%;
 }
 
-.message_list_section .message_list_view .message_profile_img img{
+.message_list_section .message_list_view .message_profile_img img {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2892,11 +2911,11 @@ section {
     border-radius: 50%;
 }
 
-.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_img img{
+.modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_img img {
     position: relative;
     top: 50%;
     left: 50%;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 200%;
 }
 
@@ -2930,27 +2949,38 @@ section {
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log {
     position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
     width: 100%;
-    height: fit-content;
-    float: right;
+    height: max-content;
     margin-top: 10px;
+    margin-left:4px;
+    text-align: left;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log .friend_message {
     position: relative;
+    float: left;
     width: fit-content;
     height: fit-content;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
+    margin-right:6px;
     padding: 4px 16px;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log {
     position: relative;
-    float: left;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
     width: 100%;
     height: fit-content;
     margin-top: 10px;
+    margin-left:-4px;
+    text-align: right;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log .my_message {
@@ -2960,6 +2990,7 @@ section {
     height: fit-content;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
+    margin-left:4px;
     padding: 4px 16px;
 }
 
