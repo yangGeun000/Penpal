@@ -2173,6 +2173,7 @@ section {
 #menu_content .menu_profile_section {
     width: 100%;
     height: 140px;
+    cursor: pointer;
 }
 
 #menu_content .menu_profile_section .menu_profile_img {

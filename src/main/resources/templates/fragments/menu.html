@@ -5,26 +5,27 @@
         </button>
         <div id="menu_content">
             <div class="menu_profile_section">
-                <div class="menu_profile_img">
-                    <!-- 프로필 이미지 영역 -->
-                    <img id="preview" 
-							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
-							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
-                </div>
-                <div class="menu_profile_info">
-                    <!-- 프로필 정보 영역 -->
-                    <span class="menu_profile_username">
-                        <!-- 이름 -->
-                        [[${loginMember.profile} != null ? ${loginMember.profile.nickname} : ${loginMember.name}]]
-                    </span><br>
-                    <span class="menu_profile_nationality" th:if="${loginMember.profile != null}">
-                        <!-- 국적 -->
-                        [[${loginMember.profile.country}]]
-                    </span>
-                    <div class="menu_profile_flag">
-                        <!-- 국가 아이콘 -->
+                <a th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.id}|} : @{/users/profile/create}">
+                    <div class="menu_profile_img">
+                        <!-- 프로필 이미지 영역 -->
+                        <img id="preview" th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
+                            th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
                     </div>
-                </div>
+                    <div class="menu_profile_info">
+                        <!-- 프로필 정보 영역 -->
+                        <span class="menu_profile_username">
+                            <!-- 이름 -->
+                            [[${loginMember.profile} != null ? ${loginMember.profile.nickname} : ${loginMember.name}]]
+                        </span><br>
+                        <span class="menu_profile_nationality" th:if="${loginMember.profile != null}">
+                            <!-- 국적 -->
+                            [[${loginMember.profile.country}]]
+                        </span>
+                        <div class="menu_profile_flag">
+                            <!-- 국가 아이콘 -->
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="menu_friend_section">
                 <div class="menu_text">
@@ -80,13 +81,12 @@
     <div th:replace="fragments/friend_list :: friendListFragment"></div>
     <div th:replace="fragments/message_list :: messageListFragment"></div>
     <script th:inline="javascript">
-    // by 구양근, 외부 파일로 사용시 타임리프 값을 못 불러와서 안에 선언
-    	let member = /*[[${loginMember}]]*/ "로그인 멤버";
+        // by 구양근, 외부 파일로 사용시 타임리프 값을 못 불러와서 안에 선언
+        let member = /*[[${loginMember}]]*/ "로그인 멤버";
         console.log(member);
         // by 구양근, 30초 마다 리스트 갱신
-        setInterval(function(){
-			getRoom();
-		},30000);
-        
+        setInterval(function () {
+            getRoom();
+        }, 30000);
     </script>
 </div>
