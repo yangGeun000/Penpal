@@ -2,6 +2,7 @@ package com.penpal.project;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
 
 	private final CategoryListRepository categoryListRepository;
