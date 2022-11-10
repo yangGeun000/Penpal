@@ -22,30 +22,31 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class LoginSuccessHandler implements AuthenticationSuccessHandler{
-	
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+
 	private final MemberRepository mr;
 	private final ProfileRepository pr;
 
 	// by 안준언, 로그인한 세션으로 멤버의 접속 상태를 true로 변경
 	@Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response, Authentication authentication) throws IOException, ServletException{
-    	
-		System.out.println("authentication:: "+ authentication.getName());
-        httpServletRequest.getSession().setAttribute("memberId", authentication.getName());
-        System.out.println(httpServletRequest.getSession().getAttribute("memberId"));
-        Optional<Member> mb = mr.findByMemberId(httpServletRequest.getSession().getAttribute("memberId").toString());
-        Member member = mb.get();
-        member.setConn(true);        	
-        mr.save(member);
-        
-        Profile profile = pr.findByMember(member);
-        if(profile != null) {
-        	profile.setLastDate(LocalDateTime.now());
-        	pr.save(profile);        	
-        }
-        
-        response.sendRedirect("/");
-        
-    }
+	public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+
+		System.out.println("authentication:: " + authentication.getName());
+		httpServletRequest.getSession().setAttribute("memberId", authentication.getName());
+		System.out.println(httpServletRequest.getSession().getAttribute("memberId"));
+		Optional<Member> mb = mr.findByMemberId(httpServletRequest.getSession().getAttribute("memberId").toString());
+		Member member = mb.get();
+		member.setConn(true);
+		mr.save(member);
+
+		Profile profile = pr.findByMember(member);
+		if (profile != null) {
+			profile.setLastDate(LocalDateTime.now());
+			pr.save(profile);
+		}
+
+		response.sendRedirect("/");
+
+	}
 }

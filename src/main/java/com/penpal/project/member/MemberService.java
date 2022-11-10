@@ -19,6 +19,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+	private Member member;
    
     
     public Member create(String memberId, String memberPw, String name, String email) {
@@ -34,6 +35,36 @@ public class MemberService {
         
         return user;
     }
+    
+    public int updatePw(Member member) {
+    	try{
+    		Member user =  (this.memberRepository.findByMemberId(member.getMemberId()).get());
+    //		if(!passwordEncoder.encode(member.getMemberPw()).equals(user.getMemberPw())) {
+    //			return -1;
+    //		}
+    		
+    		user.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
+    		this.memberRepository.save(user);
+    		
+    		return 1;
+    	}catch (Exception e) {
+    		System.out.println("test3");
+			return -1;
+		}
+    }
+    
+    public void update(Member member) {
+    	
+    	
+    	
+    	this.memberRepository.save(member);
+    	log.info("이거 되냐?");
+    }
+    
+    public void setMember(Member member) {
+    	this.member = member;
+    }
+    
 
     public Member getMember(String memberId) {
         Optional<Member> member = this.memberRepository.findByMemberId(memberId);

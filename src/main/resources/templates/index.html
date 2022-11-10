@@ -34,7 +34,7 @@
                 <h2><a href="/users">More new friends<span><i class="fas fa-arrow-right"></i></span>
                     </a></h2>
                 <div>
-                    <ul class="profile_list">
+                   <ul class="profile_list">
                         <th:block th:each="profile : ${recentProfile}">
                             <li>
                                 <a th:href="@{|/users/profile/${profile.id}|}">[[${profile.getNickname()}]]</a>

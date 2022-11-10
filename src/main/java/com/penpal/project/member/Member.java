@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.WrongClassException;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -40,6 +42,13 @@ public class Member {
 	@Column
 	@JsonIgnore
 	private String memberPw;
+	
+	@Column
+	@JsonIgnore
+	private String memberNPw;
+	
+	@JsonIgnore
+	private String memberNPwCheck;
 
 	@Column(unique = true, length = 60)
 	private String name;
@@ -84,4 +93,17 @@ public class Member {
 	@JsonBackReference
 	private List<FriendRequest> friendRequestList;
 
+	public void changePassword(String memberPw, String memberNPw, String memberNPwC) {
+		if(!memberPw.equals(memberPw))
+			throw new WrongClassException("1", memberPw, memberNPw);
+		this.memberPw = memberNPw;
+		
+	}
+
+	public void update(Member member) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

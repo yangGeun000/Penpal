@@ -1,5 +1,6 @@
 package com.penpal.project.member;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -64,6 +65,53 @@ public class MemberController {
     @GetMapping("/login")
     public String login() {
         return "member/login";
+    }
+    
+    @GetMapping("/modify")
+    public String update() {
+		return "member/user_info_modify";
+    	
+    }
+    
+    @PostMapping("/modify")
+    public String updatePassword(@Valid Member member, BindingResult bindingResult, HttpSession session) {
+    	
+    	
+    	if(bindingResult.hasErrors()) {
+    		
+    	} try {
+    		if(!member.getMemberNPw().equals(member.getMemberNPwCheck())) {
+    			throw new Exception("변경할 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+    		}
+    		String memberid = session.getAttribute("memberId").toString();
+    		member.setMemberId(memberid);
+    		
+    		System.out.println("test1");
+			int result = memberService.updatePw(member);
+			System.out.println("test2");
+			System.out.println(result);
+			
+			
+			if(result == 1) {
+				return "/";
+			}else {
+				return "member/user_info_modify";
+			}
+			
+    	} catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            bindingResult.reject(
+                    "signupFailed", 
+                    "이미 등록된 사용자입니다."
+                    );
+            return "member/signup";
+        } catch (Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "member/user_info_modify";
+        }
+    	
+    		
     }
 
     @RequestMapping("/modify")
