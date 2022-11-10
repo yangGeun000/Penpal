@@ -141,7 +141,8 @@ function wsEvt() {
 		let msg = data.data;
 		if (msg != null && msg.trim() != '') {
 			let d = JSON.parse(msg);
-			console.log(d);
+
+			console.log(d.sendDate);
 			if (d.type == "getId") {
 				let si = d.sessionId != null ? d.sessionId : "";
 				if (si != '') {
@@ -151,10 +152,10 @@ function wsEvt() {
 				d.msg = d.msg.replace(/\n/g, "<br>") // by 구양근, 개행 문자 치환
 				if (d.sessionId == $("#sessionId").val()) {
 					$("#chating").append("<div class='my_message_log'>" +
-						"<p class='my_message'>" + d.msg + "</p>" + "</div>");
+						"<p class='my_message'>" + d.msg + "</p>" + d.sendDate + "</div>");
 				} else {
 					$("#chating").append("<div class='friend_message_log'>" +
-						"<p class='friend_message'>" + d.msg + "</p>" + "</div>");
+						"<p class='friend_message'>" + d.msg + "</p>" + d.sendDate + "</div>");
 				}
 				scrollBottom();
 			} else {
@@ -235,10 +236,10 @@ function createRoomMessage(result) {
 			message.content = message.content.replace(/\n/g, "<br>"); // by 구양근, 개행문자 치환
 			if (member.id != message.sender.id) {
 				tag += "<div class='friend_message_log'>" +
-					"<p class='friend_message'>" + message.content + "</p>" + "</div>";
+					"<p class='friend_message'>" + message.content + "</p>" + message.sendDate +"</div>";
 			} else {
 				tag += "<div class='my_message_log'>" +
-					"<p class='my_message'>" + message.content + "</p>" + "</div>";
+					"<p class='my_message'>" + message.content + "</p>" + message.sendDate + "</div>";
 			}
 		});
 		$("#chating").empty().append(tag);
