@@ -67,7 +67,7 @@
             <div class="profile_info_section01">
                 <div class="profile_img">
                     <!-- 프로필 이미지 -->
-                    <img th:if = "${profile.url} != null" th:src = "|/users/image?url=${profile.url}|" alt = "프로필 이미지">
+                    <img id="preview" th:if = "${profile.url} != null" th:src = "|/users/image?url=${profile.url}|" alt = "프로필 이미지">
                 </div>
                 <div class="profile_info_data">
                     <div class="profile_name" th:text="${profile.nickname}">

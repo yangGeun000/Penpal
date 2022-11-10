@@ -25,13 +25,10 @@
 						<img id="preview" 
 							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
 							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
-						<img id="preview" th:if="${loginMember.profile.url} == null" >
-						<input type="file" name="picture" accept="image/*" onchange="readURL(this)">
+						<img id="preview" th:if="${loginMember.profile.url} == null">
 					</div>
-					<button type="button" class="profile_img_upload_btn" value="UPLOAD">
-						<!-- 프로필 이미지 수정&등록 버튼 -->
-						upload
-					</button>
+					<label id="profile_input_label" for="profile_img_input">Upload</label>
+					<input id="profile_img_input" type="file" name="picture" accept="image/*" onchange="readURL(this)">
 					<div class="profile_info_data">
 						<label for="nickname" class="form-label"></label>
 						<input type="text" class="profile_name_form" th:field="*{nickname}">

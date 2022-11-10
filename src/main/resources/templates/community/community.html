@@ -50,7 +50,8 @@
 					</ul>
 				</div>
 				<div id="profile_not_found" sec:authorize="isAuthenticated()">
-					<a th:href="@{/users/profile/create}"  th:if="${loginMember.profile == null}">Writing after registering your profile.</a>
+					<a th:href="@{/users/profile/create}" th:if="${loginMember.profile == null}">Writing after
+						registering your profile.</a>
 				</div>
 				<div class="community_bbs">
 					<!-- by 장유란, 
@@ -70,7 +71,9 @@
 							<div class="view_profile_section">
 								<!-- 해당 글 작성자 프로필 -->
 								<div class="view_profile_writer_img">
-									<!-- 글 작성자 프로필 이미지 -->
+									<img id="preview"
+										th:if="${board.writer.profile} != null ? ${board.writer.profile.url} : 0"
+										th:src="|/users/image?url=${board.writer.profile.url}|" alt="프로필 이미지">
 								</div>
 								<div class="view_profile_writer_info">
 									<div class="view_profile_writer" th:text="${board.writer.profile.nickname}">
