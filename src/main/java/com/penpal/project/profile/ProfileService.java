@@ -179,5 +179,11 @@ public class ProfileService {
         
         return savedPath;
     }
+    
+    // by 구양근, 최근 프로필 5개 
+    public List<Profile> recentProfile(){
+    	List<Profile> profileList = this.profileRepository.findTop5ByOrderByIdDesc();
+    	return profileList;
+    }
 
 }

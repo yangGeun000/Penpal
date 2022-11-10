@@ -35,9 +35,9 @@
                     </a></h2>
                 <div>
                     <ul class="profile_list">
-                        <th:block th:each="member : ${recentMember}">
-                            <li th:if="${member.profile}!=null"><a
-                                    th:href="@{|users/profile/${member.profile.id}|}">[[${member.getProfile().getNickname()}]]</a>
+                        <th:block th:each="profile : ${recentProfile}">
+                            <li>
+                            	<a th:href="@{|users/profile/${profile.id}|}">[[${profile.getNickname()}]]</a>
                             </li>
                         </th:block>
                     </ul>

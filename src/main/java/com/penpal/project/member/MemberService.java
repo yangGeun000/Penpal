@@ -64,9 +64,5 @@ public class MemberService {
     public long onlineMemberCount() {
     	return this.memberRepository.countByConn(true);
     }
-    
-    // by 구양근, 최근 가입한 5명 멤버
-    public List<Member> recentMember(){
-    	return this.memberRepository.findTop5ByOrderByCreateDateDesc();
-    }
+  
 }
