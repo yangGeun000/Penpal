@@ -20,7 +20,10 @@ import com.penpal.project.list.LocationList;
 import com.penpal.project.list.LocationListRepository;
 import com.penpal.project.list.SnsList;
 import com.penpal.project.list.SnsListRepository;
-
+import com.penpal.project.member.Member;
+import com.penpal.project.member.MemberRepository;
+import com.penpal.project.profile.Profile;
+import com.penpal.project.profile.ProfileRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,6 +37,8 @@ public class AdminController {
 	private final SnsListRepository snsListRepository;
 	private final FavoriteListRepository favoriteListRepository;
 	private final LanguageListRepository languageListRepository;
+	private final MemberRepository memberRepository;
+	private final ProfileRepository profileRepository;
 
 	@GetMapping("/admin")
 	public String admin(Model model) {
@@ -55,6 +60,12 @@ public class AdminController {
 		List<LanguageList> languageList = languageListRepository.findAll();
 		model.addAttribute("languageList", languageList);
 
+		List<Member> memberList = memberRepository.findAll();
+		model.addAttribute("memberList", memberList);
+		
+		List<Profile> profileList = profileRepository.findAll();
+		model.addAttribute("profileList", profileList);
+		
 		return "admin/admin";
 	}
 
@@ -134,6 +145,18 @@ public class AdminController {
 	@GetMapping("/language/delete/{id}")
 	public String languageDelete(@PathVariable("id") LanguageList id) {
 		this.languageListRepository.delete(id);
+		return "redirect:/admin";
+	}
+	
+	@GetMapping("/member/delete/{id}")
+	public String memberDelete(@PathVariable("id") Member id) {
+		this.memberRepository.delete(id);
+		return "redirect:/admin";
+	}
+	
+	@GetMapping("/profile/delete/{id}")
+	public String profileDelete(@PathVariable("id") Profile id) {
+		this.profileRepository.delete(id);
 		return "redirect:/admin";
 	}
 }
