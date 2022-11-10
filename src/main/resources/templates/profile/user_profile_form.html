@@ -59,7 +59,7 @@
 								Nationality<br>
 								<div class="write_nationality">
 									<select class="nation_select" name="location" id="location" th:field="*{location}">
-										<option value="" selected>Nationality</option>
+										<option value="" selected>Region</option>
 										<option th:each="location : ${location}" th:value="${location}"
 											th:text="${location.name}"></option>
 									</select>
