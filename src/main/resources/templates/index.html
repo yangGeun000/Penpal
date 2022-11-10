@@ -37,11 +37,10 @@
                     <ul class="profile_list">
                         <th:block th:each="profile : ${recentProfile}">
                             <li>
-                            <img id="preview" 
-							th:if="${loginMember.profile.url}"
-							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
-							<img id="preview" th:if="!${loginMember.profile.url}">
-                            	<a th:href="@{|users/profile/${profile.id}|}">[[${profile.getNickname()}]]</a>
+                                <a th:href="@{|/users/profile/${profile.id}|}">[[${profile.getNickname()}]]</a>
+                                <img id="preview" th:if="${profile.url}" th:href="@{|/users/profile/${profile.id}|}"
+                                    th:src="|/users/image?url=${profile.url}|" alt="프로필 이미지">
+                                <img id="preview" th:if="!${profile.url}">
                             </li>
                         </th:block>
                     </ul>
@@ -70,7 +69,7 @@
         <section id="section04">
             <div class="bottom_contents">
                 <div class="continent_count">
-                     <span class="asia_count">
+                    <span class="asia_count">
                         [[${location.get(1).getProfileList().size()}]]
                     </span>
                     <span class="north_america_count">

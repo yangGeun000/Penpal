@@ -276,19 +276,15 @@ section {
 .middle_contents .profile_list li {
     width: 120px;
     height: 120px;
-}
-
-.middle_contents .profile_list li div {
-    position: relative;
-    width: 120px;
-    height: 150px;
     background-image: url(../images/default_profile.png);
     background-position: top;
     background-size: 120px 120px;
     background-repeat: no-repeat;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
-.middle_contents .profile_list li div a {
+.middle_contents .profile_list li a {
     position: absolute;
     display: block;
     width: 120px;
@@ -298,22 +294,17 @@ section {
     font-size: 16px;
     padding-right: 2px;
     text-decoration: none;
-    overflow: hidden;
-    border-radius: 50%;
+    z-index: 3;
 }
 
-.middle_contents .profile_list li div span{
-    position: absolute;
-    width: 120px;
-    bottom: 0;
-    text-align: center;
-}
-
-.middle_contents .profile_list li div a #preview{
+.middle_contents .profile_list li #preview{
     position: relative;
     top: 50%;
     left: 50%;
+    width: 200%;
     transform:translate(-50%, -50%);
+    width: 200%;
+    cursor: pointer;
 }
 
 /* profile list section end */
@@ -758,6 +749,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 
@@ -931,6 +923,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 #profile_section01 .profile_info_section01 #profile_img_input{
@@ -1554,6 +1547,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 .view_profile_section .view_profile_writer_info {
@@ -1754,6 +1748,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 
@@ -1961,6 +1956,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 
@@ -2189,7 +2185,7 @@ section {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 120px 120px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #menu_content .menu_profile_section .menu_profile_img #preview{
@@ -2197,6 +2193,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 #menu_content .menu_profile_section .menu_profile_info {
@@ -2342,6 +2339,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 #menu_content .menu_message_section .menu_message .menu_message_profile_name {
@@ -2517,6 +2515,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 .my_friend_section .my_friend_info {
@@ -2651,6 +2650,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 .request_friend_section .request_friend_info {
@@ -2776,6 +2776,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 .message_list_section .message_list_view .message_profile_name {
@@ -2895,6 +2896,7 @@ section {
     top: 50%;
     left: 50%;
     transform:translate(-50%, -50%);
+    width: 200%;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_friend_profile .message_room_friend_name {
