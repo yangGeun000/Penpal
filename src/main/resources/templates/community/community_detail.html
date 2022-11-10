@@ -34,7 +34,7 @@
 					</div>
 					<div class="detail_profile_info">
 						<!-- 작성자 이름 -->
-						<div class="detail_content_writer" th:text="${board.writer.memberId}"></div>
+						<div class="detail_content_writer" th:text="${board.writer.profile.nickname}"></div>
 						<!-- 작성자 국적 -->
 						<div class="detail_content_writer_country" th:text="${board.writer.profile.country}"
 							th:if="${board.writer.profile != null}"></div>

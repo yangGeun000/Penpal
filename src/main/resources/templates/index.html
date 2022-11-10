@@ -11,7 +11,9 @@
                         </h3><br><br>
                     </div>
                     <div sec:authorize="isAuthenticated()">
-                        <h1>Welcome to<br><span>#Penpal</span>, [[${loginMember.profile.nickname}]]!</h1>
+                        <h1>Welcome to<br><span>#Penpal</span>,
+                            [[${loginMember.profile} != null ? ${loginMember.profile.nickname} : ${loginMember.name}]]!
+                        </h1>
                         <h3>#Penpal's all the people share profiles,<br>So Regist your Profile, and Find new friends!
                         </h3><br><br>
                     </div>
