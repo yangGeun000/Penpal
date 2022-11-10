@@ -92,13 +92,35 @@ function closeMessageRoom() {
 		ws.close();
 		ws = null;
 		console.log("소켓 종료");
+		getRoom();
 	}
 } // by 조성빈, 채팅받 닫기 기능
 
-function openPopMessage() {
-	document.getElementById("pop_message").style.display = "block";
-	$(".message_list_section").addClass("open_list");
+//by 구양근, 확인한 개수보다 새 개수가 많으면 알림 아이콘 색 red
+function notification(){
+	if(checkMessage < newMessage || checkFriend < newFriend){
+		document.getElementById("bell").style.color = "red";
+	}
+	else{
+		document.getElementById("bell").style.color = "#384250";
+	}
 }
+
+function openPopMessage() {
+	// by 구양근, 알림 확인 기능
+	checkMessage = newMessage;
+	console.log("checkMessage : " + checkMessage);
+	checkFriend = newFriend;
+	console.log("checkFriend : " + checkFriend);
+	let msg = {
+		checkMessage : checkMessage,
+		checkFriend : checkFriend
+	};
+	commonAjax('/member/setCount', msg, 'post', function(result) {
+		notification()
+	});
+}
+
 
 function closePop() {
 	document.getElementById("pop_friend").style.display = "none";

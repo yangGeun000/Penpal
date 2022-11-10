@@ -4,8 +4,10 @@ function getRoom() {
 	};
 	console.log(msg);
 	commonAjax('/getRoom', msg, 'post', function(result) {
+		newMessage = 0;
 		createRecentRoom(result);
 		createRoomList(result);
+		messageNotification();
 	});
 }
 
@@ -59,6 +61,7 @@ function createRoomList(result) {
 				your = room.guest;
 				messageCount = room.makerCount;
 			}
+			newMessage += messageCount;
 			tag +=
 				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\", \"" + your.profile.url + "\")'>" +
 				"<div class='message_list_view'>" +

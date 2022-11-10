@@ -12,7 +12,12 @@
 	<div class="header_member_icon" sec:authorize="isAuthenticated()">
 		<!-- new message 있으면 바뀌는 건 .active, 데이터 지정 후 th:classappend 적용 예정 -->
 		<button type="button" onclick="openPopMessage()" class="new_message_btn">
-			<i class="far fa-bell"></i>
+			<i id = "bell" class="far fa-bell">
+			<ul>
+				<li id = "new_message"></li>
+				<li id = "new_frined"></li>
+			</ul>
+			</i>
 		</button>
 		<button type="button" class="member_profile_btn" onclick="menuDrop()">
 			<i class="far fa-user"></i>

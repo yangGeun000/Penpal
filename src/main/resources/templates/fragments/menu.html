@@ -84,9 +84,41 @@
         // by 구양근, 외부 파일로 사용시 타임리프 값을 못 불러와서 안에 선언
         let member = /*[[${loginMember}]]*/ "로그인 멤버";
         console.log(member);
+        // by 구양근, 새 메세지 총 개수
+        let newMessage = 0;
+        // by 구양근, 확인한 메세지 개수
+        let checkMessage =  /*[[${loginMember.getMessageCount()}]]*/ "확인한 메세지";
+        // by 구양근, 새 친구요청 총 개수
+        let newFriend = 0;
+        // by 구양근, 확인한 친구요청 개수
+        let checkFriend =  /*[[${loginMember.getFriendRequestCount()}]]*/ "확인한 친구요청";
+        
+        function messageNotification(){
+			let mCount = document.getElementById("new_message");
+			mCount.innerHTML="새 메세지 개수 : " + newMessage;
+			notification()
+		}
+		
+		function friendNotification(){
+			let fCount = document.getElementById("new_frined");
+			fCount.innerHTML="새 친구요청 개수 : " + newFriend;
+			notification()
+		}
+		
+		window.onload = function(){
+			getRoom(); // 대화방 갱신
+			getOnlineFriend(); // 접속중인 친구 리스트 갱신
+			getFriend(); // 전체 친구 리스트 갱신
+			getFriendRequest(); // 친구 요청 리스트 갱신
+		}
+		
         // by 구양근, 30초 마다 리스트 갱신
         setInterval(function () {
-            getRoom();
+            getRoom(); // 대화방 갱신
+			getOnlineFriend(); // 접속중인 친구 리스트 갱신
+			getFriend(); // 전체 친구 리스트 갱신
+			getFriendRequest(); // 친구 요청 리스트 갱신
         }, 30000);
+        
     </script>
 </div>

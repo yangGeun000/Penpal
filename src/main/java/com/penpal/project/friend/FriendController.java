@@ -70,6 +70,7 @@ public class FriendController {
    
    // by 안준언, 친구 삭제 (임시)
    @RequestMapping("/deleteFriend")
+   @ResponseBody
    public void deletefriend(@RequestParam HashMap<Object, Object> params) {
 	   Optional<Friend> df = this.friendRepository.findById(Integer.parseInt((String) params.get("friendId")));
 	   Friend friend = df.get();

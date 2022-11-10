@@ -94,7 +94,9 @@ function getFriendRequest() {
     };
     console.log(msg);
     commonAjax('/getFriendRequest', msg, 'post', function (result) {
+		newFriend=0;
         createFriendRequestList(result);
+        friendNotification();
     });
 }
 
@@ -102,6 +104,7 @@ function createFriendRequestList(res) {
     console.log(res);
     let tag ="";
     if (res != null) {
+		newFriend = res.length;
         res.forEach(function (friendRequest) {
             let nickname = friendRequest.send.profile.nickname;
             let country  = friendRequest.send.profile.country.name;

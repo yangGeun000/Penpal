@@ -67,6 +67,10 @@ public class MemberService {
     	this.member = member;
     }
     
+    public void saveMember(Member member) {
+    	this.memberRepository.save(member);
+    }
+    
 
     public Member getMember(String memberId) {
         Optional<Member> member = this.memberRepository.findByMemberId(memberId);

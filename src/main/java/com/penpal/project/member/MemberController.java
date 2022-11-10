@@ -1,15 +1,19 @@
 package com.penpal.project.member;
 
+import java.security.Principal;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 
@@ -118,4 +122,14 @@ public class MemberController {
     public String infoModify(){
         return "member/user_info_modify";
     } //by 조성빈, 유저 정보(비밀번호) 수정 템플릿 작성용 임시 매핑
+    
+    // by 구양근, 확인한 메세지, 친구요청 저장 
+ 	@RequestMapping("/setCount")
+ 	@ResponseBody
+ 	public void setCount(@RequestParam HashMap<Object, Object> params, Principal principal){
+ 		Member member = this.memberService.getMember(principal.getName());
+ 		member.setMessageCount(Integer.parseInt((String) params.get("checkMessage")));
+ 		member.setFriendRequestCount(Integer.parseInt((String) params.get("checkFriend")));
+ 		this.memberService.saveMember(member);
+ 	}
 }
