@@ -25,7 +25,8 @@
 						<img id="preview" 
 							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
 							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
-						<img id="preview" th:if="${loginMember.profile.url} == null">
+						<img id="preview" th:if="${loginMember.profile} != null ? !${loginMember.profile.url} : 0">
+						<img id="preview" th:if="${loginMember.profile} == null" >
 					</div>
 					<label id="profile_input_label" for="profile_img_input">Upload</label>
 					<input id="profile_img_input" type="file" name="picture" accept="image/*" onchange="readURL(this)">
