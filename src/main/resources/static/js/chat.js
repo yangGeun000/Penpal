@@ -57,7 +57,7 @@ function createRoomList(result) {
 				your = room.guest;
 			}
 			tag +=
-				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\")'>" +
+				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\", \"" + your.profile.url + "\")'>" +
 				"<div class='message_list_view'>" +
 				"<div class='message_profile_img'>";
 				if( your.profile.url != null){ 
@@ -213,7 +213,7 @@ function getMessage() {
 function createRoomProfile(name, url) {
 	let tag = "";
 	tag += "<div class='message_room_friend_img'>";
-		if( url != null){ 
+		if( url != null && url != 'null'){ 
 						tag+="<img src = '/users/image?url="+  url +"' alt = '프로필 이미지'>";
 						} 
 						tag+="</div>" +
