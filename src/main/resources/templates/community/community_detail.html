@@ -14,10 +14,19 @@
 		</section>
 		<section id="community_detail_section01">
 			<!-- 작성자 외 수정버튼 미표시 -->
-			<div class="detail_modify">
-				<a class="detail_modify" th:href="@{|/community/modify/${board.id}|}" sec:authorize="isAuthenticated()"
-					th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.memberId}">
-					<button type="button" value="Modify">Modify</button></a>
+			<div class="detail_btn_section">
+				<div class="detail_modify">
+					<a class="detail_modify" th:href="@{|/community/modify/${board.id}|}"
+						sec:authorize="isAuthenticated()"
+						th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.memberId}">
+						<button type="button" value="Modify">Modify</button></a>
+				</div>
+				<div class="detail_delete">
+					<a class="detail_delete" th:href="@{|/community/delete/${board.id}|}"
+						sec:authorize="isAuthenticated()"
+						th:if="${board.writer != null and #authentication.getPrincipal().getUsername() == board.writer.memberId}">
+						<button type="button" value="Delete">Delete</button></a>
+				</div>
 			</div>
 			<div class="detail_view_area potion">
 				<div class="detail_category_area">
@@ -30,8 +39,7 @@
 				<div class="detail_profile">
 					<!-- by 장유란, Board 작성자 나타나게 수정(위치 임의), 클래스명 변경(제거)해도 정상작동 -->
 					<div class="detail_profile_img">
-						<img id="preview" 
-							th:if="${board.writer.profile} != null ? ${board.writer.profile.url} : 0"
+						<img id="preview" th:if="${board.writer.profile} != null ? ${board.writer.profile.url} : 0"
 							th:src="|/users/image?url=${board.writer.profile.url}|" alt="프로필 이미지">
 					</div>
 					<div class="detail_profile_info">
@@ -46,16 +54,16 @@
 			<div id="detail_answer_area" class="detail_answer_area potion">
 				<div class="answer_text">Answer</div>
 				<div id="profile_not_found" sec:authorize="isAuthenticated()">
-                    <a th:href="@{/users/profile/create}" th:if="${loginMember.profile == null}">Answer after registering your profile.</a>
-                </div>
-				<div class="answer_profile" sec:authorize="isAuthenticated()"  th:if="${loginMember.profile != null}">
+					<a th:href="@{/users/profile/create}" th:if="${loginMember.profile == null}">Answer after
+						registering your profile.</a>
+				</div>
+				<div class="answer_profile" sec:authorize="isAuthenticated()" th:if="${loginMember.profile != null}">
 					<div class="answer_profile_img">
-						<img id="preview" 
-							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
+						<img id="preview" th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
 							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
 					</div>
 					<div class="answer_writer_section">
-						<div class="answer_writer" th:text="${loginMember.name}"  th:if="${loginMember.profile != null}">
+						<div class="answer_writer" th:text="${loginMember.name}" th:if="${loginMember.profile != null}">
 							<!-- 로그인 멤버 닉네임 -->
 						</div>
 						<div class="answer_writer_country" th:if="${loginMember.profile != null}"
@@ -64,7 +72,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()"  th:if="${loginMember.profile != null}">
+				<div class="detail_answer_input_area" sec:authorize="isAuthenticated()"
+					th:if="${loginMember.profile != null}">
 					<form th:action="@{|/answer/create/${board.id}|}" th:object="${answerForm}" method="post">
 						<textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" rows="3"></textarea>
 						<textarea sec:authorize="isAuthenticated()" th:field="*{content}" rows="3"></textarea>
@@ -75,9 +84,9 @@
 				<div class="detail_answer_list_area" th:each="answer : ${board.answerList}">
 					<div class="answer_profile">
 						<div class="answer_profile_img">
-							<img id="preview" 
-							th:if="${answer.writer.profile} != null ? ${answer.writer.profile.url} : 0"
-							th:src="|/users/image?url=${answer.writer.profile.url}|" alt="프로필 이미지">
+							<img id="preview"
+								th:if="${answer.writer.profile} != null ? ${answer.writer.profile.url} : 0"
+								th:src="|/users/image?url=${answer.writer.profile.url}|" alt="프로필 이미지">
 						</div>
 						<div class="answer_writer_section">
 							<div class="answer_writer" th:text="${answer.writer.memberId}">
@@ -189,9 +198,6 @@
 			})
 
 		})
-		
-		
-		
 	</script>
 
 	<script>
