@@ -37,6 +37,10 @@
                     <ul class="profile_list">
                         <th:block th:each="profile : ${recentProfile}">
                             <li>
+                            <img id="preview" 
+							th:if="${loginMember.profile.url}"
+							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
+							<img id="preview" th:if="!${loginMember.profile.url}">
                             	<a th:href="@{|users/profile/${profile.id}|}">[[${profile.getNickname()}]]</a>
                             </li>
                         </th:block>
