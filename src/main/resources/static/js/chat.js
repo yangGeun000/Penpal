@@ -51,10 +51,13 @@ function createRoomList(result) {
 		result.forEach(function(room) {
 			let length = room.messageList.length;
 			let your;
+			let messageCount;
 			if (member.id != room.maker.id) {
 				your = room.maker;
+				messageCount = room.guestCount;
 			} else {
 				your = room.guest;
+				messageCount = room.makerCount;
 			}
 			tag +=
 				"<a id='pop_btn' class='pop_message' href='javascript:openMessageRoom()' onclick='openRoom(\"" + room.id + "\", \"" + your.profile.nickname + "\", \"" + your.profile.url + "\")'>" +
@@ -67,16 +70,18 @@ function createRoomList(result) {
 				"<div class='message_profile_name'>" +
 				your.profile.nickname +
 				"</div>" +
-				"<div class='message_content'>" +
-				"<span>";
+				"<div class='message_content'>";
 			if (length > 0) {
-				tag += room.messageList[length - 1].content;
-			}
-			tag += "</span>" +
+				tag += "<span>" + 
+						room.messageList[length - 1].content +
+						"</span>" + "<br>" +
+						room.messageList[length - 1].sendDate;
+				}
+			tag += 
 				"</div>" +
-				//"<div class='message_new_count'>" +
-				//"<span></span>" +
-				//"</div>" +
+				"<div class='message_new_count'>" +
+				"<span>" + messageCount + "</span>" +
+				"</div>" +
 				"<button type='button' id='message_room_delete_btn' value='DELETE' onclick = 'deleteRoom(\"" + room.id + "\")'>" +
 				"Delete" +
 				"</button>" +

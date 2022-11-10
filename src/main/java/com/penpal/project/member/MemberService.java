@@ -31,6 +31,8 @@ public class MemberService {
         user.setName(name);
         user.setEmail(email);
         user.setCreateDate(LocalDateTime.now());
+        user.setFriendRequestCount(0);
+        user.setMessageCount(0);
         this.memberRepository.save(user);
         
         return user;

@@ -32,6 +32,10 @@ public class Room {
 	@ManyToOne
 	private Member guest;
 	
+	private int makerCount;
+	
+	private int guestCount;
+	
 	private LocalDateTime lastDate;
 	
 	@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)

@@ -24,6 +24,8 @@ public class RoomService {
 		room.setMaker(maker);
 		room.setGuest(guest);
 		room.setLastDate(LocalDateTime.now());
+		room.setMakerCount(0);
+		room.setGuestCount(0);
 		room = this.roomRepository.save(room);
 		log.info("room -> id : " + room.getId() + " maker : " + room.getMaker() + " guest: " + room.getGuest());
 		return room;
@@ -56,6 +58,10 @@ public class RoomService {
         } else {
         	return createRoom(maker, guest);
         }
+	}
+	
+	public void setRoom(Room room) {
+		this.roomRepository.save(room);
 	}
 	
 }

@@ -1,11 +1,11 @@
 package com.penpal.project.chat;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,9 +58,17 @@ public class ChatController {
 	// by 구양근, 대화방 메세지 리스트 
 	@RequestMapping("/getMessage")
 	@ResponseBody
-	public  List<Message> getMessage(@RequestParam HashMap<Object, Object> params){
+	public  List<Message> getMessage(@RequestParam HashMap<Object, Object> params, Principal principal){
 		Room room = this.roomService.getRoom(Integer.parseInt((String) params.get("roomId")));
 		List<Message> messageList = room.getMessageList();
+		if(room.getMaker().getMemberId().equals(principal.getName())){
+			room.setMakerCount(0);
+			this.roomService.setRoom(room);
+		}
+		else {
+			room.setGuestCount(0);
+			this.roomService.setRoom(room);
+		}
 		return messageList;
 	}
 	

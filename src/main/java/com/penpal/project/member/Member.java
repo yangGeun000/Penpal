@@ -67,6 +67,12 @@ public class Member {
 
 	// by 안준언, 현재 접속여부 구분을 위해 해당 필드 살렸습니다.
 	private boolean conn;
+	
+	// by 구양근, 확인한 친구 요청 개수
+	private int friendRequestCount;
+	
+	// by 구양근, 확인한 메세지 개수
+	private int messageCount;
 
 	// by 구양근, 내가 만든 대화방 리스트
 	@OneToMany(mappedBy = "maker", cascade = CascadeType.REMOVE)

@@ -18,9 +18,11 @@ import com.penpal.project.member.Member;
 import com.penpal.project.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Component
+@Slf4j
 public class SocketHandler extends TextWebSocketHandler{
 	//HashMap<String, WebSocketSession> sessionMap = new HashMap<>(); //웹소켓 세션을 담아둘 맵
 		List<HashMap<String, Object>> rls = new ArrayList<>(); //웹소켓 세션을 담아둘 리스트 ---roomListSessions
@@ -57,7 +59,9 @@ public class SocketHandler extends TextWebSocketHandler{
 				//this.messageService.createMessage(sender, room, content);
 				obj.put("sendDate", room.getLastDate().toString());
 				// by 구양근, 메세제 발송
+				int count=0;
 				for(String k : temp.keySet()) { 
+					count++;
 					if(k.equals("roomId")) { //다만 방번호일 경우에는 건너뛴다.
 						continue;
 					}
@@ -69,6 +73,20 @@ public class SocketHandler extends TextWebSocketHandler{
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+					}
+				}
+				// by 구양근, 상대가 접속중이지 않을때
+				if(count < 3) {
+					log.info(sender.getMemberId());
+					if(sender.getId().equals(room.getMaker().getId())) {
+						room.setGuestCount(room.getGuestCount()+1);
+						this.roomService.setRoom(room);
+						log.info("maker = sender");
+					}
+					else {
+						room.setMakerCount(room.getMakerCount()+1);
+						this.roomService.setRoom(room);
+						log.info("guest = sender");
 					}
 				}
 			}
