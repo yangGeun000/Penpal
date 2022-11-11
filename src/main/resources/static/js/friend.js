@@ -32,7 +32,8 @@ function createOnlineFriendList(res) {
     if (res != null) {
         res.forEach(function (friend) {
             let nickname = friend.friend.profile.nickname;
-			tag += "<li class='menu_friend'>" + "<div class='menu_friend_profile_img'>";
+			tag += 		"<a href = '/users/profile/" + friend.friend.profile.id + "'" + "<li class='menu_friend'>" +
+						"<div class='menu_friend_profile_img'>";
 						if( friend.friend.profile.url != null){ 
 						tag+="<img src = '/users/image?url="+  friend.friend.profile.url +"' alt = '프로필 이미지'>";
 						} 
@@ -41,7 +42,7 @@ function createOnlineFriendList(res) {
                     	nickname +
                 		"</div>" +
                 		"<div class='menu_friend_profile_on_icon'>" + "<i class='far fa-user'>" + "</i>" +
-                		"</div>" + "</li>";
+                		"</div>" +"</li>" + "</a>";
         });
         $("#friendList").empty().append(tag);
     }
@@ -67,7 +68,7 @@ function createFriendList(res) {
             let nickname  = friend.friend.profile.nickname;
             let country   = friend.friend.profile.country.name;
             let comment   = friend.friend.profile.comment;
-			tag += "<div class='my_friend_section'>" +
+			tag += 		"<a href = '/users/profile/" + friend.friend.profile.id + "'" + "<div class='my_friend_section'>" +
 						"<div class='my_friend_img'>";
 						if( friend.friend.profile.url != null){ 
 						tag+="<img src = '/users/image?url="+  friend.friend.profile.url +"' alt = '프로필 이미지'>";
@@ -80,8 +81,7 @@ function createFriendList(res) {
                 		"</div>" + "</div>" + "<div class='my_friend_comment'>" + comment +
                 		"</div>" + "<div class='friend_btn_section'>" +
                 		"<button type='button' class='friend_remove_btn' onclick='deleteFriend(\"" + friend.id + "\")'>" + "Delete" +
-                		"</button>" + "</div>" +
-            		"</div>";
+                		"</button>" + "</div>" + "</div>" + "</a>";
         });
         $("#myFriendSection").empty().append(tag);
     }
@@ -108,7 +108,7 @@ function createFriendRequestList(res) {
         res.forEach(function (friendRequest) {
             let nickname = friendRequest.send.profile.nickname;
             let country  = friendRequest.send.profile.country.name;
-			tag += "<div class='request_friend_section'>" +
+			tag += 		"<a href = '/users/profile/" + friendRequest.send.profile.id + "'" + "<div class='request_friend_section'>" +
 						"<div class='request_friend_img'>";
 						if(friendRequest.send.profile.url != null){ 
 						tag+="<img src = '/users/image?url="+ friendRequest.send.profile.url +"' alt = '프로필 이미지'>";
@@ -123,8 +123,7 @@ function createFriendRequestList(res) {
                 		"ACCEPT" + "</button>" + "</li>" +
                 		"<li>" + "<button class='refuse_btn' type='button' onclick='rejectFriend(\"" + friendRequest.id + "\")'>" +
                 		"REFUSE" + "</button>" + "</li>" +
-                		"</ul>" + "</div>" +
-            		"</div>";
+                		"</ul>" + "</div>" + "</div>" + "</a>";
         });
         $("#requestFriendSection").empty().append(tag);
     }
