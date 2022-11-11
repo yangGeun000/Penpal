@@ -1,6 +1,7 @@
 package com.penpal.project.chat;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +58,7 @@ public class SocketHandler extends TextWebSocketHandler{
 				// by 구양근, 보낸시간을 대화방의 마지막 시간으로 설정
 				room.setLastDate(this.messageService.createMessage(sender, room, content).getSendDate());
 				//this.messageService.createMessage(sender, room, content);
-				obj.put("sendDate", room.getLastDate().toString());
+				obj.put("sendDate", room.getLastDate().format(DateTimeFormatter.ofPattern("yy-MM-dd HH:mm")));
 				// by 구양근, 메세제 발송
 				int count=0;
 				for(String k : temp.keySet()) { 
