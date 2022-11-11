@@ -111,7 +111,7 @@ function openNoti() {
 		$(".new_message_btn").removeClass("active")
 	}else{
 		$(".new_message_btn").addClass("active")
-	}// by 조성빈, 클릭시 알림 메시지 active 추가/제거 기능
+	}// by 조성빈, 클릭시 알림 메시지 active 추가/제거 기능화
 
 	// by 구양근, 알림 확인 기능
 	checkMessage = newMessage;
