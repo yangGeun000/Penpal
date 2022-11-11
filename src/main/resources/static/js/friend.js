@@ -32,7 +32,7 @@ function createOnlineFriendList(res) {
     if (res != null) {
         res.forEach(function (friend) {
             let nickname = friend.friend.profile.nickname;
-			tag += 		"<a href = '/users/profile/" + friend.friend.profile.id + "'" + "<li class='menu_friend'>" +
+			tag += 		"<a href = '/users/profile/" + friend.friend.profile.id + "'>" + "<li class='menu_friend'>" +
 						"<div class='menu_friend_profile_img'>";
 						if( friend.friend.profile.url != null){ 
 						tag+="<img src = '/users/image?url="+  friend.friend.profile.url +"' alt = '프로필 이미지'>";
@@ -79,9 +79,10 @@ function createFriendList(res) {
                     		nickname +
                 		"</div>" + "<div class='my_friend_nationality'>" + country +
                 		"</div>" + "</div>" + "<div class='my_friend_comment'>" + comment +
-                		"</div>" + "<div class='friend_btn_section'>" +
+                		"</div>" + "</a>" +
+                        "<div class='friend_btn_section'>" +
                 		"<button type='button' class='friend_remove_btn' onclick='deleteFriend(\"" + friend.id + "\")'>" + "Delete" +
-                		"</button>" + "</div>" + "</div>" + "</a>";
+                		"</button>" + "</div>" + "</div>";
         });
         $("#myFriendSection").empty().append(tag);
     }
@@ -108,7 +109,7 @@ function createFriendRequestList(res) {
         res.forEach(function (friendRequest) {
             let nickname = friendRequest.send.profile.nickname;
             let country  = friendRequest.send.profile.country.name;
-			tag += 		"<a href = '/users/profile/" + friendRequest.send.profile.id + "'" + "<div class='request_friend_section'>" +
+			tag += 		"<a href = '/users/profile/" + friendRequest.send.profile.id + "'>" + "<div class='request_friend_section'>" +
 						"<div class='request_friend_img'>";
 						if(friendRequest.send.profile.url != null){ 
 						tag+="<img src = '/users/image?url="+ friendRequest.send.profile.url +"' alt = '프로필 이미지'>";
@@ -118,12 +119,13 @@ function createFriendRequestList(res) {
                 		"<div class='request_friend_name'>" +
                     		nickname +
                 		"</div>" + "<div class='request_friend_nationality'>" + country +
-                		"</div>" + "</div>" + "<div class='request_friend_btn'>" +
+                		"</div>" + "</div>" + "</a>" + 
+                        "<div class='request_friend_btn'>" +
                 		"<ul>" + "<li>" + "<button class='accept_btn' type='button' onclick='agreeFriend(\"" + friendRequest.id + "\")'>" +
                 		"ACCEPT" + "</button>" + "</li>" +
                 		"<li>" + "<button class='refuse_btn' type='button' onclick='rejectFriend(\"" + friendRequest.id + "\")'>" +
                 		"REFUSE" + "</button>" + "</li>" +
-                		"</ul>" + "</div>" + "</div>" + "</a>";
+                		"</ul>" + "</div>" + "</div>";
         });
         $("#requestFriendSection").empty().append(tag);
     }

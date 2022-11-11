@@ -113,6 +113,11 @@ section {
     right: 44px;
     text-align: right;
     font-size: 18px;
+    display:none;
+}
+
+.header_member_icon .new_message_btn.active i ul {
+    display: block;
 }
 
 .header_member_icon .member_profile_btn {
@@ -2262,12 +2267,11 @@ section {
     text-decoration: underline;
 }
 
-#menu_content .menu_friend_section a {
+#menu_content .menu_friend_section #pop_btn {
     padding-left: 6px;
     font-size: 32px;
     color: #f6f7f7;
 }
-
 
 #menu_content .menu_friend_section .menu_friend {
     position: relative;
@@ -2589,7 +2593,6 @@ section {
 
 .friend_btn_section {
     position: absolute;
-    width: 100px;
     right: 10px;
     top: 10px;
     text-align: right;
@@ -2602,6 +2605,7 @@ section {
     padding: 4px 6px;
     font-size: 12px;
     color: #9d9ea2;
+    z-index: 300;
 }
 
 .friend_message_btn {
@@ -2632,6 +2636,14 @@ section {
     width: 620px;
     height: 560px;
     overflow: auto;
+}
+
+#requestFriendSection a{
+    position: relative;
+    width: 480px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .request_friend_section {
@@ -2682,7 +2694,7 @@ section {
 .request_friend_section .request_friend_info {
     position: relative;
     margin-left: 50px;
-    width: 300px;
+    width: 200px;
 }
 
 .request_friend_section .request_friend_info .request_friend_name {
@@ -2715,6 +2727,7 @@ section {
     border-radius: 10px;
     background-color: #547296;
     color: #f6f7f7;
+    z-index: 30;
 }
 
 .request_friend_section .request_friend_btn .refuse_btn {
@@ -2814,18 +2827,33 @@ section {
 }
 
 .message_list_section .message_list_view .message_content {
+    position: relative;
     width: 290px;
-    height: 80px;
-    margin-left: 10px;
-    line-height: 80px;
-    /* display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    overflow: hidden; */
+    margin-right: 10px;
+    text-align: right;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    line-height: 40px;
+    color:#9d9ea2;
+    /* display:flex;
+    align-items: flex-end;
+    justify-content: flex-end; */
 }
 
-.message_list_section .message_list_view .message_content span {}
+.message_list_section .message_list_view .message_content span {
+    position: relative;
+    left: 0;
+    top: 36px;
+    width: 280px;
+    line-height: 30px;
+    white-space:normal;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color:#384250;
+}
 
 .message_list_section .message_list_view .message_new_count {
     position: relative;
@@ -2963,17 +2991,19 @@ section {
     margin-top: 10px;
     margin-left: 4px;
     text-align: left;
+    color:#9d9ea2;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .friend_message_log .friend_message {
     position: relative;
     float: left;
-    width: fit-content;
+    max-width: 200px;
     height: fit-content;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
     margin-right: 6px;
     padding: 4px 16px;
+    color:#384250;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log {
@@ -2987,17 +3017,19 @@ section {
     margin-top: 10px;
     margin-left: -4px;
     text-align: right;
+    color:#9d9ea2;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log .my_message {
     position: relative;
     float: right;
-    width: fit-content;
+    max-width: 200px;
     height: fit-content;
     border: 1px solid #9d9ea2;
     border-radius: 2px;
     margin-left: 4px;
     padding: 4px 16px;
+    color:#384250;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view>div:last-child {
