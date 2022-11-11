@@ -3013,6 +3013,7 @@ section {
     margin-right: 6px;
     padding: 4px 16px;
     color:#384250;
+    background-color: #fff;
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view .my_message_log {
@@ -3038,7 +3039,9 @@ section {
     border-radius: 2px;
     margin-left: 4px;
     padding: 4px 16px;
-    color:#384250;
+    color:#f6f7f7;
+    background-color: #547296;
+
 }
 
 .modal_wrap_message .message_room_section .message_room_view .message_room_chat_view>div:last-child {
