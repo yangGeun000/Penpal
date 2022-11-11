@@ -106,7 +106,7 @@ function notification(){
 	}
 }
 
-function openPopMessage() {
+function openNoti() {
 	// by 구양근, 알림 확인 기능
 	checkMessage = newMessage;
 	console.log("checkMessage : " + checkMessage);
@@ -121,6 +121,10 @@ function openPopMessage() {
 	});
 }
 
+function openPopMessage() {
+	document.getElementById("pop_message").style.display = "block";
+	$(".message_list_section").addClass("open_list");
+}
 
 function closePop() {
 	document.getElementById("pop_friend").style.display = "none";

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.penpal.project.member.Member;
 
 import lombok.Getter;
@@ -36,6 +36,7 @@ public class Room {
 	
 	private int guestCount;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yy-MM-dd HH:mm", timezone = "Asia/Seoul")
 	private LocalDateTime lastDate;
 	
 	@OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)

@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.penpal.project.member.Member;
 
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class Message {
 	private String content;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yy-MM-dd HH:mm", timezone = "Asia/Seoul")
 	private LocalDateTime sendDate;
 
 	@ManyToOne
