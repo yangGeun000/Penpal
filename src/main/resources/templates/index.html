@@ -19,7 +19,7 @@
                     </div>
                     <a href="/member/signup" sec:authorize="isAnonymous()">START NOW!</a>
                     <a th:if="${loginMember} != null"
-                        th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.id}|} : @{/users/profile/create}"
+                        th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.profile.id}|} : @{/users/profile/create}"
                         sec:authorize="isAuthenticated()">Go to Profile</a>
                 </div>
                 <div class="tc_right">

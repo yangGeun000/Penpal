@@ -5,7 +5,7 @@
         </button>
         <div id="menu_content">
             <div class="menu_profile_section">
-                <a th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.id}|} : @{/users/profile/create}">
+                <a th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.profile.id}|} : @{/users/profile/create}">
                     <div class="menu_profile_img">
                         <!-- 프로필 이미지 영역 -->
                         <img id="preview" th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
