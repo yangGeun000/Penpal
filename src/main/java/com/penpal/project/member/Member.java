@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -17,7 +16,7 @@ import org.hibernate.WrongClassException;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.penpal.project.board.Board;
 import com.penpal.project.chat.Room;
 import com.penpal.project.friend.Friend;
 import com.penpal.project.friend.FriendRequest;
@@ -42,13 +41,6 @@ public class Member {
 	@Column
 	@JsonIgnore
 	private String memberPw;
-	
-	@Column
-	@JsonIgnore
-	private String memberNPw;
-	
-	@JsonIgnore
-	private String memberNPwCheck;
 
 	@Column(unique = true, length = 60)
 	private String name;
@@ -60,11 +52,10 @@ public class Member {
 	@JsonIgnore
 	private LocalDateTime createDate;
 
-	// by 장유란, author -> writer 변수명 변경
-	@ManyToOne
+	@OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
 	@JsonIgnore
-	private Member writer;
-
+	private List<Board> boardList;
+	
 	// by 안준언, 현재 접속여부 구분을 위해 해당 필드 살렸습니다.
 	private boolean conn;
 	
@@ -85,7 +76,7 @@ public class Member {
 	private List<Room> guestList;
 
 	// by 구양근, 프로필
-	@OneToOne(mappedBy = "member")
+	@OneToOne(mappedBy = "member", cascade = CascadeType.REMOVE)
 	//@JsonBackReference
 	private Profile profile;
 	
@@ -94,22 +85,13 @@ public class Member {
 	@JsonBackReference
 	private List<Friend> friendList;
 	
+	@OneToMany(mappedBy = "friend", cascade = CascadeType.REMOVE)
+	@JsonBackReference
+	private List<Friend> myFriendList;
+	
 	// by 안준언, 친구 요청 목록 리스트
 	@OneToMany(mappedBy = "receive", cascade = CascadeType.REMOVE)
 	@JsonBackReference
 	private List<FriendRequest> friendRequestList;
-
-	public void changePassword(String memberPw, String memberNPw, String memberNPwC) {
-		if(!memberPw.equals(memberPw))
-			throw new WrongClassException("1", memberPw, memberNPw);
-		this.memberPw = memberNPw;
-		
-	}
-
-	public void update(Member member) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }

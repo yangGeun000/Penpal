@@ -3,7 +3,6 @@ package com.penpal.project.member;
 import java.security.Principal;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/member")
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -72,56 +73,35 @@ public class MemberController {
     }
     
     @GetMapping("/modify")
-    public String update() {
+    public String update(UpdateMemberForm updateMemberForm) {
 		return "member/user_info_modify";
     	
     }
     
+    //by 구양근, 멤버 정보 수정
     @PostMapping("/modify")
-    public String updatePassword(@Valid Member member, BindingResult bindingResult, HttpSession session) {
-    	
+    public String updateMember(@Valid UpdateMemberForm updateMemberForm, BindingResult bindingResult, Principal principal) {
     	
     	if(bindingResult.hasErrors()) {
-    		
-    	} try {
-    		if(!member.getMemberNPw().equals(member.getMemberNPwCheck())) {
-    			throw new Exception("변경할 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+    		log.error("updateMemberError = {}",bindingResult);
+    		return "member/user_info_modify";
+    	} 
+    	try {
+    		Member member = this.memberService.getMember(principal.getName());
+    		boolean check = this.memberService.updateMember(updateMemberForm, member);
+    		if(!check) {
+    			log.error("현재 비밀번호가 일치하지 않습니다.");
+    			bindingResult.rejectValue("currentPw", "NotEmpty.currentPassword","현재 비밀번호가 일치하지 않습니다.");
+    			return "member/user_info_modify";
     		}
-    		String memberid = session.getAttribute("memberId").toString();
-    		member.setMemberId(memberid);
-    		
-    		System.out.println("test1");
-			int result = memberService.updatePw(member);
-			System.out.println("test2");
-			System.out.println(result);
-			
-			
-			if(result == 1) {
-				return "/";
-			}else {
-				return "member/user_info_modify";
-			}
-			
-    	} catch (DataIntegrityViolationException e) {
-            e.printStackTrace();
-            bindingResult.reject(
-                    "signupFailed", 
-                    "이미 등록된 사용자입니다."
-                    );
-            return "member/signup";
-        } catch (Exception e) {
-            e.printStackTrace();
-            bindingResult.reject("signupFailed", e.getMessage());
+    		return "redirect:/";
+    	}catch(Exception e){
+    		e.printStackTrace();
+            bindingResult.reject("updateMemberFailed", e.getMessage());
             return "member/user_info_modify";
-        }
-    	
-    		
-    }
+    	}
 
-    @RequestMapping("/modify")
-    public String infoModify(){
-        return "member/user_info_modify";
-    } //by 조성빈, 유저 정보(비밀번호) 수정 템플릿 작성용 임시 매핑
+    }
     
     // by 구양근, 확인한 메세지, 친구요청 저장 
  	@RequestMapping("/setCount")

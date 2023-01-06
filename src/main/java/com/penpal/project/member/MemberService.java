@@ -38,40 +38,21 @@ public class MemberService {
         return user;
     }
     
-    public int updatePw(Member member) {
-    	try{
-    		Member user =  (this.memberRepository.findByMemberId(member.getMemberId()).get());
-    //		if(!passwordEncoder.encode(member.getMemberPw()).equals(user.getMemberPw())) {
-    //			return -1;
-    //		}
-    		
-    		user.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
-    		this.memberRepository.save(user);
-    		
-    		return 1;
-    	}catch (Exception e) {
-    		System.out.println("test3");
-			return -1;
-		}
-    }
-    
-    public void update(Member member) {
-    	
-    	
-    	
-    	this.memberRepository.save(member);
-    	log.info("이거 되냐?");
-    }
-    
-    public void setMember(Member member) {
-    	this.member = member;
+    //by 구양근, 멤버정보 수정
+    public boolean updateMember(UpdateMemberForm updateMemberForm, Member member) throws Exception{
+    	// 현재 비밀번호가 일치한다면 수정
+    	if(passwordEncoder.matches(updateMemberForm.getCurrentPw(), member.getMemberPw())) {
+    		member.setMemberPw(passwordEncoder.encode(updateMemberForm.getNewPw()));
+    		this.memberRepository.save(member);
+    		return true;
+    	}
+    	return false;
     }
     
     public void saveMember(Member member) {
     	this.memberRepository.save(member);
     }
     
-
     public Member getMember(String memberId) {
         Optional<Member> member = this.memberRepository.findByMemberId(memberId);
         
