@@ -1,0 +1,232 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+	<div id="wrap">
+		<form th:action="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}"
+			th:object="${profileForm}" method="post" enctype="multipart/form-data">
+			<!-- 프로필 수정&등록 폼 -->
+			<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+			</div>
+			<section id="profile_section01">
+				<div class="profile_function_btn_section">
+					<button id="confirm_btn" class="profile_confirm_btn" type="submit" value="Confirm">
+						Confirm
+						<!-- 프로필 수정&등록 저장 버튼 -->
+					</button>
+					<button class="profile_cancle_btn" type="button" value="Cancle">
+						Cancle
+						<!-- 프로필 수정&등록 취소 버튼 -->
+					</button>
+				</div>
+				<div class="profile_info_section01">
+					<div class="profile_img">
+						<!-- 프로필 이미지 -->
+						<img id="preview" 
+							th:if="${loginMember.profile} != null ? ${loginMember.profile.url} : 0"
+							th:src="|/users/image?url=${loginMember.profile.url}|" alt="프로필 이미지">
+						<img id="preview" th:if="${loginMember.profile} != null ? !${loginMember.profile.url} : 0">
+						<img id="preview" th:if="${loginMember.profile} == null" >
+					</div>
+					<label id="profile_input_label" for="profile_img_input">Upload</label>
+					<input id="profile_img_input" type="file" name="picture" accept="image/*" onchange="readURL(this)">
+					<div class="profile_info_data">
+						<label for="nickname" class="form-label"></label>
+						<input type="text" class="profile_name_form" th:field="*{nickname}">
+						<!-- 유저네임 -->
+						<div class="profile_info_left">
+							<div class="profile_gender_form" name="gender">
+								Gender<br>
+								<label for="gender"></label>
+								<input class="gender_select_btn" type="hidden" th:field="*{gender}" value="${gender}">
+								<button class="gender_btn male disable" type="button" name="gender" id="male">
+									Male
+								</button>
+								<button class="gender_btn female disable" type="button" name="gender" id="female">
+									Female
+								</button>
+								<!-- 유저 성별 -->
+							</div>
+							<div class="profile_age_form">
+								Age<br>
+								<label for="age"></label>
+								<input type="number" step="1" min="0" max="100" th:field="*{age}">
+								<!-- 유저 연령 -->
+							</div>
+						</div>
+						<div class="profile_info_right">
+							<div class="profile_location_form">
+								Region<br>
+								<div class="write_nationality">
+									<select class="nation_select" name="location" id="location" th:field="*{location}">
+										<option value="" selected>Region</option>
+										<option th:each="location : ${location}" th:value="${location}"
+											th:text="${location.name}"></option>
+									</select>
+								</div>
+								<!-- 유저 국적 -->
+							</div>
+							<div class="profile_country_form">
+								Country<br>
+								<div class="write_country">
+									<select class="country_select" name="country" id="country" th:field="*{country}">
+										<option value="" selected>Country</option>
+										<option th:each="country : ${country}" th:value="${country}"
+											th:text="${country.name}">
+										</option>
+									</select>
+								</div>
+								<!-- 유저 거주 국가 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="profile_section02">
+				<div class="profile_left_section">
+					<div class="profile_sns_section">
+						<h1>SNS</h1>
+						<ul class="sns_checkbox">
+							<li class="sns_selected">
+								<div>
+									<select id="sns" th:field="*{sns1}">
+										<option value="" selected>SNS 1</option>
+										<option th:each="sns : ${sns}" th:value="${sns}" th:text="${sns.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="sns_selected">
+								<div>
+									<select id="sns" th:field="*{sns2}">
+										<option value="" selected>SNS 2</option>
+										<option th:each="sns : ${sns}" th:value="${sns}" th:text="${sns.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="sns_selected">
+								<div>
+									<select id="sns" th:field="*{sns3}">
+										<option value="" selected>SNS 3</option>
+										<option th:each="sns : ${sns}" th:value="${sns}" th:text="${sns.name}"></option>
+									</select>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="profile_favorite_section">
+						<h1>FAVORITES</h1>
+						<ul class="favorite_checkbox">
+							<li class="favorite_selected">
+								<div>
+									<select id="favorite" th:field="*{favorite1}">
+										<option value="" selected>Favorite 1</option>
+										<option th:each="favorite : ${favorite}" th:value="${favorite}"
+											th:text="${favorite.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="favorite_selected">
+								<div>
+									<select id="favorite" th:field="*{favorite2}">
+										<option value="" selected>Favorite 2</option>
+										<option th:each="favorite : ${favorite}" th:value="${favorite}"
+											th:text="${favorite.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="favorite_selected">
+								<div>
+									<select id="favorite" th:field="*{favorite3}">
+										<option value="" selected>Favorite 3</option>
+										<option th:each="favorite : ${favorite}" th:value="${favorite}"
+											th:text="${favorite.name}"></option>
+									</select>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="profile_language_section">
+						<h1>LANGUAGES</h1>
+						<ul class="language_checkbox">
+							<li class="language_selected">
+								<!-- th:if로 유저 LANGUAGE1 -->
+								<div>
+									<select id="language" th:field="*{language1}">
+										<option value="" selected>Language 1</option>
+										<option th:each="language : ${language}" th:value="${language}"
+											th:text="${language.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="language_selected">
+								<!-- th:if로 유저 LANGUAGE2 -->
+								<div>
+									<select id="language" th:field="*{language2}">
+										<option value="" selected>Language 2</option>
+										<option th:each="language : ${language}" th:value="${language}"
+											th:text="${language.name}"></option>
+									</select>
+								</div>
+							</li>
+							<li class="language_selected">
+								<!-- th:if로 유저 LANGUAGE3 -->
+								<div>
+									<select id="language" th:field="*{language3}">
+										<option value="" selected>Language 3</option>
+										<option th:each="language : ${language}" th:value="${language}"
+											th:text="${language.name}"></option>
+									</select>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="profile_right_section">
+					<div class="profile_comment_section">
+						<h1>Comment</h1>
+						<!-- 유저 comment -->
+						<textarea class="profile_comment_area" th:field="*{comment}"></textarea>
+					</div>
+				</div>
+			</section>
+		</form>
+	</div>
+	<script>
+		let selectedGender = $(".gender_select_btn").val();
+		let url = document.getElementById('preview').src;
+		genderDisable();
+
+		$(".gender_btn").on('click', function () {
+			selectedGender = this.id;
+			$(".gender_select_btn").val(this.id);
+			genderDisable();
+		})
+
+		function genderDisable() {
+			if (selectedGender == 'male') {
+				$("#male").removeClass("disable");
+				$("#female").addClass("disable");
+			} else if (selectedGender == 'female') {
+				$("#male").addClass("disable");
+				$("#female").removeClass("disable");
+			}
+		} // by 조성빈, gender button 클릭하면 남/여 전환 기능
+		
+		// by 구양근, input 이미지 미리보기
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				let reader = new FileReader();
+				reader.onload = function (e) {
+					document.getElementById('preview').src = e.target.result;
+				};
+				reader.readAsDataURL(input.files[0]);
+			} else {
+				document.getElementById('preview').src = url;
+			}
+		}
+		
+	</script>
+
+</div>
+
+</html>

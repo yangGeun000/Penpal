@@ -1,0 +1,61 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div id="wrap">
+        <section id="info_modify_section">
+            <h2 class="info_modify_text">Change Password</h2>
+            <form name="modify" class="info_modify_contents" method="post" th:object="${member}">
+                <div class="field">
+                    <b>Current Password</b>
+                    <!-- 현재 비밀번호 확인 -->
+                    <!-- db와의 검증 필요, 안 맞으면 confirm 불가 -->
+                   <input class="current_pw" type="password" name ="memberPw"  >
+                   
+                </div>
+                <div class="field">
+                    <b>New Password</b>
+                    <!-- 새 비밀번호 -->
+                    <input class="modify_pw" type="password" name="memberNPw">
+                </div>
+                <div class="field">
+                    <b>Confirm New Passwrod</b>
+                    <!-- 새 비밀번호 확인 -->
+                    <input class="modify_pw" type="password" name="memberNPwCheck">
+                </div>
+               
+                <input onclick="ModifyInput()" class="info_modify_btn" type="button" value="Confirm"></input>
+                </a>
+            </form>
+        </section>
+    </div>
+    <script>
+    	function ModifyInput(){
+			console.log("tasdf")
+			//	var modify = document.modify;
+			//	var uPw = modify.memberPw.value;
+			//	var uPwC = modify.PasswordCheck.value;
+			//	var uNPw = modify.memberNPw.value;
+			//	var uNPwC = modify.memberNPwCheck.value;
+			
+			//	if (!uPw || !uNPw || !uNPwC) {
+			//		alert("Enter an existing password and a new password");
+					//기존 비밀번호와 새로운 비밀번호를 입력하세요
+			//		return false;
+			//	}
+			//	if (uNPw !== uNPwC) {
+			//		alert("The new password doesn't fit");
+//					return false;
+			//	}
+				
+			//	if (!uPw == !uNPw == !uNPwC) {
+			//		alert("Do you want to change your password?");
+			//		//비밀번호를 변경하시겠습니까?
+			//		return true;
+			//	}
+				
+				modify.submit();
+			}				
+    </script>
+</div>
+
+</html>

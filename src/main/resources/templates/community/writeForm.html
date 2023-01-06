@@ -1,0 +1,64 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+	<div id="wrap">
+		<section id="community_section01" class="potion">
+			<div class="community_text">
+				<h1>Community</h1>
+				<h3>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+					<br>
+					Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+					their exact original form.
+				</h3>
+			</div>
+		</section>
+		<section id="write_section01">
+			<div class="write_container">
+				<form id="write_form" name="write_form" th:object="${boardForm}" method="post">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<div th:replace="community/form_errors :: formErrorsFragment"></div>
+					<div class="write_title">
+						<input type="text" name="title" id="title" th:field="*{title}" placeholder="title...">
+					</div>
+					<div class="write_content">
+						<textarea type="text" name="content" id="content" th:field="*{content}"
+							placeholder="Write Something..."></textarea>
+					</div>
+					<div class="select_form">
+						<div class="write_category">
+							<select class="category_select" name="category" id="category" th:field="*{category}">
+								<option value="" selected>Category</option>
+								<option th:each="category : ${category}" th:value="${category}"
+									th:text="${category.name}"></option>
+							</select>
+						</div>
+						<div class="write_nationality">
+							<select class="nation_select" name="location" id="location" th:field="*{location}">
+								<option value="" selected>Region</option>
+								<option th:each="location : ${location}" th:value="${location}"
+									th:text="${location.name}"></option>
+							</select>
+						</div>
+						<div class="write_country">
+							<select class="country_select" name="country" id="country" th:field="*{country}">
+								<option value="" selected>Country</option>
+								<option th:each="country : ${country}" th:value="${country}" th:text="${country.name}">
+								</option>
+							</select>
+						</div>
+					</div>
+					<input class="confirm_btn" type="submit" value="Confirm">
+				</form>
+			</div>
+		</section>
+	</div>
+	<script>
+		function alertDisable(e) {
+			if($(".alert-danger").click(e)) {
+				$(".alert-danger").addClass("disable");
+			}
+		}
+	</script>
+</div>
+
+</html>

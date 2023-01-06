@@ -1,0 +1,48 @@
+<div th:fragment="messageRoomFragment">
+    <div id="message_room" class="modal_bg" style="display : none;">
+        <div class="modal_wrap_message">
+            <div class="message_room_section">
+                <div class="message_room_view">
+                    <div class="message_room_friend_profile">
+                        <!-- 메시지 보낸 친구 프로필 영역 -->
+                        <div class="message_room_friend_img">
+                            <!-- 메시지 보낸 친구 프로필 이미지 -->
+                        </div>
+                        <div class="message_room_friend_name">
+                            Unknown
+                            <!-- 메시지 보낸 친구 이름 -->
+                        </div>
+                        <button id="message_room_exit_btn" type="button" value="EXIT" onclick="closeMessageRoom()">
+                            EXIT
+                        </button> <!-- 채팅받 닫기 기능 버튼에 적용 -->
+                    </div>
+                    <div class="message_room_chat_view" id="chating">
+                        <!-- 채팅 영역 -->
+                        <div class="friend_message_log">
+                            <!-- 친구 메시지 영역 -->
+                            <div class="friend_message">
+                                Hi?
+                                <!-- 친구 메시지 -->
+                            </div>
+                        </div>
+                        <div class="my_message_log">
+                            <!-- 내 메시지 영역 -->
+                            <div class="my_message">
+                                No.
+                                <!-- 내 메시지 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="message_room_input">
+                    <!-- 채팅 입력 영역 form -->
+                    <!-- 메시지 내용 입력 -->
+                    <textarea id="chatting"></textarea>
+                    <input type="button" value="PUSH" onclick="send()"> <!-- 메시지 전송 버튼 -->
+                    <input type="hidden" id="sessionId" value="">
+                    <input type="hidden" id="roomId" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
