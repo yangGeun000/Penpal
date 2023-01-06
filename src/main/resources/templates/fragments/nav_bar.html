@@ -1,0 +1,53 @@
+<nav th:fragment="navFragment">
+	<h1 class="header_logo">
+		<a href="/">#Penpal</a>
+	</h1>
+	<div class="header_navi">
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/users">Users</a></li>
+			<li><a href="/community">Community</a></li>
+		</ul>
+	</div>
+	<div class="header_member_icon" sec:authorize="isAuthenticated()">
+		<!-- new message 있으면 바뀌는 건 .active, 데이터 지정 후 th:classappend 적용 예정 -->
+		<button type="button" onclick="openNoti()" class="new_message_btn">
+			<i id = "bell" class="far fa-bell">
+			<ul>
+				<li id = "new_message"></li>
+				<li id = "new_frined"></li>
+			</ul>
+			</i>
+		</button>
+		<button type="button" class="member_profile_btn" onclick="menuDrop()">
+			<i class="far fa-user"></i>
+		</button>
+		<div class="member_menu_dropdown_btn">
+			<button type="button" class="member_menu_btn" onclick="menuDrop()">
+				<i class="fas fa-sort-down"></i>
+			</button>
+			<div class="member_menu_dropdown">
+				<!-- 프로필 있을 시 본인 프로필, 없을 시 생성창 -->
+				<a th:if="${loginMember} != null"
+					th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.profile.id}|} : @{/users/profile/create}">
+					My Profile
+				</a>
+				<a href="/member/modify">My Info</a>
+				<a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin">Admin</a>
+				<a sec:authorize="isAuthenticated()" href="/member/logout">Logout</a>
+			</div>
+		</div>
+	</div>
+	<div class="header_login" sec:authorize="isAnonymous()">
+		<a href="/member/login">Login</a>
+	</div>
+	<script>
+		function menuDrop() {
+			if ($(".member_menu_btn").parent().hasClass("active")) {
+				$(".member_menu_btn").parent().removeClass("active");
+			} else {
+				$(".member_menu_btn").parent().addClass("active");
+			}
+		}
+	</script>
+</nav>

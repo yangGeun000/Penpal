@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<head>
+	<style>
+		.continer {
+			text-align: center;
+			display: flex;
+			padding: 20px 0;
+			justify-content: space-evenly;
+		}
+		td{
+			border-right: 1px solid black;
+			}
+		thead th{
+			color: #fff;
+			background-color: #384250;
+		}
+		tfoot{
+			background-color: #9D9EA2;
+		}
+		tbody tr:first-child{
+			border-bottom: 2px solid black !important;		
+			background-color: #547296;
+			color: #fff;
+			height: 30px;
+			
+		}
+	</style>
+</head>
+<h1>관리자 페이지</h1>
+<!-- continer_1 -->
+<div class="continer">
+	<!-- 카테고리 추가 -->
+	<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead>
+			<tr>
+				<th colspan = "3"  th:text="|< 카테고리 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">categoryName</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="categoryList, index : ${categoryList}">
+				<td th:text="${categoryList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${categoryList.name}"></td>
+				<td>
+					<input type="hidden" name="id" value="${categoryList.id}">
+					<button type="button" class="category_delete"
+						th:data-uri="@{|/category/delete/${categoryList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr style="border-top: 2px solid black;">
+				<form th:action="@{admin}" method="post" id="category">
+					<td><label for="categoryName">new</label></td>
+					<td><input type="text" name="categoryName"></td>
+					<td><button type="submit">submit</button></td>
+				</form>
+			</tr>
+		</tfoot>
+	</table>
+	<!-- //카테고리 추가 -->
+	<!-- 지역 추가 -->
+	<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead>
+			<tr>
+				<th colspan = "3"  th:text="|< 지역 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">locationName</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="locationList, index : ${locationList}">
+				<td th:text="${locationList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${locationList.name}"></td>
+				<td>
+					<input type="hidden" name="id" value="${locationList.id}">
+					<button type="button" class="location_delete"
+						th:data-uri="@{|/location/delete/${locationList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr style="border-top: 2px solid black;">
+				<form th:action="@{admin}" method="post" id="location">
+					<td><label for="locationName">new</label></td>
+					<td><input type="text" name="locationName"></td>
+					<td><button type="submit">submit</button></td>
+				</form>
+			</tr>
+		</tfoot>
+	</table>
+	<!-- //지역 추가 -->
+	<!-- 국가 추가 -->
+	<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead>
+			<tr>
+				<th colspan = "3"  th:text="|< 국가 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">countryName</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="countryList, index : ${countryList}">
+				<td th:text="${countryList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${countryList.name}"></td>
+				<td>
+					<input type="hidden" name="id" value="${countryList.id}">
+					<button type="button" class="country_delete"
+						th:data-uri="@{|/country/delete/${countryList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr style="border-top: 2px solid black;">
+				<form th:action="@{admin}" method="post" id="country">
+					<td><label for="countryName">new</label></td>
+					<td><input type="text" name="countryName"></td>
+					<td><button type="submit">submit</button></td>
+				</form>
+			</tr>
+		</tfoot>
+	</table>
+	<!-- //국가 추가 -->
+</div>
+<!-- //continer_1 -->
+
+<!-- continer_2 -->
+<div class="continer">
+	<!-- SNS 추가 -->
+	<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead>
+			<tr>
+				<th colspan = "3"  th:text="|< SNS 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">snsName</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="snsList, index : ${snsList}">
+				<td th:text="${snsList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${snsList.name}"></td>
+				<td>
+					<input type="hidden" name="id" value="${snsList.id}">
+					<button type="button" class="sns_delete"
+						th:data-uri="@{|/sns/delete/${snsList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr style="border-top: 2px solid black;">
+				<form th:action="@{admin}" method="post" id="sns">
+					<td><label for="snsName">new</label></td>
+					<td><input type="text" name="snsName"></td>
+					<td><button type="submit">submit</button></td>
+				</form>
+			</tr>
+		</tfoot>
+	</table>
+	<!-- //SNS 추가 -->
+	<!-- Favorite 추가 -->
+	<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead>
+			<tr>
+				<th colspan = "3" th:text="|< 취미 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">favoriteName</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="favoriteList, index : ${favoriteList}">
+				<td th:text="${favoriteList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${favoriteList.name}"></td>
+				<td>
+					<input type="hidden" name="id" value="${favoriteList.id}">
+					<button type="button" class="favorite_delete"
+						th:data-uri="@{|/favorite/delete/${favoriteList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr style="border-top: 2px solid black;">
+				<form th:action="@{admin}" method="post" id="favorite">
+					<td><label for="favoriteName">new</label></td>
+					<td><input type="text" name="favoriteName"></td>
+					<td><button type="submit">submit</button></td>
+				</form>
+			</tr>
+		</tfoot>
+	</table>
+	<!-- //Favorite 추가 -->
+	<!-- 언어 추가 -->
+	<table style="border: 1px solid black; border-collapse: collapse; width:400px">
+		<thead>
+			<tr>
+				<th colspan = "3"  th:text="|< 언어 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">languageName</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="languageList, index : ${languageList}">
+				<td th:text="${languageList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${languageList.name}"></td>
+				<td>
+					<input type="hidden" name="id" value="${languageList.id}">
+					<button type="button" class="language_delete"
+						th:data-uri="@{|/language/delete/${languageList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr style="border-top: 2px solid black;">
+				<form th:action="@{admin}" method="post" id="language">
+					<td><label for="languageName">new</label></td>
+					<td><input type="text" name="languageName"></td>
+					<td><button type="submit">submit</button></td>
+				</form>
+			</tr>
+		</tfoot>
+	</table>
+	<!-- //언어 추가 -->
+</div>
+<!-- //continer_2 -->
+<!-- 유저 조회/삭제 -->
+<div class="continer">
+	<table style="border: 1px solid black; border-collapse: collapse; width:1260px">
+		<thead>
+			<tr>
+				<th colspan = "7"  th:text="|< 유저 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">mbmerName</th>
+				<th style="border: 1px solid black;">conn</th>
+				<th style="border: 1px solid black;">email</th>
+				<th style="border: 1px solid black;">createDate</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="memberList, index : ${memberList}">
+				<td th:text="${memberList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${memberList.name}"></td>
+				<td th:text="${memberList.conn}"></td>
+				<td th:text="${memberList.email}"></td>
+				<td th:text="${#temporals.format(memberList.createDate, 
+							'yyyy-MM-dd')}" style="width: 100px;"></td>
+				<td>
+					<input type="hidden" name="id" value="${memberList.id}">
+					<button  th:if="${memberList.memberId} != 'admin'" type="button" class="member_delete"
+						th:data-uri="@{|/member/delete/${memberList.id}|}">delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- //유저 조회/삭제 -->
+<!-- 프로필 조회/삭제 -->
+<div class="continer">
+	<table style="border: 1px solid black; border-collapse: collapse; width:1260px">
+		<thead>
+			<tr>
+				<th colspan = "9"  th:text="|< 프로필 관리 >|"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="border: 1px solid black;">
+				<th style="border: 1px solid black;">no</th>
+				<th style="border: 1px solid black;">nickName</th>
+				<th style="border: 1px solid black;">age</th>
+				<th style="border: 1px solid black;">comment</th>
+				<th style="border: 1px solid black;" >favorite</th>
+				<th style="border: 1px solid black;" >sns</th>
+				<th style="border: 1px solid black;" >language</th>
+				<th style="border: 1px solid black;" >lastDate</th>
+				<th>option</th>
+			</tr>
+			<tr th:each="profileList, index : ${profileList}">
+				<td th:text="${profileList.id}" style="border-right: 1px solid black;"></td>
+				<td th:text="${profileList.nickname}"></td>
+				<td th:text="${profileList.age}"></td>
+				<td th:text="${profileList.comment}"></td>
+				<td th:text="|${profileList.favorite1} /
+							  ${profileList.favorite2} /
+							  ${profileList.favorite3}|"></td>
+				<td th:text="|${profileList.sns1} /
+							  ${profileList.sns2} /
+							  ${profileList.sns3}|"></td>
+				<td th:text="|${profileList.language1} /
+							  ${profileList.language2} /
+							  ${profileList.language3}|"></td>
+				<td th:text="${#temporals.format(profileList.lastDate, 
+							'yyyy-MM-dd HH:MM:SS')}"></td>
+				<td><input type="hidden" name="id" value="${profileList.id}">
+					<button type="button" class="profile_delete"
+						th:data-uri="@{|/profile/delete/${profileList.id}|}">delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+<!-- //프로필 조회/삭제 -->
+<script>
+	const delete_elements1 = document.getElementsByClassName("category_delete");
+	Array.from(delete_elements1).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements2 = document.getElementsByClassName("location_delete");
+	Array.from(delete_elements2).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements3 = document.getElementsByClassName("country_delete");
+	Array.from(delete_elements3).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements4 = document.getElementsByClassName("sns_delete");
+	Array.from(delete_elements4).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements5 = document.getElementsByClassName("favorite_delete");
+	Array.from(delete_elements5).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	const delete_elements6 = document.getElementsByClassName("language_delete");
+	Array.from(delete_elements6).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	
+	
+		const delete_elements7 = document.getElementsByClassName("member_delete");
+	Array.from(delete_elements7).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	
+		const delete_elements8 = document.getElementsByClassName("profile_delete");
+	Array.from(delete_elements8).forEach(function (element) {
+		element.addEventListener('click', function () {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			};
+		});
+	});
+	
+	
+
+</script>

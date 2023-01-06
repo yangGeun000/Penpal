@@ -1,0 +1,203 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div id="wrap">
+        <section id="profile_section01">
+            <div class="profile_function_btn_section" sec:authorize="isAuthenticated()">
+                <div id="profile_not_found" th:if="${loginMember.profile == null}">
+                    <a th:href="@{/users/profile/create}">First, regist your profile!</a>
+                </div>
+                <button id="request_message"
+                    th:if="${profile.member.id} != ${loginMember.id} and ${loginMember.profile != null}" type="button"
+                    value="MESSAGE" onclick="requestMessage()">
+                    MESSAGE
+                    <!-- 채팅 보내기 버튼, 로그인 id와 프로필 페이지 id가 다르면 등장 -->
+                </button>
+                <div id="friend_request_variable" th:if="${profile.member.id} != ${loginMember.id} and ${loginMember.profile != null}">
+                    <div>
+                        <button type="button" value="ADD" onclick="requestFriend()">
+                            ADD FRIENDS
+                        </button>
+                    </div><!-- 친구 요청 X, 로그인 멤버 != 프로필 멤버 && 친구가 아닐 때 -->
+                    <div style="display:none;"><!-- 이전 코드 오작동으로 수정 예정 -->
+                        <button type="button" value="WAITING">
+                            Wait Response
+                        </button>
+                    </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 -->
+                    <div style="display:none;"><!-- 이전 코드 오작동으로 수정 예정 -->
+                        <button type="button" value="REQUEST">
+                            Check Request
+                        </button>
+                    </div><!-- 친구 요청 O, 로그인 멤버가 요청 받았을 때 -->
+                </div>
+                <script th:inline="javascript">
+                    // by 구양근
+                    let profileMember = /*[[${profile.member}]]*/ "프로필 멤버";
+                    console.log(profileMember);
+
+                    function requestMessage() {
+                        let msg = {
+                            makerId: member.id,
+                            guestId: profileMember.id // 프로필 멤버 아이디
+                        };
+                        commonAjax('/requestRoom', msg, 'post', function (result) {
+                            openRoom(result.id, profileMember.profile.nickname, profileMember.profile.url);
+                        });
+                    }
+
+                    // by 안준언, 친구 요청 보내기
+                    function requestFriend() {
+                        let msg = {
+                            mine: member.id,
+                            friend: profileMember.id
+                        };
+                        commonAjax('/requestFriend', msg, 'post', function (result) {
+                            getFriend();
+                            getOnlineFriend();
+                            getFriendRequest();
+                        });
+                    }
+                </script>
+                <button type="button" value="Modify" th:if="${profile.member.id} == ${loginMember.id}"
+                    th:onclick="|location.href='/users/profile/modify'|">
+                    MODIFY
+                    <!-- 로그인 id와 프로필 페이지 id 가 같으면 버튼 등장(본인 페이지일 때) -->
+                </button>
+            </div>
+            <div class="profile_info_section01">
+                <div class="profile_img">
+                    <!-- 프로필 이미지 -->
+                    <img id="preview" th:if = "${profile.url} != null" th:src = "|/users/image?url=${profile.url}|" alt = "프로필 이미지">
+                </div>
+                <div class="profile_info_data">
+                    <div class="profile_name" th:text="${profile.nickname}">
+                        <!-- 유저네임 -->
+                    </div>
+                    <h1 class="profile_last_date">
+                        Last Connect<br>
+                        <span th:text="${#temporals.format(profile.lastDate, 'yyyy-MM-dd HH:mm')}">
+                            <!-- 여기에 last_date data // by 장유란, : 뒤의 대체택스트('') 제거or수정해도 정상작동 -->
+                        </span>
+                        <!-- 유저 최근 접속일 -->
+                    </h1>
+                    <div class="profile_info_left">
+                        <div class="profile_gender">
+                            Gender<br> <!-- th:if문 적용하여 gender 출력 -->
+                            <span class="profile_gender_data" th:if="${profile.gender} == 'male'">
+                                Male
+                            </span>
+                            <span class="profile_gender_data" th:if="${profile.gender} == 'female'">
+                                Female
+                            </span>
+                            <!-- 유저 성별 -->
+                        </div>
+                        <div class="profile_age">
+                            Age<br>
+                            <span class="profile_age_data" th:text="${profile.age}">
+                            </span>
+                            <!-- 유저 연령 -->
+                        </div>
+                    </div>
+                    <div class="profile_info_right">
+                        <div class="profile_location">
+                            Region<br>
+                            <span class="profile_location_data" th:text="${profile.location}">
+                            </span>
+                            <!-- 유저 국적 -->
+                        </div>
+                        <div class="profile_country">
+                            Country<br>
+                            <span class="profile_country_data" th:text="${profile.country}">
+                            </span>
+                            <!-- 유저 거주 국가 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="profile_section02">
+            <div class="profile_left_section">
+                <div class="profile_sns_section">
+                    <h1>SNS</h1>
+                    <ul>
+                        <li class="sns_icon_selected" th:if="${profile.sns1} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns1} == 'Twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns1} == 'Facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns1} == 'Instagram'"></i>
+                        </li>
+                        <li class="sns_icon_selected" th:if="${profile.sns2} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns2} == 'Twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns2} == 'Facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns2} == 'Instagram'"></i>
+                        </li>
+                        <li class="sns_icon_selected" th:if="${profile.sns3} != ''">
+                            <i class="fab fa-twitter" th:if="${profile.sns3} == 'Twitter'"></i>
+                            <i class="fab fa-facebook-f" th:if="${profile.sns3} == 'Facebook'"></i>
+                            <i class="fab fa-instagram" th:if="${profile.sns3} == 'Instagram'"></i>
+                        </li>
+                        <li class="sns_icon_selected nothing"
+                            th:if="${profile.sns1} == '' and ${profile.sns2} == '' and ${profile.sns3} == ''">
+                            none
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile_favorite_section">
+                    <h1>FAVORITES</h1>
+                    <ul>
+                        <li class="favorite_selected" th:if="${profile.favorite1} != ''"
+                            th:text="'# '+${profile.favorite1}">
+                            <!-- 유저 FAVORITE1 -->
+                        </li>
+                        <li class="favorite_selected" th:if="${profile.favorite2} != ''"
+                            th:text="'# '+${profile.favorite2}">
+                            <!-- 유저 FAVORITE2 -->
+                        </li>
+                        <li class="favorite_selected" th:if="${profile.favorite3} != ''"
+                            th:text="'# '+${profile.favorite3}">
+                            <!-- 유저 FAVORITE3 -->
+                        </li>
+                        <li class="favorite_selected nothing"
+                            th:if="${profile.favorite1} == '' and ${profile.favorite2} == '' and ${profile.favorite3} == ''">
+                            none
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile_language_section">
+                    <h1>LANGUAGES</h1>
+                    <ul>
+                        <li class="language_selected" th:if="${profile.language1} != ''"
+                            th:text="'# '+${profile.language1}">
+                            <!-- 유저 LANGUAGE1 -->
+                        </li>
+                        <li class="language_selected" th:if="${profile.language2} != ''"
+                            th:text="'# '+${profile.language2}">
+                            <!-- 유저 LANGUAGE2 -->
+                        </li>
+                        <li class="language_selected" th:if="${profile.language3} != ''"
+                            th:text="'# '+${profile.language3}">
+                            <!-- 유저 LANGUAGE3 -->
+                        </li>
+                        <li class="language_selected nothing"
+                            th:if="${profile.language1} == '' and ${profile.language2} == '' and ${profile.language3} == ''">
+                            none
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="profile_right_section">
+                <div class="profile_comment_section">
+                    <h1>Comment</h1>
+                    <div class="profile_comment_area" th:if="${profile.comment != ''}" th:text="${profile.comment}">
+                    </div>
+                    <div class="profile_comment_area nothing" th:if="${profile.comment == ''}">
+                        no comment
+
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</html>
