@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import com.penpal.project.member.Member;
-import com.penpal.project.member.MemberRepository;
+import com.penpal.project.domain.Member;
+import com.penpal.project.repository.MemberRepository;
 
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
