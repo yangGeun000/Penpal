@@ -15,9 +15,9 @@ import com.penpal.project.DataNotFoundException;
 import com.penpal.project.domain.Board;
 import com.penpal.project.domain.Member;
 import com.penpal.project.repository.BoardRepository;
-import com.penpal.project.repository.list.CategoryListRepository;
-import com.penpal.project.repository.list.CountryListRepository;
-import com.penpal.project.repository.list.LocationListRepository;
+import com.penpal.project.repository.list.CategoryRepository;
+import com.penpal.project.repository.list.CountryRepository;
+import com.penpal.project.repository.list.LocationRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,9 +26,9 @@ import lombok.RequiredArgsConstructor;
 public class BoardService {
 
 	private final BoardRepository boardRepository;
-	private final CategoryListRepository categoryListRepository;
-	private final LocationListRepository locationListRepository;
-	private final CountryListRepository countryListRepository;
+	private final CategoryRepository categoryListRepository;
+	private final LocationRepository locationListRepository;
+	private final CountryRepository countryListRepository;
 
 	// by 장유란, 검색기능
 

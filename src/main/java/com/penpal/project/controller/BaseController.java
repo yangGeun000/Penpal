@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.penpal.project.domain.Member;
-import com.penpal.project.domain.list.CategoryList;
-import com.penpal.project.domain.list.CountryList;
-import com.penpal.project.domain.list.LanguageList;
-import com.penpal.project.domain.list.LocationList;
-import com.penpal.project.repository.list.CategoryListRepository;
-import com.penpal.project.repository.list.CountryListRepository;
-import com.penpal.project.repository.list.LanguageListRepository;
-import com.penpal.project.repository.list.LocationListRepository;
+import com.penpal.project.domain.list.Category;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Language;
+import com.penpal.project.domain.list.Location;
+import com.penpal.project.repository.list.CategoryRepository;
+import com.penpal.project.repository.list.CountryRepository;
+import com.penpal.project.repository.list.LanguageRepository;
+import com.penpal.project.repository.list.LocationRepository;
 import com.penpal.project.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,10 +22,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @ControllerAdvice
 public class BaseController {
-    private final LanguageListRepository languageListRepository;
-    private final LocationListRepository locationListRepository;
-    private final CountryListRepository countryListRepository;
-    private final CategoryListRepository categoryListRepository;
+    private final LanguageRepository languageListRepository;
+    private final LocationRepository locationListRepository;
+    private final CountryRepository countryListRepository;
+    private final CategoryRepository categoryListRepository;
 	private final MemberService memberService;
 	
 	// by 구양근, 로그인한 멤버 모델에 추가
@@ -40,20 +40,20 @@ public class BaseController {
 	
     // by 조성빈, 상단 NAVI language 기능 사용을 위해 추가
 	@ModelAttribute("language")
-	public List<LanguageList> languageList(){
-		List<LanguageList> languageLists = languageListRepository.findAll();
+	public List<Language> languageList(){
+		List<Language> languageLists = languageListRepository.findAll();
 		return languageLists;
 	}
 
     @ModelAttribute("location")
-	public List<LocationList> locationList() {
-		List<LocationList> locationLists = locationListRepository.findAll();
+	public List<Location> locationList() {
+		List<Location> locationLists = locationListRepository.findAll();
 		return locationLists;
 	}
 
 	@ModelAttribute("country")
-	public List<CountryList> countryList() {
-		List<CountryList> countryLists = countryListRepository.findAll();
+	public List<Country> countryList() {
+		List<Country> countryLists = countryListRepository.findAll();
 		return countryLists;
 	}
 	
@@ -61,8 +61,8 @@ public class BaseController {
 
 	// model.addAttribute("category", categoryLists)를 따로 떼어놓은 기능
 	@ModelAttribute("category")
-	public List<CategoryList> categoryList() {
-		List<CategoryList> categoryLists = categoryListRepository.findAll();
+	public List<Category> categoryList() {
+		List<Category> categoryLists = categoryListRepository.findAll();
 		return categoryLists;
 	}
 	

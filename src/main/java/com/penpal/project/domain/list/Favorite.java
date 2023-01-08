@@ -12,16 +12,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class SnsList {
-	
+public class Favorite {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(unique = true , length = 30, name = "sns_name")
+	@Column(unique = true , length = 30, name = "favorite_name")
 	private String name;
 	
 	public String toString() {
-        return name;
+		return name;
     }
 }

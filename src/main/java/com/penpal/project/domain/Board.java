@@ -12,9 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.penpal.project.domain.list.CategoryList;
-import com.penpal.project.domain.list.CountryList;
-import com.penpal.project.domain.list.LocationList;
+import com.penpal.project.domain.list.Category;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Location;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,13 +35,13 @@ public class Board {
 	private String content;
 	
 	@ManyToOne
-	private LocationList location;
+	private Location location;
 	
 	@ManyToOne
-	private CountryList country;
+	private Country country;
 	
 	@ManyToOne
-	private CategoryList category;
+	private Category category;
 	
 	// by 장유란, author -> writer
 	@ManyToOne

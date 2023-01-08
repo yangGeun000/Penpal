@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.penpal.project.domain.Member;
 import com.penpal.project.domain.Profile;
-import com.penpal.project.domain.list.CategoryList;
-import com.penpal.project.domain.list.CountryList;
-import com.penpal.project.domain.list.FavoriteList;
-import com.penpal.project.domain.list.LanguageList;
-import com.penpal.project.domain.list.LocationList;
-import com.penpal.project.domain.list.SnsList;
+import com.penpal.project.domain.list.Category;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Favorite;
+import com.penpal.project.domain.list.Language;
+import com.penpal.project.domain.list.Location;
+import com.penpal.project.domain.list.Sns;
 import com.penpal.project.repository.MemberRepository;
 import com.penpal.project.repository.ProfileRepository;
-import com.penpal.project.repository.list.CategoryListRepository;
-import com.penpal.project.repository.list.CountryListRepository;
-import com.penpal.project.repository.list.FavoriteListRepository;
-import com.penpal.project.repository.list.LanguageListRepository;
-import com.penpal.project.repository.list.LocationListRepository;
-import com.penpal.project.repository.list.SnsListRepository;
+import com.penpal.project.repository.list.CategoryRepository;
+import com.penpal.project.repository.list.CountryRepository;
+import com.penpal.project.repository.list.FavoriteRepository;
+import com.penpal.project.repository.list.LanguageRepository;
+import com.penpal.project.repository.list.LocationRepository;
+import com.penpal.project.repository.list.SnsRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,33 +33,33 @@ import lombok.RequiredArgsConstructor;
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
 
-	private final CategoryListRepository categoryListRepository;
-	private final LocationListRepository locationListRepository;
-	private final CountryListRepository countryListRepository;
-	private final SnsListRepository snsListRepository;
-	private final FavoriteListRepository favoriteListRepository;
-	private final LanguageListRepository languageListRepository;
+	private final CategoryRepository categoryListRepository;
+	private final LocationRepository locationListRepository;
+	private final CountryRepository countryListRepository;
+	private final SnsRepository snsListRepository;
+	private final FavoriteRepository favoriteListRepository;
+	private final LanguageRepository languageListRepository;
 	private final MemberRepository memberRepository;
 	private final ProfileRepository profileRepository;
 
 	@GetMapping("/admin")
 	public String admin(Model model) {
-		List<CategoryList> categoryList = categoryListRepository.findAll();
+		List<Category> categoryList = categoryListRepository.findAll();
 		model.addAttribute("categoryList", categoryList);
 
-		List<LocationList> locationList = locationListRepository.findAll();
+		List<Location> locationList = locationListRepository.findAll();
 		model.addAttribute("locationList", locationList);
 
-		List<CountryList> countryList = countryListRepository.findAll();
+		List<Country> countryList = countryListRepository.findAll();
 		model.addAttribute("countryList", countryList);
 		
-		List<SnsList> snsList = snsListRepository.findAll();
+		List<Sns> snsList = snsListRepository.findAll();
 		model.addAttribute("snsList", snsList);
 		
-		List<FavoriteList> favoriteList = favoriteListRepository.findAll();
+		List<Favorite> favoriteList = favoriteListRepository.findAll();
 		model.addAttribute("favoriteList", favoriteList);
 		
-		List<LanguageList> languageList = languageListRepository.findAll();
+		List<Language> languageList = languageListRepository.findAll();
 		model.addAttribute("languageList", languageList);
 
 		List<Member> memberList = memberRepository.findAll();
@@ -75,37 +75,37 @@ public class AdminController {
 	public String admin(
 			String categoryName, String locationName, String countryName,
 			String snsName, String favoriteName, String languageName) {
-		CategoryList category = new CategoryList();
+		Category category = new Category();
 		category.setName(categoryName);
 		if (categoryName != null) {
 			categoryListRepository.save(category);
 		}
 
-		LocationList location = new LocationList();
+		Location location = new Location();
 		location.setName(locationName);
 		if (locationName != null) {
 			locationListRepository.save(location);
 		}
 
-		CountryList country = new CountryList();
+		Country country = new Country();
 		country.setName(countryName);
 		if (countryName != null) {
 			countryListRepository.save(country);
 		}
 		
-		SnsList sns = new SnsList();
+		Sns sns = new Sns();
 		sns.setName(snsName);
 		if (snsName != null) {
 			snsListRepository.save(sns);
 		}
 		
-		FavoriteList favorite = new FavoriteList();
+		Favorite favorite = new Favorite();
 		favorite.setName(favoriteName);
 		if (favoriteName != null) {
 			favoriteListRepository.save(favorite);
 		}
 		
-		LanguageList language = new LanguageList();
+		Language language = new Language();
 		language.setName(languageName);
 		if (languageName != null) {
 			languageListRepository.save(language);
@@ -115,37 +115,37 @@ public class AdminController {
 	}
 
 	@GetMapping("/category/delete/{id}")
-	public String categoryDelete(@PathVariable("id") CategoryList id) {
+	public String categoryDelete(@PathVariable("id") Category id) {
 		this.categoryListRepository.delete(id);
 		return "redirect:/admin";
 	}
 
 	@GetMapping("/location/delete/{id}")
-	public String locationDelete(@PathVariable("id") LocationList id) {
+	public String locationDelete(@PathVariable("id") Location id) {
 		this.locationListRepository.delete(id);
 		return "redirect:/admin";
 	}
 
 	@GetMapping("/country/delete/{id}")
-	public String countryDelete(@PathVariable("id") CountryList id) {
+	public String countryDelete(@PathVariable("id") Country id) {
 		this.countryListRepository.delete(id);
 		return "redirect:/admin";
 	}
 	
 	@GetMapping("/sns/delete/{id}")
-	public String snsDelete(@PathVariable("id") SnsList id) {
+	public String snsDelete(@PathVariable("id") Sns id) {
 		this.snsListRepository.delete(id);
 		return "redirect:/admin";
 	}
 	
 	@GetMapping("/favorite/delete/{id}")
-	public String favoriteDelete(@PathVariable("id") FavoriteList id) {
+	public String favoriteDelete(@PathVariable("id") Favorite id) {
 		this.favoriteListRepository.delete(id);
 		return "redirect:/admin";
 	}
 	
 	@GetMapping("/language/delete/{id}")
-	public String languageDelete(@PathVariable("id") LanguageList id) {
+	public String languageDelete(@PathVariable("id") Language id) {
 		this.languageListRepository.delete(id);
 		return "redirect:/admin";
 	}

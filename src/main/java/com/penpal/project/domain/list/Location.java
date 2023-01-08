@@ -9,7 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.penpal.project.domain.Board;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.penpal.project.domain.Profile;
 
 import lombok.Data;
 import lombok.Getter;
@@ -19,20 +20,21 @@ import lombok.Setter;
 @Setter
 @Entity
 @Data
-public class CategoryList {
-
+public class Location {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(unique = true , length = 100, name = "category_name")
+	@Column(unique = true , length = 100, name = "location_name")
 	private String name;
 	
-	@OneToMany(mappedBy = "category")
-    private List<Board> boardList;
+	@OneToMany(mappedBy = "location")
+	@JsonBackReference
+	private List<Profile> profileList;
 	
 	public String toString() {
-	    return name;
-	}
-	
+        return name;
+    }
+
 }

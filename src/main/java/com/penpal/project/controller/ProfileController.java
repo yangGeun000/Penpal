@@ -22,17 +22,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.penpal.project.domain.Member;
 import com.penpal.project.domain.Profile;
-import com.penpal.project.domain.list.CountryList;
-import com.penpal.project.domain.list.FavoriteList;
-import com.penpal.project.domain.list.LanguageList;
-import com.penpal.project.domain.list.LocationList;
-import com.penpal.project.domain.list.SnsList;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Favorite;
+import com.penpal.project.domain.list.Language;
+import com.penpal.project.domain.list.Location;
+import com.penpal.project.domain.list.Sns;
 import com.penpal.project.dto.ProfileForm;
-import com.penpal.project.repository.list.CountryListRepository;
-import com.penpal.project.repository.list.FavoriteListRepository;
-import com.penpal.project.repository.list.LanguageListRepository;
-import com.penpal.project.repository.list.LocationListRepository;
-import com.penpal.project.repository.list.SnsListRepository;
+import com.penpal.project.repository.list.CountryRepository;
+import com.penpal.project.repository.list.FavoriteRepository;
+import com.penpal.project.repository.list.LanguageRepository;
+import com.penpal.project.repository.list.LocationRepository;
+import com.penpal.project.repository.list.SnsRepository;
 import com.penpal.project.service.MemberService;
 import com.penpal.project.service.ProfileService;
 
@@ -48,11 +48,11 @@ public class ProfileController {
 	private final ProfileService profileService;
 
 	private final MemberService memberService;
-	private final LocationListRepository locationListRepository;
-	private final CountryListRepository countryListRepository;
-	private final SnsListRepository snsListRepository;
-	private final FavoriteListRepository favoriteListRepository;
-	private final LanguageListRepository languageListRepository;
+	private final LocationRepository locationListRepository;
+	private final CountryRepository countryListRepository;
+	private final SnsRepository snsListRepository;
+	private final FavoriteRepository favoriteListRepository;
+	private final LanguageRepository languageListRepository;
 	
     @RequestMapping("")
     public String users(Model model,
@@ -82,8 +82,8 @@ public class ProfileController {
     public String profileCreate(@Valid ProfileForm profileForm, BindingResult bindingResult, Principal principal) {
     	
     	Member member = this.memberService.getMember(principal.getName());
-    	LocationList location = locationListRepository.findByName(profileForm.getLocation());
-    	CountryList country = countryListRepository.findByName(profileForm.getCountry());
+    	Location location = locationListRepository.findByName(profileForm.getLocation());
+    	Country country = countryListRepository.findByName(profileForm.getCountry());
     	
     	if (bindingResult.hasErrors()){
     		System.out.println("form error");
@@ -138,8 +138,8 @@ public class ProfileController {
    @PostMapping("/profile/modify")
    public String profileModify(@Valid ProfileForm profileForm, BindingResult bindingResult, Principal principal){
 	   Member member = this.memberService.getMember(principal.getName());
-   	LocationList location = locationListRepository.findByName(profileForm.getLocation());
-   	CountryList country = countryListRepository.findByName(profileForm.getCountry());
+   	Location location = locationListRepository.findByName(profileForm.getLocation());
+   	Country country = countryListRepository.findByName(profileForm.getCountry());
    	
    	if (bindingResult.hasErrors()){
    		System.out.println("form error");
@@ -168,20 +168,20 @@ public class ProfileController {
    }
    
    @ModelAttribute("sns")
-	public List<SnsList> snsList() {
-		List<SnsList> snsList = this.snsListRepository.findAll();
+	public List<Sns> snsList() {
+		List<Sns> snsList = this.snsListRepository.findAll();
 		return snsList;
 	}
    
    @ModelAttribute("favorite")
-	public List<FavoriteList> favoriteList() {
-		List<FavoriteList> favoriteList = this.favoriteListRepository.findAll();
+	public List<Favorite> favoriteList() {
+		List<Favorite> favoriteList = this.favoriteListRepository.findAll();
 		return favoriteList;
 	}
    
    @ModelAttribute("language")
-	public List<LanguageList> languageList() {
-		List<LanguageList> languageList = this.languageListRepository.findAll();
+	public List<Language> languageList() {
+		List<Language> languageList = this.languageListRepository.findAll();
 		return languageList;
 	}
 }

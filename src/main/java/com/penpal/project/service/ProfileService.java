@@ -26,8 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.penpal.project.DataNotFoundException;
 import com.penpal.project.domain.Member;
 import com.penpal.project.domain.Profile;
-import com.penpal.project.domain.list.CountryList;
-import com.penpal.project.domain.list.LocationList;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Location;
 import com.penpal.project.repository.ProfileRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -62,8 +62,8 @@ public class ProfileService {
 			public Predicate toPredicate(Root<Profile> profile, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				query.distinct(true); // 중복을 제거
 				Join<Profile, Member> memberTable = profile.join("member", JoinType.INNER);
-				Join<Profile, LocationList> locationTable = profile.join("location", JoinType.INNER);
-				Join<Profile, CountryList> countryTable = profile.join("country", JoinType.INNER);
+				Join<Profile, Location> locationTable = profile.join("location", JoinType.INNER);
+				Join<Profile, Country> countryTable = profile.join("country", JoinType.INNER);
 				return cb.and(cb.like(memberTable.get("name"), "%" + kw + "%"), // 멤버명
 						cb.like(locationTable.get("name"), "%" + location + "%"), // location
 						cb.like(countryTable.get("name"), "%" + country + "%")); // country
@@ -86,7 +86,7 @@ public class ProfileService {
     public void create(
     		String nickname, String gender, int age,
     		String comment, Member member,
-    		LocationList location, CountryList country,
+    		Location location, Country country,
     		String sns1, String sns2, String sns3,
     		String favorite1, String favorite2, String favorite3,
     		String language1, String language2, String language3,
@@ -122,7 +122,7 @@ public class ProfileService {
     public void modify(
     		String nickname, String gender, int age,
     		String comment, Profile profile,
-    		LocationList location, CountryList country,
+    		Location location, Country country,
     		String sns1, String sns2, String sns3,
     		String favorite1, String favorite2, String favorite3,
     		String language1, String language2, String language3,

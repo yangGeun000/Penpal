@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.penpal.project.domain.list.CountryList;
-import com.penpal.project.domain.list.LocationList;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Location;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -42,10 +42,10 @@ public class Profile {
 	private Member member;
 	
 	@ManyToOne
-	private LocationList location;
+	private Location location;
 	
 	@ManyToOne
-	private CountryList country;
+	private Country country;
 	
 	private String sns1;
 	private String sns2;
