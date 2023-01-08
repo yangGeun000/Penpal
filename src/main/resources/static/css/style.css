@@ -156,6 +156,7 @@ section {
     border-radius: 4px;
     padding: 8px;
     display: none;
+    background: #fff;
 }
 
 .header_member_icon .member_menu_dropdown_btn .member_menu_dropdown>a {
@@ -450,12 +451,12 @@ section {
     left: 800px;
 }
 
-.continent_count .north_america_count {
+.continent_count .north.america_count {
     top: 70px;
     left: 100px;
 }
 
-.continent_count .south_america_count {
+.continent_count .south.america_count {
     top: 330px;
     left: 230px;
 }
