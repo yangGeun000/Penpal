@@ -46,6 +46,7 @@
 ![10](https://user-images.githubusercontent.com/110438268/211064310-79cceed1-0bb1-4fa6-8eb8-c543f7cc2e20.png)
 
 ## ERD
+![image](https://user-images.githubusercontent.com/110438268/211223680-b95b1005-6626-43c7-93d0-b396a3cdb9bf.png)
 
 ## commit
 ```
