@@ -1,25 +1,19 @@
 package com.penpal.project.domain;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.penpal.project.domain.list.Country;
 import com.penpal.project.domain.list.Location;
+import lombok.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Profile {
 
 	@Id

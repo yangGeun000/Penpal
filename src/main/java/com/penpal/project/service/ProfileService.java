@@ -1,19 +1,14 @@
 package com.penpal.project.service;
 
-import java.io.File;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
+import com.penpal.project.DataNotFoundException;
+import com.penpal.project.domain.Member;
+import com.penpal.project.domain.Profile;
+import com.penpal.project.domain.list.Country;
+import com.penpal.project.domain.list.Location;
+import com.penpal.project.dto.ProfileForm;
+import com.penpal.project.repository.ProfileRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,15 +18,13 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.penpal.project.DataNotFoundException;
-import com.penpal.project.domain.Member;
-import com.penpal.project.domain.Profile;
-import com.penpal.project.domain.list.Country;
-import com.penpal.project.domain.list.Location;
-import com.penpal.project.repository.ProfileRepository;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import javax.persistence.criteria.*;
+import java.io.File;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -83,86 +76,70 @@ public class ProfileService {
 	}
 	
 	// 프로필 생성
-    public void create(
-    		String nickname, String gender, int age,
-    		String comment, Member member,
-    		Location location, Country country,
-    		String sns1, String sns2, String sns3,
-    		String favorite1, String favorite2, String favorite3,
-    		String language1, String language2, String language3,
-    		MultipartFile picture
-    		) {
-    	System.out.println("service");
-        Profile p = new Profile();
-        p.setNickname(nickname);
-        p.setGender(gender);
-        p.setAge(age);
-        p.setComment(comment);
-        p.setMember(member);
-        p.setLocation(location);
-        p.setCountry(country);
-        p.setSns1(sns1);
-        p.setSns2(sns2);
-        p.setSns3(sns3);
-        p.setFavorite1(favorite1);
-        p.setFavorite2(favorite2);
-        p.setFavorite3(favorite3);
-        p.setLanguage1(language1);
-        p.setLanguage2(language2);
-        p.setLanguage3(language3);
-        p.setLastDate(LocalDateTime.now());
-        if(!picture.isEmpty()) {
-        	p.setUrl(savePicture(picture));
-        	log.info(p.getUrl());
-        }
-        this.profileRepository.save(p);
+    public void create(ProfileForm profileForm, Member member, Location location, Country country) {
+        Profile profile = Profile.builder()
+				.nickname(profileForm.getNickname())
+				.member(member)
+				.age(Integer.parseInt(profileForm.getAge()))
+				.gender(profileForm.getGender())
+				.comment(profileForm.getComment())
+				.location(location)
+				.country(country)
+				.sns1(profileForm.getSns1())
+				.sns2(profileForm.getSns2())
+				.sns3(profileForm.getSns3())
+				.favorite1(profileForm.getFavorite1())
+				.favorite2(profileForm.getFavorite2())
+				.favorite3(profileForm.getFavorite3())
+				.language1(profileForm.getLanguage1())
+				.language2(profileForm.getLanguage2())
+				.language3(profileForm.getLanguage3())
+				.lastDate(LocalDateTime.now())
+				.build();
+
+		if(!profileForm.getPicture().isEmpty()) {
+			profile.setUrl(savePicture(profileForm.getPicture()));
+		}
+
+        this.profileRepository.save(profile);
     }
     
  // 프로필 수정
-    public void modify(
-    		String nickname, String gender, int age,
-    		String comment, Profile profile,
-    		Location location, Country country,
-    		String sns1, String sns2, String sns3,
-    		String favorite1, String favorite2, String favorite3,
-    		String language1, String language2, String language3,
-    		MultipartFile picture
-    		) {
-    	System.out.println("service");
-        Profile p = profile;
-        p.setNickname(nickname);
-        p.setGender(gender);
-        p.setAge(age);
-        p.setComment(comment);
-        p.setLocation(location);
-        p.setCountry(country);
-        p.setSns1(sns1);
-        p.setSns2(sns2);
-        p.setSns3(sns3);
-        p.setFavorite1(favorite1);
-        p.setFavorite2(favorite2);
-        p.setFavorite3(favorite3);
-        p.setLanguage1(language1);
-        p.setLanguage2(language2);
-        p.setLanguage3(language3);
-        if(!picture.isEmpty()) {
-        	p.setUrl(savePicture(picture));
-        	log.info(p.getUrl());
+    public void modify(ProfileForm profileForm, Profile profile, Location location, Country country) {
+		profile.setNickname(profileForm.getNickname());
+		profile.setGender(profileForm.getGender());
+		profile.setAge(Integer.parseInt(profileForm.getAge()));
+		profile.setComment(profileForm.getComment());
+		profile.setLocation(location);
+		profile.setCountry(country);
+		profile.setSns1(profileForm.getSns1());
+		profile.setSns2(profileForm.getSns2());
+		profile.setSns3(profileForm.getSns3());
+		profile.setFavorite1(profileForm.getFavorite1());
+		profile.setFavorite2(profileForm.getFavorite2());
+		profile.setFavorite3(profileForm.getFavorite3());
+		profile.setLanguage1(profileForm.getLanguage1());
+		profile.setLanguage2(profileForm.getLanguage2());
+		profile.setLanguage3(profileForm.getLanguage3());
+
+        if(!profileForm.getPicture().isEmpty()) {
+        	profile.setUrl(savePicture(profileForm.getPicture()));
         }
         
-        this.profileRepository.save(p);
+        this.profileRepository.save(profile);
     }
-    
+
+	// by 구양근, 프로필 이미지 저장
     public String savePicture(MultipartFile picture) {
     	
     	// 원래 파일 이름 추출
-        String origName = picture.getOriginalFilename();
+        String originalFilename = picture.getOriginalFilename();
 
         // 파일 이름으로 쓸 uuid 생성
         String uuid = UUID.randomUUID().toString();
 
-        // 확장자 추출(ex : .png)
-        String extension = origName.substring(origName.lastIndexOf("."));
+        // 확장자 추출
+        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
 
         // uuid와 확장자 결합
         String savedName = uuid + extension;
@@ -176,7 +153,7 @@ public class ProfileService {
         }
         catch(Exception e){
         	e.printStackTrace();
-        	log.info("파일 저장 오류");
+        	log.error("프로필 이미지 저장 오류");
         }
         
         return savedPath;

@@ -728,7 +728,7 @@ section {
     width: 1200px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-wrap: wrap;
     margin: 0 auto;
 }
