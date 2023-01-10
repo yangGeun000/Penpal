@@ -34,14 +34,26 @@
 - 새 메세지, 친구요청 알림
 
 ## 기능소개
+- 메인 페이지
+
 ![1](https://user-images.githubusercontent.com/110438268/211064247-3f37e2dd-9950-4f3c-a2ed-23384bc9c533.png)
 ![2](https://user-images.githubusercontent.com/110438268/211064282-a47dd86a-507b-464e-a37c-c8358d3acd3a.png)
+- 프로필
+
 ![3](https://user-images.githubusercontent.com/110438268/211064288-0544e69a-f3c5-4209-86eb-f810284328b7.png)
 ![4](https://user-images.githubusercontent.com/110438268/211064289-62500b57-c631-493b-b722-c1e4a46b6731.png)
+- 로그인
+
 ![5](https://user-images.githubusercontent.com/110438268/211064295-364b5be8-3b28-45a6-87c6-9fc005d9bf90.png)
+- 게시판
+
 ![6](https://user-images.githubusercontent.com/110438268/211064299-ad9a6d4a-ccdb-4335-b5ec-9978781bba2e.png)
+- 친구
+
 ![7](https://user-images.githubusercontent.com/110438268/211064303-15c9eeaf-44e9-482d-8752-e2eb49dcaf8b.png)
 ![8](https://user-images.githubusercontent.com/110438268/211064306-a5dca80d-7e0b-476c-9dbf-dc2ecc60eff6.png)
+- 채팅
+
 ![9](https://user-images.githubusercontent.com/110438268/211064308-bd722fe1-9997-47e1-bf5e-be027b10a434.png)
 ![10](https://user-images.githubusercontent.com/110438268/211064310-79cceed1-0bb1-4fa6-8eb8-c543f7cc2e20.png)
 
