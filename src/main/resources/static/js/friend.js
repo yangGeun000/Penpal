@@ -1,33 +1,16 @@
-// commonAjax
-function commonAjax(url, parameter, type, calbak) {
-    $.ajax({
-        url: url,
-        data: parameter,
-        type: type,
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        success: function (res) {
-            calbak(res);
-        },
-        error: function (err) {
-            console.log('error');
-            calbak(err);
-        }
-    });
-}
+let friendNotiFlag = false;
 
 // by 안준언, 현재 접속중인 친구들만 출력
 function getOnlineFriend() {
     let msg = {
         memberId: member.id
     };
-    console.log(msg);
     commonAjax('/getOnlineFriend', msg, 'post', function (result) {
         createOnlineFriendList(result);
     });
 }
 
 function createOnlineFriendList(res) {
-    console.log(res);
     let tag ="";
     if (res != null) {
         res.forEach(function (friend) {
@@ -54,14 +37,12 @@ function getFriend() {
 	let msg = {
         memberId: member.id
     };
-    console.log(msg);
     commonAjax('/getFriend', msg, 'post', function (result) {
         createFriendList(result);
     });
 }
 
 function createFriendList(res) {
-    console.log(res);
     let tag ="";
     if (res != null) {
         res.forEach(function (friend) {
@@ -79,10 +60,10 @@ function createFriendList(res) {
                     		nickname +
                 		"</div>" + "<div class='my_friend_nationality'>" + country +
                 		"</div>" + "</div>" + "<div class='my_friend_comment'>" + comment +
-                		"</div>" + "</a>" +
+                		"</div>" + 
                         "<div class='friend_btn_section'>" +
                 		"<button type='button' class='friend_remove_btn' onclick='deleteFriend(\"" + friend.id + "\")'>" + "Delete" +
-                		"</button>" + "</div>" + "</div>";
+                		"</button>" + "</div>" + "</div>" + "</a>";
         });
         $("#myFriendSection").empty().append(tag);
     }
@@ -93,7 +74,6 @@ function getFriendRequest() {
 	let msg = {
         memberId: member.id
     };
-    console.log(msg);
     commonAjax('/getFriendRequest', msg, 'post', function (result) {
 		newFriend=0;
         createFriendRequestList(result);
@@ -102,7 +82,6 @@ function getFriendRequest() {
 }
 
 function createFriendRequestList(res) {
-    console.log(res);
     let tag ="";
     if (res != null) {
 		newFriend = res.length;
@@ -151,6 +130,7 @@ function agreeFriend(friendRequestId) {
 	};
 	
 	commonAjax('/agreeFriend', msg, 'post', function () {
+	    friendNotiFlag = true;
         getFriend();
         getOnlineFriend();
         getFriendRequest();
@@ -164,6 +144,7 @@ function rejectFriend(friendRequestId) {
 	};
 	
 	commonAjax('/rejectFriend', msg, 'post', function () {
+	    friendNotiFlag = true;
         getFriendRequest();
     });
 }

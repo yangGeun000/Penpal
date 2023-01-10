@@ -68,10 +68,6 @@ function sideMenuFunc() {
 			"left": "-320px"
 		}, "Fast");
 	}
-	getRoom(); // 대화방 갱신
-	getOnlineFriend(); // 접속중인 친구 리스트 갱신
-	getFriend(); // 전체 친구 리스트 갱신
-	getFriendRequest(); // 친구 요청 리스트 갱신
 } // by 조성빈, 사이드 메뉴 열고 닫기 기능
 
 function openPopFriend() {
@@ -83,50 +79,6 @@ function openMessageRoom() {
 	$(".message_list_section").addClass("active");
 }
 
-function closeMessageRoom() {
-	$("#message_room").hide();
-	$(".message_list_section").removeClass("active");
-
-	document.getElementById("chatting").removeEventListener("keyup",Enter);
-	if (ws != null) {
-		ws.close();
-		ws = null;
-		console.log("소켓 종료");
-		getRoom();
-	}
-} // by 조성빈, 채팅받 닫기 기능
-
-//by 구양근, 확인한 개수보다 새 개수가 많으면 알림 아이콘 색 red
-function notification(){
-	if(checkMessage < newMessage || checkFriend < newFriend){
-		document.getElementById("bell").style.color = "red";
-	}
-	else{
-		document.getElementById("bell").style.color = "#384250";
-	}
-}
-
-function openNoti() {
-	if($(".new_message_btn").hasClass("active")){
-		$(".new_message_btn").removeClass("active")
-	}else{
-		$(".new_message_btn").addClass("active")
-	}// by 조성빈, 클릭시 알림 메시지 active 추가/제거 기능화
-
-	// by 구양근, 알림 확인 기능
-	checkMessage = newMessage;
-	console.log("checkMessage : " + checkMessage);
-	checkFriend = newFriend;
-	console.log("checkFriend : " + checkFriend);
-	let msg = {
-		checkMessage : checkMessage,
-		checkFriend : checkFriend
-	};
-	commonAjax('/member/setCount', msg, 'post', function(result) {
-		notification()
-	});
-}
-
 function openPopMessage() {
 	document.getElementById("pop_message").style.display = "block";
 	$(".message_list_section").addClass("open_list");
@@ -136,3 +88,20 @@ function closePop() {
 	document.getElementById("pop_friend").style.display = "none";
 	document.getElementById("pop_message").style.display = "none";
 } // by 조성빈, 사이드 메뉴에서 친구 목록 & 메시지 목록 열고 닫기 기능
+
+// by 구양근, ajax 통신 함수
+function commonAjax(url, parameter, type, calbak) {
+	$.ajax({
+		url: url,
+		data: parameter,
+		type: type,
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success: function(result) {
+			calbak(result);
+		},
+		error: function(err) {
+			console.log('error');
+			calbak(err);
+		}
+	});
+}
