@@ -4,9 +4,6 @@
     <div id="wrap">
         <form th:action="${loginMember.profile}!=null? @{/users/profile/modify} : @{/users/profile/create}"
               th:object="${profileForm}" method="post" enctype="multipart/form-data">
-            <div th:if="${#fields.hasAnyErrors()}">
-                <div style="color : red;" th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
-            </div>
             <!-- 프로필 수정&등록 폼 -->
             <section id="profile_section01">
                 <div class="profile_function_btn_section">
@@ -31,12 +28,12 @@
                     <label id="profile_input_label" for="profile_img_input">Upload</label>
                     <input id="profile_img_input" type="file" name="picture" accept="image/*" onchange="readURL(this)">
                     <div class="profile_info_data">
-                        <label for="nickname" class="form-label"></label>
+                        <label for="nickname" class="form-label" th:classappend="${#fields.hasErrors('nickname')} ? 'error' ">Nickname*</label>
                         <input type="text" class="profile_name_form" th:field="*{nickname}">
                         <!-- 유저네임 -->
                         <div class="profile_info_left">
-                            <div class="profile_gender_form" name="gender">
-                                Gender<br>
+                            <div class="profile_gender_form" name="gender" th:classappend="${#fields.hasErrors('gender')} ? 'error' ">
+                                Gender*<br>
                                 <label for="gender"></label>
                                 <input class="gender_select_btn" type="hidden" th:field="*{gender}" value="${gender}">
                                 <button class="gender_btn male disable" type="button" name="gender" id="male">
@@ -47,16 +44,16 @@
                                 </button>
                                 <!-- 유저 성별 -->
                             </div>
-                            <div class="profile_age_form">
-                                Age<br>
+                            <div class="profile_age_form" th:classappend="${#fields.hasErrors('age')} ? 'error' ">
+                                Age*<br>
                                 <label for="age"></label>
                                 <input type="number" step="1" min="0" max="100" th:field="*{age}">
                                 <!-- 유저 연령 -->
                             </div>
                         </div>
                         <div class="profile_info_right">
-                            <div class="profile_location_form">
-                                Region<br>
+                            <div class="profile_location_form" th:classappend="${#fields.hasErrors('location')} ? 'error' ">
+                                Region*<br>
                                 <div class="write_nationality">
                                     <select class="nation_select" th:field="*{location}">
                                         <option value="" selected>Region</option>
@@ -66,8 +63,8 @@
                                 </div>
                                 <!-- 유저 국적 -->
                             </div>
-                            <div class="profile_country_form">
-                                Country<br>
+                            <div class="profile_country_form" th:classappend="${#fields.hasErrors('country')} ? 'error' ">
+                                Country*<br>
                                 <div class="write_country">
                                     <select class="country_select" th:field="*{country}">
                                         <option value="" selected>Country</option>
