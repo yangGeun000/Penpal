@@ -123,8 +123,6 @@ function createRoomList(result) {
 	}
 }
 
-
-
 // by 구양근, 클릭하면 소켓 열고 초기화
 function openRoom(roomId, name, url) {
 	$("#roomId").val(roomId);
