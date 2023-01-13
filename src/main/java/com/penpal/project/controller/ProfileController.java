@@ -10,6 +10,7 @@ import com.penpal.project.service.MemberService;
 import com.penpal.project.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
@@ -30,13 +31,14 @@ import java.util.List;
 public class ProfileController {
 
     private final ProfileService profileService;
-
     private final MemberService memberService;
     private final LocationRepository locationListRepository;
     private final CountryRepository countryListRepository;
     private final SnsRepository snsListRepository;
     private final FavoriteRepository favoriteListRepository;
     private final LanguageRepository languageListRepository;
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @RequestMapping("")
     public String users(Model model,
@@ -99,22 +101,7 @@ public class ProfileController {
     public String profileModify(ProfileForm profileForm, Principal principal) {
         Member member = this.memberService.getMember(principal.getName());
         Profile profile = member.getProfile();
-
-        profileForm.setNickname(profile.getNickname());
-        profileForm.setGender(profile.getGender());
-        profileForm.setAge(Integer.toString(profile.getAge()));
-        profileForm.setComment(profile.getComment());
-        profileForm.setLocation(profile.getLocation().getName());
-        profileForm.setCountry(profile.getCountry().getName());
-        profileForm.setSns1(profile.getSns1());
-        profileForm.setSns2(profile.getSns2());
-        profileForm.setSns3(profile.getSns3());
-        profileForm.setFavorite1(profile.getFavorite1());
-        profileForm.setFavorite2(profile.getFavorite2());
-        profileForm.setFavorite3(profile.getFavorite3());
-        profileForm.setLanguage1(profile.getLanguage1());
-        profileForm.setLanguage2(profile.getLanguage2());
-        profileForm.setLanguage3(profile.getLanguage3());
+        profileForm.applyProfileValue(profile);
 
         return "profile/user_profile_form";
     }
@@ -139,7 +126,7 @@ public class ProfileController {
     @RequestMapping("/image")
     @ResponseBody
     public Resource getImage(@RequestParam String url) throws MalformedURLException {
-        return new UrlResource("file:" + url);
+        return new UrlResource("file:" + uploadPath + url);
     }
 
     @ModelAttribute("sns")

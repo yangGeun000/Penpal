@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.criteria.*;
 import java.io.File;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -77,25 +76,10 @@ public class ProfileService {
 	
 	// 프로필 생성
     public void create(ProfileForm profileForm, Member member, Location location, Country country) {
-        Profile profile = Profile.builder()
-				.nickname(profileForm.getNickname())
-				.member(member)
-				.age(Integer.parseInt(profileForm.getAge()))
-				.gender(profileForm.getGender())
-				.comment(profileForm.getComment())
-				.location(location)
-				.country(country)
-				.sns1(profileForm.getSns1())
-				.sns2(profileForm.getSns2())
-				.sns3(profileForm.getSns3())
-				.favorite1(profileForm.getFavorite1())
-				.favorite2(profileForm.getFavorite2())
-				.favorite3(profileForm.getFavorite3())
-				.language1(profileForm.getLanguage1())
-				.language2(profileForm.getLanguage2())
-				.language3(profileForm.getLanguage3())
-				.lastDate(LocalDateTime.now())
-				.build();
+        Profile profile = profileForm.convertFormToProfile();
+		profile.setMember(member);
+		profile.setLocation(location);
+		profile.setCountry(country);
 
 		if(!profileForm.getPicture().isEmpty()) {
 			profile.setUrl(savePicture(profileForm.getPicture()));
@@ -106,21 +90,9 @@ public class ProfileService {
     
  // 프로필 수정
     public void modify(ProfileForm profileForm, Profile profile, Location location, Country country) {
-		profile.setNickname(profileForm.getNickname());
-		profile.setGender(profileForm.getGender());
-		profile.setAge(Integer.parseInt(profileForm.getAge()));
-		profile.setComment(profileForm.getComment());
+		profile.modify(profileForm);
 		profile.setLocation(location);
 		profile.setCountry(country);
-		profile.setSns1(profileForm.getSns1());
-		profile.setSns2(profileForm.getSns2());
-		profile.setSns3(profileForm.getSns3());
-		profile.setFavorite1(profileForm.getFavorite1());
-		profile.setFavorite2(profileForm.getFavorite2());
-		profile.setFavorite3(profileForm.getFavorite3());
-		profile.setLanguage1(profileForm.getLanguage1());
-		profile.setLanguage2(profileForm.getLanguage2());
-		profile.setLanguage3(profileForm.getLanguage3());
 
         if(!profileForm.getPicture().isEmpty()) {
         	profile.setUrl(savePicture(profileForm.getPicture()));
@@ -155,8 +127,8 @@ public class ProfileService {
         	e.printStackTrace();
         	log.error("프로필 이미지 저장 오류");
         }
-        
-        return savedPath;
+        // db 저장은 이름만 저장 (경로는 숨김)
+        return savedName;
     }
     
     // by 구양근, 최근 프로필 5개 
