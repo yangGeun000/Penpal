@@ -1,0 +1,82 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div id="wrap">
+        <section id="section01" class="potion">
+            <div class="top_contents">
+                <div class="tc_left">
+                    <div sec:authorize="isAnonymous()">
+                        <h1>Welcome to<br><span>#Penpal</span></h1>
+                        <h3>This website is 'Trendy Penpaling Website',<br>Sign up easily, and enjoy all content!
+                        </h3><br><br>
+                    </div>
+                    <div sec:authorize="isAuthenticated()">
+                        <h1>Welcome to<br><span>#Penpal</span>,
+                            [[${loginMember.profile} != null ? ${loginMember.profile.nickname} : ${loginMember.name}]]!
+                        </h1>
+                        <h3>#Penpal's all the people share profiles,<br>So Regist your Profile, and Find new friends!
+                        </h3><br><br>
+                    </div>
+                    <a href="/member/signup" sec:authorize="isAnonymous()">START NOW!</a>
+                    <a th:if="${loginMember} != null"
+                        th:href="${loginMember.profile} != null ? @{|/users/profile/${loginMember.profile.id}|} : @{/users/profile/create}"
+                        sec:authorize="isAuthenticated()">Go to Profile</a>
+                </div>
+                <div class="tc_right">
+                    <a href="#">
+                        <img src="/images/penpal_banner.png" alt="Banner Image">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="section02" class="potion">
+            <div class="middle_contents">
+                <h2><a href="/users">More new friends<span><i class="fas fa-arrow-right"></i></span>
+                    </a></h2>
+                <div>
+                   <ul class="profile_list">
+                        <th:block th:each="profile : ${recentProfile}">
+                            <li>
+                                <a th:href="@{|/users/profile/${profile.id}|}">[[${profile.getNickname()}]]</a>
+                                <img id="preview" th:if="${profile.url}" th:href="@{|/users/profile/${profile.id}|}"
+                                    th:src="|/users/image?url=${profile.url}|" alt="프로필 이미지">
+                                <img id="preview" th:if="!${profile.url}">
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="section03">
+            <div class="middle_infodata">
+                <div class="info01">
+                    <div>All Accounts<br>
+                        <h2>[[${memberCount}]]</h2>
+                    </div>
+                </div>
+                <div class="info02">
+                    <div>Online Users<br>
+                        <h2>[[${onlineMemberCount}]]</h2>
+                    </div>
+                </div>
+                <div class="info03">
+                    <div>Sending Messages<br>
+                        <h2>[[${messageCount}]]</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section04">
+            <div class="bottom_contents">
+                <div class="continent_count" th:if = "${location}">
+                <th:block th:each = "continent : ${location}">
+                	<span th:class = "|${#strings.toLowerCase(continent.name)}_count|">[[${continent.getProfileList().size()}]]</span>
+                </th:block>
+                   
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,132 @@
+<html layout:decorate="~{layout/layout}">
+
+<style>
+	.page-item.active {
+		font-weight: bolder;
+	}
+</style>
+
+<div layout:fragment="content">
+
+	<div id="wrap">
+		<section id="community_section01" class="potion">
+			<div class="community_text">
+				<h1>Community</h1>
+				<h3>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+					<br>
+					Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+					their exact original form.
+				</h3>
+			</div>
+			<div class="search">
+				<label name="search"></label>
+				<input type="text" id="search_kw" placeholder="Search" th:value="${kw}">
+				<button type="button" id="btn_search">
+					<i class="fas fa-search"></i>
+				</button>
+			</div>
+			<div class="search_nationality">
+				<select class="nation_select" name="location" id="location" th:field="*{location}">
+					<option value="" selected>Region</option>
+					<option th:each="location : ${location}" th:value="${location}" th:text="${location.name}"></option>
+				</select>
+			</div>
+			<div class="search_country">
+				<select class="country_select" name="country" id="country" th:field="*{country}">
+					<option value="" selected>Country</option>
+					<option th:each="country : ${country}" th:value="${country}" th:text="${country.name}"></option>
+				</select>
+			</div>
+		</section>
+		<section id="community_sectino02">
+			<div class="community_contents">
+				<div class="community_category">
+					<ul name="category" id="btn_list" th:field="*{category}">
+						<button>
+							<li th:class="|click-category active|" th:onclick="|location.href='@{/community}'|">ALL</li>
+							<li th:each="category : ${category}" th:class="|click-category ${category.name}|"
+								th:id="${category.name}" th:value="${category}" th:text="${category.name}"></li>
+						</button>
+					</ul>
+				</div>
+				<div id="profile_not_found" sec:authorize="isAuthenticated()">
+					<a th:href="@{/users/profile/create}" th:if="${loginMember.profile == null}">Writing after
+						registering your profile.</a>
+				</div>
+				<div class="community_bbs">
+					<!-- by 장유란, 
+							th:classappend="|view0${count}|" 
+							==> style.css/ ..community_view:nth-child(1~6)  //css변경 -->
+					<div th:each="board, count : ${paging}" th:class="community_view">
+						<a th:href="@{|/community/detail/${board.id}|}">
+							<!-- 아래 카테고리 : ... 필요없어지면 
+                                   th:text="|카테고리 : ${board.category}|" 
+                               ==> th:text="${board.category}"형태로 변경 -->
+							<div class="view_category_section">
+								<!-- 선택한 카테고리만 출력하는 영역 -->
+								<div th:if="${board.category} != null" th:text="|${board.category}|"></div>
+								<div th:if="${board.location} != null" th:text="|${board.location}|"></div>
+								<div th:if="${board.country} != null" th:text="|${board.country}|"></div>
+							</div>
+							<div class="view_profile_section">
+								<!-- 해당 글 작성자 프로필 -->
+								<div class="view_profile_writer_img">
+									<img id="preview"
+										th:if="${board.writer.profile} != null ? ${board.writer.profile.url} : 0"
+										th:src="|/users/image?url=${board.writer.profile.url}|" alt="프로필 이미지">
+								</div>
+								<div class="view_profile_writer_info">
+									<div class="view_profile_writer" th:text="${board.writer.profile.nickname}">
+										<!-- 글 작성자 닉네임 -->
+									</div>
+									<div class="view_profile_writer_nationality" th:if="${board.writer.profile != null}"
+										th:text="${board.writer.profile.country}">
+										<!-- 글 작성자 국적 -->
+									</div>
+								</div>
+							</div>
+							<div class="view_title" th:text="|${board.title}|"></div>
+							<div class="view_content" th:text="|${board.content}|"></div>
+						</a>
+					</div>
+					<!-- for문 사용으로 대체(th:class(view01..06) + th:classappend(community_view)) -->
+				</div>
+			</div>
+			<!-- by 장유란, 페이지 링크 추가 -->
+			<div class="community_bbs_paging">
+				<ul class="pagination">
+					<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
+							<span>
+								<</span> </a> </li> <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+						th:if="${page >= paging.number-5 and page <= paging.number+5}"
+						th:classappend="${page == paging.number} ? 'active'" class="page-item">
+						<a th:text="${page+1}" class="page-link" href="javascript:void(0)" th:data-page="${page}"></a>
+					</li>
+					<!-- 검색기능, page-link 클릭 시 js 실행하여 문자(kw)값에 맞는 board검색하여 제출 -->
+					<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+						<a class="page-link" href="javascript:void(0)" th:data-page="${paging.number+1}">
+							<span>></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<form th:action="@{/community}" method="get" id="searchForm">
+				<input type="hidden" id="kw" name="kw" th:value="${kw}">
+				<input type="hidden" id="page" name="page" th:value="${paging.number}">
+				<input type="hidden" id="select_location" name="location">
+				<input type="hidden" id="select_country" name="country">
+				<input type="hidden" id="select_category" name="category" th:value="${selectCategory}">
+			</form>
+			<div class="community_write" sec:authorize="isAuthenticated()">
+				<a href="/community/create" th:if="${loginMember.profile != null}">
+					<button type="button" class="create_write" title="Write">
+						Write
+					</button>
+				</a>
+			</div>
+		</section>
+	</div>
+<script th:src="@{/js/search.js}"></script>
+</div>
+</html>

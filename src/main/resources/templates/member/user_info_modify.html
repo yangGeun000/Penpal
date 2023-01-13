@@ -1,0 +1,35 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+	<div id="wrap">
+		<section id="info_modify_section">
+			<h2 class="info_modify_text">Change Password</h2>
+			<form class="info_modify_contents" th:action="@{/member/modify}" method="post" th:object="${updateMemberForm}">
+				<div class="field">
+					<b>Current Password</b>
+					<!-- 현재 비밀번호 확인 -->
+					<!-- db와의 검증 필요, 안 맞으면 confirm 불가 -->
+					<input class="current_pw" type="password" th:field="*{currentPw}">
+					<div style = "color:red;" th:errors = "*{currentPw}"></div>
+				</div>
+				<div class="field">
+					<b>New Password</b>
+					<!-- 새 비밀번호 -->
+					<input class="modify_pw" type="password" th:field="*{newPw}">
+					<div style = "color:red;" th:errors = "*{newPw}"></div>
+				</div>
+				<div class="field">
+					<b>Confirm New Passwrod</b>
+					<!-- 새 비밀번호 확인 -->
+					<input class="modify_pw" type="password" th:field="*{checkNewPw}">
+					<div style = "color:red;" th:errors = "*{newPw}"></div>
+				</div>
+
+				<input class="info_modify_btn" type="submit" value="Confirm"></input>
+				</a>
+			</form>
+		</section>
+	</div>
+</div>
+
+</html>
