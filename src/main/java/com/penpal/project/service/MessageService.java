@@ -1,16 +1,14 @@
 package com.penpal.project.service;
 
-import java.time.LocalDateTime;
-
-import org.springframework.stereotype.Service;
-
 import com.penpal.project.domain.Member;
 import com.penpal.project.domain.Message;
 import com.penpal.project.domain.Room;
 import com.penpal.project.repository.MessageRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Service
@@ -20,12 +18,12 @@ public class MessageService {
 	private final MessageRepository messageRepository;
 	
 	// by 구양근, 메세지 생성
-	public Message createMessage(Member sender, Room room, String content) {
+	public Message createMessage(Member sender, Room room, String content, LocalDateTime sendDate) {
 		Message message = new Message();
 		message.setSender(sender);
 		message.setContent(content);
 		message.setRoom(room);
-		message.setSendDate(LocalDateTime.now());
+		message.setSendDate(sendDate);
 		message = this.messageRepository.save(message);
 		
 		return message;
