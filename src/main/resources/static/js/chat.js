@@ -139,6 +139,7 @@ function closeMessageRoom() {
 
 	document.getElementById("chatting").removeEventListener("keyup",Enter);
 	if (ws != null) {
+	    ws.onclose = null; // onclose에 할당된 이벤트를 없애서 채팅창을 닫았을때 재연결을 못하게 동작
 		ws.close();
 		ws = null;
 		getRoom();
@@ -158,7 +159,7 @@ function deleteRoom(roomId) {
 }
 
 function wsEvt() {
-	ws.onopen = function (data) {
+	ws.onopen = function () {
 		//소켓이 열리면 동작
 		getMessage();
 		messageNotiFlag = true;
@@ -201,6 +202,18 @@ function wsEvt() {
 				console.warn("unknown type!");
 			}
 		}
+	};
+
+	ws.onclose = function (){
+	    // 소켓연결이 끊겼을 때 동작
+	    // 재연결로 사용
+	    setTimeout(function(){
+	    console.log("소켓 재연결");
+	    ws = new WebSocket(
+        		"ws://" + location.host + "/chating/" + $("#roomId").val()
+        	);
+        wsEvt();
+	    },1000);
 	};
 }
 
