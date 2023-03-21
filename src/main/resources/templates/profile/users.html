@@ -95,7 +95,7 @@
                 <!-- 유저 프로필 페이징 기능 -->
                 <!-- by 장유란, 페이지 링크 추가 -->
                 <div class="users_paging">
-                    <ul class="pagination">
+                    <ul class="pagination" th:if="!${paging.isEmpty}">
                         <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
                             <a class="page-link" href="javascript:void(0)" th:data-page="${paging.number-1}">
                                 <span>
