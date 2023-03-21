@@ -187,12 +187,10 @@
             <div class="profile_right_section">
                 <div class="profile_comment_section">
                     <h1>Comment</h1>
-                    <div class="profile_comment_area" th:if="${profile.comment != ''}" th:text="${profile.comment}">
-                    </div>
+                    <pre class="profile_comment_area" th:if="${profile.comment != ''}" th:text="${profile.comment}">
+                    </pre>
                     <div class="profile_comment_area nothing" th:if="${profile.comment == ''}">
                         no comment
-
-                        
                     </div>
                 </div>
             </div>

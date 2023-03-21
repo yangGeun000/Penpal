@@ -35,7 +35,7 @@
 					<div th:if="${board.country} != null" th:text="|${board.country}|"></div>
 				</div>
 				<div class="detail_title" th:text="${board.title}"></div>
-				<div class="detail_content" th:text="${board.content}"></div>
+				<pre class="detail_content" th:text="${board.content}"></pre>
 				<div class="detail_profile">
 					<!-- by 장유란, Board 작성자 나타나게 수정(위치 임의), 클래스명 변경(제거)해도 정상작동 -->
 					<div class="detail_profile_img">
@@ -121,8 +121,8 @@
 						<!-- //수정폼 -->
 						<a th:id="|answer_${answer.id}|" style="visibility: inherit">
 							<div class="answer_date" th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
-							<div class="answer_content" th:text="${answer.content}">
-							</div>
+							<pre class="answer_content" th:text="${answer.content}">
+							</pre>
 						</a>
 						<div class="answer_option_section">
 							<!-- th:href="@{|/answer/modify/${answer.id}|}" -->

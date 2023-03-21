@@ -1601,7 +1601,7 @@ section {
     color: #9d9ea2;
     margin: 14px auto;
     width: 300px;
-    white-space: normal;
+    white-space: pre;
     line-height: 1.2;
     height: 2.4em;
     display: -webkit-box;
