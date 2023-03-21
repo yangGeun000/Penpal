@@ -43,9 +43,10 @@
 				<div class="community_category">
 					<ul name="category" id="btn_list" th:field="*{category}">
 						<button>
-							<li th:class="|click-category active|" th:onclick="|location.href='@{/community}'|">ALL</li>
+							<li th:class="click-category" th:classappend="${selectCategory} == '' ? 'active' : ''" th:onclick="|location.href='@{/community}'|">ALL</li>
 							<li th:each="category : ${category}" th:class="|click-category ${category.name}|"
-								th:id="${category.name}" th:value="${category}" th:text="${category.name}"></li>
+								th:id="${category.name}" th:value="${category}" th:text="${category.name}"
+								th:classappend="${selectCategory} == ${category.name} ? 'active' : ''"></li>
 						</button>
 					</ul>
 				</div>
