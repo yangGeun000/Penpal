@@ -1,6 +1,10 @@
 # #Penpal
 팀으로 진행한 프로젝트를 리팩토링중입니다.
 
+[AWS] https://bit.ly/3LHhU9f
+
+(배포는 상황에 따라 중지될 수 있습니다.)
+
 ### Branch
 - main 
 - dev
